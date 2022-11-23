@@ -166,27 +166,6 @@ public class MemberControllerImpl implements MemberController {
 		
 		return mav;
 	}
-	//-----------------------------------------------------------------------------------------------------------
-	// 아이디에 해당하는 회원 상품정보 조회
-	//-----------------------------------------------------------------------------------------------------------
-	@Override
-	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)
-	public ModelAndView productList(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
-		System.out.println("MemberController 회원 정보 조회 id ==> " + id);
-		
-		// 회원 전체 리스트 화면에서 수정을 요청한 id에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
-		memberVO = memberService.selectMember(id);
-		System.out.println("MemberController 회원 정보 조회 ==> " + memberVO);
-		
-		// 찾아온 데이터를 가지고 개인 정보 수정화면으로 넘어간다.
-		ModelAndView mav = new ModelAndView("/member/mypage");
-		mav.addObject("member", memberVO);
-		
-		return mav;
-	}
-	
 	
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 수정하기

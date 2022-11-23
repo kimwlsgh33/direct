@@ -45,8 +45,6 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<td align="center" width="80"><b>이  름</b></td>
 			<td align="center" width="300"><b>주  소</b></td>
 			<td align="center" width="120"><b>비밀번호</b></td>
-			<td align="center" width="120"><b>상	 품</b></td>
-			<td align="center" width="300"><b>리	 뷰</b></td>
 			<td align="center" width="120"><b>가입일자</b></td>
 			<td align="center" width="300"><b>이 메 일</b></td>
 			<td align="center" width="60"><b>수정</b></td>
@@ -58,8 +56,6 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<td align="center">${member.name}</td>
 			<td align="center">${member.address}</td>
 			<td align="center">${member.password}</td>
-			<td align="center">${member.product}</td>
-			<td align="center">${member.review}</td>
 			<td align="center">${member.joinDate}</td>
 			<td align="center">${member.email}</td>
 			<td align="center"><a class="btn btn-sm" href="${contextPath}/member/updateMemberForm.do?id=${member.id}">수정</a></td>

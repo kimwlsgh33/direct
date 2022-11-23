@@ -10,8 +10,6 @@
 		<result property="name" column="name"/>
 		<result property="address" column="address"/>
 		<result property="password" column="password"/>
-		<result property="product" column="product"/>
-		<result property="review" column="review"/>
 		<result property="joinDate" column="joinDate"/>
 	</resultMap>
 	

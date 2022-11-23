@@ -30,10 +30,10 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<span>사진</span>
 				</div>
 				<div class="col-md-7">
-					<p>${member.product}</p><br>
+					<p>상품명</p><br>
 					<form class="form-horizontal" method="get" name="product" action="${contextPath}/product/productSelect">
 						<input type="hidden" name="id" value="${member.id}"/>
-						<button class="btn">장바구니 담기</button>
+						<button class="btn">상세보기</button>
 					<p>150,000원 1개</p>
 					</form>
 				</div>

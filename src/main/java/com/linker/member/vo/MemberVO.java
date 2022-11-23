@@ -1,6 +1,6 @@
 package com.linker.member.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import org.springframework.stereotype.Component;
 
@@ -15,20 +15,16 @@ public class MemberVO {
 	private String name;	// 사용자 이름
 	private String address;	// 사용자 주소
 	private String password;	// 사용자 비밀번호
-	private String product;	// 상품
-	private String review;	// 사용자 리뷰
-	private Date joinDate;	// 가입일자
+	private Timestamp joinDate;	// 가입일자
 	private String email;	// 사용자 이메일
 
 	public MemberVO() {}	// 기본 생성자
-	public MemberVO(String id, String name, String address, String password, String product, String review, String email) {	// 매개변수 있는 생성자
+	public MemberVO(String id, String name, String address, String password, String email) {	// 매개변수 있는 생성자
 		// this를 안붙이면 그냥 셋 다 지역변수임
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.password = password;
-		this.product = product;
-		this.review = review;
 		this.email = email;
 	}
 	
