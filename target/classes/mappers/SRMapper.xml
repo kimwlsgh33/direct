@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.linker.direct.searchResult">
+
+	
+	<!-- 게시글 전체 목록 가져오기 -->
+	<select id="listAll" resultType="com.linker.direct.searchResult.dto.SRDTO">
+		<![CDATA[select * from sr_product order by product_date desc]]>
+	</select>
+	
+	
+	
+	
+	
+   
+</mapper>
+
+
+
+
+
+
+
+
+
+
