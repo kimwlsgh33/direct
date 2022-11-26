@@ -1,16 +1,16 @@
 package com.linker.direct.store.entity;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
-@Getter
-@EqualsAndHashCode
+@Data
+@Component
 public class Category {
-  private String categoryId;
-  private String categoryName;
-
-  public Category(String categoryId, String categoryName) {
-    this.categoryId = categoryId;
-    this.categoryName = categoryName;
-  }
+  private int id;
+  private String name;
+  private String icon;
+  private String color;
 }

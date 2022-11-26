@@ -12,7 +12,10 @@
 
 	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations">
-			<value>classpath:jdbc.properties</value>
+			<list>
+				<value>classpath:config/jdbc.properties</value>
+				<value>classpath:config/values.properties</value>
+			</list>
 		</property>
 	</bean>
 

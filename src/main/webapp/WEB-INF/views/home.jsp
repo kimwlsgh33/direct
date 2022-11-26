@@ -5,12 +5,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%
 	ArrayList<Integer> recommendList = new ArrayList<Integer>();
 	for (int i = 0; i < 10; i++) {
 		recommendList.add(i);
 	}
-
 %>
 <!DOCTYPE html>
 <html>
@@ -150,109 +150,14 @@
 	</div>
 
 	<div class="container text-center d-flex justify-content-center flex-wrap gap-4 mb-4">
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-crown fa-xl" style="color: gold;"></i>
-			</div>
-			<span>베스트</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-gift fa-xl" style="color:goldenrod;"></i>
-			</div>
-			<span>단독상품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-umbrella-beach fa-xl" style="color: lightskyblue;"></i>
-			</div>
-			<span>시즌상품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-bowl-food fa-xl" style="color: wheat"></i>
-			</div>
-			<span>음식</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-heart fa-xl" style="color: red"></i>
-			</div>
-			<span>건강/관리</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-shirt fa-xl"></i>
-			</div>
-			<span>패션</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-pump-soap fa-xl" style="color: mediumpurple"></i>
-			</div>
-			<span>미용</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-campground fa-xl" style="color: forestgreen"></i>
-			</div>
-			<span>캠핑용품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-fish-fins fa-xl" style="color: blue"></i>
-			</div>
-			<span>낚시용품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-mobile fa-xl" style="color: black"></i>
-			</div>
-			<span>전자제품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-ghost fa-xl" style="color: darkgray"></i>
-			</div>
-			<span>장난감</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-paw fa-xl" style="color: hotpink"></i>
-			</div>
-			<span>펫 용품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-
-
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-boxes-stacked fa-xl" style="color: sandybrown"></i>
-			</div>
-			<span>기타</span>
-		</a>
+		<c:forEach var="category" items="${categories}">
+			<a href="${ctx}/search?category=${category.id}" class="link-dark btn-circle">
+				<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
+					<i class="${category.icon} fa-xl" style="color: ${category.color}"></i>
+				</div>
+				<span>${category.name}</span>
+			</a>
+		</c:forEach>
 	</div>
 
 	<hr class="my-4">

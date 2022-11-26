@@ -6,15 +6,31 @@
 <!--태그 규칙 선언-->
 
 <mapper namespace="ItemMapper">
-    <select id="selectList" resultType="com.linker.direct.store.entity.Item">
+    <select id="listAll" resultType="com.linker.direct.store.entity.Item">
         <![CDATA[
-            SELECT * FROM item ORDER BY itemId
+            SELECT * FROM item ORDER BY id
         ]]>
     </select>
     <select id="create">
         <![CDATA[
             INSERT INTO item (id, name, price, stockQuantity, description, imageUrl)
             VALUES (#{id}, #{name}, #{price}, #{stockQuantity}, #{description}, #{imageUrl})
+        ]]>
+    </select>
+    <select id="read" resultType="com.linker.direct.store.entity.Item">
+        <![CDATA[
+            SELECT * FROM item WHERE id = #{id}
+        ]]>
+    </select>
+    <select id="update">
+        <![CDATA[
+            UPDATE item SET name=#{name}, price=#{price}, stockQuantity=#{stockQuantity}, description=#{description}, imageUrl=#{imageUrl}
+            WHERE id=#{id}
+        ]]>
+    </select>
+    <select id="delete">
+        <![CDATA[
+            DELETE FROM item WHERE id=#{id}
         ]]>
     </select>
 </mapper>

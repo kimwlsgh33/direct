@@ -1,9 +1,10 @@
 package com.linker.direct;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import com.linker.direct.store.entity.Category;
+import com.linker.direct.store.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,19 +22,21 @@ public class HomeController {
 
   private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+  private final CategoryService categoryService;
+
+  public HomeController(CategoryService categoryService) {
+    this.categoryService = categoryService;
+  }
+
   /**
    * Simply selects the home view to render by returning its name.
    */
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String home(Locale locale, Model model) {
+  public String home(Locale locale, Model model) throws Exception {
     logger.info("Welcome home! The client locale is {}.", locale);
 
-    Date date = new Date();
-    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-    String formattedDate = dateFormat.format(date);
-
-    model.addAttribute("serverTime", formattedDate);
+    List<Category> categories = categoryService.listAll();
+    model.addAttribute("categories", categories);
 
     return "home";
   }

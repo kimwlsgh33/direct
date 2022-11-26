@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml 선언 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--태그 규칙 선언-->
+
+<mapper namespace="CategoryMapper">
+  <select id="listAll" resultType="com.linker.direct.store.entity.Category">
+    <![CDATA[
+    SELECT * FROM category ORDER BY id
+    ]]>
+  </select>
+  <insert id="create" parameterType="com.linker.direct.store.entity.Category">
+    <![CDATA[
+    INSERT INTO category (id, name, icon, color) SELECT IFNULL(MAX(id),0) + 1, #{name}, #{icon}, #{color} FROM category
+    ]]>
+  </insert>
+  <select id="read" parameterType="int" resultType="com.linker.direct.store.entity.Category">
+    <![CDATA[
+    SELECT * FROM category WHERE id=#{id}
+    ]]>
+  </select>
+  <update id="update" parameterType="com.linker.direct.store.entity.Category">
+    <![CDATA[
+      UPDATE category SET name=#{name}, icon=#{icon}, color=#{color}
+      WHERE id=#{id}
+    ]]>
+  </update>
+  <delete id="delete" parameterType="int">
+    <![CDATA[
+        DELETE FROM category WHERE id=#{id}
+    ]]>
+  </delete>
+</mapper>
