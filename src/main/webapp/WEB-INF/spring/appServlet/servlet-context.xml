@@ -20,6 +20,19 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+
+	<!-- multipart upload 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize" value="100000000" />
+	</beans:bean>
+
+	<!-- upload 경로 설정 -->
+	<beans:bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<beans:property name="location">
+			<beans:value>classpath:config/file.properties</beans:value>
+		</beans:property>
+	</beans:bean>
 	
 	<context:component-scan base-package="com.linker.direct" />
 </beans:beans>

@@ -94,7 +94,7 @@
 </div>
 <div class="container-fluid pt-5 mainContainer">
 	<div class="row">
-		<div class="tete d-flex justify-content-center mb-4 fs-3 fw-bold">오늘바로 받아보는 당일배송</div>
+		<div class="d-flex justify-content-center mb-4 fs-3 fw-bold">오늘바로 받아보는 당일배송</div>
 	</div>
 	<div class="row">
 		<div class="col">
@@ -146,14 +146,14 @@
 	</div>
 
 	<div class="row mt-5 mb-4">
-		<div class="tete d-flex justify-content-center mb-2 fs-3 fw-bold">믿고사는 브랜드직영관</div>
+		<div class="d-flex justify-content-center mb-2 fs-3 fw-bold">믿고사는 브랜드직영관</div>
 	</div>
 
 	<div class="container text-center d-flex justify-content-center flex-wrap gap-4 mb-4">
 		<c:forEach var="category" items="${categories}">
 			<a href="${ctx}/search?category=${category.id}" class="link-dark btn-circle">
 				<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-					<i class="${category.icon} fa-xl" style="color: ${category.color}"></i>
+					<i class="${category.icon} fa-xl" style="color:  ${category.color}"></i>
 				</div>
 				<span>${category.name}</span>
 			</a>

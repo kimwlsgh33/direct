@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @RequiredArgsConstructor // 생성자 주입
 public class ItemImageService {
-    @Value("${itemImgLocation}")
     private String itemImgLocation;
 
     private final ItemImageDao itemImageDao;

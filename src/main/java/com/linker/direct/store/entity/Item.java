@@ -11,7 +11,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode // 불변 객체
 public class Item extends Base{
-  private String id; // 상품 코드
+  private Integer id; // 상품 코드
   @NonNull
   private String name;
   @NonNull
@@ -23,7 +23,7 @@ public class Item extends Base{
 
   // String
   private ItemSellStatus itemSellStatus; // 상품 판매 상태
-  private String categoryId;
+  private Integer categoryId;
 
 //  public updateItem(String id, String name, int price, int stockQuantity, String description, String categoryId) {
   public void updateItem(ItemFormDto itemFormDto) { // 아이템 상태 업데이트

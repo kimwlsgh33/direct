@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @Controller
@@ -23,11 +24,18 @@ public class ItemController {
         model.addAttribute("list", itemService.listAll());
     }
 
-  @RequestMapping("/create")
-  public void create(Item item) throws Exception {
-    log.info("ItemControllerImpl/create() 실행");
-    itemService.create(item);
-  }
+    @RequestMapping("/createForm")
+    public String createForm() throws Exception {
+        log.info("ItemController/createForm() 실행");
+        return "/store/item/create";
+    }
+
+    @ResponseBody
+    @RequestMapping("/create")
+    public void create(Item item) throws Exception {
+      log.info("ItemControllerImpl/create() 실행");
+      itemService.create(item);
+    }
 
   @RequestMapping("/read")
   public void read(String id, Model model) throws Exception {
