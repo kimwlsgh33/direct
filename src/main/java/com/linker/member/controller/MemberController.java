@@ -37,11 +37,6 @@ public interface MemberController {
 	public ModelAndView updateMemberForm(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//-----------------------------------------------------------------------------------------------------------
-	// 아이디에 해당하는 회원 상품정보 조회
-	//-----------------------------------------------------------------------------------------------------------
-	public ModelAndView productList(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
-	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 수정하기
 	//-----------------------------------------------------------------------------------------------------------
 	public ModelAndView modifyMember(@ModelAttribute("info") MemberVO memberVO,

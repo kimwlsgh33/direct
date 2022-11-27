@@ -10,9 +10,8 @@
 		<result property="name" column="name"/>
 		<result property="address" column="address"/>
 		<result property="password" column="password"/>
-		<result property="product" column="product"/>
-		<result property="review" column="review"/>
 		<result property="joinDate" column="joinDate"/>
+		<result property="email" column="email"/>
 	</resultMap>
 	
 	<!-- 로그인 처리 -->
@@ -54,7 +53,7 @@
 	<update id="updateMember" parameterType="com.linker.member.vo.MemberVO">
 		<![CDATA[
 		UPDATE 	mypage
-		SET		password = #{password}, name = #{name}, email = #{email}
+		SET		password=#{password}, name=#{name}, email=#{email}, address=#{address}
 		WHERE	id = #{id}
 		]]>
 	</update>

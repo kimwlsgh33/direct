@@ -6,15 +6,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 
 <!-- 아이콘 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
+<!--fontawesome-->
+<script src="https://kit.fontawesome.com/217192a703.js" crossorigin="anonymous"></script>
+
+<!-- reset.css 
+<link href="${contextPath}/resources/styles/reset.css" rel="stylesheet">
+-->
+
+<!--bootstrap 5.2.2-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+<!-- bootstrap 3.3.2
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>	
-<jsp:include page="./css.jsp" flush="false"/><!-- css페이지 import -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+-->
+<jsp:include page="../common/css.jsp" flush="false"/> 
 
 <%	/*
 	sticky-top은 상단 공간을 차지하면서 위에 고정하고,
@@ -22,8 +36,93 @@
 	일부 내용이 상단 메뉴바에 가려져서 보이지 않을 수 있다.
 	*/
 %>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="${contextPath}/main.do">
+        <img src="${contextPath}/resources/icons/logo.svg" alt="home" width="30" height="24" class="d-inline-block align-text-top">
+        DIRECT
+        </a>
 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportContent">
+            <ul class="navbar-nav justify-content-around">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="${contextPath}/main.do">홈</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    회원관리
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       	<li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
+						<li><a href="${contextPath}/member/memberForm.do">회원가입</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a href="${contextPath}/member/registerAjaxForm.do">회원가입(AJAX))</a></li>
+						<li><a href="${contextPath}/member/listMembers.do">회원목록</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        파일올리기
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    	<li><a href="${contextPath}/util/upload/uploadForm">파일 올리기 (Form)</a></li>
+						<li><a href="${contextPath}/util/upload/uploadAjax">파일 올리기 (Ajax)</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        test
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    	<li><a href="${contextPath}/product/productList/">상품목록</a></li>
+                    </ul>
+                </li>
+            </ul>
+				<div class="input-group" style="width: 60%; padding-left: 50px;">
+				  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+				  <button type="button" class="btn btn-outline-success">search</button>
+				</div>
+            <div class="d-flex">
+                <form class="navbar-form" method="post" action="${contextPath}/member/login.do">
+					<c:choose>
+						<c:when test="${isLogOn == true && member != null}">
+						<div class="d-flex flex-sm-row" >
+							<a href="${contextPath}/member/logout.do" class="btn btn-outline-success">로그아웃</a>
+						</div>
+						</c:when>
+						<c:otherwise>
+						<div class="input-group">
+						  <input
+						   name="id"
+						    type="text"
+						    class="form-control"
+						    placeholder="id"
+						    aria-label="Username"
+						  />
+						  <input
+						  name="password"
+						    type="password"
+						    class="form-control"
+						    placeholder="password"
+						    aria-label="Server"
+						  />
+						  <button type="submit" class="btn btn-outline-success">로그인</button>
+						</div>
+						</c:otherwise>
+					</c:choose>
+				</form>
+            </div>
+        </div>
+    </div>
+</nav> 
+
+<!--
 <nav class="navbar navbar-sticky-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -34,7 +133,7 @@
 			</button>
 			<a class="navbar-brand" href="${contextPath}/main.do">Direct</a>
 		</div>
-		<!-- 실질적인 메뉴를 나열한다. -->
+		<!-- 실질적인 메뉴를 나열한다.
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
@@ -71,7 +170,7 @@
 						<li role="presentation" class="divider"></li>
 						<li><a href="${contextPath}/exam/exam2/doC">doC</a></li>
 						<li><a href="${contextPath}/exam/exam2/gugudanForm.do">구구단</a></li>
-						<li role="presentation" class="divider"></li><!-- 메뉴 사이 줄 -->
+						<li role="presentation" class="divider"></li><!-- 메뉴 사이 줄 
 						<li><a href="${contextPath}/exam/exam3/doD">회원정보(객체)</a></li>
 						<li><a href="${contextPath}/exam/exam3/doE">회원정보(Map)</a></li>
 					</ul>
@@ -95,14 +194,14 @@
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">test <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="${contextPath}/product/productList/">리뷰목록 (수정)</a></li>
+						<li><a href="${contextPath}/product/productList/">상품목록</a></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
-
+-->
 
 
 

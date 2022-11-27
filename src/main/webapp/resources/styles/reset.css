@@ -1,10 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<% request.setCharacterEncoding("UTF-8");%>  
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 
-<style>
 html, body {
     /*font-family: "Gowun Dodum";*/
     font-size: 16px;
@@ -52,73 +47,64 @@ table {
     border-spacing: 0;
 }
 
-li {
-	padding: 10px;
-}
-
-li a {
+a {
     text-decoration: none!important;
     color: gray;
 }
 
-li a:hover {
+a:hover {
 	text-decoration: none;
+}
+
+.btn {
+	background: gray;
 	color: white;
-}
-
-.dropdown-menu li a {
-	color: gray;
-}
-
-.dropdown-menu li a:hover {
-	color: black;
 }
 
 #mypage {
 	padding: 30px;
-	color: white;
+	color: gray;
 }
 	
 nav.col-sm-2 {
-	background: #333333;
+	background: #fff2ee;
 	padding: 0;
 	flex-direction: row;
 }
 
-.nav h4 {
-	color: white;
+h4 {
+	color: gray;
+}
+
+#c1 {
+	background: #fff2ee;
+	color: gray;
+	text-align: center;
 }
 
 #top {
 	padding: 0px;
-	height: 150px;
-}
-
-#c1 {
-	background: #333333;
-	color: white;
-	text-align: center;
-}
-
-.nav-item button {
-	color: gray;
-	width: 200px;
-}
-
-.nav-item button:hover {
-	color: gray;
 }
 
 ul {
 	text-align: center;
 }
 
-div .col-sm-9 {
+.nav-tabs.nav-justified {
+	width: 100%;
+	height: 80px;
+}
+
+#search {
+	padding: 30px;
+	width: 50%;
+}
+
+div .col-sm-8 {
 	border: 1px solid lightgray;
 	height: 300px;
 	margin-left:10px;
 	border-radius: 10px;
-	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
@@ -137,11 +123,10 @@ div .col-md-3 {
 	margin-left:10px;
 }
 
-div .col-md-6 {
+div .col-md-7 {
 	border: 1px solid lightgray;
 	border-radius: 10px;
 	margin-left:10px;
-	width: 70%;
 	height: 100px;
 }
 
@@ -157,14 +142,64 @@ i {
 	padding: 20px;
 }
 
-td a {
-	color: gray;
-	text-decoration: none;
+/* Font Definitions 
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Regular.otf') format('truetype');
+    font-weight: normal;
 }
 
-td a:hover {
-	color: black;
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Bold.otf') format('truetype');
+    font-weight: bold;
 }
 
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Black.otf') format('truetype');
+    font-weight: 900;
+}
 
-</style>
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Light.otf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Medium.otf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Thin.otf') format('truetype');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Gowun Batang';
+    src: url('../fonts/GowunBatang-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Gowun Batang';
+    src: url('../fonts/GowunBatang-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Gowun Dodum';
+    src: url('../fonts/GowunDodum-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'DoHyeon';
+    src: url('../fonts/DoHyeon-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+*/

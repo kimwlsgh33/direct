@@ -19,7 +19,7 @@ public interface MemberService {
 	public List<MemberVO> listMembers() throws DataAccessException;
 	
 	//-----------------------------------------------------------------------------------------------------------
-	// 아이디에 해당하는 회원 (상품)정보 가져오기
+	// 아이디에 해당하는 회원 정보 가져오기
 	//-----------------------------------------------------------------------------------------------------------
 	public MemberVO selectMember(String id) throws DataAccessException;
 	
