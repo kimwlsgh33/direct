@@ -77,7 +77,8 @@ buildNumber.properties
 # *.ipr
 
 # mysql
-jdbc.properties
+!/src/main/webapp/WEB-INF/config/jdbc.properties
+
 
 # CMake
 cmake-build-*/

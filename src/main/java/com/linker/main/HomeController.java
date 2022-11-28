@@ -39,6 +39,6 @@ public class HomeController {
 	// 메인화면 불러오기
 		@RequestMapping(value="/main.do", method=RequestMethod.GET)
 		public String main() {
-			return "main";
+			return "redirect:/product/productList";
 		}
 }

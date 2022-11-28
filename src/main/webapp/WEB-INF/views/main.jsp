@@ -25,14 +25,7 @@
 	<div class="row">
 		<jsp:include page="./common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
-			<nav class="nav navbar-nav" id="c1">
-			<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
-				<ul class="nav nav-pills justify-content-around">
-					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
-				</ul>
-			</nav>
+		<jsp:include page="./common/headMenu.jsp" flush="false"/>
 			<h3 style="padding-left: 25px; margin-top: 30px;">주문목록</h3>
 			<div class="input-group" style="width: 80%; padding-left: 25px; margin-top: 20px;">
 				<input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
@@ -55,7 +48,9 @@
 				</ul>
 			</div>
 			<div class="tab-content" id="myTabContent">
-			  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><jsp:include page="./member/mypage.jsp" flush="false"/></div>
+			  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			  <jsp:include page="./product/productList.jsp" flush="false"/>
+			  </div>
 			  <div class="tab-pane fade" id="menu2" role="tabpanel" aria-labelledby="profile-tab">배송</div>
 			  <div class="tab-pane fade" id="menu3" role="tabpanel" aria-labelledby="contact-tab">여행</div>
 			  <div class="tab-pane fade" id="menu4" role="tabpanel" aria-labelledby="contact-tab">티켓</div>

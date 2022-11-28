@@ -32,9 +32,9 @@ public class ProductController {
 	private ProductService ProductService;
 	
 		
-		// 상품 목록 조회
+		// 상품 목록 조회 (id상관없이 다 가져옴)
 		@RequestMapping(value = "/productList", method=RequestMethod.GET)
-		public void productList(Model model) throws Exception {
+		public String productList(Model model) throws Exception {
 		
 			System.out.println("ProductController 상품 목록 조회 시작......");
 		
@@ -43,7 +43,7 @@ public class ProductController {
 			System.out.println("ProductController 상품 목록 조회 데이터 : " + productList);
 		
 			model.addAttribute("productLists", productList);
-		
+			return "main";
 		}
 	
 	

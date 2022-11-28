@@ -48,7 +48,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportContent">
-            <ul class="navbar-nav justify-content-around">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${contextPath}/main.do">홈</a>
                 </li>
@@ -74,25 +74,17 @@
 						<li><a href="${contextPath}/util/upload/uploadAjax">파일 올리기 (Ajax)</a></li>
                     </ul>
                 </li>
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        test
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    	<li><a href="${contextPath}/product/productList/">상품목록</a></li>
-                    </ul>
-                </li>
             </ul>
-				<div class="input-group" style="width: 60%; padding-left: 50px;">
+				<div class="input-group" style="width: 60%; padding-left: 50px; padding-right: 50px;">
 				  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
 				  <button type="button" class="btn btn-outline-success">search</button>
 				</div>
-            <div class="d-flex">
+            <div class="d-flex justify-content-end">
                 <form class="navbar-form" method="post" action="${contextPath}/member/login.do">
 					<c:choose>
 						<c:when test="${isLogOn == true && member != null}">
-						<div class="d-flex flex-sm-row" >
+						<div class="d-flex" >
+							<p style="color: gray; margin-top: 10px; margin-right: 20px;"><b>${member.id}님 환영합니다.</b></p>
 							<a href="${contextPath}/member/logout.do" class="btn btn-outline-success">로그아웃</a>
 						</div>
 						</c:when>

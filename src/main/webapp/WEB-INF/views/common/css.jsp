@@ -114,7 +114,7 @@ ul {
 }
 
 div .col-sm-9 {
-	border: 1px solid lightgray;
+	background: white;
 	height: 300px;
 	margin-left:10px;
 	border-radius: 10px;
@@ -131,8 +131,6 @@ div .col-sm-7 {
 }
 
 div .col-md-3 {
-	border: 1px solid lightgray;
-	border-radius: 10px;
 	height: 100px;
 	margin-left:10px;
 	margin-right: 10px;
@@ -142,12 +140,8 @@ div .col-md-6 {
 	border: 1px solid lightgray;
 	border-radius: 10px;
 	margin-left:10px;
-	width: 70%;
 	height: 100px;
-}
-
-#modalbtn {
-	background: rgba(0,0,0,0);
+	width: 80%:
 }
 
 i {
@@ -165,6 +159,14 @@ td a {
 
 td a:hover {
 	color: black;
+}
+
+#detail {
+	margin-top: 8px;
+}
+
+#bucket {
+	margin-top: 8px;
 }
 
 

@@ -18,14 +18,7 @@
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
-		<nav class="nav navbar-nav" id="c1">
-			<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
-			<ul class="nav nav-pills justify-content-around">
-				<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
-				<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
-				<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
-			</ul>
-		</nav>
+		<jsp:include page="../common/headMenu.jsp" flush="false"/>
 	<form class="form-horizontal" method="post" name="memModifyForm" action="${contextPath}/member/modifyMember.do" style="margin-left: 30%;">
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5" style="margin-top: 30px;">
@@ -57,24 +50,14 @@
 			</div>
 		</div>
 		<div class="form-group">
-<<<<<<< HEAD
-			<label for="id" class="col-sm-3 control-label">이메일</label>
-			<div class="col-sm-3">
-=======
 			<label for="id" class="form-label">이메일</label>
 			<div class="col-sm-5">
->>>>>>> 31e927ff523d975ac8079dfd0efce297fa9bd55b
 				<input type="text" class="form-control" id="email" name="email" maxlength="20" value="${member.email}"/>
 			</div>
 		</div>
 		<div class="form-group">
-<<<<<<< HEAD
-			<label for="id" class="col-sm-3 control-label">주소</label>
-			<div class="col-sm-3">
-=======
 			<label for="id" class="form-label">주소</label>
 			<div class="col-sm-5">
->>>>>>> 31e927ff523d975ac8079dfd0efce297fa9bd55b
 				<input type="text" class="form-control" id="address" name="address" maxlength="50" value="${member.address}"/>
 			</div>
 		</div>
@@ -86,10 +69,7 @@
 		</div>
 	</form>
 	</div>
-<<<<<<< HEAD
-=======
 	</div>
->>>>>>> 31e927ff523d975ac8079dfd0efce297fa9bd55b
 </div>
 	
 <!-- 푸터 -->

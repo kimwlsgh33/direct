@@ -24,31 +24,24 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
-			<nav class="nav navbar-nav" id="c1">
-				<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
-				<ul class="nav nav-pills justify-content-around">
-					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
-				</ul>
-			</nav>
+			<jsp:include page="../common/headMenu.jsp" flush="false"/>
 	<form class="form-horizontal" id="frm">
 		<div>
 			<h3 style="margin: 25px;">리뷰 목록</h3>
 			<div class="form-group">
-					<button type="button" class="btn" onclick="location.href='/review/reviewRegisterForm'" style="margin-left: 20px;">
-						리뷰 작성
-					</button>
+				<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/review/reviewRegisterForm'" style="margin-left: 25px; margin-bottom: 25px;">
+					리뷰 작성
+				</button>
 			</div>
 		</div>
-		<table class="table table-bordered table-striped table-hover" style="width: 70%; margin-left: 25px; ">
+		<table class="table table-bordered table-striped table-hover" style="width: 75%; margin-left: 25px; ">
 		<thead>
 			<tr class="info">
 				<th class="col-sm-1 text-center">no</th>
 				<th class="col-sm-1 text-center">아이디</th>
 				<th class="col-sm-2 text-center">제목</th>
 				<th class="col-sm-3 text-center">내용</th>
-				<th class="col-sm-1 text-center">상품번호</th>
+				<th class="col-sm-2 text-center">상품번호</th>
 				<th class="col-sm-3 text-center">등록일자</th>
 			</tr>
 			</thead>

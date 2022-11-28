@@ -20,14 +20,7 @@
 	<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 
 	<div class="col-sm-10" id="top">
-			<nav class="nav navbar-nav" id="c1">
-				<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
-				<ul class="nav nav-pills justify-content-around">
-					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
-				</ul>
-			</nav>
+		<jsp:include page="../common/headMenu.jsp" flush="false"/>
 	<form class="form-horizontal" name="reviewRegisterForm" style="margin-left: 30%;">
 		<div class="form-group" style="height: 50px; margin-top: 30px;">
 			<div class="col-sm-offset-2 col-sm-5">

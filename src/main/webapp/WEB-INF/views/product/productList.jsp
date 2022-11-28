@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 
@@ -18,25 +19,15 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 }
 %>
 
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
-		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
-			<nav class="nav navbar-nav" id="c1">
-				<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
-				<ul class="nav nav-pills justify-content-around">
-					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
-				</ul>
-			</nav>
 			<form class="form-horizontal" method="get" name="product" action="${contextPath}/product/productSelect">
 			<input type="hidden" name="id" value="${member.id}"/>
-			
-			<h3 style="margin:25px;">주문 상품</h3>
-			<button class="btn" style="margin-left: 20px;">내 상품 보기</button>
-			<table class="table table-bordered table-striped table-hover" style="width: 70%; margin-left: 25px; ">
+			<h3 style="margin:25px;">상품 목록</h3>
+			<button class="btn btn-sm btn-outline-success" style="margin-left: 25px; margin-bottom: 25px;">자세히 보기</button>
+			</form>
+			<table class="table table-bordered table-striped table-hover" style="width: 95%; margin-left: 25px; ">
 				<tr class="info">
 					<td align="center" width="60"><b>상품 번호</b></td>
 					<td align="center" width="60"><b>주문 번호</b></td>
@@ -44,20 +35,18 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<td align="center" width="60"><b>상품 가격</b></td>
 					<td align="center" width="60"><b>상품 개수</b></td>
 				</tr>
-			<c:forEach var="product" items="${productLists}">	
+			<c:forEach var="p" items="${productLists}">	
 				<tr>
-					<td align="center">${product.product_no}</td>
-					<td align="center">${product.order_product_no}</td>
-					<td align="center">${product.order_product_name}</td>
-					<td align="center">${product.order_product_price}</td>
-					<td align="center">${product.order_product_count}</td>
+					<td align="center">${p.product_no}</td>
+					<td align="center">${p.order_product_no}</td>
+					<td align="center">${p.order_product_name}</td>
+					<td align="center">${p.order_product_price}</td>
+					<td align="center">${p.order_product_count}</td>
 				</tr>
 			</c:forEach>
 			</table>
-			</form>
 		</div>
 	</div>
 </div>
-<jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 </html>
