@@ -142,6 +142,7 @@ div .col-md-6 {
 	border: 1px solid lightgray;
 	border-radius: 10px;
 	margin-left:10px;
+	width: 70%;
 	height: 100px;
 }
 
@@ -156,4 +157,15 @@ i {
 .col-sm-2 {
 	padding: 20px;
 }
+
+td a {
+	color: gray;
+	text-decoration: none;
+}
+
+td a:hover {
+	color: black;
+}
+
+
 </style>

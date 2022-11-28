@@ -21,40 +21,38 @@
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
 			<nav class="nav navbar-nav" id="c1">
-			<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
-				<ul class="nav nav-pills nav-justified">
+				<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
+				<ul class="nav nav-pills justify-content-around">
 					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
 					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
 					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
 				</ul>
 			</nav>
-		</div>
-		<div class="col-md-10">
-		<form class="form-horizontal" name="zipForm" method="post">
-			<h2 align="center">배송지 관리</h2>
+		<form class="row g-3" name="zipForm" method="post" style="margin-left: 30%;">
+			<h2 style="padding-top: 30px;">배송지 관리</h2>
 			<div class="form-group" style="margin-top: 50px;">
-				<label class="col-sm-2" style="text-align: right">우편번호</label>
+				<label class="form-label" style="text-align: right">우편번호</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="zipcode" id="zipcode" readonly/>
 					<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2" style="text-align: right">주 소</label>
+				<label class="form-label" style="text-align: right">주 소</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="address01" name="address01"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2" style="text-align:right">상세주소</label>
+				<label class="form-label" style="text-align:right">상세주소</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="address02" name="address02"/>
 				</div>
 			</div>
 			<button class="btn" type="submit">등록</button>
 		</form>
+		</div>
 	</div>
-</div>
 </div>
 
 <!-- 하단 메뉴 -->

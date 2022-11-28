@@ -23,17 +23,25 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 <div class="container">
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
-		<div class="container">
+		<div class="col-sm-10" id="top">
+			<nav class="nav navbar-nav" id="c1">
+				<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
+				<ul class="nav nav-pills justify-content-around">
+					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
+					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
+					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
+				</ul>
+			</nav>
 	<form class="form-horizontal" id="frm">
 		<div>
-			<h2 align="center">리뷰 목록</h2>
-			<div class="form-group" style="height: 50px;">
+			<h3 style="margin: 25px;">리뷰 목록</h3>
+			<div class="form-group">
 					<button type="button" class="btn" onclick="location.href='/review/reviewRegisterForm'" style="margin-left: 20px;">
 						리뷰 작성
 					</button>
 			</div>
 		</div>
-		<table class="table table-bordered table-striped table-hover" style="width: 75%; margin: 0px;">
+		<table class="table table-bordered table-striped table-hover" style="width: 70%; margin-left: 25px; ">
 		<thead>
 			<tr class="info">
 				<th class="col-sm-1 text-center">no</th>

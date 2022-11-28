@@ -22,13 +22,21 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 <div class="container">
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
-		<div class="container">
+		<div class="col-sm-10" id="top">
+			<nav class="nav navbar-nav" id="c1">
+				<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
+				<ul class="nav nav-pills justify-content-around">
+					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
+					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
+					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
+				</ul>
+			</nav>
 			<form class="form-horizontal" method="get" name="product" action="${contextPath}/product/productSelect">
 			<input type="hidden" name="id" value="${member.id}"/>
 			
-			<h3 style="margin-left:10px;">주문 상품</h3>
-			<button class="btn">내 상품 보기</button>
-			<table class="table table-bordered table-striped table-hover" style="width: 75%; margin-left:10px;">
+			<h3 style="margin:25px;">주문 상품</h3>
+			<button class="btn" style="margin-left: 20px;">내 상품 보기</button>
+			<table class="table table-bordered table-striped table-hover" style="width: 70%; margin-left: 25px; ">
 				<tr class="info">
 					<td align="center" width="60"><b>상품 번호</b></td>
 					<td align="center" width="60"><b>주문 번호</b></td>

@@ -21,10 +21,11 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 <div class="container">
 	<div class="col-sm-9">
 			<h4 style="margin-left:15px;">2022.11.18</h4>
+		<div class="row justify-content-center">
 		<div class="col-sm-7">
 			<span>배송완료</span>
 			<span class="btn" id ="modalbtn" data-toggle="modal" data-target="#mymodal"><i class="bi bi-three-dots-vertical"></i></span>
-			<div class="col-md-10">
+			<div class="col-md-10 row justify-content-start">
 				<div class="col-md-3">
 					<span>사진</span>
 				</div>
@@ -32,13 +33,12 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<p>상품명</p><br>
 					<form class="form-horizontal" method="get" name="product" action="${contextPath}/product/productSelect">
 						<input type="hidden" name="id" value="${member.id}"/>
+						<p>150,000원 1개</p>
 						<button class="btn">상세보기</button>
-					<p>150,000원 1개</p>
 					</form>
 				</div>
 			</div>
 		</div>
-		<div>
 			<span class="col-sm-2">
 				<button class="btn" id="bucket">배송조회</button>
 				<button class="btn" id="bucket">교환 반품 신청</button>
