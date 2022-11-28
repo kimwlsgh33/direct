@@ -1,6 +1,6 @@
 package com.linker.review.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import org.springframework.stereotype.Component;
 import lombok.Data;
@@ -14,6 +14,6 @@ public class ReviewDTO {
 	private int product_no;	// 리뷰할 상품 번호
 	private String subject;	// 리뷰 제목
 	private String content;	// 리뷰 내용
-	private Date reg_date;	// 리뷰 작성 날짜
+	private Timestamp reg_date;	// 리뷰 작성 날짜
 
 }

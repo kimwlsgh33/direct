@@ -22,16 +22,6 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 <div class="container">
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
-		<div class="col-sm-10" id="top">
-			<nav class="nav navbar-nav" id="c1">
-			<!-- nav-pills 영역안에서 가로로 펼쳐짐, 세로메뉴 하려면 nav-stacked필요 -->
-				<ul class="nav nav-pills nav-justified">
-					<li><div><h2>배송중</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
-					<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
-				</ul>
-			</nav>
-		</div>
 		<div class="container">
 			<form class="form-horizontal" method="get" name="product" action="${contextPath}/product/productSelect">
 			<input type="hidden" name="id" value="${member.id}"/>

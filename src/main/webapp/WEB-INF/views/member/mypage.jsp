@@ -19,9 +19,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 %>
 
 <div class="container">
-	<h3 style="margin-left:10px;">주문 상품</h3>
-	<div class="col-sm-8">
-			<h3 style="margin-left:15px;">2022.11.18</h3>
+	<div class="col-sm-9">
+			<h4 style="margin-left:15px;">2022.11.18</h4>
 		<div class="col-sm-7">
 			<span>배송완료</span>
 			<span class="btn" id ="modalbtn" data-toggle="modal" data-target="#mymodal"><i class="bi bi-three-dots-vertical"></i></span>
@@ -29,7 +28,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				<div class="col-md-3">
 					<span>사진</span>
 				</div>
-				<div class="col-md-7">
+				<div class="col-md-6">
 					<p>상품명</p><br>
 					<form class="form-horizontal" method="get" name="product" action="${contextPath}/product/productSelect">
 						<input type="hidden" name="id" value="${member.id}"/>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 
@@ -44,8 +45,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<td align="center" width="80"><b>아이디</b></td>
 			<td align="center" width="80"><b>이  름</b></td>
 			<td align="center" width="300"><b>주  소</b></td>
-			<td align="center" width="120"><b>비밀번호</b></td>
-			<td align="center" width="120"><b>가입일자</b></td>
+			<td align="center" width="80"><b>비밀번호</b></td>
+			<td align="center" width="150"><b>가입일자</b></td>
 			<td align="center" width="300"><b>이 메 일</b></td>
 			<td align="center" width="60"><b>수정</b></td>
 			<td align="center" width="60"><b>삭제</b></td>
@@ -56,7 +57,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<td align="center">${member.name}</td>
 			<td align="center">${member.address}</td>
 			<td align="center">${member.password}</td>
-			<td align="center">${member.joinDate}</td>
+			<td align="center"><fmt:formatDate value="${member.joinDate}" pattern="yyyy년 MM월 dd일"/></td>
 			<td align="center">${member.email}</td>
 			<td align="center"><a class="btn btn-sm" href="${contextPath}/member/updateMemberForm.do?id=${member.id}">수정</a></td>
 			<td align="center"><a class="btn btn-sm" href="${contextPath}/member/removeMember.do?id=${member.id}">삭제</a></td>

@@ -8,6 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>회원 가입 폼</title>
+	<jsp:include page="../common/css.jsp" flush="false"/> 
 </head>
 <body>
 

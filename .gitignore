@@ -76,6 +76,9 @@ buildNumber.properties
 # *.iml
 # *.ipr
 
+# mysql
+jdbc.properties
+
 # CMake
 cmake-build-*/
 

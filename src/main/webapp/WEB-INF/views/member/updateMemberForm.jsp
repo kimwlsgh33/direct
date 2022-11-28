@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>회원 정보 수정</title>
+	<title>개인정보 확인/수정</title>
 </head>
 <body>
 
@@ -15,10 +15,12 @@
 <jsp:include page="../common/topMenu.jsp" flush="false"/>
 	
 <div class="container">
+	<div class="row">
+		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 	<form class="form-horizontal" method="post" name="memModifyForm" action="${contextPath}/member/modifyMember.do">
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5">
-				<h2 align="center">회원 정보 수정</h2>
+				<h2 align="center">개인정보 확인/수정</h2>
 			</div>
 		</div>
 		<div class="form-group">
@@ -46,12 +48,25 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="id" class="col-sm-3 control-label">이메일</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="email" name="email" maxlength="20" value="${member.email}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="id" class="col-sm-3 control-label">주소</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="address" name="address" maxlength="50" value="${member.address}"/>
+			</div>
+		</div>
+		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-4">
 				<button type="reset"  class="btn">다시 입력</button>
 				<button type="submit" class="btn">회원 정보 수정</button>
 			</div>
 		</div>
 	</form>
+	</div>
 </div>
 	
 <!-- 푸터 -->

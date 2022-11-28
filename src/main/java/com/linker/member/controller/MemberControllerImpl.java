@@ -227,4 +227,5 @@ public class MemberControllerImpl implements MemberController {
 		return result;
 	}
 
+
 }
