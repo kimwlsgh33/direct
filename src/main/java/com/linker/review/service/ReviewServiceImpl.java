@@ -40,4 +40,26 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDAO.reviewList();
 	}
 
+	// 리뷰 상세조회
+	@Override
+	public ReviewDTO reviewDetail(int review_no) throws Exception {
+		
+		return reviewDAO.reviewDetail(review_no);
+	}
+
+	// 리뷰 수정
+	@Override
+	public int reviewUpdate(ReviewDTO reviewDTO) {
+		logger.info("ReviewServiceImpl  리뷰 수정하기....." + reviewDTO);
+		System.out.println("ReviewServiceImpl  리뷰 수정하기.....");
+		return reviewDAO.reviewUpdate(reviewDTO);
+	}
+
+	// 리뷰 삭제
+	@Override
+	public int reviewDelete(int review_no) {
+		logger.info("ReviewServiceImpl  리뷰 삭제하기.....");
+		return reviewDAO.reviewDelete(review_no);
+	}
+
 }

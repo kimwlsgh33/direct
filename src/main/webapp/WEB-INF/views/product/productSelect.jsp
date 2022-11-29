@@ -44,9 +44,12 @@
 				<h4 style="margin-left:15px;"><fmt:formatDate value="${p.order_date}" pattern="yyyy.MM.dd hh:mm"/></h4>
 				<div class="row justify-content-center">
 					<div class="col-sm-7">
-						<span>배송완료</span>
-						<span class="btn" id ="modalbtn" data-toggle="modal" data-target="#mymodal"><i class="bi bi-three-dots-vertical"></i></span>
-						<div class="col-md-10 row justify-content-start">
+						<div style="margin-left: 20px; margin-top: 10px;">
+							<span>배송완료
+							<span class="btn" data-bs-toggle="modal" data-bs-target="#mymodal"><i class="bi bi-three-dots-vertical"></i></span>
+							</span>
+						</div>
+						<div class="col-md-10 row justify-content-start" style="margin-top: 15px;">
 							<div class="col-md-3">
 								<span><img src="${p.order_product_url}" width="100" height="100"/></span>
 							</div>
@@ -54,11 +57,11 @@
 								<p>${p.order_product_name}</p><br>
 								<input type="hidden" name="id" value="${member.id}"/>
 								<p>${p.order_product_price}원, ${p.order_product_count}개</p>
-								<button id="detail" class="btn btn-sm btn-outline-success">장바구니 담기</button>
+								<button id="detail" class="btn btn-sm btn-outline-success" data-toggle="modal">장바구니 담기</button>
 							</div>
 						</div>
 					</div>
-					<span class="col-sm-2" style="margin-top: 40px;">
+					<span class="col-sm-2" style="margin-top: 45px;">
 						<button class="btn btn-outline-success" id="bucket">배송조회</button>
 						<button class="btn btn-outline-success" id="bucket">교환/반품</button>
 					</span>
@@ -69,24 +72,24 @@
 	</div>
 </div>
 <!-- 모달창 구현 -->
-<div class="modal fade" id="mymodal" role="dialog" aria-labelledby="mymodalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+<div class="modal fade" id="mymodal" role="dialog" tabindex="-1" aria-hidden="true" >
+	<div class="modal-dialog">
 		<!-- modal content -->
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">x</button>
-					<h4>주문내역 삭제</h4>
-				</div>
-				<div class="modal-body">
-					<h3>삭제하시겠습니까?</h3>
-				</div>
-				<div class="modal-footer">
-					<button type="reset" class="btn pull-left" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> 삭제
-					</button>
-					<button type="reset" class="btn pull-left" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> Cansel
-					</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal">x</button>
+				<h4 class="modal-title fs-5">주문내역 삭제</h4>
+			</div>
+			<div class="modal-body">
+				<h3>삭제하시겠습니까?</h3>
+			</div>
+			<div class="modal-footer">
+				<button type="reset" class="btn pull-left" data-bs-dismiss="modal">
+					<i class="glyphicon glyphicon-remove"></i> 삭제
+				</button>
+				<button type="reset" class="btn pull-left" data-bs-dismiss="modal">
+					<i class="glyphicon glyphicon-remove"></i> Cansel
+				</button>
 				<p>Need <a href="#">Help?</a></p>
 			</div>
 		</div>
