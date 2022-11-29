@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class User {
-    private String id;
+    private Integer id;
     private String pwd;
     private String name;
     private String email;
@@ -16,7 +16,7 @@ public class User {
     private String status;
     private String joinDate;
     private int point;
-    public User(String id, String pwd, String name, String email, String phoneNumber, String birthday, String zipcode, String address, String state, String status, String joinDate, int point) {
+    public User(Integer id, String pwd, String name, String email, String phoneNumber, String birthday, String zipcode, String address, String state, String status, String joinDate, int point) {
         this.id = id;
         this.pwd = pwd;
         this.name = name;

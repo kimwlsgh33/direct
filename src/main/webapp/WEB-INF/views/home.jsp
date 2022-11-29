@@ -79,7 +79,34 @@
 		background-color: #F5F5F5;
 	}
 
-	.cardImage {
+	.itemCard {
+		transition: 0.3s ease-in-out;
+		box-shadow:
+				0.7px 0.7px 0.7px rgba(0, 0, 0, 0.02),
+				1.7px 1.8px 1.8px rgba(0, 0, 0, 0.028),
+				3.3px 3.4px 3.4px rgba(0, 0, 0, 0.035),
+				5.8px 6px 6px rgba(0, 0, 0, 0.042),
+				10.9px 11.3px 11.3px rgba(0, 0, 0, 0.05),
+				26px 27px 27px rgba(0, 0, 0, 0.07);
+	}
+
+	.itemCard:hover {
+		box-shadow:
+				0.7px 0.7px 0.7px rgba(0, 0, 0, 0.02),
+				1.7px 1.8px 1.8px rgba(0, 0, 0, 0.028),
+				3.3px 3.4px 3.4px rgba(0, 0, 0, 0.035),
+				5.8px 6px 6px rgba(0, 0, 0, 0.042),
+				10.9px 11.3px 11.3px rgba(0, 0, 0, 0.05),
+				26px 27px 27px rgba(0, 0, 0, 0.2);
+	}
+
+	.item-lists {
+		overflow-x:scroll;
+		overflow-y:hidden;
+	}
+
+	.item-lists::-webkit-scrollbar {
+		display: none;
 	}
 </style>
 <body>
@@ -202,9 +229,9 @@
 		<span>오늘의 쇼핑제안</span>
 	</div>
 
-	<div class="gap-3 d-flex" style="overflow:scroll">
+	<div class="gap-3 d-flex item-lists" >
 		<c:forEach var="item" items="<%=recommendList%>">
-			<div id="list-item-${item+1}" class="rounded-4 shadow mb-3 pt-3" >
+			<a id="list-item-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=itemId">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
@@ -220,7 +247,7 @@
 						</c:choose>
 					</div>
 				</div>
-			</div>
+			</a>
 		</c:forEach>
 	</div>
 </div>
@@ -229,9 +256,9 @@
 		<i class="fa-solid fa-certificate" style="color:gold"></i>
 		<span style="color:orangered">특가 상품</span>
 	</div>
-	<div class="gap-3 d-flex" style="overflow:scroll">
+	<div class="gap-3 d-flex item-lists" style="overflow:scroll">
 		<c:forEach var="item" items="<%=recommendList%>">
-			<div id="list-item-${item+1}" class="rounded-4 shadow mb-3 pt-3" >
+			<a id="list-item-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=${itemId}" >
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
@@ -247,7 +274,7 @@
 						</c:choose>
 					</div>
 				</div>
-			</div>
+			</a>
 		</c:forEach>
 	</div>
 </div>

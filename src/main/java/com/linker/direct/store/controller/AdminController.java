@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/store")
-public class MainController {
-    @RequestMapping("/admin")
-    public void admin(){}
+@RequestMapping("/admin")
+public class AdminController {
+    @RequestMapping("/store")
+    public void store(){}
 }

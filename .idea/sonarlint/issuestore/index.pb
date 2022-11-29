@@ -9,8 +9,6 @@ Z
 +src/main/webapp/WEB-INF/views/store/new.jsp,f/5/f5d0eecce9089cadf927480e3133ea36460d62b7
 h
 8src/main/java/com/linker/direct/store/entity/Review.java,3/4/341e1a01eb80cf61a40ad8e479ea64712d8212b7
-e
-5src/main/java/com/linker/direct/user/entity/User.java,e/8/e8a5eb9b4a5902c88266218fec0bb24f031f77fe
 X
 (src/main/webapp/resources/icons/logo.svg,1/b/1b5c2a156515ceaff3d864500c8b8ae7d3dd6b55
 h

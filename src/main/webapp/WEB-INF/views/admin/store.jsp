@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>ADMIN</title>
+    <title>STORE ADMIN</title>
 </head>
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
@@ -16,15 +16,15 @@
     <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">
         <h1>카테고리</h1>
         <div>
-            <a href="category/createForm" class="btn btn-success">create</a>
-            <a href="category/list" class="btn">list</a>
+            <a href="${ctx}/store/category/createForm" class="btn btn-success">create</a>
+            <a href="${ctx}/store/category/list" class="btn">list</a>
         </div>
     </div>
     <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">
         <h1>상품</h1>
         <div>
-            <a href="item/createForm" class="btn btn-success">create</a>
-            <a href="item/list" class="btn">list</a>
+            <a href="${ctx}/store/item/createForm" class="btn btn-success">create</a>
+            <a href="${ctx}/store/item/list" class="btn">list</a>
         </div>
     </div>
     <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">장바구니</div>

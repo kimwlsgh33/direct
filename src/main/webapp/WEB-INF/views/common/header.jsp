@@ -46,7 +46,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="${ctx}/store/category/createForm">Create</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="${ctx}/store/admin">ADMIN</a></li>
+                        <li><a class="dropdown-item" href="${ctx}/admin/store">STORE ADMIN</a></li>
                     </ul>
                 </li>
 

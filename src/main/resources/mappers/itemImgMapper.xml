@@ -5,13 +5,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--태그 규칙 선언-->
 
-<mapper namespace="com.linker.direct.store.dao.ItemDao">
+<mapper namespace="com.linker.direct.store.dao.ItemImgDao.">
     <select id="listAll" resultType="com.linker.direct.store.entity.Item">
         <![CDATA[
             SELECT * FROM item ORDER BY id
         ]]>
     </select>
-    <select id="create" parameterType="com.linker.direct.store.entity.Item">
+    <select id="create" parameterType="com.linker.direct.store.entity.ItemImg">
         <![CDATA[
             INSERT INTO item (id, name, price, stock, description, status, category_id, createBy)
             SELECT IFNULL(MAX(id), 0) + 1, #{name}, #{price}, #{stock}, #{description}, #{status}, #{category_id}, #{createBy} FROM item

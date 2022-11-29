@@ -1,25 +1,23 @@
 package com.linker.direct.store.dto;
 
-import com.linker.direct.store.entity.ItemImg;
+import com.linker.direct.store.entity.Item;
+import com.linker.direct.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter @Setter
 public class ItemImgDto {
-    private String id;
-    private String ImgName;
-    private String originName;
-    private String ImgUrl;
-    private String thumbnail;
+    private MultipartFile[] uploadFiles;
+    private User user;
+    private Item item;
+    private String uuidFilename;
 
-    public static ItemImgDto of(ItemImg itemImg) {
-//        return modelMapper.map(itemImg, ItemImgDto);
+
+    public static ItemImgDto of(MultipartFile[] uploadFiles, User user) {
         ItemImgDto itemImgDto = new ItemImgDto();
-        itemImgDto.setId(itemImg.getId());
-        itemImgDto.setImgName(itemImg.getImgName());
-        itemImgDto.setOriginName(itemImg.getOriginName());
-        itemImgDto.setImgUrl(itemImg.getImgUrl());
-        itemImgDto.setThumbnail(itemImg.getThumbnail());
+        itemImgDto.uploadFiles = uploadFiles;
+        itemImgDto.user = user;
         return itemImgDto;
     }
 }

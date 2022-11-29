@@ -7,6 +7,6 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 public abstract class BaseTime {
-    private LocalDateTime regTime; // 생성 시간 - 불변
-    private LocalDateTime updateTime; // 수정 시간
+    private LocalDateTime createdAt; // 생성 시간 - 불변
+    private LocalDateTime updatedAt; // 수정 시간
 }
