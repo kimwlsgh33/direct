@@ -15,8 +15,8 @@
 	<!-- 리뷰 쓰기 -->
 	<insert id="insertReview" parameterType="com.linker.review.dto.ReviewDTO">
 		<![CDATA[
-			INSERT INTO product_review (review_no, id, product_no, subject, content, reg_date)
-			SELECT IFNULL(MAX(review_no), 0) + 1, #{id}, #{product_no}, #{subject}, #{content}, now()
+			INSERT INTO product_review (review_no, id, product_no, subject, content, reg_date, order_product_name)
+			SELECT IFNULL(MAX(review_no), 0) + 1, #{id}, #{product_no}, #{subject}, #{content}, now(), #{order_product_name}
 			FROM product_review
 		]]>
 	</insert>
@@ -24,10 +24,37 @@
 	<!-- 리뷰 전체목록 가져오기 -->
 	<select id="listAll" resultType="com.linker.review.dto.ReviewDTO">
 		<![CDATA[
-			SELECT review_no, id, product_no, subject, content, reg_date
+			SELECT review_no, id, product_no, subject, content, reg_date, order_product_name
 			FROM product_review
 			ORDER BY review_no desc
 		]]>
 	</select>
+	
+	<!-- 리뷰 상세보기(게시글 번호에 해당하는 리뷰 정보 추출) -->
+	<select id="detail" resultType="com.linker.review.dto.ReviewDTO">
+		<![CDATA[
+			SELECT review_no, id, product_no, subject, content, reg_date, order_product_name
+			FROM product_review
+			WHERE review_no = #{review_no}
+		]]>
+	</select>
+	
+	<!-- 게시글 수정  -->
+	<update id="update">
+		<![CDATA[
+		UPDATE	product_review
+		SET		SUBJECT = #{subject}, CONTENT = #{content}
+		WHERE	review_no = #{review_no}
+		]]>
+	</update>
+	
+	<!-- 게시글 번호에 해당하는 게시글 삭제하기  -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		DELETE	FROM	product_review
+		WHERE	review_no = #{review_no}
+		]]>
+	</delete>
+
 
 </mapper>

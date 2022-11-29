@@ -14,5 +14,13 @@ public interface ReviewDAO {
 	
 	// 리뷰 목록 가져오기
 	public List<ReviewDTO> reviewList() throws Exception;
-
+	
+	// 리뷰 상세조회
+	public ReviewDTO reviewDetail(int review_no);
+	
+	// 리뷰 수정
+	public int reviewUpdate(ReviewDTO reviewDTO);
+	
+	// 리뷰 삭제
+	public int reviewDelete(int review_no);
 }

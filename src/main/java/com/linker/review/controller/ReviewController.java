@@ -1,8 +1,10 @@
 package com.linker.review.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +63,55 @@ public class ReviewController {
 			logger.info("리뷰 목록 => " + reviewList);
 			model.addAttribute("reviewList", reviewList);
 			
+		}
+		
+		// 리뷰 상세 조회
+		@RequestMapping(value = "/reviewDetail", method = RequestMethod.GET)
+		public String reviewDetail(Locale locale, Model model, HttpServletRequest request) throws Exception {
+			System.out.println("ReviewController reviewDetail() review_no : " + Integer.parseInt((String)request.getParameter("review_no")));
+			
+			// review_no에 해당하는 리뷰 데이터를 가져온다.
+			ReviewDTO reviewDTO = reviewService.reviewDetail(Integer.parseInt((String)request.getParameter("review_no")));
+			model.addAttribute("reviewDetail", reviewDTO);
+			return "/review/reviewDetail";
+		}
+
+		// 리뷰 수정화면
+		@RequestMapping(value = "/reviewUpdateForm", method = RequestMethod.POST)
+		public String reviewUpdateForm(Locale locale, Model model, HttpServletRequest request) throws Exception {
+			
+			logger.info("ReviewController 게시글 수정화면 불러오기.....");
+			System.out.println("ReviewController reviewUpdateForm() review_no : " + request.getParameter("review_no"));
+
+			ReviewDTO reviewDTO = reviewService.reviewDetail(Integer.parseInt((String)request.getParameter("review_no")));
+			model.addAttribute("reviewDetail", reviewDTO);
+			logger.info("ReviewController 게시글 수정화면 끝.....");
+			return "/review/reviewUpdate";
+		}
+		
+		// 리뷰 수정
+		@ResponseBody
+		@RequestMapping(value = "/reviewUpdate", method = RequestMethod.POST)
+		public String reviewUpdate(Locale locale, Model model, ReviewDTO reviewDTO) throws Exception {
+			System.out.println("ReviewController reviewUpdate() reviewDTO : " + reviewDTO);
+			if(reviewService.reviewUpdate(reviewDTO) == 1) {
+				return "Y";
+			}else {
+				return "N";
+			}
+		}
+		
+		// 리뷰 번호에 해당하는 게시글 삭제
+		@ResponseBody
+		@RequestMapping(value = "/reviewDelete", method = RequestMethod.POST)
+		public String reviewDelete(Locale locale, Model model, HttpServletRequest request) throws Exception {
+			System.out.println("ReviewController reviewDelete() review_no : " + request.getParameter("review_no"));
+
+			if(reviewService.reviewDelete(Integer.parseInt((String)request.getParameter("review_no"))) == 1) {
+				return "Y";
+			}else {
+				return "N";
+			}
 		}
 	
 }

@@ -27,7 +27,7 @@
 				<h2>리뷰 등록</h2>
 			</div>
 		</div>
-		<div class="form-group" style="margin-top: 30px;">
+		<div class="form-group" style="margin-top: 10px;">
 			<label class="form-label">제	목</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="subject" name="subject" maxlength="200" placeholder="제목을 입력하세요."/>
@@ -40,9 +40,15 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="form-label">상품 번호</label>
+			<label class="form-label">상품번호</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="product_no" name="product_no" maxlength="20" placeholder="상품번호를 입력하세요."/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="form-label">상품명</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="order_product_name" name="order_product_name" maxlength="20" placeholder="상품명을 입력하세요."/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -62,7 +68,8 @@
 </div>
 </div>
 <!-- 하단 메뉴 -->
+<div class="container" style="margin-top: 120px;">
 <jsp:include page="../common/footer.jsp" flush="false"/>
-
+</div>
 </body>
 </html>

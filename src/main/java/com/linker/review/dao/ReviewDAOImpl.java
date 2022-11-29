@@ -43,4 +43,26 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return reviewList;
 	}
 
+	// 리뷰 상세조회
+	@Override
+	public ReviewDTO reviewDetail(int review_no) {
+		return sqlSession.selectOne(namespace + ".detail", review_no);
+	}
+	
+	// 리뷰 수정
+	@Override
+	public int reviewUpdate(ReviewDTO reviewDTO) {
+		logger.info("ReviewDAOImpl  리뷰 수정하기....." + reviewDTO);
+		System.out.println("ReviewDAOImpl  리뷰 수정하기.....");
+		return sqlSession.update(namespace + ".update", reviewDTO);
+	}
+
+	// 리뷰 삭제
+	@Override
+	public int reviewDelete(int review_no) {
+		logger.info("ReviewDAOImpl  리뷰 삭제하기.....");
+		return sqlSession.delete(namespace + ".delete", review_no);
+	}
+	
+
 }

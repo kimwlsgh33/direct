@@ -127,6 +127,7 @@ div .col-sm-7 {
 	width: 70%;
 	height: 220px;
 	margin-left:10px;
+	margin-top: 15px;
 	border-radius: 10px;
 }
 
@@ -137,7 +138,6 @@ div .col-md-3 {
 }
 
 div .col-md-6 {
-	border: 1px solid lightgray;
 	border-radius: 10px;
 	margin-left:10px;
 	height: 100px;

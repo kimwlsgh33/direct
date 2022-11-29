@@ -7,7 +7,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>로그인 화면</title>
+	<title>로그인</title>
+	<!--bootstrap 5.2.2-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+</script>
 	
 <c:choose>	
 	<c:when test="${result == 'loginFailed'}">
@@ -30,33 +34,49 @@
 <body>
 
 <div class="container">
+<div class="row justify-content-center">
 	<form class="form-horizontal" method="post" action="${contextPath}/member/login.do">
-		<div class="form-group">
-			<div class="col-sm-offset-4 col-sm-3">4
-				<h2 align="center">로그인</h2>
+		<div class="form-group row justify-content-center">
+			<div class="col-sm-4">
+				<div align="center" style="margin-top: 30px;">
+	            <h1 align="center">
+	               <font color="pink">D </font>
+	               <font color="gray">i </font>
+	               <font color="pink">r </font>
+	               <font color="gray">e </font>
+	               <font color="pink">c </font>
+	               <font color="gray">t </font>
+	            </h1>
+         		</div>
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="id" class="col-sm-offset-3 col-sm-2 control-label">아이디</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="id" name="id" maxlength="10" placeholder="아이디"/>
+		<div class="form-group row justify-content-center" style="padding: 10px;">
+			<div class="col-sm-4 input-group-lg">
+				<input type="text" class="form-control" id="id" name="id" maxlength="10" placeholder="ID"/>
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="id" class="col-sm-offset-3 col-sm-2 control-label">비밀번호</label>
-			<div class="col-sm-2">
-				<input type="password" class="form-control" id="pwd" name="password" maxlength="20" placeholder="비밀번호"/>
+		<div class="form-group row justify-content-center" style="padding: 10px;">
+			<div class="col-sm-4 input-group-lg">
+				<input type="password" class="form-control" id="pwd" name="password" maxlength="20" placeholder="PassWord"/>
 			</div>
 		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-5 col-sm-2">
-				<button type="reset"	class="btn">다시입력</button>
-				<button type="submit"	class="btn">로그인</button>
+		<div class="form-group row justify-content-center">
+			<div class="col-sm-4 row justify-content-center">
+				<button type="submit"	class="btn btn-lg btn-outline-dark" style="margin: 10px;">로그인</button>
+			</div>
+		</div>
+	</form>
+	<form class="form-horizontal" method="get" action="${contextPath}/member/memberForm.do">
+		<div class="form-group row justify-content-center">
+			<div class="col-sm-4 row justify-content-center">
+				<button type="submit"	class="btn btn-lg btn-outline-secondary" style="margin: 10px;">회원가입</button>
 			</div>
 		</div>
 	</form>
 </div>
-
+</div>
+<!-- 푸터영역 -->
+<jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 </html>
 

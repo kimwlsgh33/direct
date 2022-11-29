@@ -25,15 +25,16 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
 			<jsp:include page="../common/headMenu.jsp" flush="false"/>
-	<form class="form-horizontal" id="frm">
-		<div>
+			<div>
 			<h3 style="margin: 25px;">리뷰 목록</h3>
-			<div class="form-group">
-				<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/review/reviewRegisterForm'" style="margin-left: 25px; margin-bottom: 25px;">
-					리뷰 작성
-				</button>
+				<form class="form-horizontal" id="frm">
+					<div class="form-group">
+						<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/review/reviewRegisterForm'" style="margin-left: 25px; margin-bottom: 25px;">
+							리뷰 작성
+						</button>
+					</div>
+				</form>
 			</div>
-		</div>
 		<table class="table table-bordered table-striped table-hover" style="width: 75%; margin-left: 25px; ">
 		<thead>
 			<tr class="info">
@@ -41,7 +42,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				<th class="col-sm-1 text-center">아이디</th>
 				<th class="col-sm-2 text-center">제목</th>
 				<th class="col-sm-3 text-center">내용</th>
-				<th class="col-sm-2 text-center">상품번호</th>
+				<th class="col-sm-2 text-center">상품명</th>
 				<th class="col-sm-3 text-center">등록일자</th>
 			</tr>
 			</thead>
@@ -52,13 +53,12 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						<td align="center">${review.id}</td>
 						<td align="center"><a href="${contextPath}/review/reviewDetail?review_no=${review.review_no}">${review.subject}</a></td>
 						<td align="center">${review.content}</td>
-						<td align="center">${review.product_no}</td>
+						<td align="center">${review.order_product_name}</td>
 						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="yyyy년 MM월 dd일 a hh시 mm분"/></td>
 					</tr>
 				</c:forEach>
 			</tbody>	
 		</table>
-	</form>
 </div>
 	</div>
 </div>
