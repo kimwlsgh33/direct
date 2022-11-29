@@ -20,24 +20,41 @@
 		]]>
 	</select>
 
-	<!-- 페이지 번호에 해당하는 게시글 목록 가져오기 (Paging 처리) -->
+	<!-- 낮은 가격순 정렬 -->
 	<select id="searchListPaging" parameterType="hashmap" resultType="com.linker.direct.search.dto.SearchDTO">
 		<![CDATA[
 		select *
-		from (select *, ROW_NUMBER() OVER(order by product_date) as rNUM from sr_product where 1 = 1
+		from (select *, ROW_NUMBER() OVER(order by product_price) as rNUM from sr_product where 1 = 1
 		]]>
 		<include refid="searchMySQL"/>
 		<![CDATA[
 		) brd
 		where rNum between 1+(#{perPageNum}*(#{page}-1)) and #{perPageNum} + (#{perPageNum}*(#{page}-1))
-		order by product_date desc
 		]]>
+		<include refid="searchOrder"/>
 	</select>
 
-
 	<sql id="searchMySQL">
-			AND product_name LIKE CONCAT('%', #{keyword}, '%')
+		AND product_name LIKE CONCAT('%', #{keyword}, '%')
 	</sql>
+
+	<sql id="searchOrder">
+		<if test="subFilter == 'lowPrice'">
+			order by product_price
+		</if>
+		<if test="subFilter == 'highPrice'">
+			order by product_price desc
+		</if>
+		<if test="subFilter == 'product_date'">
+			order by product_date desc
+		</if>
+		<choose>
+			<when test="subFilter == null">
+				order by product_price
+			</when>
+		</choose>
+	</sql>
+
 </mapper>
 
 

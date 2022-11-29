@@ -10,53 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee93c874-aa91-4231-83ae-4ef445f64814" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/Criteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/PageMaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/SearchCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/controller/SearchController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dao/SearchDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dao/SearchDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dto/SearchDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/service/SearchService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/service/SearchServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/footer.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/header.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/search/noSearch.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/icons/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/IMG_6643.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/Search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/styles/reset.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/controller/SRController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/controller/SRControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/dao/SRDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/dao/SRDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/dto/SRDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/service/SRService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/service/SRServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/SearchCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/SearchCriteria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/controller/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dto/SearchDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dto/SearchDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/SRMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/SRMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/topMenu.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/search/searchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/search/searchList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/controller/SRController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/controller/SRControllerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/dao/SRDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/dao/SRDAOImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/dto/SRDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/service/SRService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/service/SRServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/common/util/SearchCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/linker/direct/common/util/SearchCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/search/controller/SearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/linker/direct/search/controller/SearchController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/search/dto/SearchDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/linker/direct/search/dto/SearchDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mappers/SRMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/SRMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/controller/SRController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/controller/SRControllerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/dao/SRDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/dao/SRDAOImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/dto/SRDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/service/SRService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/service/SRServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/common/util/SearchCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/common/util/SearchCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/search/controller/SearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/search/controller/SearchController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/search/dto/SearchDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/search/dto/SearchDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mappers/SRMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mappers/SRMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/common/topMenu.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/common/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/common/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/search/searchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/search/searchList.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -270,6 +240,45 @@
         </option>
       </method>
     </configuration>
+    <configuration name="searchList.jsp (2)" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9.0.65" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WEB-INF/views/search/searchList.jsp" />
+      <deployment>
+        <artifact name="direct:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/direct_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="2524bbf9-bb15-4d03-b37b-27071eac4e14" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="direct:war" />
+        </option>
+      </method>
+    </configuration>
     <configuration name="searchList.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9.0.65" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WEB-INF/views/search/searchList.jsp" />
       <deployment>
@@ -311,6 +320,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Tomcat Server.searchList.jsp (2)" />
         <item itemvalue="Tomcat Server.searchList.jsp (1)" />
         <item itemvalue="Tomcat Server.searchList.jsp" />
       </list>
@@ -333,7 +343,7 @@
       <workItem from="1669024976772" duration="50904000" />
       <workItem from="1669370366029" duration="516000" />
       <workItem from="1669370918964" duration="8440000" />
-      <workItem from="1669446135101" duration="61248000" />
+      <workItem from="1669446135101" duration="79724000" />
     </task>
     <servers />
   </component>

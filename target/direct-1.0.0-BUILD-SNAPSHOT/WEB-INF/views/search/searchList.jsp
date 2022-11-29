@@ -24,6 +24,10 @@
         margin-right: 80px;
         margin-left: 80px;
     }
+
+
+
+
 </style>
 <body>
 <%--상단 메뉴--%>
@@ -50,13 +54,7 @@
     <%--상품 검색 결과--%>
     <div class="mainContainer flex-wrap" style=""> <!-- 헤더 밑 전체 부분 -->
         <div class="mainContainer_style "> <!-- 전체 부분 포지션 잡기 위한 div  -->
-            <div class="card mt-3 w-50">
-                <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                        응 아직 없어~
-                    </div>
-                </div>
-            </div>
+
 
         <%--            <h2 class="blind">검색결과</h2>--%>
             <div class="d-flex align-items-center"  style="height: 40px"> <!-- "에 대한 검색 결과입니다" 큰 div -->
@@ -90,12 +88,11 @@
                 <%--=========================================검  색  필  터===================================================  --%>
                 <%--========================================================================================================  --%>
                 <div class="d-flex justify-content-between mb-3" style="border-top: 1px solid gainsboro; border-bottom: 1px solid gainsboro;"> <!-- 낮은 가격순, 높은 가격순, 이 필터  flex_between 사용 예정  -->
-                    <div class="row justify-content-evenly w-50 align-items-center"  > <!-- 오른쪽에 낮은 가격순, 높은 가격순, !!!!!!이 부분 고쳐야함!!!!!!!!!   -->
-
-                        <a href="#" role="button" class="col">낮은 가격순</a>
-                        <a href="#" role="button" class="col">높은 가격순</a>
-                        <a href="#" role="button" class="col">리뷰 높은순</a>
-                        <a href="#" role="button" class="col">등록일 순</a>
+                    <div class="row justify-content-evenly w-50 align-items-center subFilter"  > <!-- 오른쪽에 낮은 가격순, 높은 가격순, !!!!!!이 부분 고쳐야함!!!!!!!!!   -->
+                        <a id="lowPrice"  href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=lowPrice" role="button" class="col" style="color: black">낮은 가격순</a>
+                        <a id="highPrice" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=highPrice" role="button" class="col" style="color: black">높은 가격순</a>
+                        <a href="#" role="button" class="col" style="color: black">리뷰 높은순</a>
+                        <a id="product_date" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=product_date" role="button" class="col" style="color: black">등록일 순</a>
                     </div>
 
                     <select class="form-select-sm w-30"  aria-label="Select Category">
@@ -149,17 +146,17 @@
                     <ul class="pagination justify-content-center">
                         <c:if test="${pageMaker.prev }">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?page=${pageMaker.startPage-1 }"/>'>이전</span></a>
+                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&page=${pageMaker.startPage-1 }"/>'>이전</span></a>
                             </li>
                         </c:if>
                         <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?page=${pageNum }"/>'><i>${pageNum }</i></a>
+                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&page=${pageNum }"/>'><i>${pageNum }</i></a>
                             </li>
                         </c:forEach>
                         <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?page=${pageMaker.endPage+1 }"/>'>다음</a>
+                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&page=${pageMaker.endPage+1 }"/>'>다음</a>
                             </li>
                         </c:if>
                     </ul>
@@ -181,6 +178,14 @@
             toast.show()
         })
     }
+    $(document).ready(function(){
+        $("#${subFilter}").css("fontWeight", "bold");
+        if("${subFilter} == null") {
+            $("#${subFilter}").val("lowPrice").submit();
+        }
+
+    })
+
 
 </script>
 </html>

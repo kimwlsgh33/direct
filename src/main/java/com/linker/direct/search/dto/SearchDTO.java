@@ -12,6 +12,9 @@ public class SearchDTO {
     private String product_name;
     private String product_price;
     private String product_image;
+    private String product_stock;
     private Date product_date;
+    private String product_category;
+    private String product_brand;
 }
 

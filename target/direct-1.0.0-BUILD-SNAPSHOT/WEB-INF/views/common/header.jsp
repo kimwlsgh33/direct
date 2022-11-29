@@ -7,6 +7,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!--reset css-->
 <link href="${ctx}/resources/styles/reset.css" rel="stylesheet">
+<%--jQuery--%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!--fontawesome-->
 <script src="https://kit.fontawesome.com/217192a703.js" crossorigin="anonymous"></script>
 <!-- navbar-expand-lg : 화면크기에 따라 nav구조 변경  -->
@@ -65,28 +69,22 @@
     </div>
 </nav>
     <form id="searchList" method="get" class="bg-dark p-3" action="${ctx}/search/searchList">
-        <div class="form-group">
+        <div class="form-group justify-content-between">
                 <span id="searchBar" class="input-group m-0 w-50 align-items-center">
-                    <input class="form-control" type="text" id="searchKeyword" value="${keyword}" name="keyword" placeholder="원하시는 상품을 찾아보세요!" />
-                    <button id="searchButton" type="submit" class="btn btn-outline-secondary">검색</button>
-                    <a class="d-flex m-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"  aria-controls="collapseExample">
+                    <input class="form-control" type="text" id="searchKeyword" value="${keyword}"  name="keyword" placeholder="원하시는 상품을 찾아보세요!" />
+                    <button id="searchButton" type="submit" class="btn btn-outline-secondary" >검색</button>
+                    <a class="m-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"  aria-controls="collapseExample">
                     상세 검색
                     </a>
                 </span>
+                <div class="card w-50">
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            응 아직 없어~
+                        </div>
+                    </div>
+                </div>
         </div>
     </form>
 <script>
-    $(document).ready(function(){
-        var searchObj = $("#searchList")
-        $("#searchButton").click(function(){
-            var keywordStr = $("#searchKeyword").val();
-
-            if(keywordStr == ""){
-                searchObj.val("");
-                searchObj.submit();
-            } else {
-                searchObj.submit();
-            }
-        })
-    })
 </script>

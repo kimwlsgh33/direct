@@ -57,6 +57,8 @@ public class SearchController {
 
         mav.addObject("keyword",	cri.getKeyword());
 
+        String subFilter = cri.getSubFilter();
+
         String keyword = cri.getKeyword();
         logger.info("keyword ==> " + keyword);
         if(keyword == "") {
@@ -80,6 +82,8 @@ public class SearchController {
         mav.addObject("pageMaker", pageMaker);
         logger.info("searchDTO ====> " + searchDTO);
         mav.addObject("product_name", searchDTO.getProduct_name());
+        mav.addObject("subFilter", cri.getSubFilter());
+
 
         return mav;
     }
