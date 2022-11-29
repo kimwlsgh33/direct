@@ -9,7 +9,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee93c874-aa91-4231-83ae-4ef445f64814" name="Changes" comment="" />
+    <list default="true" id="ee93c874-aa91-4231-83ae-4ef445f64814" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/Criteria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/PageMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/common/util/SearchCriteria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/controller/SearchController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dao/SearchDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dao/SearchDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/dto/SearchDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/service/SearchService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/linker/direct/search/service/SearchServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/footer.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/header.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/search/noSearch.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/icons/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/IMG_6643.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/Search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/styles/reset.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/controller/SRController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/controller/SRControllerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/dao/SRDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/dao/SRDAOImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/dto/SRDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/service/SRService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linker/direct/searchResult/service/SRServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/SRMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/SRMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/topMenu.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/search/searchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/search/searchList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/controller/SRController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/controller/SRControllerImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/dao/SRDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/dao/SRDAOImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/dto/SRDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/service/SRService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linker/direct/searchResult/service/SRServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/SRMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/SRMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/controller/SRController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/controller/SRControllerImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/dao/SRDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/dao/SRDAOImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/dto/SRDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/service/SRService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/linker/direct/searchResult/service/SRServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mappers/SRMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mappers/SRMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/common/topMenu.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/search/searchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/direct-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/search/searchList.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,11 +67,23 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="Tag Library Descriptor" />
+        <option value="Interface" />
+        <option value="JavaScript File" />
+        <option value="Class" />
         <option value="Jsp File" />
       </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="dea9826f-bef1-432c-9893-3360fe97e999" />
+        <option name="url" value="https://github.com/kimwlsgh33/direct" />
+      </UrlAndAccount>
     </option>
   </component>
   <component name="LogFilters">
@@ -44,26 +105,32 @@
     </option>
   </component>
   <component name="ProjectId" id="2HXO5Jv7VuwJA6IygU6w232cpZ6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/choijaerok/Desktop/web_project/project/direct/src/main/resources/mappers",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "7caa701b2bd5a182b80c72b9bdf88e2d"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/choijaerok/Desktop/web_project/project/direct/src/main/resources/mappers&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;7caa701b2bd5a182b80c72b9bdf88e2d&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.linker.direct.board.service" />
+      <recent name="com.linker.direct.board.dao" />
       <recent name="com.linker.direct.searchResult.dao" />
       <recent name="com.linker.direct.searchResult.service" />
       <recent name="com.linker.direct.searchResult.controller" />
@@ -72,10 +139,14 @@
       <recent name="$PROJECT_DIR$/src/main/resources/mappers" />
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/config" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/resources/icon" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/resources/image" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.65">
     <configuration name="Tomcat 9.0.65" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.65" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="direct:war exploded">
           <settings>
@@ -160,6 +231,90 @@
         </option>
       </method>
     </configuration>
+    <configuration name="searchList.jsp (1)" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9.0.65" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WEB-INF/views/search/searchList.jsp" />
+      <deployment>
+        <artifact name="direct:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/direct_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="a5223b58-05cf-4f75-bf75-03e733205b7d" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="direct:war" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="searchList.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9.0.65" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WEB-INF/views/search/searchList.jsp" />
+      <deployment>
+        <artifact name="direct:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/direct_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="60037541-5671-4197-bb51-793cfca26341" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="direct:war" />
+        </option>
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Tomcat Server.searchList.jsp (1)" />
+        <item itemvalue="Tomcat Server.searchList.jsp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -175,11 +330,25 @@
       <workItem from="1668428517379" duration="915000" />
       <workItem from="1668429444160" duration="845000" />
       <workItem from="1668506961592" duration="5146000" />
-      <workItem from="1669024976772" duration="26532000" />
+      <workItem from="1669024976772" duration="50904000" />
+      <workItem from="1669370366029" duration="516000" />
+      <workItem from="1669370918964" duration="8440000" />
+      <workItem from="1669446135101" duration="61248000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

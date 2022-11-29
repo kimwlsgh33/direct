@@ -3,19 +3,41 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.linker.direct.searchResult">
+<mapper namespace="com.linker.direct.search">
 
 	
 	<!-- 게시글 전체 목록 가져오기 -->
-	<select id="listAll" resultType="com.linker.direct.searchResult.dto.SRDTO">
+	<select id="listPaging" resultType="com.linker.direct.search.dto.SearchDTO">
 		<![CDATA[select * from sr_product order by product_date desc]]>
 	</select>
-	
-	
-	
-	
-	
-   
+
+<!--	페이징-->
+	<select id="searchListTotalCount" parameterType="com.linker.direct.common.util.Criteria" resultType="Integer">
+		<![CDATA[
+		SELECT	COUNT(*)
+		FROM	sr_product
+		WHERE	1 = 1
+		]]>
+	</select>
+
+	<!-- 페이지 번호에 해당하는 게시글 목록 가져오기 (Paging 처리) -->
+	<select id="searchListPaging" parameterType="hashmap" resultType="com.linker.direct.search.dto.SearchDTO">
+		<![CDATA[
+		select *
+		from (select *, ROW_NUMBER() OVER(order by product_date) as rNUM from sr_product where 1 = 1
+		]]>
+		<include refid="searchMySQL"/>
+		<![CDATA[
+		) brd
+		where rNum between 1+(#{perPageNum}*(#{page}-1)) and #{perPageNum} + (#{perPageNum}*(#{page}-1))
+		order by product_date desc
+		]]>
+	</select>
+
+
+	<sql id="searchMySQL">
+			AND product_name LIKE CONCAT('%', #{keyword}, '%')
+	</sql>
 </mapper>
 
 
