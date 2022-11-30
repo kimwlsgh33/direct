@@ -59,12 +59,17 @@ public class SearchController {
 
         String subFilter = cri.getSubFilter();
 
+
         String keyword = cri.getKeyword();
         logger.info("keyword ==> " + keyword);
         if(keyword == "") {
             mav.setViewName("/search/noSearch");
         }else {
             mav.setViewName("/search/searchList");
+        }
+
+        if(subFilter == null){
+            subFilter  = "lowPrice";
         }
 
         PageMaker pageMaker = new PageMaker();
@@ -77,13 +82,13 @@ public class SearchController {
         // cri에 해당하는 게시글을 가져와서 View에게 넘겨준다.
         List<SearchDTO> searchList = searchService.searchListPaging(cri);
         logger.info("SearchController 게시글 목록 보여주기 (Paging 처리) " +
-                "cri에 해당하는 게시글을 가져와서 View에게 넘겨준다. ==> END END END");
+                "cri에 해당하는 게시글을 가져와서 View에게 넘겨준다. ==> END END END" + pageMaker);
         mav.addObject("searchList", searchList);
         mav.addObject("pageMaker", pageMaker);
         logger.info("searchDTO ====> " + searchDTO);
         mav.addObject("product_name", searchDTO.getProduct_name());
         mav.addObject("subFilter", cri.getSubFilter());
-
+        mav.addObject("display", cri.getPerPageNum());
 
         return mav;
     }

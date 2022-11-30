@@ -16,7 +16,7 @@
     }
     #itemList:hover{
         background-color: #f5f5f5;
-        border: skyblue solid thin;
+        border: pink solid thin;
     }
 
 
@@ -95,12 +95,15 @@
                         <a id="product_date" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=product_date" role="button" class="col" style="color: black">등록일 순</a>
                     </div>
 
-                    <select class="form-select-sm w-30"  aria-label="Select Category">
-                        <option class="dropdown-item" href="#">10개씩 보기</option>
-                        <option class="dropdown-item" href="#">20개씩 보기</option>
-                        <option class="dropdown-item" href="#">30개씩 보기</option>
-                        <option class="dropdown-item" href="#" selected>40개씩 보기</option>
-                    </select>
+<%--                    dropdown으로 버튼 만들기--%>
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        ${display}개씩 보기
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=10">10개씩 보기</a></li>
+                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=20">20개씩 보기</a></li>
+                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=30">30개씩 보기</a></li>
+                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=40">40개씩 보기</a></li>
                 </div>
                 <%--========================================================================================================  --%>
                 <%--===============================================구 매 할 제 품============================================  --%>
@@ -180,9 +183,7 @@
     }
     $(document).ready(function(){
         $("#${subFilter}").css("fontWeight", "bold");
-        if("${subFilter} == null") {
-            $("#${subFilter}").val("lowPrice").submit();
-        }
+
 
     })
 
