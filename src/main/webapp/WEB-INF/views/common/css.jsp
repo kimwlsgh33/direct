@@ -169,5 +169,25 @@ td a:hover {
 	margin-top: 8px;
 }
 
+.commentArea {
+	border-bottom:1px solid darkgray; 
+	margin-top: 25px; 
+	margin-bottom: 14px; 
+}
 
+#review {
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+#review a {
+	color: #333333;
+	text-decoration: none;
+}
+
+#review a:hover{
+	color: gray;
+	text-decoration: none;
+}
 </style>

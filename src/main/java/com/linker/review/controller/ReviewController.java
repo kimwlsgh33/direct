@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,9 +60,12 @@ public class ReviewController {
 			
 			logger.info("ReviewController 리뷰 목록 가져오기......");
 			List<ReviewDTO> reviewList = reviewService.reviewList();
+			//List<CommentDTO> cList = reviewService.cList();
 			
 			logger.info("리뷰 목록 => " + reviewList);
 			model.addAttribute("reviewList", reviewList);
+			//model.addAttribute("cList", cList);
+			
 			
 		}
 		
@@ -112,6 +116,14 @@ public class ReviewController {
 			}else {
 				return "N";
 			}
+		}
+		
+		// 댓글 달 수 있는 상세정보 화면
+		@RequestMapping("/detailComment/{review_no}")
+		private String reviewDetailComment(@PathVariable int review_no, Model model) throws Exception {
+			// review_no 에 해당하는 자료를 찾아서 model에 담는다.
+			model.addAttribute("detail", reviewService.reviewDetail(review_no));
+			return "/review/detailComment";
 		}
 	
 }

@@ -43,7 +43,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				<th class="col-sm-2 text-center">제목</th>
 				<th class="col-sm-3 text-center">내용</th>
 				<th class="col-sm-2 text-center">상품명</th>
-				<th class="col-sm-3 text-center">등록일자</th>
+				<th class="col-sm-2 text-center">등록일자</th>
+				<th class="col-sm-2 text-center">댓글</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -54,7 +55,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						<td align="center"><a href="${contextPath}/review/reviewDetail?review_no=${review.review_no}">${review.subject}</a></td>
 						<td align="center">${review.content}</td>
 						<td align="center">${review.order_product_name}</td>
-						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="yyyy년 MM월 dd일 a hh시 mm분"/></td>
+						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="MM월 dd일 a hh시 mm분"/></td>
+						<td align="center" onclick="location.href='/review/detailComment/${review.review_no}'">댓글</td>
 					</tr>
 				</c:forEach>
 			</tbody>	
