@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "run java",
+            "type": "maven",
+            "tasks": ["clean", "failsafe:integration-test"],
+            "args": ["--debug", "--fail-at-end"],
+            "environment": {
+                "TEMP_DIR": "/Users/gimjinho/temp",
+                "GENERATE_RANDOM_PASSWORD": "true"
+            }
+        }
+    ]
+}

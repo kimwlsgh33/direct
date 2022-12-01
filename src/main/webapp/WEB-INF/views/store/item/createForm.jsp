@@ -132,6 +132,7 @@
                         uploadList.append(html);
                         fileIndex++;
                     };
+
                     reader.readAsDataURL(f); // 파일을 읽어 dataURL형식의 문자열로 저장
                     $("#submitBtn").show();
                 });

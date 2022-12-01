@@ -1,19 +1,12 @@
 package com.linker.direct.store.dao;
 
-import com.linker.direct.store.dto.ItemImgDto;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
+import com.linker.direct.store.entity.ItemImg;
+import org.springframework.dao.DataAccessException;
 
-@Slf4j
-@Repository
-@RequiredArgsConstructor
-public class ItemImgDao {
-    private final SqlSession sqlSession;
-    private final String NAMESPACE = "com.linker.direct.store.dao.ItemImgDao.";
+import java.util.List;
 
-    public void create(ItemImgDto itemImgDto) {
-        sqlSession.insert(NAMESPACE + "create", itemImgDto);
-    }
+public interface ItemImgDao {
+    void create(ItemImg itemImg) throws DataAccessException;
+
+    List<ItemImg> readItemImgs(int itemId) throws DataAccessException;
 }

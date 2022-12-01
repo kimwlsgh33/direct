@@ -11,26 +11,21 @@
             SELECT * FROM item ORDER BY id
         ]]>
     </select>
-    <select id="create" parameterType="com.linker.direct.store.entity.Item">
+
+    <insert id="create" parameterType="com.linker.direct.store.entity.Item">
         <![CDATA[
             INSERT INTO item (id, name, price, stock, description, status, category_id, createBy)
             SELECT IFNULL(MAX(id), 0) + 1, #{name}, #{price}, #{stock}, #{description}, #{status}, #{category_id}, #{createBy} FROM item
         ]]>
-    </select>
-    <select id="read" resultType="com.linker.direct.store.entity.Item">
+        <!-- 쿼리문 실행 이후(order), Item 객체의 id(keyProperty)에, 새로 생성된 id(keyColumn)를 set 해준다. -->
+        <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="int">
+            SELECT MAX(id) FROM item
+        </selectKey>
+    </insert>
+
+    <select id="readItemImgs" resultType="com.linker.direct.store.entity.ItemImg">
         <![CDATA[
-            SELECT * FROM item WHERE id = #{id}
-        ]]>
-    </select>
-    <select id="update">
-        <![CDATA[
-            UPDATE item SET name=#{name}, price=#{price}, stockQuantity=#{stockQuantity}, description=#{description}, imageUrl=#{imageUrl}
-            WHERE id=#{id}
-        ]]>
-    </select>
-    <select id="delete">
-        <![CDATA[
-            DELETE FROM item WHERE id=#{id}
+            SELECT * FROM item_img WHERE item_id = #{id}
         ]]>
     </select>
 </mapper>

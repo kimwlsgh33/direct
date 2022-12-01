@@ -40,13 +40,13 @@ function uploadFiles() {
   alert("업로드를 시작합니다." + "[카테고리 : " + category_id + "][상품명 : " + name + "][가격 : " + price + "][재고 : " + stock + "][상품설명 : " + description + "]");
 
   formData.append("category_id", category_id);
-  formData.append("name", name);
+  formData.append("itemName", name);
   formData.append("price", price);
   formData.append("stock", stock);
   formData.append("description", description);
 
   for (let i = 0; i < fileArray.length; i++) {
-    formData.append("uploadFile", fileArray[i]); // 폼 데이터에 파일 추가
+    formData.append("uploadFiles", fileArray[i]); // 폼 데이터에 파일 추가
   }
 
   $.ajax({
@@ -61,7 +61,8 @@ function uploadFiles() {
       alert("success");
     },
     error: function (result) {
-      alert("error" + result);
+      alert("error : check console");
+        console.log(result);
     },
   });
 }

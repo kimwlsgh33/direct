@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class ItemDaoImpl implements ItemDao {
@@ -17,5 +16,10 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     public void create(Item item) {
         sqlSession.insert(NAMESPACE + "create", item);
+    }
+
+    @Override
+    public Item read(int id) {
+        return sqlSession.selectOne(NAMESPACE + "read", id);
     }
 }

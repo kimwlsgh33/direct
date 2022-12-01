@@ -19,9 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Slf4j
 @Controller
 public class HomeController {
-
-  private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
   private final CategoryService categoryService;
 
   public HomeController(CategoryService categoryService) {
@@ -33,8 +30,6 @@ public class HomeController {
    */
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home(Locale locale, Model model) throws Exception {
-    logger.info("Welcome home! The client locale is {}.", locale);
-
     List<Category> categories = categoryService.listAll();
     model.addAttribute("categories", categories);
 

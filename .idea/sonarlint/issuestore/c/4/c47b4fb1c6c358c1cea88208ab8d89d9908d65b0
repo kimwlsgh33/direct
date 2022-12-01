@@ -1,0 +1,18 @@
+
+:
+java:S2629!"$Invoke method(s) only conditionally.(‰ÄÒ
+?
+java:S2629""$Invoke method(s) only conditionally.(Õšê½øÿÿÿÿ
+:
+java:S2629#"$Invoke method(s) only conditionally.(¿ÄŒ
+k	java:S116"QRename this field "SPHAIR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úğŠÅÿÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(úğŠÅÿÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(—åŞˆ
+]	java:S1258"<This block of commented-out lines of code should be removed.(¢¨ÆÎûÿÿÿÿ8ºÒ¾Ì0
+^
+java:S1128"ARemove this unused import 'org.aspectj.lang.ProceedingJoinPoint'.(ç—Âû8¼Ò¾Ì0
+a
+java:S1128"?Remove this unused import 'org.aspectj.lang.annotation.Around'.(ï°Œşûÿÿÿÿ8¼Ò¾Ì0
+a
+java:S1128"?Remove this unused import 'org.springframework.util.StopWatch'.(õšÛøÿÿÿÿ8¼Ò¾Ì0

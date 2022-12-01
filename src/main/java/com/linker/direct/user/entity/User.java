@@ -1,8 +1,9 @@
 package com.linker.direct.user.entity;
 
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 public class User {
     private Integer id;
     private String pwd;
@@ -16,6 +17,9 @@ public class User {
     private String status;
     private String joinDate;
     private int point;
+
+    public User(){};
+
     public User(Integer id, String pwd, String name, String email, String phoneNumber, String birthday, String zipcode, String address, String state, String status, String joinDate, int point) {
         this.id = id;
         this.pwd = pwd;
