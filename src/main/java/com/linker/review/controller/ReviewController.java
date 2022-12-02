@@ -60,13 +60,10 @@ public class ReviewController {
 			
 			logger.info("ReviewController 리뷰 목록 가져오기......");
 			List<ReviewDTO> reviewList = reviewService.reviewList();
-			//List<CommentDTO> cList = reviewService.cList();
 			
 			logger.info("리뷰 목록 => " + reviewList);
 			model.addAttribute("reviewList", reviewList);
-			//model.addAttribute("cList", cList);
-			
-			
+				
 		}
 		
 		// 리뷰 상세 조회

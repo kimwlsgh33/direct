@@ -36,11 +36,11 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 
 <div class="container">
 	<h1 align="center">회원 전체 목록</h1>
-	<a href="${contextPath}/member/logout.do" class="btn"><span class="glyphicon glyphicon-log-out">로그아웃</span></a>
-
-	<a class="btn btn-sm" href="${contextPath}/member/loginModalForm.do">로그인(Modal)</a>
-	
-	<table class="table table-bordered table-striped table-hover" style="width:2000px; margin:auto;">
+	<div style="margin-left: 50px;">
+		<a href="${contextPath}/member/logout.do" class="btn btn-sm btn-outline-success"><span class="glyphicon glyphicon-log-out">로그아웃</span></a>
+		<a class="btn btn-sm btn-outline-success" href="${contextPath}/member/loginModalForm.do">로그인(Modal)</a>
+	</div>
+	<table class="table table-bordered table-striped table-hover" style="width:90%; margin-left: 50px;">
 		<tr class="info">
 			<td align="center" width="80"><b>아이디</b></td>
 			<td align="center" width="80"><b>이  름</b></td>

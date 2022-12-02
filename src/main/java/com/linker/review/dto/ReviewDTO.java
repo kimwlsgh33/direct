@@ -16,5 +16,6 @@ public class ReviewDTO {
 	private String subject;	// 리뷰 제목
 	private String content;	// 리뷰 내용
 	private Timestamp reg_date;	// 리뷰 작성 날짜
+	private int cnt;	// 댓글 개수(mapper에서 alias로 사용, 실제 sql table에는 column없음)
 
 }

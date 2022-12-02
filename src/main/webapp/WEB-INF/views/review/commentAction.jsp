@@ -62,7 +62,7 @@ function commentList() {
 			var str = '';
 			$.each(data, function(key, value){ 
 				str += '<div class="commentArea" >';
-				str += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
+				str += '<div class="commentInfo">'+'작성자 : '+value.writer;
 				str += '  <a class="btn btn-sm btn-outline-success" onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
 				str += '  날짜 : ' + value.reg_date + '  ';
 				str += '<a class="btn btn-sm btn-outline-success" onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';

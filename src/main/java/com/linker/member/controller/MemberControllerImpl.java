@@ -83,6 +83,24 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 	
+	//-----------------------------------------------------------------------------------------------------------
+	// 로그인 화면 띄우기
+	//-----------------------------------------------------------------------------------------------------------
+	@Override
+	@RequestMapping(value="/loginForm.do", method=RequestMethod.GET)
+	public ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+	   logger.info("========================================================================================");
+	   logger.info("MemberControllerImpl loginForm() 시작.....");
+	   logger.info("========================================================================================");
+
+	   ModelAndView mav = new ModelAndView();
+	   mav.setViewName("/member/loginForm");
+	   return mav;
+	      
+	}
+
+	
 	// 로그아웃 처리
 	@Override
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
@@ -140,6 +158,7 @@ public class MemberControllerImpl implements MemberController {
 		List<MemberVO> memberLists = memberService.listMembers();
 		
 		ModelAndView mav = new ModelAndView("/member/listMembers");
+		// ModelAndView mav = new ModelAndView("/product/productSelect");
 		mav.addObject("memberLists", memberLists);
 		
 		return mav;

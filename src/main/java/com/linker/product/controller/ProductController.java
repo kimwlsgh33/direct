@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.linker.member.vo.MemberVO;
 import com.linker.product.dto.ProductDTO;
 import com.linker.product.service.ProductService;
 
@@ -47,15 +48,15 @@ public class ProductController {
 		}
 	
 	
-		// 해당 아이디 상품 목록 조회
+		// 상품번호에 해당하는 상품정보 추출하기
 		@RequestMapping(value = "/productSelect", method=RequestMethod.GET)
-		public ModelAndView selectProduct(@RequestParam(value = "id") String id, HttpServletRequest request, HttpServletResponse response)
+		public ModelAndView selectProduct(@RequestParam(value = "product_no") int product_no, HttpServletRequest request, HttpServletResponse response)
 				throws Exception {
 			
-			System.out.println("ProductController 회원 정보 조회 id ==> " + id);
+			System.out.println("ProductController 회원 정보 조회 product_no ==> " + product_no);
 			
 			// 회원 전체 리스트 화면에서 id에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
-			List<ProductDTO> ProductDTO = ProductService.selectProduct(id);
+			List<ProductDTO> ProductDTO = ProductService.selectProduct(Integer.parseInt((String)request.getParameter("product_no")));
 			System.out.println("ProductController 상품 정보 조회 => " + ProductDTO);
 			
 			// 찾아온 데이터를 가지고 해당 화면으로 넘어간다.

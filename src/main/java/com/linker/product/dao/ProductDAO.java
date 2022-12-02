@@ -13,8 +13,8 @@ public interface ProductDAO {
 	public List<ProductDTO>selelctAllProduct() throws DataAccessException;
 	
 	//-----------------------------------------------------------------------------------------------------------
-	// 아이디에 해당하는 상품 정보 가져오기
+	// 상품번호에 해당하는 상품정보 추출하기
 	//-----------------------------------------------------------------------------------------------------------
-	public List<ProductDTO> selectProduct(String id) throws DataAccessException;
+	public List<ProductDTO> selectProduct(int product_no) throws DataAccessException;
 
 }

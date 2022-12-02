@@ -16,7 +16,7 @@
 	<ul class="nav nav-pills justify-content-around">
 		<li><div><h2>배송중</h2><h1><a href="${contextPath}/product/productSelect?id=${member.id}">0</a></h1></div></li>
 		<li><div><h2>쿠폰</h2><h1><a href="#">0</a></h1></div></li>
-		<li><div><h2>리뷰</h2><h1><a href="#">0</a></h1></div></li>
+		<li><div><h2>리뷰</h2><h1><a href="${contextPath}/review/reviewList">0</a></h1></div></li>
 	</ul>
 </nav>
 

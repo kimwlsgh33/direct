@@ -31,12 +31,12 @@ public class ProductDAOImpl implements ProductDAO {
 		return productList;
 	}
 
-	// 해당 아이디 상품 목록 조회
+	// 상품번호에 해당하는 상품정보 추출하기
 	@Override
-	public List<ProductDTO> selectProduct(String id) throws DataAccessException {
+	public List<ProductDTO> selectProduct(int product_no) throws DataAccessException {
 		
 		logger.info("ProductController 아이디에 해당하는 상품 목록 조회 시작......");	
-		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".selectProduct", id);
+		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".selectProduct", product_no);
 		return ProductDTO;
 	}
 

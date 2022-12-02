@@ -12,35 +12,29 @@
 </head>
 <body>
 
+<%
+if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").equals("")) {
+	response.sendRedirect("/member/loginForm.do");
+}
+%>
+
 <jsp:include page="../common/topMenu.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
 <jsp:include page="../common/sideMenu.jsp" flush="false"/>
 	<div class="col-sm-10" id="top" style="height: 50px;">
 		<jsp:include page="../common/headMenu.jsp" flush="false"/>
-		<h3 style="padding-left: 25px; margin-top: 30px;">${member.id}님의 주문 상품</h3>
-		<table class="table table-bordered table-striped table-hover" style="width: 75%; margin-left: 25px; margin-top: 20px;">
-			<tr class="info">
-				<td align="center" width="60"><b>상품 번호</b></td>
-				<td align="center" width="60"><b>주문 번호</b></td>
-				<td align="center" width="120"><b>상품 이름</b></td>
-				<td align="center" width="60"><b>상품 가격</b></td>
-				<td align="center" width="60"><b>상품 개수</b></td>
-				<td align="center" width="60"><b>주문 날짜</b></td>
-			</tr>
-			<c:forEach var="p" items="${product}">	
-			<tr>
-				<td align="center">${p.product_no}</td>
-				<td align="center">${p.order_product_no}</td>
-				<td align="center">${p.order_product_name}</td>
-				<td align="center">${p.order_product_price}</td>
-				<td align="center">${p.order_product_count}</td>
-				<td align="center"><fmt:formatDate value="${p.order_date}" pattern="yyyy.MM.dd hh:mm"/></td>
-			</tr>
-			</c:forEach>
-		</table>
+		<h3 style="padding-left: 25px; margin-top: 30px;">주문상세</h3>
+		<div class="row justify-content-start" style="padding-left: 25px;">
+			<div class="col-md-2">
+				<h5><fmt:formatDate value="${product[0].order_date}" pattern="yyyy.MM.dd hh:mm"/></h5>
+			</div>
+			<div class="col-md-2">
+				<h5>주문번호 ${product[0].order_product_no}</h5>
+			</div>
+		</div>
 		<c:forEach var="p" items="${product}">	
-			<div class="col-sm-9" style="margin-left: 25px;">
+			<div class="col-sm-9" style="margin-left: 25px; width: 75%;">
 				<h4 style="margin-left:15px;"><fmt:formatDate value="${p.order_date}" pattern="yyyy.MM.dd hh:mm"/></h4>
 				<div class="row justify-content-center">
 					<div class="col-sm-7">
@@ -68,6 +62,71 @@
 				</div>
 			</div>
 		</c:forEach>
+		
+		<div>
+		<b style="padding-left: 25px;">받는사람 정보</b>
+		<div class="col-sm-8" style="border-top: 2px solid gray; margin-left:25px; width: 75%; margin-top: 10px; border-bottom: 1px solid lightgray;">
+			<div class="row justify-content-start" style="margin-bottom: 10px; margin-top: 10px;">
+				<div class="col-md-2">
+					<b>받는사람</b>
+				</div>
+				<div class="col-md-2">
+					<b>${product[0].name}</b>
+				</div>
+			</div>
+			<div class="row justify-content-start" style="margin-bottom: 10px;">
+				<div class="col-md-2">
+					<b>연락처</b>
+				</div>
+				<div class="col-md-2">
+					<b>010-1234-5678</b>
+				</div>
+			</div>
+			<div class="row justify-content-start" style="margin-bottom: 10px;">
+				<div class="col-md-2">
+					<b>받는 주소</b>
+				</div>
+				<div class="col-md-5">
+					<b>${product[0].address}</b>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		<div style="margin-top: 40px;">
+		<b style="padding-left: 25px;">결제 정보</b>
+		<div class="col-sm-8" style="border-top: 2px solid gray; margin-left:25px; width: 75%; margin-top: 10px;border-bottom: 1px solid lightgray;">
+		<div class="row justify-content-between">
+			<div class="col-md-5 justify-content-start" style="margin-bottom: 10px; margin-top: 10px;">
+				<div class="col-md-4">
+					<b>결제 수단</b>
+				</div>
+				<div class="col-md-7">
+					<b>롯데카드 / 일시불</b>
+				</div>
+			</div>
+			<div class="col-md-5 row justify-content-start" style="margin-bottom: 10px;">
+			
+				<div class="col-md-6" style="height: 25px; margin-top:10px;">
+					<b>총 상품가격</b>
+				</div>
+				<div class="col-md-5" style="height: 25px; margin-top:10px;">
+					<b>${product[0].order_product_price} 원</b>
+				</div>
+		
+			
+				<div class="col-md-6">
+					<b>배송비</b>
+				</div>
+				<div class="col-md-4">
+					<b>가격</b>
+				</div>
+	
+		</div>
+		</div>
+		</div>
+		
+	</div>
 	</div>
 	</div>
 </div>

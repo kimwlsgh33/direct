@@ -12,11 +12,12 @@
 		]]>
 	</select>
 	
-	<!-- 리뷰 번호에 해당하는 댓글의 개수를 구한다. -->
+	<!-- 리뷰 번호에 해당하는 댓글의 개수를 구한다. 
 	<select id="commentCount" resultType="int">
 	SELECT	COUNT(*) FROM comment
 	WHERE review_no = #{review_no}
 	</select>
+	-->
 	
 	<!-- 댓글 목록 -->
 	<select id="commentList" parameterType="int" resultType="com.linker.review.dto.CommentDTO">

@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>구매 상품 목록</title>
+	<title>상품 리뷰</title>
 	
 </head>
 <body>
@@ -35,7 +35,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					</div>
 				</form>
 			</div>
-		<table class="table table-bordered table-striped table-hover" style="width: 75%; margin-left: 25px; ">
+		<table class="table table-bordered table-striped table-hover" style="width: 80%; margin-left: 25px; ">
 		<thead>
 			<tr class="info">
 				<th class="col-sm-1 text-center">no</th>
@@ -56,7 +56,9 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						<td align="center">${review.content}</td>
 						<td align="center">${review.order_product_name}</td>
 						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="MM월 dd일 a hh시 mm분"/></td>
-						<td align="center" onclick="location.href='/review/detailComment/${review.review_no}'">댓글</td>
+						<td align="center" onclick="location.href='/review/detailComment/${review.review_no}'">
+						댓글<c:if test="${review.cnt > 0}" ><span style="color: #14A44D;">(${review.cnt})</span></c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>	
