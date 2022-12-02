@@ -3,8 +3,6 @@ _
 /src/main/webapp/WEB-INF/views/sns/user/list.jsp,e/e/eea0d702b9f7cb06830e603da15b36f396ac4371
 _
 /src/main/webapp/WEB-INF/views/common/footer.jsp,0/e/0ed3163a8dcfbf36d8ebefefd770bf870e310fcc
-Z
-*src/main/webapp/resources/styles/reset.css,1/6/16ef01c15383d2580692b95285b03a8f7fe43de6
 h
 8src/main/java/com/linker/direct/store/entity/Review.java,3/4/341e1a01eb80cf61a40ad8e479ea64712d8212b7
 X
@@ -46,8 +44,6 @@ O
 src/main/webapp/WEB-INF/web.xml,2/e/2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 d
 4src/main/webapp/WEB-INF/views/util/upload/images.jsp,1/7/17ad89d66f3c3a96996b945544023f4ec153eed7
-]
--src/main/webapp/WEB-INF/views/admin/store.jsp,d/7/d77154a78ee7ae995df22419f325ff0566601ef9
 j
 :src/main/java/com/linker/direct/store/entity/Category.java,6/f/6fbc9a5428993c0215dab266bfa64805fd7f2288
 n
@@ -72,8 +68,6 @@ x
 Hsrc/main/java/com/linker/direct/store/controller/CategoryController.java,b/2/b28fb78a101035ee4e7879d632f13c309de44155
 V
 &src/main/webapp/WEB-INF/views/home.jsp,1/a/1af60de6709e573f5dad4fe0319db0bb3a87e804
-c
-3src/main/java/com/linker/direct/HomeController.java,1/6/16ae7957abca89913e99822c28032540b1c66d06
 g
 7src/main/java/com/linker/direct/common/aop/AopType.java,9/f/9fe09a9828d8a28f7eb924e352ea5a51138d5540
 h

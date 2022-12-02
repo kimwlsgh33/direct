@@ -27,6 +27,13 @@
             <a href="${ctx}/store/item/list" class="btn">list</a>
         </div>
     </div>
+    <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">
+        <h1>주문</h1>
+        <div>
+            <a href="${ctx}/store/order" class="btn btn-success">create</a>
+            <a href="${ctx}/store/order/list" class="btn">list</a>
+        </div>
+    </div>
     <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">장바구니</div>
     <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">유저</div>
 </div>

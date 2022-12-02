@@ -1,8 +1,0 @@
-
-j
-java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ž–û‚ùÿÿÿÿ8ÍžÛ—Ë0
-I
-java:S1128	"-Remove this unused import 'org.slf4j.Logger'.(íØ®68š¦À½Ì0
-Q
-java:S1128
-"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚÞ8š¦À½Ì0
