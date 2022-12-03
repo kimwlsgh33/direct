@@ -12,7 +12,6 @@
     <div class="h-75 container-fluid d-flex justify-content-center align-items-center flex-column text-center">
                 <h4 style="font-size: large">검색 결과가 입력되지 않았습니다.</h4>
                 <p style="font-size: small">정확한 검색어를 입력하여 다시 입력해주세요</p>
-                <a href="${contextPath}/search/searchList" type="button">목록으로</a>
     </div>
 <jsp:include page="../common/footer.jsp"/>
 </body>

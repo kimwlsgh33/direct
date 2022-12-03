@@ -12,4 +12,6 @@ public interface SearchService {
 
     public int searchListTotalCount(SearchCriteria cri) throws Exception;
 
+    public List<SearchDTO> searchListAll(SearchCriteria cri) throws Exception;
+
 }

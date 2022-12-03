@@ -40,4 +40,10 @@ public class SearchServiceImpl implements SearchService {
         logger.info("searchServiceImpl 전체 게시글 수 구하기 (Paging 처리) => " + cri);
         return searchDAO.searchListTotalCount(cri);
     }
+
+    @Override
+    public List<SearchDTO> searchListAll(SearchCriteria cri) throws Exception {
+        logger.info("searchServiceImpl 전체 게시글 수 구하기 (Paging 처리) => " + cri);
+        return searchDAO.searchListAll(cri);
+    }
 }

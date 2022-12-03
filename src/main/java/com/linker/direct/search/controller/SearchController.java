@@ -55,6 +55,7 @@ public class SearchController {
 
         ModelAndView mav = new ModelAndView("/search/searchList");
 
+
         mav.addObject("keyword",	cri.getKeyword());
 
         String subFilter = cri.getSubFilter();
@@ -70,6 +71,8 @@ public class SearchController {
 
         if(subFilter == null){
             subFilter  = "lowPrice";
+            logger.info("if문 안에 들어가냐??");
+            logger.info("subFilter ==> " + subFilter);
         }
 
         PageMaker pageMaker = new PageMaker();
@@ -79,8 +82,12 @@ public class SearchController {
         logger.info("SearchController 게시글 목록 보여주기 (Paging 처리) "
                 + "pageMaker.getTotalCount() ==> " + pageMaker.getTotalCount());
 
+
+
         // cri에 해당하는 게시글을 가져와서 View에게 넘겨준다.
         List<SearchDTO> searchList = searchService.searchListPaging(cri);
+
+
         logger.info("SearchController 게시글 목록 보여주기 (Paging 처리) " +
                 "cri에 해당하는 게시글을 가져와서 View에게 넘겨준다. ==> END END END" + pageMaker);
         mav.addObject("searchList", searchList);
@@ -88,12 +95,11 @@ public class SearchController {
         logger.info("searchDTO ====> " + searchDTO);
         mav.addObject("product_name", searchDTO.getProduct_name());
         mav.addObject("subFilter", cri.getSubFilter());
-        mav.addObject("display", cri.getPerPageNum());
+        mav.addObject("perPageNum", cri.getPerPageNum());
+        mav.addObject("searchListAll", searchService.searchListAll(cri));
 
         return mav;
     }
-
-
 
 
 }

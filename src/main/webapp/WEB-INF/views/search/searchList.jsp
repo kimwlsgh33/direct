@@ -59,7 +59,7 @@
         <%--            <h2 class="blind">검색결과</h2>--%>
             <div class="d-flex align-items-center"  style="height: 40px"> <!-- "에 대한 검색 결과입니다" 큰 div -->
                 <div class="result_info_text" >
-                    <p> <em style="color: green">${keyword}</em> 에 대한 검색 결과입니다. </p>
+                    <p id="searchResult"> <em style="color: green">${keyword}</em> 에 대한 검색 결과입니다. </p>
                 </div>
             </div>
             <div class="filter_finder"> <!-- 결과 필터 부분 큰 div-->
@@ -88,22 +88,25 @@
                 <%--=========================================검  색  필  터===================================================  --%>
                 <%--========================================================================================================  --%>
                 <div class="d-flex justify-content-between mb-3" style="border-top: 1px solid gainsboro; border-bottom: 1px solid gainsboro;"> <!-- 낮은 가격순, 높은 가격순, 이 필터  flex_between 사용 예정  -->
-                    <div class="row justify-content-evenly w-50 align-items-center subFilter"  > <!-- 오른쪽에 낮은 가격순, 높은 가격순, !!!!!!이 부분 고쳐야함!!!!!!!!!   -->
-                        <a id="lowPrice"  href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=lowPrice" role="button" class="col" style="color: black">낮은 가격순</a>
-                        <a id="highPrice" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=highPrice" role="button" class="col" style="color: black">높은 가격순</a>
+                    <div class="row justify-content-evenly w-50 align-items-center subFilter"  >
+                        <a id="lowPrice"  href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=lowPrice&perPageNum=${perPageNum}" role="button" class="col" style="color: black">낮은 가격순</a>
+                        <a id="highPrice" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=highPrice&perPageNum=${perPageNum}" role="button" class="col" style="color: black">높은 가격순</a>
                         <a href="#" role="button" class="col" style="color: black">리뷰 높은순</a>
                         <a id="product_date" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=product_date" role="button" class="col" style="color: black">등록일 순</a>
                     </div>
 
 <%--                    dropdown으로 버튼 만들기--%>
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        ${display}개씩 보기
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=10">10개씩 보기</a></li>
-                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=20">20개씩 보기</a></li>
-                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=30">30개씩 보기</a></li>
-                        <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&display=40">40개씩 보기</a></li>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            ${perPageNum}개씩 보기
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=10">10개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=20">20개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=30">30개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=40">40개씩 보기</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <%--========================================================================================================  --%>
                 <%--===============================================구 매 할 제 품============================================  --%>
@@ -149,17 +152,17 @@
                     <ul class="pagination justify-content-center">
                         <c:if test="${pageMaker.prev }">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&page=${pageMaker.startPage-1 }"/>'>이전</span></a>
+                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
                             </li>
                         </c:if>
                         <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&page=${pageNum }"/>'><i>${pageNum }</i></a>
+                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageNum }"/>'><i>${pageNum }</i></a>
                             </li>
                         </c:forEach>
                         <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&page=${pageMaker.endPage+1 }"/>'>다음</a>
+                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.endPage+1 }"/>'>다음</a>
                             </li>
                         </c:if>
                     </ul>
@@ -181,9 +184,30 @@
             toast.show()
         })
     }
-    $(document).ready(function(){
-        $("#${subFilter}").css("fontWeight", "bold");
 
+    const toastTrigger1 = document.getElementById('liveToastBtn1')
+    const toastLiveExample1 = document.getElementById('liveToast')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', () => {
+            const toast = new bootstrap.Toast(toastLiveExample1)
+            toast.show()
+        })
+    }
+
+
+    const subFilter = document.getElementById('subFilter');
+
+
+
+    $(document).ready(function(){
+
+        if("${subFilter}"==null){
+
+        }
+        $("#${subFilter}").css("fontWeight", "bold");
+        if("${keyword == null}"){
+            $("searchResult").hide();
+        }
 
     })
 

@@ -47,6 +47,14 @@ public class SearchDAOImpl implements SearchDAO {
         return sqlSession.selectOne(namespace + ".searchListTotalCount", cri);
     }
 
+    @Override
+    public List<SearchDTO> searchListAll(SearchCriteria cri) throws Exception {
+        logger.info("SearchDAOImpl searchListAll(Criteria cri) 게시글 목록 가져오기..... => paging처리" + cri);
+        List<SearchDTO> searchListAll = sqlSession.selectList(namespace + ".searchListAll", cri);
+        logger.info("SearchDAOImpl searchListAll(Criteria cri) Data ==> " + searchListAll);
+        return searchListAll;
+    }
+
     //-----------------------------------------------------------------------------------------------------------
     // 게시글 목록 보기 (Paging 처리)
     //-----------------------------------------------------------------------------------------------------------
