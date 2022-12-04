@@ -134,7 +134,7 @@ function fn_reviewDelete(review_no){
 			data: {review_no : review_no},
 			success: function(data) {
 				if(data == "Y") {
-					alert("게시글 삭제가 완료되었습니다.");
+					alert("리뷰 삭제가 완료되었습니다.");
 					location.href = "/review/reviewList";
 				}
 			},
