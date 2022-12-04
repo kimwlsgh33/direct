@@ -113,6 +113,7 @@ ul {
 	text-align: center;
 }
 
+/*productSelect*/
 div .col-sm-9 {
 	background: white;
 	height: 300px;
@@ -120,6 +121,7 @@ div .col-sm-9 {
 	border-radius: 10px;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	width: 90%;
 }
 
 div .col-sm-7 {
@@ -151,6 +153,7 @@ i {
 .col-sm-2 {
 	padding: 20px;
 }
+/*productSelect*/
 
 td a {
 	color: gray;
@@ -190,4 +193,5 @@ td a:hover {
 	color: gray;
 	text-decoration: none;
 }
+
 </style>

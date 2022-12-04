@@ -17,6 +17,8 @@ public interface MemberController {
 	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	// 로그인 폼
+	public   ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	// 로그아웃 처리
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;

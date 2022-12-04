@@ -20,5 +20,6 @@ public interface ReviewService {
 	
 	// 리뷰 삭제
 	public int reviewDelete(int review_no);
+	
 
 }

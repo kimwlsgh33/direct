@@ -14,12 +14,14 @@
 		]]>
 	</select>
 	
-	<!-- 회원 id에 해당하는 상품 추출하기 -->
+	<!-- 상품번호에 해당하는 상품정보 추출하기 -->
 	<select id="selectProduct" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
 		<![CDATA[
-			SELECT id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url
-			FROM order_product 
-			WHERE id = #{id}
+			SELECT id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url,
+			(select name from mypage where order_product.id = mypage.id) AS name,
+			(select address from mypage where order_product.id = mypage.id) AS address
+			FROM order_product
+			WHERE product_no = #{product_no}
 			ORDER BY order_date desc
 		]]>
 	</select>

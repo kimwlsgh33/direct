@@ -40,6 +40,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDAO.reviewList();
 	}
 
+
 	// 리뷰 상세조회
 	@Override
 	public ReviewDTO reviewDetail(int review_no) throws Exception {

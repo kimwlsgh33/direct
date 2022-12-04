@@ -21,14 +21,15 @@
 		]]>
 	</insert>
 	
-	<!-- 리뷰 전체목록 가져오기 -->
+	<!-- 리뷰 전체목록 가져오기 + comment table에서 댓글개수 가져오기 -->
 	<select id="listAll" resultType="com.linker.review.dto.ReviewDTO">
 		<![CDATA[
-			SELECT review_no, id, product_no, subject, content, reg_date, order_product_name
+			SELECT review_no, id, product_no, subject, content, reg_date, order_product_name, 
+			(select count(cno) from comment where comment.review_no = product_review.review_no) AS cnt
 			FROM product_review
 			ORDER BY review_no desc
 		]]>
-	</select>
+	</select>	
 	
 	<!-- 리뷰 상세보기(게시글 번호에 해당하는 리뷰 정보 추출) -->
 	<select id="detail" resultType="com.linker.review.dto.ReviewDTO">

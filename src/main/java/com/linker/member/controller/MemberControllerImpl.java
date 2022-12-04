@@ -157,6 +157,7 @@ public class MemberControllerImpl implements MemberController {
 		List<MemberVO> memberLists = memberService.listMembers();
 		
 		ModelAndView mav = new ModelAndView("/member/listMembers");
+		// ModelAndView mav = new ModelAndView("/product/productSelect");
 		mav.addObject("memberLists", memberLists);
 		
 		return mav;
