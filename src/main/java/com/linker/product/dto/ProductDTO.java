@@ -23,6 +23,7 @@ public class ProductDTO {
 	// 쿼리문으로 만든 column, mysql테이블에는 없음
 	private String name;	// 사용자 이름
 	private String address;	// 사용자 주소
+	private String number;	// 사용자 연락처
 
 	public ProductDTO() {}	// 기본 생성자
 	public ProductDTO(String id, int product_no, int order_product_no, int order_product_count, int order_product_price, String order_product_name, Timestamp order_date, String order_product_url) {	// 매개변수 있는 생성자

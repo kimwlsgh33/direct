@@ -155,7 +155,7 @@ function commentUpdate(cno, content) {
 
 	str += '<div class="input-group">';
 	str += '<input type="text" class="form-control" name="content_' + cno + '" value="' +content + '"/>';
-	str += '<span class="input-group-btn"><button class="btn" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+	str += '<span class="input-group-btn"><button class="btn btn-sm btn-outline-success" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
 	str += '</div>';
 
 	$('.commentContent' + cno).html(str);

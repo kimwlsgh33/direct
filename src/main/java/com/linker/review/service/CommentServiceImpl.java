@@ -33,4 +33,10 @@ public class CommentServiceImpl implements CommentService {
 		return commentDAO.commentDelete(cno);
 	}
 
+	// 댓글 수정
+	@Override
+	public int commentUpdate(CommentDTO comment) throws Exception {
+		return commentDAO.commentUpdate(comment);
+	}
+
 }
