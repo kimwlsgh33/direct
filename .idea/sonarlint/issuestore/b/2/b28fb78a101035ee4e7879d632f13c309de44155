@@ -1,8 +1,0 @@
-
-g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(‰ÊÖ±ûÿÿÿÿ8ˆÅÃ½Ì0
-l
-java:S4488""JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(µ›«…ûÿÿÿÿ8•ÅÃ½Ì0
-f
-java:S44884"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ï˜¦8™ÅÃ½Ì0
-S
-java:S1128"6Remove this unused import 'lombok.extern.slf4j.Slf4j'.(ûúÄ®8êýÄ½Ì0

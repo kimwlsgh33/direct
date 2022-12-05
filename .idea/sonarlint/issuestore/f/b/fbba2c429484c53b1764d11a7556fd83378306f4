@@ -1,8 +1,0 @@
-
-P
-java:S2209%"5Change this instance-reference to a static reference.(œ‰³ üÿÿÿÿ
-R
-java:S18544"<Remove this useless assignment to local variable "itemImgs".(×Š‘¸
-C
-java:S14814"-Remove this unused "itemImgs" local variable.(×Š‘¸
-V	java:S1256"<This block of commented-out lines of code should be removed.(²ÁËÐùÿÿÿÿ

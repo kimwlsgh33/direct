@@ -245,4 +245,4 @@ gradle-app.setting
 
 !/src/main/resources/config/jdbc.properties
 !/.vim/
-!/.idea/
+.idea/

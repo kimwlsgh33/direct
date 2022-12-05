@@ -1,9 +1,0 @@
-
-g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ºÃšôûÿÿÿÿ8¶íóŸË0
-d
-java:S2095"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Ó¤­ª
-<
-java:S1075"&Remove this hard-coded path-delimiter.(„é‰
-W	java:S899"";Do something with the "boolean" value returned by "delete".(Î†ñ¥8ù×†ŸË0
-k
-java:S4042""NUse "java.nio.file.Files#delete" here for better messages on error conditions.(Î†ñ¥8ù×†ŸË0
