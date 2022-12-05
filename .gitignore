@@ -244,5 +244,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 !/src/main/resources/config/jdbc.properties
-!/.vim/
+.vim/
 .idea/
+.fleet/
