@@ -62,6 +62,12 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="id" class="form-label">연락처</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="number" name="number" maxlength="20" value="${member.number}"/>
+			</div>
+		</div>
+		<div class="form-group">
 			<div class="form-group" style="margin-top: 50px;">
 				<label class="form-label">우편번호</label>
 				<div class="col-sm-5">
@@ -72,7 +78,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<div class="form-group">
 				<label class="form-label">주 소</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="address" name="address" value="${member.address}"/>
+					<input type="text" class="form-control" id="address01" name="address01"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -81,11 +87,16 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<input type="text" class="form-control" id="address02" name="address02"/>
 				</div>
 			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<input type="hidden" class="form-control" id="address" name="address" value="${member.address}"/>
+				</div>
+			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-4">
-				<button type="reset"  class="btn">다시 입력</button>
-				<button type="submit" class="btn">회원 정보 수정</button>
+			<div class="col-sm-offset-3 col-sm-4" style="margin-left: 120px; margin-top: 20px;">
+				<button type="reset"  class="btn btn-sm btn-outline-success">다시 입력</button>
+				<button type="button" class="btn btn-sm btn-outline-success" onclick="func_submit()">회원 정보 수정</button>
 			</div>
 		</div>
 	</form>
@@ -136,15 +147,32 @@ function daumZipCode() {
 			// 우편번호와 주소정보를 화면의 해당 필드에 출력시킨다.
 			// 5자리의 새 우편번호
 			document.getElementById('zipcode').value = data.zonecode;
-			document.getElementById('address').value = fullAddr;
+			document.getElementById('address01').value = fullAddr;
 			
 			// 커서를 상세주소 입력란으로 이동시킨다.
 			document.getElementById('address02').focus();
+			
 		}
 	}).open({
 		// 우편번호 팝업창이 여러개 뜨는 것을 방지하기 위해 popupName사용
 		popupName: 'postcodePopup'
 	});
+}
+
+function func_submit() {
+	// 종합 주소를 fullAddr2 변수에 저장해서 데이터베이스에 보낸다.
+	
+	let fullAddress = ''; // 데이터베이스에 보낼 주소의 변수
+	
+	fullAddress += document.getElementById('zipcode').value;
+	fullAddress += ' ';
+	fullAddress += document.getElementById('address01').value;
+	fullAddress += ' ';
+	fullAddress += document.getElementById('address02').value;
+	
+	document.getElementById('address').value = fullAddress;
+
+	$("form").submit();
 }
 </script>
 

@@ -14,5 +14,8 @@ public interface CommentService {
 	
 	// 댓글 삭제
 	public int commentDelete(int cno) throws Exception;
+	
+	// 댓글 수정
+	public int commentUpdate(CommentDTO comment) throws Exception;
 
 }

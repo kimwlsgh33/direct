@@ -22,6 +22,10 @@
 		<div class="col-sm-10" id="top">
 			<jsp:include page="../common/headMenu.jsp" flush="false"/>
 		<form class="row g-3" name="zipForm" method="post" style="margin-left: 30%;">
+			<div class="col-md-4" style=" margin-top: 10px;">
+				<a class="btn btn-sm btn-outline-success" style="margin-left: 95px; "
+				href="${contextPath}/util/addressList?id=${member.id}">주소지 목록 가기</a>
+			</div>
 			<h2 style="padding-top: 30px;">배송지 관리</h2>
 			<div class="form-group" style="margin-top: 50px;">
 				<label class="form-label" style="text-align: right">우편번호</label>
@@ -42,7 +46,7 @@
 					<input type="text" class="form-control" id="address02" name="address02"/>
 				</div>
 			</div>
-			<button class="btn" type="submit">등록</button>
+			<button class="col-sm-1 btn btn-sm btn-outline-success" type="submit" style="margin-left:10px;">등록</button>
 		</form>
 		</div>
 	</div>

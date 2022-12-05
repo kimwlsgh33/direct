@@ -53,6 +53,12 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="id" class="col-sm-3 control-label">연락처</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="number" name="number" maxlength="50" placeholder="전화번호 입력"/>
+			</div>
+		</div>
+		<div class="form-group">
 			<label for="id" class="col-sm-3 control-label">회원가입 동의</label>
 			<div class="col-sm-2">
 				<label class="radio-inlne">

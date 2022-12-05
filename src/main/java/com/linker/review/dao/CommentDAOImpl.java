@@ -47,4 +47,11 @@ public class CommentDAOImpl implements CommentDAO {
 		return sqlSession.delete(namespace + ".commentDelete", cno);
 	}
 
+	// 댓글 수정
+	@Override
+	public int commentUpdate(CommentDTO commentDTO) throws Exception {
+		log.info("CommentDAOImpl update() => " + commentDTO);
+		return sqlSession.update(namespace + ".commentUpdate", commentDTO);
+	}
+
 }

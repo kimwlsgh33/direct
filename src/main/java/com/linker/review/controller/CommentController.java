@@ -64,4 +64,17 @@ public class CommentController {
 		return commentService.commentDelete(cno);
 	}
 	
+	// 댓글 수정
+	@RequestMapping("/update")
+	@ResponseBody
+	private int commentUpdateProc(@RequestParam int cno, @RequestParam String content) throws Exception {
+		System.out.println("CommentController commentUpdateProc...");
+		
+		CommentDTO comment = new CommentDTO();
+		comment.setCno(cno);
+		comment.setContent(content);
+		
+		return commentService.commentUpdate(comment);
+	}
+	
 }
