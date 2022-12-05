@@ -18,26 +18,21 @@
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
 			<jsp:include page="../common/headMenu.jsp" flush="false"/>
+			<div style="margin-left: 20%;">
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-5" style="margin-top: 30px;">
 						<h2>배송지 목록</h2>
 					</div>
 				</div>
-				<table class="table table-bordered table-striped table-hover" >
 				<c:forEach var="addr" items="${address}">
-				<tr>
-					<td align="center">${addr.id}</td>
-					<td align="center">${addr.address}</td>
-				</tr>
-				</c:forEach>
-				</table>
-				<div class="form-group" style="margin-top: 50px;">
-					<label for="id" class="form-label">주소</label>
-					<div class="col-sm-5">
-						<input type="text" class="form-control" id="id" name="id" maxlength="20" value="${address.address}" readonly/>
+					<div class="form-group" style="margin-top: 50px;">
+						<label for="id" class="form-label">주소</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="id" name="id" maxlength="20" value="${addr.address}" readonly/>
+						</div>
 					</div>
-				</div>
-		
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>

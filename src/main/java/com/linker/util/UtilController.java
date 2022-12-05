@@ -46,7 +46,7 @@ public class UtilController {
 		System.out.println("addressList 조회 ==> " + addressList);
 		
 		// 찾아온 데이터를 가지고 개인 정보 수정화면으로 넘어간다.
-		ModelAndView mav = new ModelAndView("/util/addrssList");
+		ModelAndView mav = new ModelAndView("/util/addressList");
 		mav.addObject("address", addressList);
 		
 		return mav;
