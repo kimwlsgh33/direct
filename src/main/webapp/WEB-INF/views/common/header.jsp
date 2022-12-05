@@ -63,7 +63,7 @@
                     </c:when>
                     <c:otherwise>
                         <div class="nav-item d-flex align-items-center">
-                            <a class="link-light me-2 " href="${ctx}/member/login">로그인</a>
+                            <a class="link-light me-2" style="text-decoration: none;" href="${ctx}/member/login">로그인</a>
                         </div>
                         <div class="nav-item">
                             <a class="btn btn-success" href="${ctx}/member/join">회원가입</a>

@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 
 html, body {
-    font-family: "Gowun Dodum";
+    /*font-family: "Gowun Dodum";*/
+    /*font-family: "NotoSansKR";*/
+    /*font-family: "Gowun Batang";*/
+    font-family: "MICEGothic", "WatermelonSalad", "NotoSansKR", "Gowun Dodum", "Gowun Batang";
     font-size: 16px;
     background-color: #E9ECEF;
 }
@@ -51,9 +54,9 @@ table {
     border-spacing: 0;
 }
 
-a {
-    text-decoration: none!important;
-}
+/*a {*/
+/*    text-decoration: none!important;*/
+/*}*/
 
 /* Font Definitions */
 @font-face {
@@ -114,4 +117,22 @@ a {
     font-family: 'DoHyeon';
     src: url('../fonts/DoHyeon-Regular.ttf') format('truetype');
     font-weight: 400;
+}
+
+@font-face {
+    font-family: 'WatermelonSalad';
+    src: url('../fonts/WatermelonSalad.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'MICEGothic';
+    src: url('../fonts/MICEGothic.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'MICEGothic';
+    src: url('../fonts/MICEGothic-Bold.ttf') format('truetype');
+    font-weight: bold;
 }
