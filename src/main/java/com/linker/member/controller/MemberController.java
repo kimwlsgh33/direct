@@ -23,9 +23,6 @@ public interface MemberController {
 	// 로그아웃 처리
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	// 로그인 폼
-	public   ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
 	// 회원가입 폼
 	public ModelAndView memberForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
