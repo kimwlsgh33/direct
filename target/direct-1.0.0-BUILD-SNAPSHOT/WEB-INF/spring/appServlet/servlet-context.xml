@@ -28,6 +28,7 @@
 	
 	<context:component-scan base-package="com.linker.direct" />
 	<context:component-scan base-package="com.linker.direct.search" />
+	<context:component-scan base-package="com.linker.direct.cart"/>
 
 <!--aop 설정-->
 	<context:annotation-config></context:annotation-config>

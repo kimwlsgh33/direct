@@ -10,23 +10,67 @@
     <title>검색 결과</title>
 </head>
 <style>
-    #itemList {
-        border-bottom: thin solid aliceblue;
-        border-top: thin solid aliceblue;
+    .flip-card {
+        background-color: transparent;
+        width: 300px;
+        height: 300px;
+        perspective: 1000px;
+        margin-bottom: 10px;
     }
-    #itemList:hover{
-        background-color: #f5f5f5;
-        border: pink solid thin;
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
     }
 
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 16px;
+    }
 
+    .flip-card-front  {
+        background-image: linear-gradient(45deg, #FFFFFF, black);
+    }
+    .flip-card-front img {
+        width: 140px;
+        margin-top: 1rem;
+        border-radius: 16px;
+    }
+
+    .flip-card-back {
+        background-image: linear-gradient(315deg, #FFFFFF, black);
+        transform: rotateY(180deg);
+    }
+    .flip-card-back img {
+        width: 100%;
+    }
+    .flip-card-front h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: white;
+    }
+    .flip-card-front h3 {
+        margin-bottom: 0.3rem;
+        color: white;
+        margin-top: 1rem;
+    }
+    .flip-card-front p {
+        color: white;
+    }
     .mainContainer_style {
         margin-right: 80px;
         margin-left: 80px;
     }
-
-
-
 
 </style>
 <body>
@@ -59,7 +103,7 @@
         <%--            <h2 class="blind">검색결과</h2>--%>
             <div class="d-flex align-items-center"  style="height: 40px"> <!-- "에 대한 검색 결과입니다" 큰 div -->
                 <div class="result_info_text" >
-                    <p id="searchResult"> <em style="color: green">${keyword}</em> 에 대한 검색 결과입니다. </p>
+                    <p id="searchResult"> <em style="color: gray; font-size: 20px;">${keyword}</em> 에 대한 검색 결과입니다. </p>
                 </div>
             </div>
             <div class="filter_finder"> <!-- 결과 필터 부분 큰 div-->
@@ -101,53 +145,40 @@
                             ${perPageNum}개씩 보기
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=10">10개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=8">8개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=12">12개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=16">16개씩 보기</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=20">20개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=30">30개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=40">40개씩 보기</a></li>
                         </ul>
                     </div>
                 </div>
                 <%--========================================================================================================  --%>
                 <%--===============================================구 매 할 제 품============================================  --%>
                 <%--========================================================================================================  --%>
-                <ul class="row d-flex basicList flex-wrap"> <!-- 구매할 제품 리스트 -->
-                        <c:forEach var="product" items="${searchList}" >
-                        <li class="basicList_item" id="itemList"> <!-- 1개 큰 틀자리 잡기 -->
-                            <div class="d-flex justify-content-start" style="margin: 20px"> <!-- 1개 작은 틀 자리 잡기 -->
-                                <div class="basicList_img_area" style="text-align: start; height: 100%;  border: solid thin #f5f5f5" > <!-- 제품 이미지 넣을 공간 -->
-                                    <a href="#" class="basicList_link" id="liveToastBtn" type="button">
-                                        <img src="${product.product_image}" style="width: 50%;">
-                                    </a>
+                <div >
+                    <a class="d-flex flex-wrap justify-content-evenly" style="text-decoration: none; color: black" href="#">
+                    <c:forEach var="product" items="${searchList}">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="${product.product_image}" />
+                                <h3>${product.product_name}</h3>
+                                <h1>${product.product_price}원</h1>
+                                <p>${product.product_date}</p>
+                                <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
+                                    <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <div class="d-flex row justify-content-evenly basicList_info_area">
-                                    <div class="basicList_title">
-                                        <a href="#" class="basicList_link">
-                                            ${product.product_name}
-                                        </a>
-                                    </div>
-                                    <div class="basicList_price_area">
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-title="Default tooltip"></a>
-                                            <%--  툴팁 실패...       --%>
-                                            <span>${product.product_price}</span>
-                                            <span>원</span>
-
-                                    </div>
-                                    <div class="basicList_review_area">
-                                        <div class="progress">
-                                            <div class="progress-bar" style="width: 25%" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                        <div class="basicList_product_date">
-                                            <span class="basicList_num_text">등록일</span>
-                                            <span class="basicList_num">${product.product_date}</span>
-                                        </div>
-<%--                                    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>--%>
-                                    </div>
                             </div>
-                        </li>
-                        </c:forEach>
-                </ul>
+                            <div class="flip-card-back">
+                                <img src="${product.product_image}"/>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+                </a>
+                </div>
+
+
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <c:if test="${pageMaker.prev }">
@@ -201,10 +232,8 @@
 
     $(document).ready(function(){
 
-        if("${subFilter}"==null){
-
-        }
         $("#${subFilter}").css("fontWeight", "bold");
+        $("#${subFilter}").css("color", "black");
         if("${keyword == null}"){
             $("searchResult").hide();
         }
