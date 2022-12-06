@@ -27,7 +27,7 @@ public class AddressService {
 	
 	// 주소 삭제
 	public int addressDelete(int addr_no) {
-		System.out.println("UtilController  리뷰 삭제하기.....");
+		System.out.println("UtilController  주소 삭제하기.....");
 		return addressDAO.addressDelete(addr_no);
 	}
 

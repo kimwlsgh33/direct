@@ -47,7 +47,7 @@ function fn_addressRegister() {
       if (data == "Y") {
         alert("주소 등록 완료");
         // 주소 등록이 완료되면 주소 목록 화면으로 이동한다.
-        location.href = "/util/addressList";
+        location.href = "/util/addressList?id=abkorc33";
       }
     },
     error: function (data) {
@@ -69,7 +69,7 @@ function fn_addressDelete(addr_no){
 			success: function(data) {
 				if(data == "Y") {
 					alert("주소 삭제가 완료되었습니다.");
-					location.href = "/util/addressList";
+					location.href = "/util/addressList?id=abkorc33";
 				}
 			},
 			error: function(data) {

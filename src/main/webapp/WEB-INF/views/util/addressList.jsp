@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주소지 목록</title>
+<script src="${contextPath}/resources/js/address.js"></script>
 </head>
 <body>
 

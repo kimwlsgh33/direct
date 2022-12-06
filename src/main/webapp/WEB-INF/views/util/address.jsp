@@ -141,7 +141,7 @@ function fullAddress() {
 	
 	document.getElementById('address').value = fullAddress;
 	
-	$("form").submit();
+	//$("form").submit();
 }
 </script>
 
