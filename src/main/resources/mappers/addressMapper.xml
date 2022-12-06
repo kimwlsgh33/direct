@@ -8,9 +8,27 @@
 	<!-- 아이디에 해당하는 유저 주소 리스트 추출하기 -->
 	<select id="addressList" resultType="com.linker.util.address.AddressDTO" parameterType="com.linker.util.address.AddressDTO">
 		<![CDATA[
-			SELECT id, address
+			SELECT addr_no, id, address, addr_name, addr_number
 			FROM addressList
 		]]>
 	</select>
+	
+	<!-- 주소 등록 -->
+	<insert id="insertAddress" parameterType="com.linker.util.address.AddressDTO">
+		<![CDATA[
+			INSERT INTO addressList (addr_no, id, address, addr_name, addr_number)
+			SELECT IFNULL(MAX(addr_no), 0) + 1, #{id}, #{address}, #{addr_name}, #{addr_number}
+			FROM addressList
+		]]>
+	</insert>
+	
+	<!-- 주소 고유 번호에 해당하는 주소 삭제하기  -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		DELETE	FROM	addressList
+		WHERE	addr_no = #{addr_no}
+		]]>
+	</delete>
+
 	
 </mapper>

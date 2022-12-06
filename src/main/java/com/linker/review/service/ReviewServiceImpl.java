@@ -19,6 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Inject
 	private ReviewDAO reviewDAO;
 	
+	// 리뷰 등록하기
 	@Override
 	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
 		

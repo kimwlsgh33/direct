@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주소 검색</title>
+<script src="${contextPath}/resources/js/address.js"></script>
 </head>
 <body>
 
@@ -21,13 +22,32 @@
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
 			<jsp:include page="../common/headMenu.jsp" flush="false"/>
-		<form class="row g-3" name="zipForm" method="post" style="margin-left: 30%;">
+			<!-- <form class="row g-3" method="post" name="memModifyForm" action="${contextPath}/member/modifyMember.do" style="margin-left: 30%;"> -->
+		<form class="row g-3" style="margin-left: 30%;">
 			<h2 class="col-sm-3" style="padding-top: 30px;">배송지 등록</h2>
 			<div class="col-md-4" style="padding-top: 35px; margin-left: 55px;">
 				<a class="btn btn-sm btn-outline-success"
 				href="${contextPath}/util/addressList?id=${member.id}">배송지 목록 가기</a>
 			</div>
 			<div class="form-group" style="margin-top: 50px;">
+				<label class="form-label" style="text-align: right">받는사람</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" name="addr_name" id="addr_name"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="form-label" style="text-align: right">아이디</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" name="id" id="id"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="form-label" style="text-align: right">연락처</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" name="addr_number" id="addr_number"/>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="form-label" style="text-align: right">우편번호</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="zipcode" id="zipcode" readonly/>
@@ -46,14 +66,21 @@
 					<input type="text" class="form-control" id="address02" name="address02"/>
 				</div>
 			</div>
-			<button class="col-sm-1 btn btn-sm btn-outline-success" type="submit" style="margin-left:10px;">등록</button>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<input type="hidden" class="form-control" id="address" name="address"/>
+				</div>
+			</div>
+			<button class="col-sm-1 btn btn-sm btn-outline-success" type="button" onclick="fn_addressRegister()" style="margin-left:10px;">등록</button>
 		</form>
 		</div>
 	</div>
 </div>
 
 <!-- 하단 메뉴 -->
+<div class="container" style="margin-top: 120px;">
 <jsp:include page="../common/footer.jsp" flush="false"/>
+</div>
 
 </body>
 
@@ -102,6 +129,19 @@ function daumZipCode() {
 		// 우편번호 팝업창이 여러개 뜨는 것을 방지하기 위해 popupName사용
 		popupName: 'postcodePopup'
 	});
+}
+function fullAddress() {
+	let fullAddress = '';
+	
+	fullAddress += document.getElementById('zipcode').value;
+	fullAddress += ' ';
+	fullAddress += document.getElementById('address01').value;
+	fullAddress += ' ';
+	fullAddress += document.getElementById('address02').value;
+	
+	document.getElementById('address').value = fullAddress;
+	
+	$("form").submit();
 }
 </script>
 

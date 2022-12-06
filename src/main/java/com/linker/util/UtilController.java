@@ -1,6 +1,7 @@
 package com.linker.util;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.linker.util.address.AddressDTO;
@@ -51,4 +54,35 @@ public class UtilController {
 		
 		return mav;
 	}
+	
+	// 주소지 등록 처리
+	@ResponseBody	// 값만 받는다.
+	@RequestMapping(value = "/addressRegister", method = RequestMethod.POST)
+	public String addressRegister(AddressDTO addressDTO) throws Exception {
+		
+		System.out.println("UtilController 주소 등록 처리......");
+		System.out.println("AddressDTO 값 : " + addressDTO);
+		
+		// address.js의 스크립트 참조
+		if(addressService.addressRegister(addressDTO) == 1) {
+			return "Y";	// 주소 등록 완료
+		} else {
+			return "N";	// 주소 등록 실패
+		}
+		
+	}
+	
+	// 주소 고유 addr_no에 해당하는 주소 삭제
+	@ResponseBody
+	@RequestMapping(value = "/addressDelete", method = RequestMethod.POST)
+	public String addressDelete(Locale locale, Model model, HttpServletRequest request) throws Exception {
+		System.out.println("UtilController addressDelete() addr_no : " + request.getParameter("addr_no"));
+
+		if(addressService.addressDelete(Integer.parseInt((String)request.getParameter("addr_no"))) == 1) {
+			return "Y";
+		}else {
+			return "N";
+		}
+	}
+	
 }
