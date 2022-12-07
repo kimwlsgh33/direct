@@ -80,7 +80,7 @@
 	}
 
 	.itemCard {
-		transition: 0.3s ease-in-out;
+		opacity: 0;
 		box-shadow:
 				0.7px 0.7px 0.7px rgba(0, 0, 0, 0.02),
 				1.7px 1.8px 1.8px rgba(0, 0, 0, 0.028),
@@ -107,6 +107,23 @@
 
 	.item-lists::-webkit-scrollbar {
 		display: none;
+	}
+
+	@keyframes testAnim {
+		0% {
+			opacity: 0;
+			transform: scale(0.5) translateX(100px);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1) translateX(0);
+		}
+	}
+
+	.fadeInRight {
+		animation-name: testAnim;
+		animation-duration: 1s;
+		opacity: 1;
 	}
 
 </style>
@@ -232,7 +249,7 @@
 
 	<div class="gap-3 d-flex item-lists" >
 		<c:forEach var="item" items="<%=recommendList%>">
-			<a id="list-item-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=itemId">
+			<a id="list-recommend-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=itemId">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
@@ -259,7 +276,7 @@
 	</div>
 	<div class="gap-3 d-flex item-lists" style="overflow:scroll">
 		<c:forEach var="item" items="<%=recommendList%>">
-			<a id="list-item-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=${itemId}" >
+			<a id="list-item-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=${itemId}">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
@@ -286,4 +303,32 @@
 </div>
 <jsp:include page="common/footer.jsp" flush="false"/>
 </body>
+<script>
+	// id에 item-list-1~5까지의 id를 가진 a태그를 선택
+	// 선택된 a태그에 click 이벤트를 할당
+
+
+	const itemCards = document.querySelectorAll('.item-lists a');
+
+	//const btn1 = document.querySelector("#list-item-1");
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry, idx) => {
+			if (entry.isIntersecting) {
+				console.log("Visible");
+				setTimeout(() => {
+					entry.target.classList.add('fadeInRight');
+				}, 50 * idx);
+			} else {
+				console.log("Not visible");
+				entry.target.classList.remove('fadeInRight');
+			}
+		});
+	});
+
+	//observer.observe(btn1);
+	itemCards.forEach((itemCard) => {
+		observer.observe(itemCard);
+	});
+
+</script>
 </html>
