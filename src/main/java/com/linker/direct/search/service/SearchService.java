@@ -1,5 +1,6 @@
 package com.linker.direct.search.service;
 
+import com.linker.direct.cart.dto.CartDTO;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.search.dto.SearchDTO;
 
@@ -13,5 +14,6 @@ public interface SearchService {
     public int searchListTotalCount(SearchCriteria cri) throws Exception;
 
     public List<SearchDTO> searchListAll(SearchCriteria cri) throws Exception;
+
 
 }

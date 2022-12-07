@@ -15,7 +15,7 @@
         width: 300px;
         height: 300px;
         perspective: 1000px;
-        margin-bottom: 10px;
+        margin-bottom: 40px;
     }
     .flip-card-inner {
         position: relative;
@@ -39,7 +39,8 @@
     }
 
     .flip-card-front  {
-        background-image: linear-gradient(45deg, #FFFFFF, black);
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     }
     .flip-card-front img {
         width: 140px;
@@ -53,19 +54,20 @@
     }
     .flip-card-back img {
         width: 100%;
+        height: 100%;
     }
     .flip-card-front h1 {
         margin: 0;
         font-size: 1.5rem;
-        color: white;
+        color: black;
     }
     .flip-card-front h3 {
         margin-bottom: 0.3rem;
-        color: white;
+        color: black;
         margin-top: 1rem;
     }
     .flip-card-front p {
-        color: white;
+        color: black;
     }
     .mainContainer_style {
         margin-right: 80px;
@@ -82,11 +84,11 @@
         <div class="toast-header">
             <img src="..." class="rounded me-2" alt="...">
             <strong class="me-auto">알림</strong>
-            <small>10 minute ago</small>
+            <small>짝짝쓰~</small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            3번째 방문입니다!
+            장바구니에 추가 되었습니당~
         </div>
     </div>
 </div>
@@ -169,15 +171,17 @@
                                     <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
-                            <div class="flip-card-back">
+                            <div class="flip-card-back align-items-center" >
+                                <form>  <!-- 나중에 제품 상세 페이지로 ACTION 주기. -->
                                 <img src="${product.product_image}"/>
+                                </form>
+                                <button class="btn btn-outline-dark" id="${product.product_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${product.product_id})" ><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
                 </a>
                 </div>
-
 
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
@@ -207,7 +211,26 @@
 <jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 <script>
-    const toastTrigger = document.getElementById('liveToastBtn')
+    function fn_addCart(product_id) {
+        $.ajax({
+            url: "/cart/addCart",
+            type: "POST",
+            data: {
+                "product_id": product_id
+            },
+            success: function (data) {
+                alert("장바구니에 추가되었습니다.");
+            },
+            error: function (request, status, error) {
+                alert(product_id + "============================" + "code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    }
+
+</script>
+
+<script>
+    const toastTrigger = document.getElementById('addCart')
     const toastLiveExample = document.getElementById('liveToast')
     if (toastTrigger) {
         toastTrigger.addEventListener('click', () => {
@@ -215,16 +238,6 @@
             toast.show()
         })
     }
-
-    const toastTrigger1 = document.getElementById('liveToastBtn1')
-    const toastLiveExample1 = document.getElementById('liveToast')
-    if (toastTrigger) {
-        toastTrigger.addEventListener('click', () => {
-            const toast = new bootstrap.Toast(toastLiveExample1)
-            toast.show()
-        })
-    }
-
 
     const subFilter = document.getElementById('subFilter');
 
@@ -241,5 +254,7 @@
     })
 
 
+
 </script>
+
 </html>

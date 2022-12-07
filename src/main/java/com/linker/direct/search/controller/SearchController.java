@@ -1,6 +1,8 @@
 package com.linker.direct.search.controller;
 
 
+import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.cart.service.CartService;
 import com.linker.direct.common.util.PageMaker;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.search.dto.SearchDTO;
@@ -9,6 +11,7 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
@@ -25,6 +28,9 @@ public class SearchController {
 
     @Inject
     private SearchService searchService;
+
+    @Inject
+    private CartService cartService;
 
 //    @RequestMapping(value = "/searchList", method = RequestMethod.GET)
 //    public void searchList(Model model) throws Exception {
@@ -47,7 +53,7 @@ public class SearchController {
 //    }
 
     @RequestMapping(value = "/searchList", method = RequestMethod.GET)
-    public ModelAndView searchList(SearchCriteria cri, SearchDTO searchDTO) throws Exception {
+    public ModelAndView searchList(SearchCriteria cri, SearchDTO searchDTO, CartDTO cartDTO) throws Exception {
 
         logger.info("------------------------------------------------------------------------");
         logger.info("BoardController 게시글 목록 보여주기 (Paging 처리) cri ==> " + cri);
@@ -93,7 +99,9 @@ public class SearchController {
         mav.addObject("searchList", searchList);
         mav.addObject("pageMaker", pageMaker);
         logger.info("searchDTO ====> " + searchDTO);
-        mav.addObject("product_name", searchDTO.getProduct_name());
+        mav.addObject("product_id", cartDTO.getProduct_id());
+        mav.addObject("product_count", cartDTO.getCount());
+        mav.addObject("cart_date", cartDTO.getCreated_at());
         mav.addObject("subFilter", cri.getSubFilter());
         mav.addObject("perPageNum", cri.getPerPageNum());
         mav.addObject("searchListAll", searchService.searchListAll(cri));

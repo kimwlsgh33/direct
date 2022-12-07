@@ -16,28 +16,34 @@
 <!-- navbar-expand-lg : 화면크기에 따라 nav구조 변경  -->
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-
 <style>
-
-
-
-    .navBarList p:hover #menu1{
-        display: block;
+    #shoppingCart {
+        height: 500px;
+        width: 80%;
+    }
+    #tooltip {
+        display: inline-block;
+        color: deeppink;
+        font-weight: bold;
+        align-items: center;
     }
 
-
-    .dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0;
+    #tooltipText {
+        display: none;
+        position: absolute;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        max-width: 200px;
+        border: 1px solid;
+        border-radius: 5px;
+        font-size: 0.8em;
+        color: gray;
+        background: pink;
     }
-
-
-
 </style>
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-white bg-white">
-
-
     <div class="container-fluid d-flex">
         <div>
             <a class="navbar-brand" href="#"><img src="${ctx}/resources/icons/logo.svg" alt="home" width="30" height="24" class="d-inline-block align-text-top">DIRECT</a>
@@ -78,14 +84,67 @@
                 <li class="nav-item user">
                     <i class="fas fa-user-circle" style="color: black" ></i>
                 </li>
-                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal">
-                    <i class="fas fa-shopping-cart" style="color: black"></i>
+                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList()">
+                    <i class="fas fa-shopping-cart" style="color: black" ></i>
                 </li>
             </ul>
         </div>
         </div>
 </nav>
-<jsp:include page="cartList.jsp" flush="true" />
+<div class="modal fade" tabindex="-1" id="shoppingModal" data-bs-keyboard="false" aria-labelledby="shoppingModalLabel" aria-hidden="true" >
+    <div class="">
+        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-end " style="margin-right: 50px; margin-top: 50px" >
+            <div class="modal-content "  id="shoppingCart">
+                <div class="modal-header d-flex justify-content-evenly">
+                    <h1 class="modal-title fs-5" id="shoppingModalLabel"><b>Your cart</b> <i class="fas fa-circle-info" id="tooltip"></i></h1>
+                    <div id="tooltipText">물건을 장바구니에 담아보세요!</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <c:choose>
+                        <c:when test="${empty cartList}">
+                            <div class="h-50 d-flex align-items-center  justify-content-center" >
+                                <p style="font-size: large">Add items to get started. cartList = ${cartList}</p>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div id="test">
+                            </div>
+                            <c:forEach items="${cartList}" var="cart">
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <img src="${cart.product_image}" alt="product" style="width: 50px; height: 50px">
+                                        <p class="ms-2">${cart.product_name}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <p class="me-2">${cart.product_price}</p>
+                                        <form method="get" action="${ctx}/cart/deleteCart">
+                                            <button class="btn btn-primary" type="button" onclick="deleteCart(${cart.product_id})">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+                <div class="modal-footer">
+                    <c:choose>
+                        <c:when test="${empty cartList}">
+                            <button class="btn btn-primary disabled" type="submit">Complete Purchase</button>
+                        </c:when>
+                        <c:otherwise>
+                            <form method="get">  <!-- action으로 결제창으로 가기 -->
+                                <button class="btn btn-primary" type="submit">Complete Purchase</button>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <script>
     //tooltip 구현
     $(document).ready(function(){
@@ -101,4 +160,23 @@
             $("#dropDownMenu").css("display", "none");
         });
     });
+
+</script>
+<script>
+
+
+    function fn_cartList() {
+
+        $.ajax({
+            url: "${ctx}/cart/cartList",
+            type: "get",
+            data: {
+            },
+            success: function (data) {
+                console.log(data);
+                $("#test").append(data);
+            }
+        })
+    }
+
 </script>

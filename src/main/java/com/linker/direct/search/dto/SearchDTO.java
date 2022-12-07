@@ -8,7 +8,7 @@ import java.sql.Date;
 @Component("searchDTO")
 @Data
 public class SearchDTO {
-    private int product_num;
+    private int product_id;
     private String product_name;
     private String product_price;
     private String product_image;

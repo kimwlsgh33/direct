@@ -1,5 +1,7 @@
 package com.linker.direct.search.service;
 
+import com.linker.direct.cart.dao.CartDAO;
+import com.linker.direct.cart.dto.CartDTO;
 import com.linker.direct.common.util.Criteria;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.search.dao.SearchDAO;
@@ -18,6 +20,10 @@ public class SearchServiceImpl implements SearchService {
 
     @Inject
     private SearchDAO searchDAO;
+
+    @Inject
+    private CartDAO cartDAO;
+
 
 
 //    @Override
@@ -46,4 +52,5 @@ public class SearchServiceImpl implements SearchService {
         logger.info("searchServiceImpl 전체 게시글 수 구하기 (Paging 처리) => " + cri);
         return searchDAO.searchListAll(cri);
     }
+
 }

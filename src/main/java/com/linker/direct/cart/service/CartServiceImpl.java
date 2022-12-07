@@ -28,20 +28,26 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void insert(CartDTO cartDTO) throws Exception {
+    public void addCart(CartDTO cartDTO) throws Exception {
         logger.info("CartServiceImpl insert() 장바구니 추가....");
-        cartDAO.insertCart(cartDTO);
+        cartDAO.addCart(cartDTO);
     }
 
     @Override
-    public int deleteCart(int cart_id) throws Exception {
+    public int deleteCart(int product_id) throws Exception {
         logger.info("CartServiceImpl delete() 장바구니 삭제....");
-        return cartDAO.deleteCart(cart_id);
+        return cartDAO.deleteCart(product_id);
     }
 
     @Override
     public int deleteAllCart(String user_id) throws Exception {
         logger.info("CartServiceImpl deleteAll() 장바구니 전체 삭제....");
         return cartDAO.deleteAllCart(user_id);
+    }
+
+    @Override
+    public int cartCount(int user_id) throws Exception {
+        logger.info("CartServiceImpl cartCount() 장바구니 든 프로덕트 개수....");
+        return cartDAO.cartCount(user_id);
     }
 }

@@ -28,15 +28,15 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
-    public void insertCart(CartDTO cartDTO) throws Exception {
+    public void addCart(CartDTO cartDTO) throws Exception {
         logger.info("CartDAOImpl insert() 장바구니 추가....");
-        sqlSession.insert(namespace + ".insertCart", cartDTO);
+        sqlSession.insert(namespace + ".addCart", cartDTO);
     }
 
     @Override
-    public int deleteCart(int cart_id) throws Exception {
+    public int deleteCart(int product_id) throws Exception {
         logger.info("CartDAOImpl delete() 장바구니 삭제....");
-        int result = sqlSession.delete(namespace + ".deleteCart", cart_id);
+        int result = sqlSession.delete(namespace + ".deleteCart", product_id);
         logger.info("CartDAOImpl delete() Data ==> " + result);
         return result;
     }
@@ -48,6 +48,14 @@ public class CartDAOImpl implements CartDAO {
         logger.info("CartDAOImpl deleteAll() Data ==> " + result);
         return result;
 
+    }
+
+    @Override
+    public int cartCount(int user_id) throws Exception {
+        logger.info("CartDAOImpl cartCount() 장바구니 든 프로덕트 개수....");
+        int result = sqlSession.selectOne(namespace + ".cartCount", user_id);
+        logger.info("CartDAOImpl cartCount() Data ==> " + result);
+        return result;
     }
 
 

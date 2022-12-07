@@ -9,12 +9,17 @@ public interface CartDAO {
     public List<CartDTO> CartList() throws Exception;
 
     // 장바구니 추가
-    public void insertCart(CartDTO cartDTO) throws Exception;
+    public void addCart(CartDTO cartDTO) throws Exception;
 
     // 장바구니 삭제
-    public int deleteCart(int cart_id) throws Exception;
+    public int deleteCart(int product_id) throws Exception;
 
     // 장바구니 전체 삭제
     public int deleteAllCart(String user_id) throws Exception;
+
+    // 장바구니 든 프로덕트 개수
+    public int cartCount(int user_id) throws Exception;
+
+
 
 }

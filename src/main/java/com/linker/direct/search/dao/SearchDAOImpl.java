@@ -1,5 +1,6 @@
 package com.linker.direct.search.dao;
 
+import com.linker.direct.cart.dto.CartDTO;
 import com.linker.direct.common.util.Criteria;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.search.dto.SearchDTO;
@@ -58,5 +59,7 @@ public class SearchDAOImpl implements SearchDAO {
     //-----------------------------------------------------------------------------------------------------------
     // 게시글 목록 보기 (Paging 처리)
     //-----------------------------------------------------------------------------------------------------------
+
+
 
 }
