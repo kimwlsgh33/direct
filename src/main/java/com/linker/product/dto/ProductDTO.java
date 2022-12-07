@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 public class ProductDTO {	
 	
+	private int user_id;	// 구매자 고유 아이디PK
 	private String id;	// 구매자 아이디
 	private int product_no;	// 상품 번호
 	private int order_product_no;	// 구매한 상품 번호
@@ -24,18 +25,7 @@ public class ProductDTO {
 	private String name;	// 사용자 이름
 	private String address;	// 사용자 주소
 	private String number;	// 사용자 연락처
-
-	public ProductDTO() {}	// 기본 생성자
-	public ProductDTO(String id, int product_no, int order_product_no, int order_product_count, int order_product_price, String order_product_name, Timestamp order_date, String order_product_url) {	// 매개변수 있는 생성자
-		// this를 안붙이면 그냥 셋 다 지역변수임
-		this.id = id;
-		this.product_no = product_no;
-		this.order_product_no = order_product_no;
-		this.order_product_count = order_product_count;
-		this.order_product_price = order_product_price;
-		this.order_product_name = order_product_name;
-		this.order_date = order_date;
-		this.order_product_url = order_product_url;
-	}
+	private String zip_code;
+	private String address_detail;
 	
 }

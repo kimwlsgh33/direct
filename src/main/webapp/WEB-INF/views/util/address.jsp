@@ -22,55 +22,56 @@
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
 			<jsp:include page="../common/headMenu.jsp" flush="false"/>
-			<!-- <form class="row g-3" method="post" name="memModifyForm" action="${contextPath}/member/modifyMember.do" style="margin-left: 30%;"> -->
+			<!-- <form class="row g-3" method="post" name="memberAddress" action="${contextPath}/member/memberAddress" style="margin-left: 30%;"> -->
 		<form class="row g-3" style="margin-left: 30%;">
 			<h2 class="col-sm-3" style="padding-top: 30px;">배송지 등록</h2>
 			<div class="col-md-4" style="padding-top: 35px; margin-left: 55px;">
+			<!-- addressDTO 받아서 el식으로 user_id받아와야함 -->
 				<a class="btn btn-sm btn-outline-success"
-				href="${contextPath}/util/addressList?id=${member.id}">배송지 목록 가기</a>
+				href="${contextPath}/util/addressList?user_id=1">배송지 목록 가기</a>
 			</div>
 			<div class="form-group" style="margin-top: 50px;">
 				<label class="form-label" style="text-align: right">받는사람</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="addr_name" id="addr_name"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="form-label" style="text-align: right">아이디</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="id" id="id"/>
+					<input type="text" class="form-control" name="receiver" id="receiver"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">연락처</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="addr_number" id="addr_number"/>
+					<input type="text" class="form-control" name="phone" id="phone"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">우편번호</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="zipcode" id="zipcode" readonly/>
+					<input type="text" class="form-control" name="zip_code" id="zip_code" readonly/>
 					<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">주 소</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="address01" name="address01"/>
+					<input type="text" class="form-control" id="address" name="address"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align:right">상세주소</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="address02" name="address02"/>
+					<input type="text" class="form-control" id="address_detail" name="address_detail"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="hidden" class="form-control" id="address" name="address"/>
+					<input type="hidden" class="form-control" name="user_id" id="user_id" value="${member.user_id}"/>
 				</div>
 			</div>
+			<!--  <div class="form-group">
+				<div class="col-sm-6">
+					<input type="hidden" class="form-control" id="fulladdress" name="fulladdress"/>
+				</div>
+			</div>
+			-->
 			<button class="col-sm-1 btn btn-sm btn-outline-success" type="button" onclick="fn_addressRegister()" style="margin-left:10px;">등록</button>
 		</form>
 		</div>
@@ -119,11 +120,11 @@ function daumZipCode() {
 			
 			// 우편번호와 주소정보를 화면의 해당 필드에 출력시킨다.
 			// 5자리의 새 우편번호
-			document.getElementById('zipcode').value = data.zonecode;
-			document.getElementById('address01').value = fullAddr;
+			document.getElementById('zip_code').value = data.zonecode;
+			document.getElementById('address').value = fullAddr;
 			
 			// 커서를 상세주소 입력란으로 이동시킨다.
-			document.getElementById('address02').focus();
+			document.getElementById('address_detail').focus();
 		}
 	}).open({
 		// 우편번호 팝업창이 여러개 뜨는 것을 방지하기 위해 popupName사용
@@ -133,13 +134,13 @@ function daumZipCode() {
 function fullAddress() {
 	let fullAddress = '';
 	
-	fullAddress += document.getElementById('zipcode').value;
+	fullAddress += document.getElementById('zip_code').value;
 	fullAddress += ' ';
-	fullAddress += document.getElementById('address01').value;
+	fullAddress += document.getElementById('address').value;
 	fullAddress += ' ';
-	fullAddress += document.getElementById('address02').value;
+	fullAddress += document.getElementById('address_detail').value;
 	
-	document.getElementById('address').value = fullAddress;
+	document.getElementById('fulladdress').value = fullAddress;
 	
 	//$("form").submit();
 }

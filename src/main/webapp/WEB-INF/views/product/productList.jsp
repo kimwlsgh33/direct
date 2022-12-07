@@ -31,7 +31,6 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<div class="col-md-4" style=" margin-top: 10px;">
 						<a class="btn btn-sm btn-outline-success" style="margin-left: 95px; "
 						href="${contextPath}/product/productSelect?product_no=${p.product_no}">자세히 보기</a>
-						<!-- href="${contextPath}/product/productSelect?product_no=${p.product_no}" 로 수정해야함 -->
 					</div>
 				</div>
 				<div class="row justify-content-center">
@@ -47,7 +46,6 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 							</div>
 							<div class="col-md-6">
 								<p>${p.order_product_name}</p><br>
-								<input type="hidden" name="id" value="${member.id}"/>
 								<p>${p.order_product_price}원, ${p.order_product_count}개</p>
 								<button id="detail" class="btn btn-sm btn-outline-success" data-toggle="modal">장바구니 담기</button>
 							</div>

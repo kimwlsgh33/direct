@@ -8,7 +8,7 @@
 	<!-- 회원 전체 목록 추출하기 -->
 	<select id="selectAllProduct" resultType="com.linker.product.dto.ProductDTO">
 		<![CDATA[
-			SELECT id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url
+			SELECT user_id, id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url
 			FROM order_product
 			ORDER BY order_product_no
 		]]>
@@ -17,10 +17,12 @@
 	<!-- 상품번호에 해당하는 상품정보 추출하기 -->
 	<select id="selectProduct" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
 		<![CDATA[
-			SELECT id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url,
-			(select name from myinfo where order_product.id = myinfo.id) AS name,
-			(select address from myinfo where order_product.id = myinfo.id) AS address,
-			(select number from myinfo where order_product.id = myinfo.id) AS number
+			SELECT user_id, id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url,
+			(select name from myinfo where order_product.user_id = myinfo.user_id) AS name,
+			(select address from myinfo where order_product.user_id = myinfo.user_id) AS address,
+			(select zip_code from myinfo where order_product.user_id = myinfo.user_id) AS zip_code,
+			(select address_detail from myinfo where order_product.user_id = myinfo.user_id) AS address_detail,
+			(select number from myinfo where order_product.user_id = myinfo.user_id) AS number
 			FROM order_product
 			WHERE product_no = #{product_no}
 			ORDER BY order_date desc

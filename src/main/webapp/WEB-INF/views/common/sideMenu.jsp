@@ -27,8 +27,8 @@
 			<li><a href="${contextPath}/review/reviewList">리뷰목록</a></li>
 			<li><hr class="dropdown-divider"></li>
 			<li><h4>My 정보</h4></li>
-			<li><a href="${contextPath}/member/updateMemberForm.do?id=${member.id}">개인정보확인/수정</a></li>
-			<li style="margin-bottom:30px;"><a href="${contextPath}/util/addressList?id=${member.id}">배송지관리</a></li>
+			<li><a href="${contextPath}/member/updateMemberForm.do?user_id=${member.user_id}">개인정보확인/수정</a></li>
+			<li style="margin-bottom:30px;"><a href="${contextPath}/util/addressList?user_id=${member.user_id}">배송지관리</a></li>
 		</ul>
 	</nav>
 <!-- href="${contextPath}/util/addressList?id=${member.id}" -->

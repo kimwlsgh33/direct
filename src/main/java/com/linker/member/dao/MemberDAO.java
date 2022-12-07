@@ -21,17 +21,24 @@ public interface MemberDAO {
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 가져오기
 	//-----------------------------------------------------------------------------------------------------------
-	public MemberVO selectMember(String id) throws DataAccessException;
+	// public MemberVO selectMember(String id) throws DataAccessException;
+	public MemberVO selectMember(MemberVO memberVO) throws DataAccessException;
 
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 수정하기
 	//-----------------------------------------------------------------------------------------------------------
 	public int updateMember(MemberVO memberVO) throws DataAccessException;
+	
+	//-----------------------------------------------------------------------------------------------------------
+	// 아이디에 해당하는 회원 주소만 수정하기
+	//-----------------------------------------------------------------------------------------------------------
+	public int memberAddress(MemberVO memberVO) throws DataAccessException;
 
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 삭제하기
 	//-----------------------------------------------------------------------------------------------------------
-	public int deleteMember(String id) throws DataAccessException;
+	//public int deleteMember(String id) throws DataAccessException;
+	public int deleteMember(MemberVO memberVO) throws DataAccessException;
 	
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디 중복 검사 (AJAX)

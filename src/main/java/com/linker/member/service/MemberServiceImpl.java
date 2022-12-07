@@ -53,9 +53,10 @@ public class MemberServiceImpl implements MemberService {
 	// 아이디에 해당하는 회원 정보 가져오기
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
-	public MemberVO selectMember(String id) throws DataAccessException {
-		MemberVO memberVO = memberDAO.selectMember(id);
-		return memberVO;
+	// public MemberVO selectMember(String id) throws DataAccessException {
+		public MemberVO selectMember(MemberVO memberVO) throws DataAccessException {
+		//MemberVO memberVO = memberDAO.selectMember(memberVO);
+		return memberDAO.selectMember(memberVO);
 	}
 
 	//-----------------------------------------------------------------------------------------------------------
@@ -67,11 +68,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	//-----------------------------------------------------------------------------------------------------------
+	// 아이디에 해당하는 회원 주소만 수정하기
+	//-----------------------------------------------------------------------------------------------------------
+	@Override
+	public int memberAddress(MemberVO memberVO) throws DataAccessException {
+		return memberDAO.memberAddress(memberVO);
+	}
+	
+	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 삭제하기
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
-	public int removeMember(String id) throws DataAccessException {
-		return memberDAO.deleteMember(id);
+	public int removeMember(MemberVO memberVO) throws DataAccessException {
+		return memberDAO.deleteMember(memberVO);
 	}
 
 	//-----------------------------------------------------------------------------------------------------------
@@ -85,5 +94,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
+
 
 }

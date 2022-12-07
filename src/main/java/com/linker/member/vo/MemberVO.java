@@ -11,9 +11,12 @@ import lombok.Data;
 @Data
 public class MemberVO {	
 	
+	private int user_id;	// 사용자 식별 아이디
 	private String id;	// 사용자 아이디
 	private String name;	// 사용자 이름
+	private String zip_code;	//우편번호
 	private String address;	// 사용자 주소
+	private String address_detail;	// 상세주소
 	private String password;	// 사용자 비밀번호
 	private Timestamp joinDate;	// 가입일자
 	private String email;	// 사용자 이메일

@@ -169,11 +169,21 @@ public class MemberControllerImpl implements MemberController {
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
 	@RequestMapping(value="/updateMemberForm.do", method=RequestMethod.GET)
-	public ModelAndView updateMemberForm(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView updateMemberForm(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		System.out.println("MemberController 회원 정보 조회 id ==> " + id);
+		System.out.println("MemberController 회원 정보 조회 user_id ==> " + user_id);
 		
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUser_id(user_id);
+		System.out.println("MemberController 회원 정보 조회 ==> " + memberVO);
+		
+		ModelAndView mav = new ModelAndView("/member/updateMemberForm");
+		mav.addObject("member", memberService.selectMember(memberVO));
+		
+		return mav;
+		
+		/*
 		// 회원 전체 리스트 화면에서 수정을 요청한 id에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
 		memberVO = memberService.selectMember(id);
 		System.out.println("MemberController 회원 정보 조회 ==> " + memberVO);
@@ -183,6 +193,7 @@ public class MemberControllerImpl implements MemberController {
 		mav.addObject("member", memberVO);
 		
 		return mav;
+		*/
 	}
 	
 	//-----------------------------------------------------------------------------------------------------------
@@ -202,18 +213,39 @@ public class MemberControllerImpl implements MemberController {
 		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
 	}
+	
+	//-----------------------------------------------------------------------------------------------------------
+	// 아이디에 해당하는 회원 주소만 수정하기
+	//-----------------------------------------------------------------------------------------------------------
+	@Override
+	@RequestMapping(value="memberAddress", method=RequestMethod.POST)
+	public ModelAndView memberAddress(@ModelAttribute("memberVO") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		System.out.println("MemberController 회원 주소 수정하기 memberVO ==> " + memberVO);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		int result = memberService.memberAddress(memberVO);
+
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		return mav;
+	}
 
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 삭제하기
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
 	@RequestMapping(value="removeMember.do", method=RequestMethod.GET)
-	public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView removeMember(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");
-		int result = memberService.removeMember(id);
 		
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUser_id(user_id);
+		
+		int result = memberService.removeMember(memberVO);
 		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
 	}

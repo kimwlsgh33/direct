@@ -38,6 +38,11 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			</div>
 		</div>
 		<div class="form-group">
+			<div class="col-sm-6">
+				<input type="hidden" class="form-control" id="user_id" name="user_id" value="${member.user_id}"/>
+			</div>
+		</div>
+		<div class="form-group">
 			<label for="id" class="form-label">비밀번호</label>
 			<div class="col-sm-5">
 				<input type="password" class="form-control" id="pwd" name="password" maxlength="20" value="${member.password}"/>
@@ -71,32 +76,33 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<div class="form-group" style="margin-top: 50px;">
 				<label class="form-label">우편번호</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" name="zipcode" id="zipcode" readonly/>
+					<input type="text" class="form-control" name="zip_code" id="zip_code" readonly/>
 					<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label">주 소</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="address01" name="address01"/>
+					<input type="text" class="form-control" id="address" name="address"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label">상세주소</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="address02" name="address02"/>
+					<input type="text" class="form-control" id="address_detail" name="address_detail"/>
 				</div>
 			</div>
-			<div class="form-group">
+			<!--  <div class="form-group">
 				<div class="col-sm-6">
-					<input type="hidden" class="form-control" id="address" name="address" value="${member.address}"/>
+					<input type="hidden" class="form-control" id="fulladdress" name="fulladdress" value="${member.address}"/>
 				</div>
 			</div>
+			-->
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-4" style="margin-left: 120px; margin-top: 20px;">
 				<button type="reset"  class="btn btn-sm btn-outline-success">다시 입력</button>
-				<button type="button" class="btn btn-sm btn-outline-success" onclick="func_submit()">회원 정보 수정</button>
+				<button type="submit" class="btn btn-sm btn-outline-success">회원 정보 수정</button>
 			</div>
 		</div>
 	</form>
@@ -146,11 +152,11 @@ function daumZipCode() {
 			
 			// 우편번호와 주소정보를 화면의 해당 필드에 출력시킨다.
 			// 5자리의 새 우편번호
-			document.getElementById('zipcode').value = data.zonecode;
-			document.getElementById('address01').value = fullAddr;
+			document.getElementById('zip_code').value = data.zonecode;
+			document.getElementById('address').value = fullAddr;
 			
 			// 커서를 상세주소 입력란으로 이동시킨다.
-			document.getElementById('address02').focus();
+			document.getElementById('address_detail').focus();
 			
 		}
 	}).open({
@@ -158,22 +164,23 @@ function daumZipCode() {
 		popupName: 'postcodePopup'
 	});
 }
-
+/*
 function func_submit() {
 	// 종합 주소를 fullAddr2 변수에 저장해서 데이터베이스에 보낸다.
 	
 	let fullAddress = ''; // 데이터베이스에 보낼 주소의 변수
 	
-	fullAddress += document.getElementById('zipcode').value;
+	fullAddress += document.getElementById('zip_code').value;
 	fullAddress += ' ';
-	fullAddress += document.getElementById('address01').value;
+	fullAddress += document.getElementById('address').value;
 	fullAddress += ' ';
-	fullAddress += document.getElementById('address02').value;
+	fullAddress += document.getElementById('address_detail').value;
 	
-	document.getElementById('address').value = fullAddress;
+	document.getElementById('fulladdress').value = fullAddress;
 
 	$("form").submit();
 }
+*/
 </script>
 
 </html>

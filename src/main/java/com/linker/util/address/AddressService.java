@@ -14,8 +14,8 @@ public class AddressService {
 	private AddressDAO addressDAO;
 	
 	// 아이디에 해당하는 주소지 리스트
-	public List<AddressDTO> addressList(String id) throws Exception {
-		List<AddressDTO> addressDTO = addressDAO.addressList(id);
+	public List<AddressDTO> addressList(int user_id) throws Exception {
+		List<AddressDTO> addressDTO = addressDAO.addressList(user_id);
 		return addressDTO;
 	}
 	

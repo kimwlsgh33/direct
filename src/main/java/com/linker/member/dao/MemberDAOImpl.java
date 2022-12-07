@@ -58,9 +58,10 @@ public class MemberDAOImpl implements MemberDAO {
 	// 아이디에 해당하는 회원 정보 가져오기
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
-	public MemberVO selectMember(String id) throws DataAccessException {
-		MemberVO memberVO = sqlSession.selectOne(Namespace + ".selectMember", id);
-		return memberVO;
+	// public MemberVO selectMember(String id) throws DataAccessException {
+	public MemberVO selectMember(MemberVO memberVO) throws DataAccessException {
+		MemberVO memVO = sqlSession.selectOne(Namespace + ".selectMember", memberVO);
+		return memVO;
 	}
 
 	//-----------------------------------------------------------------------------------------------------------
@@ -71,13 +72,23 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = sqlSession.update(Namespace + ".updateMember", memberVO);
 		return result;
 	}
+	
+	//-----------------------------------------------------------------------------------------------------------
+	// 아이디에 해당하는 회원 주소만 수정하기
+	//-----------------------------------------------------------------------------------------------------------
+	@Override
+	public int memberAddress(MemberVO memberVO) throws DataAccessException {
+		int result = sqlSession.update(Namespace + ".updateAddress", memberVO);
+		return result;
+	}
 
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 삭제하기
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
-	public int deleteMember(String id) throws DataAccessException {
-		int result = sqlSession.delete(Namespace + ".deleteMember", id);
+	//public int deleteMember(String id) throws DataAccessException {
+	public int deleteMember(MemberVO memberVO) throws DataAccessException {
+		int result = sqlSession.delete(Namespace + ".deleteMember", memberVO);
 		return result;
 	}
 

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.linker.review.dto.ReviewDTO;
 import com.linker.util.address.AddressDTO;
 import com.linker.util.address.AddressService;
 
@@ -41,14 +42,14 @@ public class UtilController {
 	
 	// 아이디에 해당하는 주소지 리스트
 	@RequestMapping(value = "/addressList", method = RequestMethod.GET)
-	public ModelAndView addressList(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("addressList id ==> " + id);
+	public ModelAndView addressList(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("addressList user_id ==> " + user_id);
 		
-		// 회원 전체 리스트 화면에서 수정을 요청한 id에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
-		List<AddressDTO> addressList = addressService.addressList(id);
+		// 수정을 요청한 user_id에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
+		List<AddressDTO> addressList = addressService.addressList(Integer.parseInt((String)request.getParameter("user_id")));
 		System.out.println("addressList 조회 ==> " + addressList);
 		
-		// 찾아온 데이터를 가지고 개인 정보 수정화면으로 넘어간다.
+		// 찾아온 데이터를 가지고 주소 리스트 화면으로 넘어간다.
 		ModelAndView mav = new ModelAndView("/util/addressList");
 		mav.addObject("address", addressList);
 		
@@ -76,13 +77,51 @@ public class UtilController {
 	@ResponseBody
 	@RequestMapping(value = "/addressDelete", method = RequestMethod.POST)
 	public String addressDelete(Locale locale, Model model, HttpServletRequest request) throws Exception {
-		System.out.println("UtilController addressDelete() addr_no : " + request.getParameter("addr_no"));
+		System.out.println("UtilController addressDelete() address_id : " + request.getParameter("address_id"));
 
-		if(addressService.addressDelete(Integer.parseInt((String)request.getParameter("addr_no"))) == 1) {
+		if(addressService.addressDelete(Integer.parseInt((String)request.getParameter("address_id"))) == 1) {
 			return "Y";
 		}else {
 			return "N";
 		}
 	}
+	
+	/*
+	// 주소 상세 조회
+	@RequestMapping(value = "/addressDetail", method = RequestMethod.GET)
+	public String addressDetail(Locale locale, Model model, HttpServletRequest request) throws Exception {
+		System.out.println("UtilController addressDetail() address_id : " + Integer.parseInt((String)request.getParameter("address_id")));
+		
+		// review_no에 해당하는 리뷰 데이터를 가져온다.
+		AddressDTO addressDTO = addressService.addressDetail(Integer.parseInt((String)request.getParameter("address_id")));
+		model.addAttribute("addressDetail", addressDTO);
+		return "/util/addressDetail";
+	}
+
+	// 주소 수정화면
+	@RequestMapping(value = "/addressUpdateForm", method = RequestMethod.POST)
+	public String addressUpdateForm(Locale locale, Model model, HttpServletRequest request) throws Exception {
+		
+		logger.info("UtilController 주소 수정화면 불러오기.....");
+		System.out.println("UtilController addressUpdateForm() address_id : " + request.getParameter("address_id"));
+
+		AddressDTO addressDTO = addressService.addressDetail(Integer.parseInt((String)request.getParameter("address_id")));
+		model.addAttribute("addressDetail", addressDTO);
+		logger.info("UtilController 주소 수정화면 끝.....");
+		return "/util/addressUpdate";
+	}
+	
+	// 주소 수정
+	@ResponseBody
+	@RequestMapping(value = "/addressUpdate", method = RequestMethod.POST)
+	public String addressUpdate(Locale locale, Model model, AddressDTO addressDTO) throws Exception {
+		System.out.println("UtilController addressUpdate() addressDTO : " + addressDTO);
+		if(addressService.addressUpdate(addressDTO) == 1) {
+			return "Y";
+		}else {
+			return "N";
+		}
+	}
+	*/
 	
 }

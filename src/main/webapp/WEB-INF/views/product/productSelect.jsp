@@ -49,7 +49,6 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 							</div>
 							<div class="col-md-6">
 								<p>${p.order_product_name}</p><br>
-								<input type="hidden" name="id" value="${member.id}"/>
 								<p>${p.order_product_price}원, ${p.order_product_count}개</p>
 								<button id="detail" class="btn btn-sm btn-outline-success" data-toggle="modal">장바구니 담기</button>
 							</div>
@@ -86,8 +85,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				<div class="col-md-2">
 					<b>받는 주소</b>
 				</div>
-				<div class="col-md-5">
-					<b>${product[0].address}</b>
+				<div class="col-md-7">
+					<b>${product[0].zip_code} ${product[0].address} ${product[0].address_detail}</b>
 				</div>
 			</div>
 		</div>

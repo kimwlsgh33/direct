@@ -31,19 +31,30 @@
 					<div class="form-group" style="margin-top: 50px;">
 						<label for="id" class="form-label">받는 사람</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" maxlength="20" value="${addr.addr_name}" readonly/>
+							<input type="text" class="form-control" maxlength="20" value="${addr.receiver}" readonly/>
 						</div>
 						<label for="id" class="form-label">연락처</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" maxlength="20" value="${addr.addr_number}" readonly/>
+							<input type="text" class="form-control" maxlength="20" value="${addr.phone}" readonly/>
+						</div>
+						<label for="id" class="form-label">우편번호</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" maxlength="20" value="${addr.zip_code}" readonly/>
 						</div>
 						<label for="id" class="form-label">주소</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" maxlength="20" value="${addr.address}" readonly/>
+							<input type="text" class="form-control" maxlength="20" id ="address" value="${addr.address}" readonly/>
+						</div>
+						<label for="id" class="form-label">상세주소</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" maxlength="20" value="${addr.address_detail}" readonly/>
 						</div>
 					</div>
-					<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressDelete(${addr.addr_no})">
+					<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressDelete(${addr.address_id})">
 						주소 삭제
+					</button>
+					<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressUpdate()">
+						대표주소 설정
 					</button>
 				</c:forEach>
 			</div>
