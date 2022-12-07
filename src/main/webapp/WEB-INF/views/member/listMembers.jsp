@@ -44,10 +44,10 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		<tr class="info">
 			<td align="center" width="80"><b>아이디</b></td>
 			<td align="center" width="80"><b>이  름</b></td>
-			<td align="center" width="80"><b>우편번호</b></td>
+			<td align="center" width="100"><b>우편번호</b></td>
 			<td align="center" width="300"><b>주  소</b></td>
-			<td align="center" width="80"><b>상세주소</b></td>
-			<td align="center" width="80"><b>비밀번호</b></td>
+			<td align="center" width="100"><b>상세주소</b></td>
+			<td align="center" width="100"><b>비밀번호</b></td>
 			<td align="center" width="150"><b>가입일자</b></td>
 			<td align="center" width="300"><b>이 메 일</b></td>
 			<td align="center" width="80"><b>수정</b></td>
