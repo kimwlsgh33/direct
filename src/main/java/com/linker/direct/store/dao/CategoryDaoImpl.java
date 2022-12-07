@@ -1,7 +1,6 @@
 package com.linker.direct.store.dao;
 
-import com.linker.direct.store.entity.Category;
-import lombok.extern.slf4j.Slf4j;
+import com.linker.direct.store.vo.Category;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,7 @@ import java.util.List;
 @Component
 public class CategoryDaoImpl implements CategoryDao {
 
-    private final String NAMESPACE = "com.linker.direct.store.dao.CategoryMapper.";
+    private static final String NAMESPACE = "com.linker.direct.store.dao.CategoryMapper.";
     private final SqlSession sqlSession;
 
     public CategoryDaoImpl(SqlSession sqlSession) {

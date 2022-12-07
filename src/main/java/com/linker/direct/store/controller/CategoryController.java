@@ -1,8 +1,7 @@
 package com.linker.direct.store.controller;
 
-import com.linker.direct.store.entity.Category;
+import com.linker.direct.store.vo.Category;
 import com.linker.direct.store.service.CategoryService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

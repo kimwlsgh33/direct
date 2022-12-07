@@ -1,8 +1,7 @@
 package com.linker.direct.store.dao;
 
-import com.linker.direct.store.entity.Item;
+import com.linker.direct.store.vo.Item;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class ItemDaoImpl implements ItemDao {
     private final SqlSession sqlSession;
 
-    private final String NAMESPACE = "com.linker.direct.store.dao.ItemDao.";
+    private static final String NAMESPACE = "com.linker.direct.store.dao.ItemDao.";
 
     @Override
     public void create(Item item) {

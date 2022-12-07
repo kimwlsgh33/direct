@@ -5,7 +5,7 @@ import com.linker.direct.store.dao.ItemImgDao;
 // dto
 import com.linker.direct.store.dto.ItemImgDto;
 // entity
-import com.linker.direct.store.entity.ItemImg;
+import com.linker.direct.store.vo.ItemImg;
 // lombok
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +54,7 @@ public class ItemImgServiceImpl implements ItemImgService {
         // DB에 저장 =================================================================================================
         //================================================================================================
         ItemImg itemImg = new ItemImg();
-        itemImg.updateItemImg(uuid, originName, itemImgDto.getItem());
+        itemImg.updateItemImg(uuid, originName, itemImgDto.getItem().getItem_id());
 
         itemImgDao.create(itemImg);
     }

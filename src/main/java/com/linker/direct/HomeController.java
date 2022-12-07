@@ -3,11 +3,9 @@ package com.linker.direct;
 import java.util.List;
 import java.util.Locale;
 
-import com.linker.direct.store.entity.Category;
+import com.linker.direct.store.vo.Category;
 import com.linker.direct.store.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

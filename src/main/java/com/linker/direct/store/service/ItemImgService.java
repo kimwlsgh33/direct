@@ -1,7 +1,7 @@
 package com.linker.direct.store.service;
 
 import com.linker.direct.store.dto.ItemImgDto;
-import com.linker.direct.store.entity.ItemImg;
+import com.linker.direct.store.vo.ItemImg;
 
 import java.util.List;
 

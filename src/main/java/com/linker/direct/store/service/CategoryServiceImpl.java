@@ -1,9 +1,8 @@
 package com.linker.direct.store.service;
 
 import com.linker.direct.store.dao.CategoryDao;
-import com.linker.direct.store.entity.Category;
+import com.linker.direct.store.vo.Category;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

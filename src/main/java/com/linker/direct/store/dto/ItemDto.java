@@ -1,10 +1,9 @@
 package com.linker.direct.store.dto;
 
-import com.linker.direct.store.entity.Item;
-import com.linker.direct.user.entity.User;
+import com.linker.direct.store.vo.Item;
+import com.linker.direct.user.vo.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 @Getter @Setter
 public class ItemDto {

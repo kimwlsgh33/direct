@@ -1,6 +1,6 @@
 package com.linker.direct.store.dao;
 
-import com.linker.direct.store.entity.Category;
+import com.linker.direct.store.vo.Category;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;

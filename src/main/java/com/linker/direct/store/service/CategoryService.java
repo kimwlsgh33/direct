@@ -1,6 +1,6 @@
 package com.linker.direct.store.service;
 
-import com.linker.direct.store.entity.Category;
+import com.linker.direct.store.vo.Category;
 
 import java.util.List;
 

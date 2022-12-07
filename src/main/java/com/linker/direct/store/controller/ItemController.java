@@ -1,8 +1,8 @@
 package com.linker.direct.store.controller;
 
 // entity
-import com.linker.direct.user.entity.User;
-import com.linker.direct.store.entity.Category;
+import com.linker.direct.user.vo.User;
+import com.linker.direct.store.vo.Category;
 // dto
 import com.linker.direct.store.dto.ItemFormDto;
 // service
@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 // java
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 @Slf4j

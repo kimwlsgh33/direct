@@ -1,25 +1,23 @@
 package com.linker.direct.store.dto;
 
 import com.linker.direct.store.constant.ItemSellStatus;
-import com.linker.direct.store.entity.Item;
-import com.linker.direct.store.entity.ItemImg;
-import com.linker.direct.user.entity.User;
+import com.linker.direct.store.vo.Item;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter @ToString
 public class ItemFormDto {
-    private int id;
+    private Long item_id;
+    private Long store_id;
     private String itemName;
     private int price;
     private int stock;
     private String description;
-    private int category_id;
+    private Long category_id;
     private int createBy;
     private ItemSellStatus status;
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>(); // output
@@ -27,7 +25,7 @@ public class ItemFormDto {
     // Item -> ItemFormDto
     public static ItemFormDto of(Item item) {
         ItemFormDto itemFormDto = new ItemFormDto();
-        itemFormDto.setId(item.getId());
+        itemFormDto.setItem_id(item.getItem_id());
         itemFormDto.setItemName(item.getName());
         itemFormDto.setPrice(item.getPrice());
         itemFormDto.setStock(item.getStock());
@@ -40,7 +38,7 @@ public class ItemFormDto {
     // ItemFormDto -> Item
     public static Item toEntity(ItemFormDto itemFormDto) {
         Item item = new Item();
-        item.setId(itemFormDto.getId());
+        item.setItem_id(itemFormDto.getItem_id());
         item.setName(itemFormDto.getItemName());
         item.setPrice(itemFormDto.getPrice());
         item.setStock(itemFormDto.getStock());

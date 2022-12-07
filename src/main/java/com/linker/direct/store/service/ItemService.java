@@ -2,7 +2,7 @@ package com.linker.direct.store.service;
 
 
 import com.linker.direct.store.dto.ItemFormDto;
-import com.linker.direct.store.entity.Item;
+import com.linker.direct.store.vo.Item;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

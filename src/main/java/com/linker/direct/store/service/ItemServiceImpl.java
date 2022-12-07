@@ -8,8 +8,8 @@ import com.linker.direct.store.dao.ItemImgDao;
 import com.linker.direct.store.dto.ItemFormDto;
 import com.linker.direct.store.dto.ItemImgDto;
 // entity
-import com.linker.direct.store.entity.Item;
-import com.linker.direct.store.entity.ItemImg;
+import com.linker.direct.store.vo.Item;
+import com.linker.direct.store.vo.ItemImg;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

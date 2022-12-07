@@ -8,14 +8,14 @@
 <mapper namespace="com.linker.direct.store.dao.ItemImgDaoImpl">
 
 
-    <select id="listAll" resultType="com.linker.direct.store.entity.Item">
+    <select id="listAll" resultType="com.linker.direct.store.vo.Item">
         <![CDATA[
             SELECT * FROM item ORDER BY id
         ]]>
     </select>
 
     <!--  -->
-    <insert id="create" parameterType="com.linker.direct.store.entity.ItemImg">
+    <insert id="create" parameterType="com.linker.direct.store.vo.ItemImg">
         <![CDATA[
             INSERT INTO item_img (id, imgName, originName, item_id)
             SELECT IFNULL(MAX(id), 0) + 1, #{imgName}, #{originName}, #{item_id} FROM item_img
@@ -23,7 +23,7 @@
     </insert>
 
 
-    <select id="read" resultType="com.linker.direct.store.entity.ItemImg">
+    <select id="read" resultType="com.linker.direct.store.vo.ItemImg">
         <![CDATA[
             SELECT * FROM item_img WHERE id = #{id}
         ]]>
