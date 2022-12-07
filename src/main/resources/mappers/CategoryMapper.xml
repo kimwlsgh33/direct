@@ -8,17 +8,17 @@
 <mapper namespace="com.linker.direct.store.dao.CategoryMapper">
   <select id="listAll" resultType="com.linker.direct.store.vo.Category">
     <![CDATA[
-    SELECT * FROM category ORDER BY id
+    SELECT * FROM category ORDER BY category_id
     ]]>
   </select>
   <insert id="create" parameterType="com.linker.direct.store.vo.Category">
     <![CDATA[
-    INSERT INTO category (id, name, icon, color) SELECT IFNULL(MAX(id),0) + 1, #{name}, #{icon}, #{color} FROM category
+    INSERT INTO category (name, icon, color) SELECT #{name}, #{icon}, #{color} FROM category
     ]]>
   </insert>
-  <select id="read" parameterType="int" resultType="com.linker.direct.store.vo.Category">
+  <select id="read" parameterType="com.linker.direct.store.vo.Category" resultType="com.linker.direct.store.vo.Category">
     <![CDATA[
-    SELECT * FROM category WHERE id=#{id}
+    SELECT * FROM category WHERE category_id = #{category_id}
     ]]>
   </select>
   <update id="update" parameterType="com.linker.direct.store.vo.Category">
@@ -27,9 +27,9 @@
       WHERE id=#{id}
     ]]>
   </update>
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="com.linker.direct.store.vo.Category">
     <![CDATA[
-        DELETE FROM category WHERE id=#{id}
+        DELETE FROM category WHERE id=#{category_id}
     ]]>
   </delete>
 </mapper>

@@ -1,5 +1,6 @@
 package com.linker.direct.store.dao;
 
+import com.linker.direct.store.dto.CategoryDto;
 import com.linker.direct.store.vo.Category;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.dao.DataAccessException;
@@ -28,8 +29,9 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public Category read(int id) throws DataAccessException {
-        return sqlSession.selectOne(NAMESPACE + "read", id);
+    public Category read(CategoryDto categoryDto) throws DataAccessException {
+        Category category = categoryDto.toVo();
+        return sqlSession.selectOne(NAMESPACE + "read", category);
     }
 
     @Override
@@ -38,7 +40,8 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public void delete(int id) throws DataAccessException {
-        sqlSession.delete(NAMESPACE + ".delete", id);
+    public void delete(CategoryDto categoryDto) throws DataAccessException {
+        Category category = categoryDto.toVo();
+        sqlSession.delete(NAMESPACE + ".delete", category);
     }
 }

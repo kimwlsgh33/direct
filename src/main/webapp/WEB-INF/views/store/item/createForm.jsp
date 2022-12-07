@@ -29,7 +29,7 @@
             <select id="selectCategory" class="form-select-sm" aria-label="Select Category">
                 <option selected>카테고리 선택</option>
                 <c:forEach var="category" items="${categoryList}">
-                    <option value="${category.id}" class="dropdown-item"">${category.name}</option>
+                    <option value="${category.category_id}" class="dropdown-item">${category.name}</option>
                 </c:forEach>
             </select>
         </div>

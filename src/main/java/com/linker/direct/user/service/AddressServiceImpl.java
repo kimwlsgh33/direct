@@ -1,18 +1,14 @@
-package com.linker.direct.store.service;
+package com.linker.direct.user.service;
 
-import lombok.RequiredArgsConstructor;
+import com.linker.direct.user.vo.Address;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
-
-    private final AddressService addressService;
-
     @Override
     public List<Address> listAll() throws Exception {
-        return addressService.listAll();
+        return null;
     }
 }

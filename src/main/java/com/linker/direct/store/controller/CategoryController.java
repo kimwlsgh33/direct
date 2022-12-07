@@ -1,5 +1,6 @@
 package com.linker.direct.store.controller;
 
+import com.linker.direct.store.dto.CategoryDto;
 import com.linker.direct.store.vo.Category;
 import com.linker.direct.store.service.CategoryService;
 import org.springframework.stereotype.Controller;
@@ -36,14 +37,18 @@ public class CategoryController {
     return "Y";
   }
 
-  @RequestMapping("/read")
-  public void read(int id, Model model) throws Exception {
-    model.addAttribute("category", categoryService.read(id));
-  }
+    @RequestMapping("/read")
+    public void read(int id, Model model) throws Exception {
+      CategoryDto categoryDto = new CategoryDto();
+      categoryDto.setId(id);
+      model.addAttribute("category", categoryService.read(categoryDto));
+    }
 
     @RequestMapping("/updateForm")
     public String updateForm(int id, Model model) throws Exception {
-        model.addAttribute("category", categoryService.read(id));
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setId(id);
+        model.addAttribute("category", categoryService.read(categoryDto));
         return "/store/category/update";
     }
 
@@ -56,7 +61,9 @@ public class CategoryController {
 
     @RequestMapping("/delete")
     public String delete(int id) throws Exception {
-      categoryService.delete(id);
+      CategoryDto categoryDto = new CategoryDto();
+      categoryDto.setId(id);
+      categoryService.delete(categoryDto);
       return "redirect:/store/category/list";
     }
 }

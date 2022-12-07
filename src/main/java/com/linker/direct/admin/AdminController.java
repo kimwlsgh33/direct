@@ -1,4 +1,4 @@
-package com.linker.direct.store.controller;
+package com.linker.direct.admin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

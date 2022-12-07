@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 // java
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Slf4j
@@ -40,20 +41,20 @@ public class ItemController {
 
     @ResponseBody
     @RequestMapping(value="/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDto itemFormDto, Model model) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
+    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDto itemFormDto, Model model, HttpServletRequest request) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
 
         //==================================================================================================
         // 로그인 여부 확인 ==================================================================================================
         //==================================================================================================
-        // User user = (User)session.getAttribute("user");
-        User user = new User();
-        user.setId(1);
+        User user = (User) request.getSession().getAttribute("user");
         if(user == null) {
             log.info("로그인이 필요합니다.");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-        itemFormDto.setCreateBy(user.getId()); // 생성자 id : 로그인한 사용자 id
+        //==================================================================================================
+        //
+//        itemFormDto.setCreateBy(user.getId()); // 생성자 id : 로그인한 사용자 id
+//        itemFormDto.setUser(1L); // 생성자 id : 로그인한 사용자 id
         //==================================================================================================
         // 사진 정보 확인 ==================================================================================================
         //==================================================================================================

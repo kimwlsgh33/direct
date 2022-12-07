@@ -1,6 +1,7 @@
 package com.linker.direct.store.service;
 
 import com.linker.direct.store.dao.CategoryDao;
+import com.linker.direct.store.dto.CategoryDto;
 import com.linker.direct.store.vo.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category read(int id) throws Exception {
-        return categoryDao.read(id);
+    public Category read(CategoryDto categoryDto) throws Exception {
+        return categoryDao.read(categoryDto);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void delete(int id) throws Exception {
-        categoryDao.delete(id);
+    public void delete(CategoryDto categoryDto) throws Exception {
+        categoryDao.delete(categoryDto);
     }
 }

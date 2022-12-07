@@ -108,6 +108,7 @@
 	.item-lists::-webkit-scrollbar {
 		display: none;
 	}
+
 </style>
 <body>
 <jsp:include page="common/header.jsp" flush="false"/>
@@ -178,7 +179,7 @@
 
 	<div class="container text-center d-flex justify-content-center flex-wrap gap-4 mb-4">
 		<c:forEach var="category" items="${categories}">
-			<a href="${ctx}/search?category=${category.id}" class="link-dark btn-circle">
+			<a href="${ctx}/search?category=${category.category_id}" class="link-dark btn-circle">
 				<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
 					<i class="${category.icon} fa-xl" style="color:  ${category.color}"></i>
 				</div>

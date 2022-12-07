@@ -1,6 +1,6 @@
 package com.linker.direct.user.controller;
 
-import com.linker.direct.store.service.AddressService;
+import com.linker.direct.user.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
