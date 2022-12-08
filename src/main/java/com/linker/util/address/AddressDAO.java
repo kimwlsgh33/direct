@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.linker.review.dto.ReviewDTO;
-
 @Repository("addressDAO")
 public class AddressDAO {
 	
@@ -29,9 +27,20 @@ public class AddressDAO {
 	}
 	
 	// 주소 삭제
-	public int addressDelete(int addr_no) {
+	public int addressDelete(int address_id) {
 		System.out.println("UtilController  주소 삭제하기.....");
-		return sqlSession.delete(namespace + ".delete", addr_no);
+		return sqlSession.delete(namespace + ".delete", address_id);
+	}
+
+	// 주소 상세조회
+	public AddressDTO addressDetail(int address_id) {
+		return sqlSession.selectOne(namespace + ".detail", address_id);
+	}
+	
+	// 주소 수정
+	public int addressUpdate(AddressDTO addressDTO) {
+		System.out.println("UtilController  주소 수정하기....." + addressDTO);
+		return sqlSession.update(namespace + ".update", addressDTO);
 	}
 
 }

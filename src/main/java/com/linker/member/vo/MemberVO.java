@@ -21,6 +21,8 @@ public class MemberVO {
 	private Timestamp joinDate;	// 가입일자
 	private String email;	// 사용자 이메일
 	private String number;	// 사용자 연락처
+	
+	private String address_id;
 
 	public MemberVO() {}	// 기본 생성자
 	public MemberVO(String id, String name, String address, String password, String email, String number) {	// 매개변수 있는 생성자

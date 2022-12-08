@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.linker.member.dao.MemberDAO;
 import com.linker.member.vo.MemberVO;
+import com.linker.util.address.AddressDAO;
 
 // 회원정보 서비스
 @Service("memberService")
@@ -19,6 +20,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDAO;
+	
+	/*
+	@Autowired
+	private AddressDAO addressDAO;
+	*/
 	
 	// 로그인 처리
 	@Override
@@ -72,6 +78,10 @@ public class MemberServiceImpl implements MemberService {
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
 	public int memberAddress(MemberVO memberVO) throws DataAccessException {
+		/*
+		Address address = addressDAO.addressRead();
+		memberVo.setAddress(address);
+		*/
 		return memberDAO.memberAddress(memberVO);
 	}
 	

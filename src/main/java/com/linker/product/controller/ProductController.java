@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.linker.member.vo.MemberVO;
@@ -39,7 +40,7 @@ public class ProductController {
 		
 			System.out.println("ProductController 상품 목록 조회 시작......");
 		
-			// 회원 전체 목록을 가져온다.
+			// 구매상품 전체 목록을 가져온다.
 			List<ProductDTO> productList = ProductService.productList();
 			System.out.println("ProductController 상품 목록 조회 데이터 : " + productList);
 		
@@ -55,7 +56,7 @@ public class ProductController {
 			
 			System.out.println("ProductController 회원 정보 조회 product_no ==> " + product_no);
 			
-			// 회원 전체 리스트 화면에서 id에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
+			//상품 no에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
 			List<ProductDTO> ProductDTO = ProductService.selectProduct(Integer.parseInt((String)request.getParameter("product_no")));
 			System.out.println("ProductController 상품 정보 조회 => " + ProductDTO);
 			
@@ -66,6 +67,6 @@ public class ProductController {
 			return mav;
 			
 		}
-		
+
 
 }

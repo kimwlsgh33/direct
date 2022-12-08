@@ -65,10 +65,12 @@
 	
 	<!-- 아이디에 해당하는 회원 정보 주소만 수정하기 -->
 	<!-- 주소리스트에서 주소 선택 시 myinfo 테이블 주소를 변경 -->
-	<update id="updateAddress" parameterType="com.linker.member.vo.MemberVO">
+	<update id="updateAddress" parameterType="com.linker.util.address.AddressDTO">
 		<![CDATA[
 		UPDATE 	myinfo
-		SET	address = (select address from addressList where addr_no = 2)
+		SET address = (select address from address where address_id = 2),
+			zip_code = (select zip_code from address where address_id = 2),
+			address_detail = (select address_detail from address where address_id = 2)
 		WHERE user_id = #{user_id};
 		]]>
 	</update>

@@ -32,13 +32,13 @@
 				<div class="form-group">
 					<label for="subject" class="form-label">상품명</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="order_product_name" name="order_product_name" maxlength="20" value="${detail.order_product_name}" readonly/>
+						<input type="text" class="form-control" id="item_name" name="item_name" maxlength="20" value="${detail.item_name}" readonly/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="subject" class="form-label">아이디</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="id" name="id" maxlength="20" value="${detail.id}" readonly/>
+						<input type="text" class="form-control" id="user_id" name="user_id" maxlength="20" value="${detail.user_id}" readonly/>
 					</div>
 				</div>
 				<div class="form-group">

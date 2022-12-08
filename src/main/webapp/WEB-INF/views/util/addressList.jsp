@@ -53,8 +53,8 @@
 					<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressDelete(${addr.address_id})">
 						주소 삭제
 					</button>
-					<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressUpdate()">
-						대표주소 설정
+					<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/util/addressDetail?address_id=${addr.address_id}'">
+						주소 수정
 					</button>
 				</c:forEach>
 			</div>

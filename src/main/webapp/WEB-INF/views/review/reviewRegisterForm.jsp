@@ -32,11 +32,24 @@
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="subject" name="subject" maxlength="200" placeholder="제목을 입력하세요."/>
 			</div>
-		</div>
+		</div> 
 		<div class="form-group">
-			<label class="form-label">아이디</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id=id name="id" maxlength="20" placeholder="아이디를 입력하세요."/>
+				<input type="hidden" class="form-control" id=user_id name="user_id" maxlength="20" value="${member.user_id}"/>
+			</div>
+		</div>
+		<!-- 
+		<div class="form-group">
+			<label class="form-label">상품번호</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="product_no" name="product_no" maxlength="20" placeholder="상품번호를 입력하세요."/>
+			</div>
+		</div>
+		-->
+		<div class="form-group">
+			<label class="form-label">평점</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="rating" name="rating" maxlength="20" placeholder="평점을 입력하세요."/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -46,21 +59,15 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="form-label">상품명</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="order_product_name" name="order_product_name" maxlength="20" placeholder="상품명을 입력하세요."/>
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="form-label">내	용</label>
 			<div class="col-sm-5">
 				<textarea  class="form-control" id="content" name="content" rows="8" cols="160" placeholder="내용을 입력하세요"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-5">
-				<button type="reset" class="btn">다시 입력</button>
-				<button type="button" class="btn" onclick="fn_reviewRegister();">리뷰 등록</button>
+			<div class="col-sm-offset-2 col-sm-5" style="margin-top: 20px;">
+				<button type="reset" class="btn btn-sm btn-outline-success">다시 입력</button>
+				<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewRegister();">리뷰 등록</button>
 			</div>
 		</div>
 	</form>

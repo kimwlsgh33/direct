@@ -29,6 +29,24 @@
 		WHERE	address_id = #{address_id}
 		]]>
 	</delete>
+	
+	<!-- 주소 상세보기(주소목록 고유 번호에 해당하는 주소 정보 추출) -->
+	<select id="detail" resultType="com.linker.util.address.AddressDTO">
+		<![CDATA[
+			SELECT address_id, user_id, receiver, phone, address, address_detail, zip_code, created_at, updated_at, status
+			FROM address
+			WHERE address_id = #{address_id}
+		]]>
+	</select>
+	
+	<!-- 주소 수정  -->
+	<update id="update">
+		<![CDATA[
+		UPDATE	address
+		SET		receiver=#{receiver}, phone=#{phone}, zip_code=#{zip_code}, address=#{address}, address_detail=#{address_detail}
+		WHERE	address_id = #{address_id}
+		]]>
+	</update>
 
 	
 </mapper>

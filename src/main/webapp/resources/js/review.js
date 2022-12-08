@@ -6,12 +6,13 @@ function fn_reviewRegister() {
 
   // 입력한 값을 가져온다.
   let subject = $("#subject").val();
-  let id = $("#id").val();
+  let user_id = $("#user_id").val();
   let product_no = $("#product_no").val();
+  let rating = $("#rating").val();
   let content = $("#content").val();
-  let order_product_name = $("#order_product_name").val();
+  //let item_name = $("#item_name").val();
 
-  // alert(subject + ":" + writer + ":" + content);
+  alert(subject + ":" + rating + ":" + content + ":" + product_no);
 
   // 제목 항목에 값이 없으면 입력하도록 한다.
   if ($("#subject").val() == "") {
@@ -20,24 +21,17 @@ function fn_reviewRegister() {
     return false;
   }
 
-  // id 항목에 값이 없으면 입력하도록 한다.
-  if ($("#id").val() == "") {
-    alert("아이디는 필수 입력 항목입니다.");
-    $("#id").focus();
-    return false;
-  }
-
-  // 상품번호 항목에 값이 없으면 입력하도록 한다.
-  if ($("#product_no").val() == "") {
-    alert("상품번호는 필수 입력 항목입니다.");
-    $("#product_no").focus();
+  // rating 항목에 값이 없으면 입력하도록 한다.
+  if ($("#rating").val() == "") {
+    alert("평점은 필수 입력 항목입니다.");
+    $("#rating").focus();
     return false;
   }
   
-   // 상품명 항목에 값이 없으면 입력하도록 한다.
-  if ($("#order_product_name").val() == "") {
-    alert("상품명은 필수 입력 항목입니다.");
-    $("#order_product_name").focus();
+   // 상품번호 항목에 값이 없으면 입력하도록 한다.
+  if ($("#product_no").val() == "") {
+    alert("상품번호는 필수 입력 항목입니다.");
+    $("#product_no").focus();
     return false;
   }
 
@@ -53,10 +47,11 @@ function fn_reviewRegister() {
     url: "/review/reviewRegister",
     data: {
       subject: subject,
-      id: id,
+      user_id: user_id,
+      rating: rating,
       product_no: product_no,
       content: content,
-      order_product_name: order_product_name,
+      //item_name: item_name,
     },
     success: function (data) {
       if (data == "Y") {
@@ -94,17 +89,18 @@ function fn_reviewUpdateForm(review_no) {
 // 게시글 수정
 function fn_reviewUpdate() {
 	var review_no = $("#review_no").val();
-	var order_product_name = $("#order_product_name").val();
+	var item_name = $("#item_name").val();
 	var subject = $("#subject").val();
-	var id = $("#id").val();
+	// var user_id = $("#user_id").val();
 	var content = $("#content").val();
+	var rating = $("#rating").val();
 	
-	alert(review_no + "-" + order_product_name + "-" + subject + "-" + id + "-" + content);
+	alert(review_no + "-" + item_name + "-" + subject + "-" + rating + "-" + content);
 	
 	$.ajax({
 		type: "POST",
 		url: "/review/reviewUpdate",
-		data: {review_no: review_no, order_product_name: order_product_name, subject: subject, id: id, content: content},
+		data: {review_no: review_no, item_name: item_name, subject: subject, rating: rating, content: content},
 		success: function(data) {
 			if(data == "Y") {
 				alert("리뷰 수정 완료!")

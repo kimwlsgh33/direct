@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.linker.review.dto.ReviewDTO;
 import com.linker.util.address.AddressDTO;
 import com.linker.util.address.AddressService;
 
@@ -86,7 +85,6 @@ public class UtilController {
 		}
 	}
 	
-	/*
 	// 주소 상세 조회
 	@RequestMapping(value = "/addressDetail", method = RequestMethod.GET)
 	public String addressDetail(Locale locale, Model model, HttpServletRequest request) throws Exception {
@@ -94,7 +92,7 @@ public class UtilController {
 		
 		// review_no에 해당하는 리뷰 데이터를 가져온다.
 		AddressDTO addressDTO = addressService.addressDetail(Integer.parseInt((String)request.getParameter("address_id")));
-		model.addAttribute("addressDetail", addressDTO);
+		model.addAttribute("detail", addressDTO);
 		return "/util/addressDetail";
 	}
 
@@ -106,7 +104,7 @@ public class UtilController {
 		System.out.println("UtilController addressUpdateForm() address_id : " + request.getParameter("address_id"));
 
 		AddressDTO addressDTO = addressService.addressDetail(Integer.parseInt((String)request.getParameter("address_id")));
-		model.addAttribute("addressDetail", addressDTO);
+		model.addAttribute("detail", addressDTO);
 		logger.info("UtilController 주소 수정화면 끝.....");
 		return "/util/addressUpdate";
 	}
@@ -122,6 +120,5 @@ public class UtilController {
 			return "N";
 		}
 	}
-	*/
 	
 }

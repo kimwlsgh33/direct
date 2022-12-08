@@ -38,11 +38,12 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		<table class="table table-bordered table-striped table-hover" style="width: 80%; margin-left: 25px; ">
 		<thead>
 			<tr class="info">
-				<th class="col-sm-1 text-center">no</th>
-				<th class="col-sm-1 text-center">아이디</th>
+				<th>no</th>
+				<th class="col-sm-2 text-center">상품</th>
+				<th class="col-sm-1 text-center">상품명</th>
 				<th class="col-sm-2 text-center">제목</th>
 				<th class="col-sm-3 text-center">내용</th>
-				<th class="col-sm-2 text-center">상품명</th>
+				<th class="col-sm-1 text-center">평점</th>
 				<th class="col-sm-2 text-center">등록일자</th>
 				<th class="col-sm-2 text-center">댓글</th>
 			</tr>
@@ -51,10 +52,11 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				<c:forEach var="review" items="${reviewList}">	
 					<tr>
 						<td align="center">${review.review_no}</td>
-						<td align="center">${review.id}</td>
+						<td align="center"><c:if test="${review.img_url != null}"><img src="${review.img_url}" width="50" height="50"/></c:if></td>
+						<td align="center">${review.item_name}</td>
 						<td align="center"><a href="${contextPath}/review/reviewDetail?review_no=${review.review_no}">${review.subject}</a></td>
 						<td align="center">${review.content}</td>
-						<td align="center">${review.order_product_name}</td>
+						<td align="center">${review.rating}</td>
 						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="MM월 dd일 a hh시 mm분"/></td>
 						<td align="center" onclick="location.href='/review/detailComment/${review.review_no}'">
 						댓글<c:if test="${review.cnt > 0}" ><span style="color: #14A44D;">(${review.cnt})</span></c:if>

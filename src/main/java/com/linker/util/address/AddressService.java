@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.linker.review.dto.ReviewDTO;
 
 @Service("addressService")
 public class AddressService {
@@ -26,9 +25,20 @@ public class AddressService {
 	}
 	
 	// 주소 삭제
-	public int addressDelete(int addr_no) {
+	public int addressDelete(int address_id) {
 		System.out.println("UtilController  주소 삭제하기.....");
-		return addressDAO.addressDelete(addr_no);
+		return addressDAO.addressDelete(address_id);
+	}
+	
+	// 주소 상세조회
+	public AddressDTO addressDetail(int address_id) throws Exception {
+		return addressDAO.addressDetail(address_id);
+	}
+
+	// 주소 수정
+	public int addressUpdate(AddressDTO addressDTO) {
+		System.out.println("UtilController  주소 수정하기....." + addressDTO);
+		return addressDAO.addressUpdate(addressDTO);
 	}
 
 }

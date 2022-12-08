@@ -51,7 +51,7 @@ function fn_addressRegister() {
       if (data == "Y") {
         alert("주소 등록 완료");
         // 주소 등록이 완료되면 주소 목록 화면으로 이동한다.
-        location.href = "/util/addressList?user_id=1";
+        location.href = "/util/addressList?user_id=${user_id}";
       }
     },
     error: function (data) {
@@ -82,7 +82,7 @@ function fn_addressDelete(address_id){
 		});
 	}
 }
-/*
+
 // 주소 수정 화면 불러오기
 
 // form에  action과 method가 없기 때문에 여기서 만든다.
@@ -96,7 +96,7 @@ function fn_addressUpdateForm(address_id) {
 
 	alert("fn_addressUpdateForm(address_id) => " + address_id);
 	
-	var f = $("#frm");
+	var f = $("#addr");
 	f.attr("action", "/util/addressUpdateForm");
 	f.attr("method", "POST");
 	f.append($('<input/>', {type: 'hidden', name: 'address_id', value: address_id}));
@@ -104,22 +104,26 @@ function fn_addressUpdateForm(address_id) {
 	f.submit();
 }
 
-// 게시글 수정
+// 주소 수정
 function fn_addressUpdate() {
 	var address_id = $("#address_id").val();
-	var id = $("#id").val();
+	var receiver = $("#receiver").val();
+	var phone = $("#phone").val();
+	var zip_code = $("#zip_code").val();
 	var address = $("#address").val();
+	var address_detail = $("#address_detail").val();
+	var user_id = $("#user_id").val();
 	
-	alert(address_id + "-" + id + "-" + address);
+	alert(address_id + "-" + receiver + "-" + phone + "-" + zip_code + "-" + address + "-" + address_detail + "-" + user_id);
 	
 	$.ajax({
 		type: "POST",
-		url: "/util/addressUpdateForm",
-		data: {address_id: address_id, id: id, address: address},
+		url: "/util/addressUpdate",
+		data: {address_id: address_id, receiver: receiver, phone: phone, zip_code: zip_code, address: address, address_detail: address_detail},
 		success: function(data) {
 			if(data == "Y") {
 				alert("주소 수정 완료!")
-				location.href = "/util/addressList"; // 리뷰 목록으로 바로가기
+				location.href = "/util/addressList?user_id=1"; // 주소 목록으로 바로가기
 			} else {
 				alert("주소가 수정되지 않았습니다.\n\n잠시 후에 다시 시도해주세요.");
 			}
@@ -130,22 +134,27 @@ function fn_addressUpdate() {
 		}
 	})
 }
-*/
 
-/*
+
+
 // 대표주소 설정 시 addressList테이블의 주소가 myinfo 테이블의 주소로 변경
-function fn_addressUpdate() {
+function fn_AAA() {
+	let address_id = $("#address_id").val();
+	let user_id = $("#user_id").val();
+	let zip_code = $("#zip_code").val();
 	let address = $("#address").val();
+	let address_detail = $("#address_detail").val();
 	
-	alert(address);
+	alert(address_id + "-" + user_id + "-" + zip_code + "-" + address + "-" + address_detail);
 	
 	$.ajax({
 		type: "POST",
 		url: "/member/memberAddress",
-		data: {address: address},
+		data: {address_id: address_id, user_id: user_id, zip_code: zip_code, address: address, address_detail: address_detail},
 		success: function(data) {
 			alert("대표주소 설정 완료");
-			// location.href = "/util/addressList";
+			location.href = "/member/listMembers.do";
+			// location.href = "/util/addressList?user_id=1";
 		},
 		error: function(data) {
 			alert("대표주소 설정 실패했습니다.\n\n잠시 후에 다시 시도해주세요.");
@@ -153,6 +162,6 @@ function fn_addressUpdate() {
 		}
 	})
 }
-*/
+
 
 

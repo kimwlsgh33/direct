@@ -43,13 +43,18 @@
 		<div class="form-group">
 			<label for="subject" class="form-label">상품명</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="order_product_name" name="order_product_name" maxlength="20" value="${reviewDetail.order_product_name}" readonly/>
+				<input type="text" class="form-control" id="item_name" name="item_name" maxlength="20" value="${reviewDetail.item_name}" readonly/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="subject" class="form-label">아이디</label>
+			<label for="subject" class="form-label">평점</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="id" name="id" maxlength="20" value="${reviewDetail.id}" readonly/>
+				<input type="text" class="form-control" id="rating" name="rating" maxlength="20" value="${reviewDetail.rating}" readonly/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-3">
+				<input type="hidden" class="form-control" id="user_id" name="user_id" maxlength="20" value="${reviewDetail.user_id}" readonly/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -58,14 +63,14 @@
 				<textarea rows="8" cols="160" class="form-control" id="content" name="content" readonly>${reviewDetail.content}</textarea>
 			</div>
 		</div>
-		<div class="form-group">
-			<button type="button" class="btn" onclick="location.href='${contextPath}/review/reviewList'">
+		<div class="form-group"  style="margin-top: 20px;">
+			<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='${contextPath}/review/reviewList'">
 					게시글 목록
 			</button>
-			<button type="button" class="btn" onclick="fn_reviewUpdateForm(${reviewDetail.review_no})">
+			<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewUpdateForm(${reviewDetail.review_no})">
 				게시글 수정
 			</button>
-			<button type="button" class="btn" onclick="fn_reviewDelete(${reviewDetail.review_no})">
+			<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewDelete(${reviewDetail.review_no})">
 				게시글 삭제
 			</button>
 		</div>
