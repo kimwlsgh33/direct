@@ -12,73 +12,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<style>
-    #shoppingCart {
-        height: 500px;
-        width: 80%;
-    }
-    #tooltip {
-        display: inline-block;
-        color: deeppink;
-        font-weight: bold;
-        align-items: center;
-    }
-
-    #tooltipText {
-        display: none;
-        position: absolute;
-        text-align: center;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        max-width: 200px;
-        border: 1px solid;
-        border-radius: 5px;
-        font-size: 0.8em;
-        color: gray;
-        background: pink;
-    }
-</style>
 </head>
 
 <body>
+<div id="convertDiv">
                         <c:choose>
                             <c:when test="${empty cartList}">
-                                <div class="h-50 d-flex align-items-center  justify-content-center" >
+                                <div class="h-50 d-flex align-items-center  justify-content-center mb-2" >
                                     <p style="font-size: large">Add items to get started.</p>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary disabled" type="submit">Complete Purchase</button>
                                 </div>
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${cartList}" var="cart">
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-between mb-2">
                                         <div class="d-flex align-items-center">
                                             <img src="${cart.product_image}" alt="product" style="width: 50px; height: 50px">
                                             <p class="ms-2">${cart.product_name}</p>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <p class="me-2">${cart.product_price}</p>
-                                            <form method="get" action="${ctx}/cart/deleteCart">
-                                                <button class="btn btn-primary" type="button" onclick="deleteCart(${cart.product_id})">Delete</button>
-                                            </form>
+                                                <a id="${cart.product_id}" onclick="deleteCart(${cart.product_id})">
+                                                    <i class="fas fa-circle-xmark"></i>
+                                                </a>
                                         </div>
                                     </div>
                                 </c:forEach>
+                                <div>
+                                    <button class="btn btn-primary" type="submit">Complete Purchase</button>
+                                </div>
                             </c:otherwise>
                         </c:choose>
+</div>
 </body>
-
 <script>
     // deleteCart
-    function deleteCart(id) {
+    function deleteCart(product_id) {
+        alert("궁금하지?")
         $.ajax({
-            url: "/cart/delete/" + id,
-            type: "DELETE",
-            success: function (result) {
-                if (result == "success") {
-                    alert("장바구니에서 삭제되었습니다.");
-                    location.reload();
-                } else {
-                    alert("장바구니 삭제에 실패했습니다.");
-                }
+            url: "/cart/deleteCart",
+            type: "post",
+            data: {"product_id": product_id},
+            success: function(data){
+                $("#convertDiv").html(data);
+                alert("삭제되었습니다.")
+
+            },error:function(request, status, error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
     }

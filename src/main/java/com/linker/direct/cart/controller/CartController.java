@@ -38,6 +38,7 @@ public class CartController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("common/cartList");
         mav.addObject("cartList", cartService.CartList());
+        mav.addObject("product_id", cartDTO.getProduct_id());
 
         logger.info("CartController cartList() 장바구니 목록 보여주기.." + cartService.CartList());
 
@@ -54,7 +55,7 @@ public class CartController {
 
     //장바구니 삭제
     @RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
-    public String deleteCart(int product_id) throws Exception {
+    public String deleteCart(Integer product_id) throws Exception {
 
         logger.info("CartController deleteCart() 장바구니 삭제..");
         cartService.deleteCart(product_id);

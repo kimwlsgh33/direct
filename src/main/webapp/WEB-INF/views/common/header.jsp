@@ -105,18 +105,7 @@
 
                 <div class="modal-body">
                 </div>
-                <div class="modal-footer">
-                    <c:choose>
-                        <c:when test="${empty cartList}">
-                            <button class="btn btn-primary disabled" type="submit">Complete Purchase</button>
-                        </c:when>
-                        <c:otherwise>
-                            <form method="get">  <!-- action으로 결제창으로 가기 -->
-                                <button class="btn btn-primary" type="submit">Complete Purchase</button>
-                            </form>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+
             </div>
         </div>
     </div>
