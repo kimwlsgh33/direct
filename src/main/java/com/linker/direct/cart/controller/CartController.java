@@ -32,14 +32,16 @@ public class CartController {
     // 장바구니 목록 보여주기
     @ResponseBody
     @RequestMapping(value = "/cartList", method = RequestMethod.GET)
-    public List<CartDTO> cartList(Model mav) throws Exception {  // 나중에 인자로 user_id를 받아야 함.
+    public ModelAndView cartList(CartDTO cartDTO) throws Exception {  // 나중에 인자로 user_id를 받아야 함.
         // 모달 창 안에 장바구니 목록 보여주기
 
-//        mav.addAttribute("cartList", cartService.CartList());
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("common/cartList");
+        mav.addObject("cartList", cartService.CartList());
 
         logger.info("CartController cartList() 장바구니 목록 보여주기.." + cartService.CartList());
 
-        return cartService.CartList();
+        return mav;
     }
 
     // 장바구니 추가

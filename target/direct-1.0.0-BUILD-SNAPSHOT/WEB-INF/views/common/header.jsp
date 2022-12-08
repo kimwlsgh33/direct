@@ -85,7 +85,9 @@
                     <i class="fas fa-user-circle" style="color: black" ></i>
                 </li>
                 <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList()">
+                    <form method="get" action="${ctx}/cart/cartList">
                     <i class="fas fa-shopping-cart" style="color: black" ></i>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -102,31 +104,6 @@
                 </div>
 
                 <div class="modal-body">
-                    <c:choose>
-                        <c:when test="${empty cartList}">
-                            <div class="h-50 d-flex align-items-center  justify-content-center" >
-                                <p style="font-size: large">Add items to get started. cartList = ${cartList}</p>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <div id="test">
-                            </div>
-                            <c:forEach items="${cartList}" var="cart">
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <img src="${cart.product_image}" alt="product" style="width: 50px; height: 50px">
-                                        <p class="ms-2">${cart.product_name}</p>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="me-2">${cart.product_price}</p>
-                                        <form method="get" action="${ctx}/cart/deleteCart">
-                                            <button class="btn btn-primary" type="button" onclick="deleteCart(${cart.product_id})">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
                 </div>
                 <div class="modal-footer">
                     <c:choose>
@@ -141,7 +118,6 @@
                     </c:choose>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -164,19 +140,19 @@
 </script>
 <script>
 
-
     function fn_cartList() {
-
+        // cartController에서 ajax로 cartList를 가져온다.
         $.ajax({
             url: "${ctx}/cart/cartList",
             type: "get",
-            data: {
+            success: function(result){
+                $("#shoppingModal .modal-body").html(result);
+                $("#shoppingModal").modal("show");
             },
-            success: function (data) {
-                console.log(data);
-                $("#test").append(data);
+            error:function(request, status, error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
-        })
+        });
     }
 
 </script>
