@@ -17,5 +17,7 @@ public interface ProductDAO {
 	//-----------------------------------------------------------------------------------------------------------
 	public List<ProductDTO> selectProduct(int product_no) throws DataAccessException;
 	
+	// user_id에 해당하는 상품정보 추출하기
+	public List<ProductDTO> read(int user_id) throws DataAccessException;
 
 }

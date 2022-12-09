@@ -23,48 +23,44 @@
 		<div class="col-sm-10" id="top">
 			<jsp:include page="../common/headMenu.jsp" flush="false"/>
 			<!-- <form class="row g-3" method="post" name="memberAddress" action="${contextPath}/member/memberAddress" style="margin-left: 30%;"> -->
-		<form class="row g-3" style="margin-left: 30%;">
+		<form class="row g-3" style="margin-left: 20%;">
 			<h2 class="col-sm-3" style="padding-top: 30px;">배송지 등록</h2>
-			<div class="col-md-4" style="padding-top: 35px; margin-left: 55px;">
+			<div class="col-md-4" style="padding-top: 35px; margin-left: 230px;">
 				<a class="btn btn-sm btn-outline-success"
 				href="${contextPath}/util/addressList?user_id=${member.user_id}">배송지 목록 가기</a>
 			</div>
 			<div class="form-group" style="margin-top: 50px;">
 				<label class="form-label" style="text-align: right">받는사람</label>
-				<div class="col-sm-6">
+				<div class="col-md-8">
 					<input type="text" class="form-control" name="receiver" id="receiver"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">연락처</label>
-				<div class="col-sm-6">
+				<div class="col-md-8">
 					<input type="text" class="form-control" name="phone" id="phone"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">우편번호</label>
-				<div class="col-sm-6">
+				<div class="col-md-8">
 					<input type="text" class="form-control" name="zip_code" id="zip_code" readonly/>
 					<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">주 소</label>
-				<div class="col-sm-6">
+				<div class="col-md-8">
 					<input type="text" class="form-control" id="address" name="address"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align:right">상세주소</label>
-				<div class="col-sm-6">
+				<div class="col-md-8">
 					<input type="text" class="form-control" id="address_detail" name="address_detail"/>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-6">
-					<input type="hidden" class="form-control" name="user_id" id="user_id" value="${member.user_id}"/>
-				</div>
-			</div>
+			<input type="hidden" class="form-control" name="user_id" id="user_id" value="${member.user_id}"/>
 			<!--  <div class="form-group">
 				<div class="col-sm-6">
 					<input type="hidden" class="form-control" id="fulladdress" name="fulladdress"/>

@@ -58,6 +58,7 @@
 		WHERE	review_no = #{review_no}
 		]]>
 	</delete>
+	
 
 
 </mapper>

@@ -22,7 +22,7 @@ public class MemberVO {
 	private String email;	// 사용자 이메일
 	private String number;	// 사용자 연락처
 	
-	private String address_id;
+	private int address_id;	// 대표주소 설정 시 mapper에서 이름만 사용
 
 	public MemberVO() {}	// 기본 생성자
 	public MemberVO(String id, String name, String address, String password, String email, String number) {	// 매개변수 있는 생성자

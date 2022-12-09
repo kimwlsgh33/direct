@@ -30,18 +30,13 @@
 	</select>
 	
 	<!-- 아이디에 해당하는 상품정보 추출하기 -->
-	<!-- view에서 사용시 배열 [] 사용해야할듯 -->
-	<select id="productReview" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
+	<select id="readProduct" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
 		<![CDATA[
-			SELECT user_id, id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url,
-			(select name from myinfo where order_product.user_id = myinfo.user_id) AS name,
-			(select address from myinfo where order_product.user_id = myinfo.user_id) AS address,
-			(select zip_code from myinfo where order_product.user_id = myinfo.user_id) AS zip_code,
-			(select address_detail from myinfo where order_product.user_id = myinfo.user_id) AS address_detail,
-			(select number from myinfo where order_product.user_id = myinfo.user_id) AS number
+			SELECT user_id, id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url
 			FROM order_product
 			WHERE user_id = #{user_id}
 		]]>
 	</select>
+	
 	
 </mapper>

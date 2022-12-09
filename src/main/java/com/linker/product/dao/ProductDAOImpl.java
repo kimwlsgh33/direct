@@ -39,5 +39,14 @@ public class ProductDAOImpl implements ProductDAO {
 		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".selectProduct", product_no);
 		return ProductDTO;
 	}
+	
+	// user_id에 해당하는 상품정보 추출하기
+	@Override
+	public List<ProductDTO> read(int user_id) throws DataAccessException {
+		
+		logger.info("ProductController 아이디에 해당하는 상품 목록 조회 시작......");	
+		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".readProduct", user_id);
+		return ProductDTO;
+	}
 
 }

@@ -50,12 +50,11 @@
 							<input type="text" class="form-control" maxlength="20" value="${addr.address_detail}" readonly/>
 						</div>
 					</div>
-					<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressDelete(${addr.address_id})">
-						주소 삭제
-					</button>
+					<div style="margin-top: 20px;">
 					<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/util/addressDetail?address_id=${addr.address_id}'">
 						주소 수정
 					</button>
+					</div>
 				</c:forEach>
 			</div>
 		</div>

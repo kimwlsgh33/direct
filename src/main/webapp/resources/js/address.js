@@ -51,7 +51,7 @@ function fn_addressRegister() {
       if (data == "Y") {
         alert("주소 등록 완료");
         // 주소 등록이 완료되면 주소 목록 화면으로 이동한다.
-        location.href = "/util/addressList?user_id=${user_id}";
+        location.href = "/util/addressList?user_id=" + user_id;
       }
     },
     error: function (data) {
@@ -63,17 +63,19 @@ function fn_addressRegister() {
 
 // 주소 삭제
 function fn_addressDelete(address_id){
+	let user_id = $("#user_id").val();
+	
 	if(!confirm("주소를 삭제하시겠습니까?\n\n삭제를 하시려면 [확인]을 누르시고, 아니면 [취소]를 누르십시오")) {
 		alert("주소 삭제를 취소했습니다.");
 	} else {
 		$.ajax({
 			type: "POST",
 			url: "/util/addressDelete",
-			data: {address_id : address_id},
+			data: {address_id : address_id, user_id: user_id,},
 			success: function(data) {
 				if(data == "Y") {
 					alert("주소 삭제가 완료되었습니다.");
-					location.href = "/util/addressList?user_id=1";
+					location.href = "/util/addressList?user_id=" + user_id;
 				}
 			},
 			error: function(data) {
@@ -123,7 +125,7 @@ function fn_addressUpdate() {
 		success: function(data) {
 			if(data == "Y") {
 				alert("주소 수정 완료!")
-				location.href = "/util/addressList?user_id=1"; // 주소 목록으로 바로가기
+				location.href = "/util/addressList?user_id=" + user_id; // 주소 목록으로 바로가기
 			} else {
 				alert("주소가 수정되지 않았습니다.\n\n잠시 후에 다시 시도해주세요.");
 			}
@@ -154,7 +156,7 @@ function fn_AAA() {
 		success: function(data) {
 			alert("대표주소 설정 완료");
 			location.href = "/member/listMembers.do";
-			// location.href = "/util/addressList?user_id=1";
+			// location.href = "/util/addressList?user_id=" + user_id;
 		},
 		error: function(data) {
 			alert("대표주소 설정 실패했습니다.\n\n잠시 후에 다시 시도해주세요.");
