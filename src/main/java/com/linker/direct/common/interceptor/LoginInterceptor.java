@@ -1,12 +1,14 @@
 package com.linker.direct.common.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+// servlet context 내부에서 적용
 // HandlerInterceptorAdapter : 스프링에서 제공하는 인터셉터 클래스 - preHandle, postHandle, afterCompletion 메서드를 오버라이딩해서 사용
 @Slf4j
 public class LoginInterceptor extends HandlerInterceptorAdapter {

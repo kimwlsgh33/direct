@@ -13,17 +13,17 @@
   </select>
 
 
-  <insert id="create" parameterType="com.linker.direct.store.vo.Category">
+  <insert id="create" parameterType="com.linker.direct.category.Category">
     <![CDATA[
     INSERT INTO category (id, name, icon, color) SELECT IFNULL(MAX(id),0) + 1, #{name}, #{icon}, #{color} FROM category
     ]]>
   </insert>
-  <select id="read" parameterType="int" resultType="com.linker.direct.store.vo.Category">
+  <select id="read" parameterType="int" resultType="com.linker.direct.category.Category">
     <![CDATA[
     SELECT * FROM category WHERE id=#{id}
     ]]>
   </select>
-  <update id="update" parameterType="com.linker.direct.store.vo.Category">
+  <update id="update" parameterType="com.linker.direct.category.Category">
     <![CDATA[
       UPDATE category SET name=#{name}, icon=#{icon}, color=#{color}
       WHERE id=#{id}

@@ -112,7 +112,7 @@
 	@keyframes testAnim {
 		0% {
 			opacity: 0;
-			transform: scale(0.5) translateX(100px);
+			transform: scale(0.5) translateX(100%);
 		}
 		100% {
 			opacity: 1;
@@ -195,7 +195,7 @@
 	</div>
 
 	<div class="container text-center d-flex justify-content-center flex-wrap gap-4 mb-4">
-		<c:forEach var="category" items="${categories}">
+		<c:forEach var="category" items="${categoryList}">
 			<a href="${ctx}/search?category=${category.category_id}" class="link-dark btn-circle">
 				<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
 					<i class="${category.icon} fa-xl" style="color:  ${category.color}"></i>
@@ -314,13 +314,11 @@
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry, idx) => {
 			if (entry.isIntersecting) {
-				console.log("Visible");
 				setTimeout(() => {
 					entry.target.classList.add('fadeInRight');
 				}, 50 * idx);
 			} else {
-				console.log("Not visible");
-				entry.target.classList.remove('fadeInRight');
+				// entry.target.classList.remove('fadeInRight');
 			}
 		});
 	});

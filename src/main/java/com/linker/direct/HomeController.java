@@ -3,13 +3,16 @@ package com.linker.direct;
 import java.util.List;
 import java.util.Locale;
 
-import com.linker.direct.store.vo.Category;
-import com.linker.direct.store.service.CategoryService;
+import com.linker.direct.category.Category;
+import com.linker.direct.category.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Handles requests for the application home page.
@@ -27,11 +30,13 @@ public class HomeController {
    * Simply selects the home view to render by returning its name.
    */
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String home(Locale locale, Model model) throws Exception {
-    List<Category> categories = categoryService.listAll();
-    model.addAttribute("categories", categories);
-
+  public String home(Model model, HttpServletRequest request) throws Exception {
+    HttpSession session = request.getSession();
+    List<Category> categoryList = categoryList = categoryService.listAll();
+    model.addAttribute("categoryList", categoryList);
     return "home";
   }
+
+    
 
 }
