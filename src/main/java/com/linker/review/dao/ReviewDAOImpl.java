@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.linker.product.dto.ProductDTO;
 import com.linker.review.dto.ReviewDTO;
 
 @Repository
@@ -63,6 +64,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		logger.info("ReviewDAOImpl  리뷰 삭제하기.....");
 		return sqlSession.delete(namespace + ".delete", review_no);
 	}
+
 	
 
 }

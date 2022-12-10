@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+
+import com.linker.member.vo.MemberVO;
 
 @Repository("addressDAO")
 public class AddressDAO {
@@ -41,6 +44,11 @@ public class AddressDAO {
 	public int addressUpdate(AddressDTO addressDTO) {
 		System.out.println("UtilController  주소 수정하기....." + addressDTO);
 		return sqlSession.update(namespace + ".update", addressDTO);
+	}
+
+	// 아이디에 해당하는 회원 주소만 수정하기(memberService에 연결되어있음)
+	public int memberAddress(MemberVO memberVO) throws Exception {
+		return sqlSession.update(namespace + ".updateAddress", memberVO);
 	}
 
 }

@@ -2,6 +2,7 @@ package com.linker.review.dao;
 
 import java.util.List;
 
+import com.linker.product.dto.ProductDTO;
 import com.linker.review.dto.ReviewDTO;
 
 public interface ReviewDAO {

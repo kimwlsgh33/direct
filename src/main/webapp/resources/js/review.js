@@ -10,9 +10,10 @@ function fn_reviewRegister() {
   let product_no = $("#product_no").val();
   let rating = $("#rating").val();
   let content = $("#content").val();
+  let img_url = $("#img_url").val();
   //let item_name = $("#item_name").val();
 
-  alert(subject + ":" + rating + ":" + content + ":" + product_no);
+  alert(subject + ":" + rating + ":" + content + ":" + product_no + ":" + img_url);
 
   // 제목 항목에 값이 없으면 입력하도록 한다.
   if ($("#subject").val() == "") {
@@ -51,6 +52,7 @@ function fn_reviewRegister() {
       rating: rating,
       product_no: product_no,
       content: content,
+      img_url: img_url,
       //item_name: item_name,
     },
     success: function (data) {

@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.linker.product.dao.ProductDAO;
+import com.linker.product.dto.ProductDTO;
 import com.linker.review.dao.ReviewDAO;
 import com.linker.review.dto.ReviewDTO;
 
@@ -18,6 +20,9 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Inject
 	private ReviewDAO reviewDAO;
+	
+	@Inject
+	private ProductDAO productDAO;
 	
 	// 리뷰 등록하기
 	@Override
@@ -62,6 +67,12 @@ public class ReviewServiceImpl implements ReviewService {
 	public int reviewDelete(int review_no) {
 		logger.info("ReviewServiceImpl  리뷰 삭제하기.....");
 		return reviewDAO.reviewDelete(review_no);
+	}
+
+	// 리뷰 등록 화면 띄울 때 구매한 상품 정보 가져오기
+	@Override
+	public List<ProductDTO> read(int product_no) throws Exception {
+		return productDAO.read(product_no);
 	}
 
 }

@@ -72,15 +72,6 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = sqlSession.update(Namespace + ".updateMember", memberVO);
 		return result;
 	}
-	
-	//-----------------------------------------------------------------------------------------------------------
-	// 아이디에 해당하는 회원 주소만 수정하기
-	//-----------------------------------------------------------------------------------------------------------
-	@Override
-	public int memberAddress(MemberVO memberVO) throws DataAccessException {
-		int result = sqlSession.update(Namespace + ".updateAddress", memberVO);
-		return result;
-	}
 
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 삭제하기

@@ -10,6 +10,12 @@
 	<title>리뷰 등록 화면</title>
 	<script src="${contextPath}/resources/js/review.js"></script>
 	<% // wepapp 밑의 resouces를 의미함%>
+	<script>
+	  $("#product_no").click(function() { 
+		  var tValue = $('#tableId tr:eq(4)>td:eq(2)').html()
+	  }
+	  
+	</script>
 </head>
 <body>
 
@@ -32,12 +38,8 @@
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="subject" name="subject" maxlength="200" placeholder="제목을 입력하세요."/>
 			</div>
-		</div> 
-		<div class="form-group">
-			<div class="col-sm-3">
-				<input type="hidden" class="form-control" id=user_id name="user_id" maxlength="20" value="${member.user_id}"/>
-			</div>
 		</div>
+		<input type="hidden" class="form-control" id=user_id name="user_id" maxlength="20" value="${member.user_id}"/>
 		<!-- 
 		<div class="form-group">
 			<label class="form-label">상품번호</label>
@@ -53,11 +55,16 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="form-label">상품번호</label>
+			<label class="form-label">상품명</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="product_no" name="product_no" maxlength="20" placeholder="상품번호를 입력하세요."/>
+				<select>
+				<c:forEach var="p" items="${product}" varStatus="status">
+					<option id="product_no" value="${p.product_no}">${p.product_no}.${p.order_product_name}</option>
+				</c:forEach>
+				</select>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<label class="form-label">내	용</label>
 			<div class="col-sm-5">

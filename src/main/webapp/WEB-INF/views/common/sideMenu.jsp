@@ -23,7 +23,7 @@
 			<li><a href="#">할인쿠폰</a></li>
 			<li><hr class="dropdown-divider"></li>
 			<li><h4>My 활동</h4></li>
-			<li><a href="${contextPath}/review/reviewRegisterForm">문의하기</a></li>
+			<li><a href="${contextPath}/review/reviewRegisterForm?user_id=${member.user_id}">문의하기</a></li>
 			<li><a href="${contextPath}/review/reviewList">리뷰목록</a></li>
 			<li><hr class="dropdown-divider"></li>
 			<li><h4>My 정보</h4></li>

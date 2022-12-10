@@ -2,6 +2,7 @@ package com.linker.review.service;
 
 import java.util.List;
 
+import com.linker.product.dto.ProductDTO;
 import com.linker.review.dto.ReviewDTO;
 
 public interface ReviewService {
@@ -21,5 +22,7 @@ public interface ReviewService {
 	// 리뷰 삭제
 	public int reviewDelete(int review_no);
 	
+	// 리뷰 등록 화면 띄울 때 구매한 상품 정보 가져오기
+	public List<ProductDTO> read(int user_id) throws Exception;
 
 }

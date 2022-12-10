@@ -10,10 +10,10 @@ import lombok.Data;
 public class ReviewDTO {
 	
 	private int review_no;	// 리뷰 고유 번호
-	private String user_id;	// 유저 고유 번호
+	private int user_id;	// 유저 고유 번호
 	private int product_no;	// 리뷰할 상품 번호
-	private String img_url;	// 상품 이미지url
 	private int rating;	// 구매 평점
+	private String img_url;	// 상품 이미지url
 	private String subject;	// 리뷰 제목
 	private String content;	// 리뷰 내용
 	private Timestamp reg_date;	// 리뷰 작성 날짜

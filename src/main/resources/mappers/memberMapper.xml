@@ -63,18 +63,6 @@
 		]]>
 	</update>
 	
-	<!-- 아이디에 해당하는 회원 정보 주소만 수정하기 -->
-	<!-- 주소리스트에서 주소 선택 시 myinfo 테이블 주소를 변경 -->
-	<update id="updateAddress" parameterType="com.linker.util.address.AddressDTO">
-		<![CDATA[
-		UPDATE 	myinfo
-		SET address = (select address from address where address_id = 1),
-			zip_code = (select zip_code from address where address_id = 1),
-			address_detail = (select address_detail from address where address_id = 1)
-		WHERE user_id = #{user_id};
-		]]>
-	</update>
-	
 	<!-- 아이디에 해당하는 회원 정보 삭제하기 -->
 	<delete id="deleteMember" parameterType="com.linker.member.vo.MemberVO">
 		<![CDATA[
