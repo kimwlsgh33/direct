@@ -68,9 +68,9 @@
 	<update id="updateAddress" parameterType="com.linker.util.address.AddressDTO">
 		<![CDATA[
 		UPDATE 	myinfo
-		SET address = (select address from address where address_id = 2),
-			zip_code = (select zip_code from address where address_id = 2),
-			address_detail = (select address_detail from address where address_id = 2)
+		SET address = (select address from address where address_id = 1),
+			zip_code = (select zip_code from address where address_id = 1),
+			address_detail = (select address_detail from address where address_id = 1)
 		WHERE user_id = #{user_id};
 		]]>
 	</update>
