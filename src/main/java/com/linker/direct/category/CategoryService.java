@@ -3,13 +3,13 @@ package com.linker.direct.category;
 import java.util.List;
 
 public interface CategoryService {
-  List<Category> listAll() throws Exception;
+  List<CategoryVO> listAll() throws Exception;
 
-  void create(Category category) throws Exception;
+  void create(CategoryVO categoryVO) throws Exception;
 
-  Category read(CategoryDto categoryDto) throws Exception;
+  CategoryVO read(CategoryDto categoryDto) throws Exception;
 
-  void update(Category category) throws Exception;
+  void update(CategoryVO categoryVO) throws Exception;
 
   void delete(CategoryDto categoryDto) throws Exception;
 }

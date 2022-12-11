@@ -1,9 +1,8 @@
 package com.linker.direct;
 
 import java.util.List;
-import java.util.Locale;
 
-import com.linker.direct.category.Category;
+import com.linker.direct.category.CategoryVO;
 import com.linker.direct.category.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ public class HomeController {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home(Model model, HttpServletRequest request) throws Exception {
     HttpSession session = request.getSession();
-    List<Category> categoryList = categoryList = categoryService.listAll();
+    List<CategoryVO> categoryList = categoryService.listAll();
     model.addAttribute("categoryList", categoryList);
     return "home";
   }

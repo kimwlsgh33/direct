@@ -1,6 +1,6 @@
 package com.linker.direct.order.dao;
 
-import com.linker.direct.order.vo.OrderItem;
+import com.linker.direct.order.vo.OrderItemVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class OrderItemDaoImpl implements OrderItemDao {
 
-    private static final String NAMESPACE = "com.linker.direct.order.dao.OrderItemDao.";
+    private static final String NAMESPACE = "orderItem";
     private final SqlSession sqlSession;
 
     @Override
-    public void create(OrderItem orderItem) throws Exception {
-        sqlSession.insert(NAMESPACE + "create", orderItem);
+    public void create(OrderItemVO orderItemVO) throws Exception {
+        sqlSession.insert(NAMESPACE + ".create", orderItemVO);
     }
 }

@@ -45,11 +45,11 @@
 
         $.ajax({
             type: "POST",
-            url: "/store/category/create",
+            url: "/store/categoryVO/create",
             data: {name: name, icon: icon, color: color},
             success: function (data) {
                 alert("success");
-                location.href = "${ctx}/store/category/list";
+                location.href = "${ctx}/store/categoryVO/list";
             },
             error: function (errMsg) {
                 alert("error : " + errMsg);

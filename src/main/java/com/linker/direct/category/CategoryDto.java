@@ -8,7 +8,9 @@ import lombok.Setter;
 public class CategoryDto {
     private int id;
 
-    public Category toVo() {
-        return new Category(Long.valueOf(id), null, null, null);
+    public CategoryVO toVo() {
+        CategoryVO categoryVO = new CategoryVO();
+        categoryVO.setCategory_id(Long.valueOf(id));
+        return categoryVO;
     }
 }

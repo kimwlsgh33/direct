@@ -9,8 +9,7 @@ import com.linker.direct.item.dao.ItemDao;
 import com.linker.direct.item.dao.ItemImgDao;
 import com.linker.direct.item.dto.ItemFormDto;
 import com.linker.direct.item.dto.ItemImgDto;
-import com.linker.direct.item.vo.Item;
-import com.linker.direct.item.vo.ItemImg;
+import com.linker.direct.item.vo.ItemVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,24 +32,24 @@ public class ItemServiceImpl implements ItemService {
         //====================================================================================================
         // 상품 등록 ====================================================================================================
         //====================================================================================================
-        Item item = itemFormDto.toVO(itemFormDto);
-        log.info("상품 등록 : " + item.toString());
-        itemDao.create(item);
-        log.info("상품 등록 완료" + item.toString());
+        ItemVO itemVO = itemFormDto.toVO(itemFormDto);
+        log.info("상품 등록 : " + itemVO.toString());
+        itemDao.create(itemVO);
+        log.info("상품 등록 완료" + itemVO.toString());
         
         //==================================================================================================
         // itemImg 저장 ==================================================================================================
         //==================================================================================================
         log.info("상품 이미지 등록 : " + uploadFiles.size());
         for(MultipartFile uploadFile : uploadFiles) {
-            ItemImgDto itemImgDto = ItemImgDto.of(uploadFile, item);
+            ItemImgDto itemImgDto = ItemImgDto.of(uploadFile, itemVO);
             itemImgService.upload(itemImgDto); // 사진업로드, item_img 테이블 저장
         }
     }
 
     @Override
-    public Item read(Item item) {
-        return itemDao.read(item);
+    public ItemVO read(ItemVO itemVO) {
+        return itemDao.read(itemVO);
         //List<ItemImg> itemImgs = itemImgDao.readItemImgs(id);
 
 //        ItemFormDto itemFormDto = ItemFormDto.of(item, itemImgs);

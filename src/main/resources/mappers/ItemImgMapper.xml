@@ -5,39 +5,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--태그 규칙 선언-->
 
-<mapper namespace="com.linker.direct.item.dao.ItemImgDao">
-
-
-    <select id="listAll" resultType="com.linker.direct.item.vo.Item">
+<mapper namespace="itemImg">
+    <select id="listAll" resultType="com.linker.direct.item.vo.ItemImgVO">
         <![CDATA[
-            SELECT * FROM item ORDER BY id
+            SELECT * FROM item_img ORDER BY item_img
         ]]>
     </select>
 
-    <!--  -->
-    <insert id="create" parameterType="com.linker.direct.item.vo.ItemImg">
+    <insert id="create" parameterType="com.linker.direct.item.vo.ItemImgVO">
         <![CDATA[
             INSERT INTO item_img (item_id, img_name, origin_name)
             VALUES (#{item_id}, #{img_name}, #{origin_name})
         ]]>
     </insert>
 
-
-    <select id="read" resultType="com.linker.direct.item.vo.ItemImg">
+    <select id="read" resultType="com.linker.direct.item.vo.ItemImgVO">
         <![CDATA[
             SELECT * FROM item_img WHERE id = #{id}
-        ]]>
-    </select>
-
-    <select id="update">
-        <![CDATA[
-            UPDATE item SET name=#{name}, price=#{price}, stockQuantity=#{stockQuantity}, description=#{description}, imageUrl=#{imageUrl}
-            WHERE id=#{id}
-        ]]>
-    </select>
-    <select id="delete">
-        <![CDATA[
-            DELETE FROM item WHERE id=#{id}
         ]]>
     </select>
 </mapper>

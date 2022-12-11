@@ -4,7 +4,7 @@ package com.linker.direct.item.service;
 // dto
 // entity
 // lombok
-import com.linker.direct.item.vo.ItemImg;
+import com.linker.direct.item.vo.ItemImgVO;
 import com.linker.direct.item.dao.ItemImgDao;
 import com.linker.direct.item.dto.ItemImgDto;
 import lombok.RequiredArgsConstructor;
@@ -53,14 +53,14 @@ public class ItemImgServiceImpl implements ItemImgService {
         //================================================================================================
         // DB에 저장 =================================================================================================
         //================================================================================================
-        ItemImg itemImg = new ItemImg();
-        itemImg.updateItemImg(itemImgDto.getItem().getItem_id(), uuid, originName);
+        ItemImgVO itemImgVO = new ItemImgVO();
+        itemImgVO.updateItemImg(itemImgDto.getItemVO().getItem_id(), uuid, originName);
 
-        itemImgDao.create(itemImg);
+        itemImgDao.create(itemImgVO);
     }
 
     @Override
-    public List<ItemImg> read(int id) throws Exception {
+    public List<ItemImgVO> read(int id) throws Exception {
         return itemImgDao.readItemImgs(id);
     }
 }

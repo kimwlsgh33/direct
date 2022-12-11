@@ -12,23 +12,23 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryDao categoryDao;
 
     @Override
-    public List<Category> listAll() throws Exception {
+    public List<CategoryVO> listAll() throws Exception {
         return categoryDao.listAll();
     }
 
     @Override
-    public void create(Category category) throws Exception {
-        categoryDao.create(category);
+    public void create(CategoryVO categoryVO) throws Exception {
+        categoryDao.create(categoryVO);
     }
 
     @Override
-    public Category read(CategoryDto categoryDto) throws Exception {
+    public CategoryVO read(CategoryDto categoryDto) throws Exception {
         return categoryDao.read(categoryDto);
     }
 
     @Override
-    public void update(Category category) throws Exception {
-        categoryDao.update(category);
+    public void update(CategoryVO categoryVO) throws Exception {
+        categoryDao.update(categoryVO);
     }
 
     @Override

@@ -30,41 +30,41 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportContent">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
+                <li class="nav-itemVO">
                     <a class="nav-link active" aria-current="page" href="#">홈</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-itemVO">
                     <a class="nav-link" href="#">Link</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-itemVO dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         관리자 페이지
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="${ctx}/category/createForm">Create</a></li>
+                        <li><a class="dropdown-itemVO" href="${ctx}/categoryVO/createForm">Create</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="${ctx}/admin">INDEX ADMIN</a></li>
+                        <li><a class="dropdown-itemVO" href="${ctx}/admin">INDEX ADMIN</a></li>
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-itemVO">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
             <div class="d-flex">
                 <c:choose>
-                    <c:when test="${user != null}">
-                        <div class="nav-item">
-                            <a class="nav-link" href="${ctx}/user/logout">로그아웃</a>
+                    <c:when test="${memberVO != null}">
+                        <div class="nav-itemVO">
+                            <a class="nav-link" href="${ctx}/memberVO/logout">로그아웃</a>
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <div class="nav-item d-flex align-items-center">
-                            <a class="link-light me-2" style="text-decoration: none;" href="${ctx}/user/login">로그인</a>
+                        <div class="nav-itemVO d-flex align-items-center">
+                            <a class="link-light me-2" style="text-decoration: none;" href="${ctx}/memberVO/login">로그인</a>
                         </div>
-                        <div class="nav-item">
-                            <a class="btn btn-success" href="${ctx}/user/join">회원가입</a>
+                        <div class="nav-itemVO">
+                            <a class="btn btn-success" href="${ctx}/memberVO/join">회원가입</a>
                         </div>
                     </c:otherwise>
                 </c:choose>

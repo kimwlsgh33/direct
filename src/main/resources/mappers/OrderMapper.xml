@@ -5,8 +5,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--태그 규칙 선언-->
 
-<mapper namespace="com.linker.direct.order.dao.OrderDao">
-    <insert id="create" parameterType="com.linker.direct.order.vo.Order">
+<mapper namespace="order">
+    <insert id="create" parameterType="com.linker.direct.order.vo.OrderVO">
         <![CDATA[
             INSERT INTO `order` (user_id)
             VALUES (#{user_id})

@@ -1,8 +1,8 @@
 package com.linker.direct.order.dao;
 
-import com.linker.direct.order.vo.Order;
+import com.linker.direct.order.vo.OrderVO;
 import org.springframework.dao.DataAccessException;
 
 public interface OrderDao {
-    void create(Order order) throws DataAccessException;
+    void create(OrderVO orderVO) throws DataAccessException;
 }

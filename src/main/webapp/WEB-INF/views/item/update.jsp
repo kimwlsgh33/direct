@@ -15,20 +15,20 @@
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container-fluid d-flex flex-column align-items-center p-4">
-    <h1 class="mb-3">Category Update : ${category.id}</h1>
+    <h1 class="mb-3">Category Update : ${categoryVO.id}</h1>
     <form method="post" class="w-50 bg-light shadow p-3 rounded-4 d-flex justify-content-between" onsubmit="create()">
         <div>
             <div class="w-100 d-flex justify-content-between mb-3">
                 <div class="pe-2">Category Name : </div>
-                <input type="text" id="name" name="name" class="me-3" value="${category.name}">
+                <input type="text" id="name" name="name" class="me-3" value="${categoryVO.name}">
             </div>
             <div class="w-100 d-flex justify-content-between mb-3">
                 <div class="pe-2">Category Icon : </div>
-                <input type="text" id="icon" name="icon" class="me-3" value="${category.icon}">
+                <input type="text" id="icon" name="icon" class="me-3" value="${categoryVO.icon}">
             </div>
             <div class="w-100 d-flex justify-content-between">
                 <div class="pe-2">Icon Color : </div>
-                <input type="text" id="color" name="color" class="me-3" value="${category.color}">
+                <input type="text" id="color" name="color" class="me-3" value="${categoryVO.color}">
             </div>
         </div>
         <input type="submit" value="Update" onclick="update()" class="btn btn-primary">
@@ -47,14 +47,14 @@
         let name = $("#name").val();
         let icon = $("#icon").val();
         let color = $("#color").val();
-        let id = ${category.id};
+        let id = ${categoryVO.id};
         $.ajax({
             type: "POST",
-            url: "/store/category/update",
+            url: "/store/categoryVO/update",
             data: {id: id,name: name, icon: icon, color: color},
             success: function (data) {
                 if(!!data){
-                    location.href = "${ctx}/store/category/list";
+                    location.href = "${ctx}/store/categoryVO/list";
                 }
             },
             error: function (errMsg) {

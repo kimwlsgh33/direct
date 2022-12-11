@@ -1,6 +1,6 @@
 package com.linker.direct.item.dao;
 
-import com.linker.direct.item.vo.ItemImg;
+import com.linker.direct.item.vo.ItemImgVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemImgDaoImpl implements ItemImgDao {
     private final SqlSession sqlSession;
-    private static final String NAMESPACE = "com.linker.direct.item.dao.ItemImgDao.";
+    private static final String NAMESPACE = "itemImg";
     /*
     NAMESPACE 를 static으로 선언하는 이유 : NAMESPACE는 상수이기 때문에 static으로 선언해주는 것이 좋다.
     상수는 변하지 않는 값이기 때문에 static으로 선언해주면 메모리에 한번만 올라가기 때문에 메모리를 절약할 수 있다.
@@ -24,13 +24,13 @@ public class ItemImgDaoImpl implements ItemImgDao {
     반면에 stack 영역에는 메소드가 호출될 때 할당되고, 메소드가 종료되면 메모리에서 사라지게 된다.
      */
 
-    public void create(ItemImg itemImg) throws DataAccessException {
-        System.out.println("ItemImgDaoImpl.create" + itemImg.toString());
-        sqlSession.insert(NAMESPACE + "create", itemImg);
+    public void create(ItemImgVO itemImgVO) throws DataAccessException {
+        System.out.println("ItemImgDaoImpl.create" + itemImgVO.toString());
+        sqlSession.insert(NAMESPACE + ".create", itemImgVO);
     }
 
     @Override
-    public List<ItemImg> readItemImgs(int itemId) throws DataAccessException {
-        return sqlSession.selectList(NAMESPACE + "readItemImgs", itemId);
+    public List<ItemImgVO> readItemImgs(int itemId) throws DataAccessException {
+        return sqlSession.selectList(NAMESPACE + ".readItemImg", itemId);
     }
 }

@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
-
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
@@ -31,8 +29,8 @@ public class CategoryController {
 
   @ResponseBody
   @RequestMapping(value="/create", method = RequestMethod.POST)
-  public String create(Category category) throws Exception {
-    categoryService.create(category);
+  public String create(CategoryVO categoryVO) throws Exception {
+    categoryService.create(categoryVO);
     return "Y";
   }
 
@@ -53,9 +51,9 @@ public class CategoryController {
 
     @ResponseBody
     @RequestMapping(value="/update",method = RequestMethod.POST)
-    public String update(Category category) throws Exception {
-      System.out.println(category.toString());
-      categoryService.update(category);
+    public String update(CategoryVO categoryVO) throws Exception {
+      System.out.println(categoryVO.toString());
+      categoryService.update(categoryVO);
       return "success";
     }
 

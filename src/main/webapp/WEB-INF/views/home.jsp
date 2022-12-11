@@ -100,7 +100,7 @@
 				26px 27px 27px rgba(0, 0, 0, 0.2);
 	}
 
-	.item-lists {
+	.itemVO-lists {
 		overflow-x:scroll;
 		overflow-y:hidden;
 	}
@@ -109,20 +109,20 @@
 		display: none;
 	}
 
-	.item-lists::-webkit-scrollbar {
+	.itemVO-lists::-webkit-scrollbar {
 		display: block;
 	}
 
-	.item-lists::-webkit-scrollbar-track {
+	.itemVO-lists::-webkit-scrollbar-track {
 		background: transparent;
 	}
 
-	.item-lists::-webkit-scrollbar-thumb {
+	.itemVO-lists::-webkit-scrollbar-thumb {
 		background: #888;
 		border-radius: 10px;
 	}
 
-	.item-lists::-webkit-scrollbar-thumb:hover {
+	.itemVO-lists::-webkit-scrollbar-thumb:hover {
 		background: #555;
 	}
 
@@ -170,13 +170,13 @@
 				</div>
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary container-fluid mainNavs" style="padding:0 20px;">
 					<div class="navbar-nav container-fluid">
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">행사중</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">베스트</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">펫상담</a>
 						</li>
 					</div>
@@ -193,13 +193,13 @@
 				</div>
 				<nav class="navbar navbar-expand-lg navbar-dark container-fluid mainNavs" style="padding:0 20px; background-color: #EB5787;">
 					<div class="navbar-nav container-fluid">
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">행사중</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">베스트</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">펫상담</a>
 						</li>
 					</div>
@@ -214,7 +214,7 @@
 
 	<div class="container text-center d-flex justify-content-center flex-wrap gap-4 mb-4">
 		<c:forEach var="category" items="${categoryList}">
-			<a href="${ctx}/search?category=${category.category_id}" class="link-dark btn-circle">
+			<a href="${ctx}/search?categoryVO=${category.category_id}" class="link-dark btn-circle">
 				<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
 					<i class="${category.icon} fa-xl" style="color:  ${category.color}"></i>
 				</div>
@@ -264,16 +264,16 @@
 		<i class="fa-solid fa-basket-shopping" style="color:pink"></i>
 		<span class="fw-bold">오늘의 쇼핑제안</span>
 	</div>
-	<div class="gap-3 d-flex px-3 pb-4 item-lists" >
-		<c:forEach var="item" items="<%=recommendList%>">
-			<a id="list-recommend-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=itemId">
+	<div class="gap-3 d-flex px-3 pb-4 itemVO-lists" >
+		<c:forEach var="itemVO" items="<%=recommendList%>">
+			<a id="list-recommend-${itemVO+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/itemVO?id=itemId">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
 					<p class="card-text mb-1"><small class="text-muted">75% / 1000+</small></p>
 					<div class="progress">
 						<c:choose>
-							<c:when test="${item == 3}">
+							<c:when test="${itemVO == 3}">
 								<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 							</c:when>
 							<c:otherwise>
@@ -289,16 +289,16 @@
 		<i class="fa-solid fa-certificate" style="color:gold"></i>
 		<span class="fw-bold" style="color:orangered">특가 상품</span>
 	</div>
-	<div class="gap-3 d-flex px-3 pb-4 item-lists" style="overflow:scroll">
-		<c:forEach var="item" items="<%=recommendList%>">
-			<a id="list-item-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=${itemId}">
+	<div class="gap-3 d-flex px-3 pb-4 itemVO-lists" style="overflow:scroll">
+		<c:forEach var="itemVO" items="<%=recommendList%>">
+			<a id="list-itemVO-${itemVO+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/itemVO?id=${itemId}">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
 					<p class="card-text mb-1"><small class="text-muted">75% / 1000+</small></p>
 					<div class="progress">
 						<c:choose>
-							<c:when test="${item == 1}">
+							<c:when test="${itemVO == 1}">
 								<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 							</c:when>
 							<c:otherwise>
@@ -312,20 +312,20 @@
 	</div>
 </div>
 <div class="w-100 mt-2 mainContainer">
-	<div class="progress">
-		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-	</div>
+<%--	<div class="progress">--%>
+<%--		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>--%>
+<%--	</div>--%>
 </div>
 <jsp:include page="common/footer.jsp" flush="false"/>
 </body>
 <script>
-	// id에 item-list-1~5까지의 id를 가진 a태그를 선택
+	// id에 itemVO-list-1~5까지의 id를 가진 a태그를 선택
 	// 선택된 a태그에 click 이벤트를 할당
 
 
-	const itemCards = document.querySelectorAll('.item-lists a');
+	const itemCards = document.querySelectorAll('.itemVO-lists a');
 
-	//const btn1 = document.querySelector("#list-item-1");
+	//const btn1 = document.querySelector("#list-itemVO-1");
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry, idx) => {
 			if (entry.isIntersecting) {

@@ -14,13 +14,6 @@
 <jsp:include page="common/header.jsp" flush="false"/>
 <div class="container-fluid d-flex flex-column align-items-center gap-3 pt-3">
     <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">
-        <h1>상점</h1>
-        <div>
-            <a href="${ctx}/store/createForm" class="btn btn-success">create</a>
-            <a href="${ctx}/store/list" class="btn">list</a>
-        </div>
-    </div>
-    <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">
         <h1>카테고리</h1>
         <div>
             <a href="${ctx}/category/createForm" class="btn btn-success">create</a>

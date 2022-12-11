@@ -1,9 +1,9 @@
 package com.linker.direct.item.dao;
 
-import com.linker.direct.item.vo.Item;
+import com.linker.direct.item.vo.ItemVO;
 
 public interface ItemDao {
-    void create(Item item);
+    void create(ItemVO itemVO);
 
-    Item read(Item item);
+    ItemVO read(ItemVO itemVO);
 }

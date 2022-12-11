@@ -1,7 +1,7 @@
 package com.linker.direct.item.dto;
 
 import com.linker.direct.item.ItemSellStatus;
-import com.linker.direct.item.vo.Item;
+import com.linker.direct.item.vo.ItemVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,30 +22,30 @@ public class ItemFormDto {
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>(); // output
 
     // Item -> ItemFormDto
-    public static ItemFormDto of(Item item) {
+    public static ItemFormDto of(ItemVO itemVO) {
         ItemFormDto itemFormDto = new ItemFormDto();
-        itemFormDto.setItem_id(item.getItem_id());
-        itemFormDto.setUser_id(item.getUser_id());
-        itemFormDto.setName(item.getName());
-        itemFormDto.setPrice(item.getPrice());
-        itemFormDto.setStock(item.getStock());
-        itemFormDto.setDescription(item.getDescription());
-        itemFormDto.setCategory_id(item.getCategory_id());
-        itemFormDto.setStatus(item.getStatus());
+        itemFormDto.setItem_id(itemVO.getItem_id());
+        itemFormDto.setUser_id(itemVO.getUser_id());
+        itemFormDto.setName(itemVO.getName());
+        itemFormDto.setPrice(itemVO.getPrice());
+        itemFormDto.setStock(itemVO.getStock());
+        itemFormDto.setDescription(itemVO.getDescription());
+        itemFormDto.setCategory_id(itemVO.getCategory_id());
+        itemFormDto.setStatus(itemVO.getStatus());
         return itemFormDto;
     }
 
     // ItemFormDto -> Item
-    public static Item toVO(ItemFormDto itemFormDto) {
-        Item item = new Item();
-        item.setItem_id(itemFormDto.getItem_id());
-        item.setUser_id(itemFormDto.getUser_id());
-        item.setName(itemFormDto.getName());
-        item.setPrice(itemFormDto.getPrice());
-        item.setStock(itemFormDto.getStock());
-        item.setDescription(itemFormDto.getDescription());
-        item.setCategory_id(itemFormDto.getCategory_id());
-        item.setStatus(itemFormDto.getStatus());
-        return item;
+    public static ItemVO toVO(ItemFormDto itemFormDto) {
+        ItemVO itemVO = new ItemVO();
+        itemVO.setItem_id(itemFormDto.getItem_id());
+        itemVO.setUser_id(itemFormDto.getUser_id());
+        itemVO.setName(itemFormDto.getName());
+        itemVO.setPrice(itemFormDto.getPrice());
+        itemVO.setStock(itemFormDto.getStock());
+        itemVO.setDescription(itemFormDto.getDescription());
+        itemVO.setCategory_id(itemFormDto.getCategory_id());
+        itemVO.setStatus(itemFormDto.getStatus());
+        return itemVO;
     }
 }

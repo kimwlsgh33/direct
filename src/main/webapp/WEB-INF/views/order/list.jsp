@@ -37,8 +37,8 @@
     <table class="table table-striped">
     <thead>
         <tr>
-            <c:forEach items="<%=list%>" var="item">
-                <th>${item}</th>
+            <c:forEach items="<%=list%>" var="itemVO">
+                <th>${itemVO}</th>
             </c:forEach>
             <th scope="col" class="d-flex justify-content-between align-items-end">
                 <div>category_id</div>

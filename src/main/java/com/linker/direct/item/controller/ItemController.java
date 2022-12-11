@@ -3,8 +3,8 @@ package com.linker.direct.item.controller;
 // entity
 import com.linker.direct.item.dto.ItemFormDto;
 import com.linker.direct.item.service.ItemService;
-import com.linker.direct.user.vo.User;
-import com.linker.direct.category.Category;
+import com.linker.direct.member.vo.MemberVO;
+import com.linker.direct.category.CategoryVO;
 // dto
 // service
 import com.linker.direct.category.CategoryService;
@@ -34,8 +34,8 @@ public class ItemController {
 
     @RequestMapping("/createForm")
     public String createForm(Model model) throws Exception {
-        List<Category> categoryList = categoryService.listAll();
-        model.addAttribute("categoryList", categoryList);
+        List<CategoryVO> categoryVOList = categoryService.listAll();
+        model.addAttribute("categoryList", categoryVOList);
         return "/item/create";
     }
 
@@ -46,12 +46,12 @@ public class ItemController {
         //==================================================================================================
         // 로그인 여부 확인 ==================================================================================================
         //==================================================================================================
-        User user = (User) request.getSession().getAttribute("user");
-        if(user == null) {
+        MemberVO memberVO = (MemberVO) request.getSession().getAttribute("user");
+        if(memberVO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         //==================================================================================================
-        itemFormDto.setUser_id(user.getUser_id()); // 생성자 id : 로그인한 사용자 id
+        itemFormDto.setUser_id(memberVO.getUser_id()); // 생성자 id : 로그인한 사용자 id
         //==================================================================================================
         // 사진 정보 확인 ==================================================================================================
         //==================================================================================================
