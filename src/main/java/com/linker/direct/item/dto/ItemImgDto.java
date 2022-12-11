@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ItemImgDto {
     private MultipartFile uploadFile;
     private Item item;
-    private String uuidFilename;
 
     public static ItemImgDto of(MultipartFile uploadFile, Item item) {
         ItemImgDto itemImgDto = new ItemImgDto();

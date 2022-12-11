@@ -33,13 +33,15 @@ public class ItemServiceImpl implements ItemService {
         //====================================================================================================
         // 상품 등록 ====================================================================================================
         //====================================================================================================
-        log.info("상품 등록 : " + itemFormDto.toString());
-        Item item = itemFormDto.toEntity(itemFormDto);
+        Item item = itemFormDto.toVO(itemFormDto);
+        log.info("상품 등록 : " + item.toString());
         itemDao.create(item);
+        log.info("상품 등록 완료" + item.toString());
         
         //==================================================================================================
         // itemImg 저장 ==================================================================================================
         //==================================================================================================
+        log.info("상품 이미지 등록 : " + uploadFiles.size());
         for(MultipartFile uploadFile : uploadFiles) {
             ItemImgDto itemImgDto = ItemImgDto.of(uploadFile, item);
             itemImgService.upload(itemImgDto); // 사진업로드, item_img 테이블 저장
@@ -47,11 +49,10 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item read(int id) {
-        Item item = itemDao.read(id);
-        List<ItemImg> itemImgs = itemImgDao.readItemImgs(id);
+    public Item read(Item item) {
+        return itemDao.read(item);
+        //List<ItemImg> itemImgs = itemImgDao.readItemImgs(id);
 
 //        ItemFormDto itemFormDto = ItemFormDto.of(item, itemImgs);
-        return item;
     }
 }

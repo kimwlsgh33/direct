@@ -51,14 +51,12 @@ public class ItemController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         //==================================================================================================
-        //
-//        itemFormDto.setCreateBy(user.getId()); // 생성자 id : 로그인한 사용자 id
-//        itemFormDto.setUser(1L); // 생성자 id : 로그인한 사용자 id
+        itemFormDto.setUser_id(user.getUser_id()); // 생성자 id : 로그인한 사용자 id
         //==================================================================================================
         // 사진 정보 확인 ==================================================================================================
         //==================================================================================================
         if(uploadFiles == null) { // 파일이 없을 경우 에러 발생
-            return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("fail_no_img", HttpStatus.BAD_REQUEST);
         }
 
         //==================================================================================================
@@ -68,4 +66,6 @@ public class ItemController {
 
         return new ResponseEntity<>("upload success", HttpStatus.OK);
     }
+
+
 }

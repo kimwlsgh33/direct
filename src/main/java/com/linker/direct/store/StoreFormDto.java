@@ -16,6 +16,7 @@ public class StoreFormDto {
     private String business_hour;
     private String holiday;
     private String category_id;
+    private int user_id;
 
     public Store toVo() {
         Store store = new Store();
@@ -28,6 +29,7 @@ public class StoreFormDto {
         store.setBusiness_hour(business_hour);
         store.setHoliday(holiday);
         store.setCategory_id(Long.valueOf(category_id));
+        store.setUser_id(Long.valueOf(user_id));
         return store;
     }
 }

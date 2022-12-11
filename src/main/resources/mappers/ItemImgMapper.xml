@@ -5,7 +5,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--태그 규칙 선언-->
 
-<mapper namespace="com.linker.direct.item.dao.ItemImgDaoImpl">
+<mapper namespace="com.linker.direct.item.dao.ItemImgDao">
 
 
     <select id="listAll" resultType="com.linker.direct.item.vo.Item">
@@ -17,8 +17,8 @@
     <!--  -->
     <insert id="create" parameterType="com.linker.direct.item.vo.ItemImg">
         <![CDATA[
-            INSERT INTO item_img (id, imgName, originName, item_id)
-            SELECT IFNULL(MAX(id), 0) + 1, #{imgName}, #{originName}, #{item_id} FROM item_img
+            INSERT INTO item_img (item_id, img_name, origin_name)
+            VALUES (#{item_id}, #{img_name}, #{origin_name})
         ]]>
     </insert>
 

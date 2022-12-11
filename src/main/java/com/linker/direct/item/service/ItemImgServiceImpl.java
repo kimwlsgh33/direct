@@ -54,7 +54,7 @@ public class ItemImgServiceImpl implements ItemImgService {
         // DB에 저장 =================================================================================================
         //================================================================================================
         ItemImg itemImg = new ItemImg();
-        itemImg.updateItemImg(uuid, originName, itemImgDto.getItem().getItem_id());
+        itemImg.updateItemImg(itemImgDto.getItem().getItem_id(), uuid, originName);
 
         itemImgDao.create(itemImg);
     }

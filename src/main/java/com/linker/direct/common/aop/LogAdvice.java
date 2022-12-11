@@ -53,6 +53,7 @@ public class LogAdvice {
     public void before(JoinPoint jp) { // JoinPoint : Advice가 적용된 메서드의 정보를 가지고 있는 객체
         defaultLogging(jp.getSignature().toString(), AopType.BEFORE);
     }
+
 //    @Around("execution(* *..controller.*.*(..)) || execution(* *..service.*.*(..)) || execution(* *..dao.*.*(..))")
 //    public Object around(ProceedingJoinPoint pjp) { // ProceedingJoinPoint : JoinPoint를 상속받은 인터페이스로, 메서드 실행을 제어할 수 있는 기능을 가지고 있음
 //        defaultLogging(pjp.getSignature().toString(), AopType.AROUND);

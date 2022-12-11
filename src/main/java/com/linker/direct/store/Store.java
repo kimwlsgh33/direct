@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 public class Store {
     private Long store_id;
+    private Long user_id;
     private String name;
     private String address;
     private String store_img_url;
@@ -25,5 +26,4 @@ public class Store {
     private String holiday;
     private CommonStatus status;
     private Long category_id;
-    private Long user_id;
 }

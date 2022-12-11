@@ -5,5 +5,5 @@ import com.linker.direct.item.vo.Item;
 public interface ItemDao {
     void create(Item item);
 
-    Item read(int id);
+    Item read(Item item);
 }

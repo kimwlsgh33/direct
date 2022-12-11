@@ -12,13 +12,12 @@ import java.util.List;
 @Getter @Setter @ToString
 public class ItemFormDto {
     private Long item_id;
-    private Long store_id;
-    private String itemName;
+    private Long user_id;
+    private Long category_id;
+    private String name;
     private int price;
     private int stock;
     private String description;
-    private Long category_id;
-    private int createBy;
     private ItemSellStatus status;
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>(); // output
 
@@ -26,7 +25,8 @@ public class ItemFormDto {
     public static ItemFormDto of(Item item) {
         ItemFormDto itemFormDto = new ItemFormDto();
         itemFormDto.setItem_id(item.getItem_id());
-        itemFormDto.setItemName(item.getName());
+        itemFormDto.setUser_id(item.getUser_id());
+        itemFormDto.setName(item.getName());
         itemFormDto.setPrice(item.getPrice());
         itemFormDto.setStock(item.getStock());
         itemFormDto.setDescription(item.getDescription());
@@ -36,10 +36,11 @@ public class ItemFormDto {
     }
 
     // ItemFormDto -> Item
-    public static Item toEntity(ItemFormDto itemFormDto) {
+    public static Item toVO(ItemFormDto itemFormDto) {
         Item item = new Item();
         item.setItem_id(itemFormDto.getItem_id());
-        item.setName(itemFormDto.getItemName());
+        item.setUser_id(itemFormDto.getUser_id());
+        item.setName(itemFormDto.getName());
         item.setPrice(itemFormDto.getPrice());
         item.setStock(itemFormDto.getStock());
         item.setDescription(itemFormDto.getDescription());

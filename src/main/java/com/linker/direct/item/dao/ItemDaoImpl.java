@@ -18,7 +18,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public Item read(int id) {
-        return sqlSession.selectOne(NAMESPACE + "read", id);
+    public Item read(Item item) {
+        return sqlSession.selectOne(NAMESPACE + "read", item);
     }
 }

@@ -42,7 +42,7 @@
                         관리자 페이지
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="${ctx}/store/category/createForm">Create</a></li>
+                        <li><a class="dropdown-item" href="${ctx}/category/createForm">Create</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="${ctx}/admin">INDEX ADMIN</a></li>
                     </ul>
@@ -54,17 +54,17 @@
             </ul>
             <div class="d-flex">
                 <c:choose>
-                    <c:when test="${sessionScope.loginUser != null}">
+                    <c:when test="${user != null}">
                         <div class="nav-item">
-                            <a class="nav-link" href="${ctx}/member/logout">로그아웃</a>
+                            <a class="nav-link" href="${ctx}/user/logout">로그아웃</a>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="nav-item d-flex align-items-center">
-                            <a class="link-light me-2" style="text-decoration: none;" href="${ctx}/member/login">로그인</a>
+                            <a class="link-light me-2" style="text-decoration: none;" href="${ctx}/user/login">로그인</a>
                         </div>
                         <div class="nav-item">
-                            <a class="btn btn-success" href="${ctx}/member/join">회원가입</a>
+                            <a class="btn btn-success" href="${ctx}/user/join">회원가입</a>
                         </div>
                     </c:otherwise>
                 </c:choose>

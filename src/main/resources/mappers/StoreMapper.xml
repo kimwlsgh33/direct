@@ -14,8 +14,8 @@
 
     <insert id="create" parameterType="com.linker.direct.store.Store">
         <![CDATA[
-            INSERT INTO store (name, address, store_img_url, phone, introduce, business_hour, holiday, category_id)
-            VALUES (#{name}, #{address}, #{store_img_url}, #{phone}, #{introduce}, #{business_hour}, #{holiday}, #{category_id})
+            INSERT INTO store (user_id, name, address, store_img_url, phone, introduce, business_hour, holiday, category_id)
+            VALUES (#{user_id}, #{name}, #{address}, #{store_img_url}, #{phone}, #{introduce}, #{business_hour}, #{holiday}, #{category_id})
         ]]>
         <selectKey keyColumn="store_id" keyProperty="store_id" order="AFTER" resultType="java.lang.Long">
             SELECT store_id FROM store WHERE store_id = LAST_INSERT_ID()

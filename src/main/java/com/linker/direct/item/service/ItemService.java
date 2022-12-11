@@ -10,5 +10,5 @@ import java.util.List;
 public interface ItemService {
     void create(ItemFormDto itemFormDto, List<MultipartFile> uploadFiles) throws Exception;
 
-    Item read(int id) throws Exception;
+    Item read(Item item) throws Exception;
 }

@@ -23,45 +23,51 @@
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container-fluid">
-    <div class="container-fluid pt-3">
-        <div class="w-25 d-flex align-items-center mb-3">
-            <div class="me-2">카테고리</div>
-            <select id="selectCategory" class="form-select-sm" aria-label="Select Category">
-                <option selected>카테고리 선택</option>
-                <c:forEach var="category" items="${categoryList}">
-                    <option value="${category.category_id}" class="dropdown-item">${category.name}</option>
-                </c:forEach>
-            </select>
+    <form id="uploadForm" action="${ctx}/item/create" method="post">
+        <input type="hidden" name="_method" value="put">
+        <div class="container-fluid pt-3">
+            <div class="w-25 d-flex align-items-center mb-3">
+                <div class="me-2">카테고리</div>
+                <select id="selectCategory" class="form-select-sm" aria-label="Select Category">
+                    <option selected>카테고리 선택</option>
+                    <c:forEach var="category" items="${categoryList}">
+                        <option value="${category.category_id}" class="dropdown-item">${category.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-text">상품명</div>
+                <input id="name" name="name" type="text" class="form-control" aria-label="Product Name">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-text">가격</div>
+                <input id="price" name="price" type="text" class="form-control" aria-label="Price">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-text">재고</div>
+                <input id="stock" name="stock" type="text" class="form-control" aria-label="Stock">
+            </div>
+            <div class="input-group">
+                <div class="input-group-text">상품 설명</div>
+                <textarea id="description" name="description" class="form-control" aria-label="Product Description"></textarea>
+            </div>
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-text">상품명</div>
-            <input id="name" name="name" type="text" class="form-control" aria-label="Product Name">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-text">가격</div>
-            <input id="price" name="price" type="text" class="form-control" aria-label="Price">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-text">재고</div>
-            <input id="stock" name="stock" type="text" class="form-control" aria-label="Stock">
-        </div>
-        <div class="input-group">
-            <div class="input-group-text">상품 설명</div>
-            <textarea id="description" name="description" class="form-control" aria-label="Product Description"></textarea>
-        </div>
-    </div>
 
-    <div id="uploadList" class="w-100 d-flex flex-wrap mt-3 gap-3"></div>
-    <div id="fileDrop" class="w-100 mt-3 position-relative">
-        <div class="position-absolute top-50 start-50 translate-middle">사진을 드래그..</div>
-    </div>
-    <button type="button" id="submitBtn" class="btn btn-primary mt-3" style="display: none;" onclick="uploadFiles
-    ()">Submit</button>
+        <div id="uploadList" class="w-100 d-flex flex-wrap mt-3 gap-3"></div>
+        <div id="fileDrop" class="w-100 mt-3 position-relative">
+            <div class="position-absolute top-50 start-50 translate-middle">사진을 드래그..</div>
+        </div>
+        <button type="button" id="submitBtn" class="btn btn-primary mt-3" style="display: none;" onclick="uploadFiles()">Submit</button>
+    </form>
 </div>
 </body>
 <script>
     let fileArray = [];
     $(document).ready(function () {
+        $("#uploadForm").submit(function (e) {
+            e.preventDefault();
+        });
+
         let fileDrop = $("#fileDrop");
         let uploadList = $("#uploadList");
         let fileIndex = 0;

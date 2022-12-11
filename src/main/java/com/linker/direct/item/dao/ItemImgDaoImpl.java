@@ -25,6 +25,7 @@ public class ItemImgDaoImpl implements ItemImgDao {
      */
 
     public void create(ItemImg itemImg) throws DataAccessException {
+        System.out.println("ItemImgDaoImpl.create" + itemImg.toString());
         sqlSession.insert(NAMESPACE + "create", itemImg);
     }
 

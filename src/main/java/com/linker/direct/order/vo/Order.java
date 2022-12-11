@@ -1,12 +1,14 @@
-package com.linker.direct.order;
+package com.linker.direct.order.vo;
 
 import com.linker.direct.common.Base;
 import com.linker.direct.order.OrderStatus;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
-@Getter @ToString
+@Getter @Setter
+@ToString
 @EqualsAndHashCode
 public class Order extends Base { // 주문 정보
     private Long order_id;
@@ -14,10 +16,10 @@ public class Order extends Base { // 주문 정보
     private int total_price;
     private OrderStatus status;
 
-    public Order(Long order_id, Long user_id, int total_price, OrderStatus status) {
-        this.order_id = order_id;
-        this.user_id = user_id;
-        this.total_price = total_price;
-        this.status = status;
+    public Order() { }
+
+    // 상품 추가되면, total_price 계산
+    public void addItem(OrderItem orderItem) {
+        this.total_price += orderItem.getPrice();
     }
 }

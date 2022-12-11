@@ -105,9 +105,27 @@
 		overflow-y:hidden;
 	}
 
-	.item-lists::-webkit-scrollbar {
+	::-webkit-scrollbar {
 		display: none;
 	}
+
+	.item-lists::-webkit-scrollbar {
+		display: block;
+	}
+
+	.item-lists::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.item-lists::-webkit-scrollbar-thumb {
+		background: #888;
+		border-radius: 10px;
+	}
+
+	.item-lists::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+
 
 	@keyframes testAnim {
 		0% {
@@ -241,13 +259,12 @@
 		<i class="fa-solid fa-chevron-left"></i>
 	</a>
 </div>
-<div class="containerfluid p-3 mt-2 mainContainer">
-	<div class="mb-3">
+<div class="w-100 mt-2 mainContainer">
+	<div class="p-3">
 		<i class="fa-solid fa-basket-shopping" style="color:pink"></i>
-		<span>오늘의 쇼핑제안</span>
+		<span class="fw-bold">오늘의 쇼핑제안</span>
 	</div>
-
-	<div class="gap-3 d-flex item-lists" >
+	<div class="gap-3 d-flex px-3 pb-4 item-lists" >
 		<c:forEach var="item" items="<%=recommendList%>">
 			<a id="list-recommend-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=itemId">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
@@ -268,13 +285,11 @@
 			</a>
 		</c:forEach>
 	</div>
-</div>
-<div class="container-fluid p-3 mt-2 mainContainer">
-	<div>
+	<div class="p-3">
 		<i class="fa-solid fa-certificate" style="color:gold"></i>
-		<span style="color:orangered">특가 상품</span>
+		<span class="fw-bold" style="color:orangered">특가 상품</span>
 	</div>
-	<div class="gap-3 d-flex item-lists" style="overflow:scroll">
+	<div class="gap-3 d-flex px-3 pb-4 item-lists" style="overflow:scroll">
 		<c:forEach var="item" items="<%=recommendList%>">
 			<a id="list-item-${item+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/item?id=${itemId}">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
@@ -296,7 +311,7 @@
 		</c:forEach>
 	</div>
 </div>
-<div class="container-fluid p-3 mt-2 mainContainer">
+<div class="w-100 mt-2 mainContainer">
 	<div class="progress">
 		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 	</div>

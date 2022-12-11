@@ -40,7 +40,7 @@ function uploadFiles() {
   alert("업로드를 시작합니다." + "[카테고리 : " + category_id + "][상품명 : " + name + "][가격 : " + price + "][재고 : " + stock + "][상품설명 : " + description + "]");
 
   formData.append("category_id", category_id);
-  formData.append("itemName", name);
+  formData.append("name", name);
   formData.append("price", price);
   formData.append("stock", stock);
   formData.append("description", description);
@@ -50,7 +50,7 @@ function uploadFiles() {
   }
 
   $.ajax({
-    url: "/store/item/uploadAjax",
+    url: "/item/uploadAjax",
     type: "POST",
     data: formData,
     enctype: "multipart/form-data",
@@ -58,11 +58,12 @@ function uploadFiles() {
     contentType: false, // 필수 ( multipart/form-data 형식으로 전송하기 위해 false로 설정 )
     cache: false,
     success: function (result) {
-      alert("success");
+      alert("업로드가 완료되었습니다.");
+      location.href = "/item/list";
     },
     error: function (result) {
-      alert("error : check console");
-        console.log(result);
+      alert("업로드 실패");
+      console.log(result);
     },
   });
 }

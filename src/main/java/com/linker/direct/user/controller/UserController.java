@@ -1,8 +1,10 @@
 package com.linker.direct.user.controller;
 
 import com.linker.direct.user.service.UserService;
+import com.linker.direct.user.vo.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +17,15 @@ public class UserController {
     private final UserService userService;
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request) throws Exception {
+    public String login(Model model, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         try {
-            session.setAttribute("user", userService.login());
+            User user = userService.login();
+            if(user != null) {
+                session.setAttribute("user", user);
+            }
         } catch(Exception e) {
             e.printStackTrace();
-        } finally {
-            session.setAttribute("user", null);
         }
         // String referer = request.getHeader("Referer");
         // request.getSession().setAttribute("prevPage", referer);
