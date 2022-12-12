@@ -41,11 +41,11 @@ public class UtilController {
 	
 	// 아이디에 해당하는 주소지 리스트
 	@RequestMapping(value = "/addressList", method = RequestMethod.GET)
-	public ModelAndView addressList(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addressList(@RequestParam("user_id") Long user_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("addressList user_id ==> " + user_id);
 		
 		// 수정을 요청한 user_id에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
-		List<AddressDTO> addressList = addressService.addressList(Integer.parseInt((String)request.getParameter("user_id")));
+		List<AddressDTO> addressList = addressService.addressList((long) Integer.parseInt((String)request.getParameter("user_id")));
 		System.out.println("addressList 조회 ==> " + addressList);
 		
 		// 찾아온 데이터를 가지고 주소 리스트 화면으로 넘어간다.

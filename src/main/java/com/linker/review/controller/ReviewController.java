@@ -31,7 +31,7 @@ public class ReviewController {
 		// 리뷰 등록 화면
 		// tomcat server module path를 /(루트) 로 수정해야 제대로 작동
 		@RequestMapping(value = "/reviewRegisterForm", method = RequestMethod.GET)
-		public String reviewRegisterForm(int user_id, Model model) throws Exception {
+		public String reviewRegisterForm(Long user_id, Model model) throws Exception {
 			
 			logger.info("ReviewController 리뷰 등록 화면 불러오기......");
 			List<ProductDTO> productDTO = reviewService.read(user_id);

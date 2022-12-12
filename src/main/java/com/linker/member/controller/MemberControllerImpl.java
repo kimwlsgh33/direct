@@ -45,7 +45,7 @@ public class MemberControllerImpl implements MemberController {
 			HttpServletResponse response) throws Exception {
 		
 		logger.info("MemberControllerImpl login() 시작......");
-		System.out.println("로그인 정보 => " + member.getId() + " : " + member.getPassword());
+		System.out.println("로그인 정보 => " + member.getId() + " : " + member.getPwd());
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -58,7 +58,7 @@ public class MemberControllerImpl implements MemberController {
 		if(memberVO != null) {	// 로그인 정보에 해당하는 자료가 있으면
 			
 			// 아이디와 비밀번호가 일치하면 세션을 발급한다.
-			if(member.getPassword().equals(memberVO.getPassword())) {
+			if(member.getPwd().equals(memberVO.getPwd())) {
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("member", memberVO);
@@ -169,7 +169,7 @@ public class MemberControllerImpl implements MemberController {
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
 	@RequestMapping(value="/updateMemberForm.do", method=RequestMethod.GET)
-	public ModelAndView updateMemberForm(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView updateMemberForm(@RequestParam("user_id") Long user_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
 		System.out.println("MemberController 회원 정보 조회 user_id ==> " + user_id);
@@ -237,7 +237,7 @@ public class MemberControllerImpl implements MemberController {
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
 	@RequestMapping(value="removeMember.do", method=RequestMethod.GET)
-	public ModelAndView removeMember(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView removeMember(@RequestParam("user_id") Long user_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");

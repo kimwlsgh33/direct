@@ -18,7 +18,7 @@ public class AddressDAO {
 	private static final String namespace = "com.linker.util";
 	
 	// 아이디에 해당하는 주소지 리스트
-	public List<AddressDTO> addressList(int user_id) throws Exception {
+	public List<AddressDTO> addressList(Long user_id) throws Exception {
 		List<AddressDTO> addressDTO = sqlSession.selectList(namespace + ".addressList", user_id);
 		return addressDTO;
 	}

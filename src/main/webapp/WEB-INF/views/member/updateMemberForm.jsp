@@ -45,13 +45,13 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		<div class="form-group">
 			<label for="id" class="form-label">비밀번호</label>
 			<div class="col-md-8">
-				<input type="password" class="form-control" id="pwd" name="password" maxlength="20" value="${member.password}"/>
+				<input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" value="${member.pwd}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="id" class="form-label">비밀번호 확인</label>
 			<div class="col-md-8">
-				<input type="password" class="form-control" id="repwd" name="repwd" maxlength="20" value="${member.password}"/>
+				<input type="password" class="form-control" id="repwd" name="repwd" maxlength="20" value="${member.pwd}"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -69,7 +69,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		<div class="form-group">
 			<label for="id" class="form-label">연락처</label>
 			<div class="col-md-8">
-				<input type="text" class="form-control" id="number" name="number" maxlength="20" value="${member.number}"/>
+				<input type="text" class="form-control" id="number" name="number" maxlength="20" value="${member.phone}"/>
 			</div>
 		</div>
 		<div class="form-group">

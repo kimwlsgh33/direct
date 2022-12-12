@@ -57,7 +57,7 @@
 		</div>
 		<div class="form-group row justify-content-center" style="padding: 10px;">
 			<div class="col-sm-4 input-group-lg">
-				<input type="password" class="form-control" id="pwd" name="password" maxlength="20" placeholder="PassWord"/>
+				<input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" placeholder="PassWord"/>
 			</div>
 		</div>
 		<div class="form-group row justify-content-center">

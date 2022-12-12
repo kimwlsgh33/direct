@@ -37,7 +37,7 @@ public interface MemberController {
 	// 아이디에 해당하는 회원 정보 조회
 	//-----------------------------------------------------------------------------------------------------------
 	// public ModelAndView updateMemberForm(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView updateMemberForm(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updateMemberForm(@RequestParam("user_id") Long user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 수정하기
@@ -54,7 +54,7 @@ public interface MemberController {
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 정보 삭제하기
 	//-----------------------------------------------------------------------------------------------------------
-	public ModelAndView removeMember(@RequestParam("user_id") int user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView removeMember(@RequestParam("user_id") Long user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//-----------------------------------------------------------------------------------------------------------
 	// 회원 가입 화면 불러오기 (AJAX)

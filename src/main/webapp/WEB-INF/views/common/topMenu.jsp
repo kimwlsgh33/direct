@@ -98,7 +98,7 @@
 						    aria-label="Username"
 						  />
 						  <input
-						  name="password"
+						  name="pwd"
 						    type="password"
 						    class="form-control"
 						    placeholder="password"

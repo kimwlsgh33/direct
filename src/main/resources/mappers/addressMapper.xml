@@ -52,7 +52,7 @@
 	<!-- 주소리스트에서 주소 선택 시 myinfo 테이블 주소를 변경 -->
 	<update id="updateAddress" parameterType="com.linker.util.address.AddressDTO">
 		<![CDATA[
-		UPDATE 	myinfo
+		UPDATE user
 		SET address = (select address from address where address_id = #{address_id}),
 			zip_code = (select zip_code from address where address_id = #{address_id}),
 			address_detail = (select address_detail from address where address_id = #{address_id})

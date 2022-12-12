@@ -78,7 +78,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<b>연락처</b>
 				</div>
 				<div class="col-md-2">
-					<b>${product[0].number}</b>
+					<b>${product[0].phone}</b>
 				</div>
 			</div>
 			<div class="row justify-content-start" style="margin-bottom: 10px;">
