@@ -49,4 +49,11 @@ public class ProductDAOImpl implements ProductDAO {
 		return ProductDTO;
 	}
 
+	// user_id에 해당하는 상품정보 추출하기
+	@Override
+	public List<ProductDTO> readRefund(Long user_id) throws DataAccessException {
+		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".readRefund", user_id);
+		return ProductDTO;
+	}
+
 }

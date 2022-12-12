@@ -67,6 +67,25 @@ public class ProductController {
 			return mav;
 			
 		}
+		
+		// user_id에 해당하는 상품정보 추출하기
+		@RequestMapping(value = "/productRefund", method=RequestMethod.GET)
+		public ModelAndView productRefund(@RequestParam(value = "user_id") Long user_id, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			
+			System.out.println("ProductController 회원 정보 조회 user_id ==> " + user_id);
+			
+			//상품 no에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
+			List<ProductDTO> ProductDTO = ProductService.productRefund((long) Integer.parseInt((String)request.getParameter("user_id")));
+			System.out.println("ProductController 상품 정보 조회 => " + ProductDTO);
+			
+			// 찾아온 데이터를 가지고 해당 화면으로 넘어간다.
+			ModelAndView mav = new ModelAndView("/product/productRefund");
+			mav.addObject("product", ProductDTO);
+			
+			return mav;
+			
+		}
 
 
 }

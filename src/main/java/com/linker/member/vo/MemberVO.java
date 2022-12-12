@@ -29,5 +29,6 @@ public class MemberVO {
 	private int point;
 	private Timestamp updated_at;
 	private String status;
-	
+	//private	Role role;	// 권한
+	//private Grade grade;	// 유저 등급
 }

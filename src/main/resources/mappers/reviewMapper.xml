@@ -25,7 +25,7 @@
 	<select id="listAll" resultType="com.linker.review.dto.ReviewDTO">
 		<![CDATA[
 			SELECT review_no, user_id, item_id, subject, content, reg_date, rating, img_url,
-			(select name from order_item where order_item.item_id = review.item_id) as item_name, 
+			(select distinct name from order_item where order_item.item_id = review.item_id) as item_name, 
 			(select count(cno) from comment where comment.review_no = review.review_no) AS cnt
 			FROM review
 			ORDER BY review_no desc
@@ -36,7 +36,7 @@
 	<select id="detail" resultType="com.linker.review.dto.ReviewDTO">
 		<![CDATA[
 			SELECT review_no, user_id, item_id, subject, content, reg_date, rating, img_url,
-			(select name from order_item where order_item.item_id = review.item_id) as item_name
+			(select distinct name from order_item where order_item.item_id = review.item_id) as item_name
 			FROM review
 			WHERE review_no = #{review_no}
 		]]>

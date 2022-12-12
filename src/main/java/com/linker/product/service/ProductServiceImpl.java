@@ -40,5 +40,12 @@ public class ProductServiceImpl implements ProductService {
 		return ProductDTO;
 	}
 
+	// user_id에 해당하는 상품정보 추출하기
+	@Override
+	public List<ProductDTO> productRefund(Long user_id) throws DataAccessException {
+		List<ProductDTO> ProductDTO = ProductDAO.readRefund(user_id);
+		return ProductDTO;
+	}
+
 
 }

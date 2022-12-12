@@ -13,7 +13,7 @@ public class ProductDTO {
 	
 	private Long user_id;	// 구매자 고유 아이디PK
 	private Long item_id;	// 상품 번호
-	private int order_id;	// 주문 번호
+	private Long order_id;	// 주문 번호
 	private int count;	// 구매한 상품 갯수
 	private int price;	// 구매한 상품 가격
 	private String name;	// 구매한 상품 이름
@@ -26,5 +26,6 @@ public class ProductDTO {
 	private String phone;	// 사용자 연락처
 	private String zip_code;
 	private String address_detail;
+	private String status;
 	
 }

@@ -53,6 +53,7 @@
 			  </div>
 			  <div class="tab-pane fade" id="menu2" role="tabpanel" aria-labelledby="profile-tab">
 			  <jsp:include page="./product/productList.jsp" flush="false"/>
+			  <!-- <jsp:include page="./product/productRefund?user_id=${member.user_id}" flush="false"/> -->
 			  </div>
 			  <div class="tab-pane fade" id="menu3" role="tabpanel" aria-labelledby="contact-tab">여행</div>
 			  <div class="tab-pane fade" id="menu4" role="tabpanel" aria-labelledby="contact-tab">티켓</div>
@@ -65,9 +66,7 @@
 
 
 <!-- 푸터영역 -->
-<div class="container" style="margin-top: 520px;">
-<jsp:include page="./common/footer.jsp" flush="false"/>
-</div>
+
 
 </body>
 </html>

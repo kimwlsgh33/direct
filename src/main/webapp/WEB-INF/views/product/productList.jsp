@@ -36,7 +36,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				<div class="row justify-content-center">
 					<div class="col-sm-7">
 						<div style="margin-left: 20px; margin-top: 10px;">
-							<span>배송완료
+							<span>${p.status}
 							<span class="btn" data-bs-toggle="modal" data-bs-target="#mymodal"><i class="bi bi-three-dots-vertical"></i></span>
 							</span>
 						</div>

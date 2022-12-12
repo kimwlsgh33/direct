@@ -24,16 +24,16 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 <jsp:include page="../common/sideMenu.jsp" flush="false"/>
 	<div class="col-sm-10" id="top" style="height: 50px;">
 		<jsp:include page="../common/headMenu.jsp" flush="false"/>
-		<h3 style="padding-left: 25px; margin-top: 30px;">주문상세</h3>
+		<h3 style="padding-left: 25px; margin-top: 30px;">취소/반품/교환/환불 내역</h3>
+		<c:forEach var="p" items="${product}">	
 		<div class="row justify-content-start" style="padding-left: 25px;">
 			<div class="col-md-2">
-				<h5><fmt:formatDate value="${product[0].order_date}" pattern="yyyy.MM.dd hh:mm"/></h5>
+				<h5><fmt:formatDate value="${p.order_date}" pattern="yyyy.MM.dd hh:mm"/></h5>
 			</div>
 			<div class="col-md-2">
-				<h5>주문번호 ${product[0].order_id}</h5>
+				<h5>주문번호 ${p.order_id}</h5>
 			</div>
 		</div>
-		<c:forEach var="p" items="${product}">	
 			<div class="col-sm-9" style="margin-left: 25px; width: 75%;">
 				<h4 style="margin-left:15px;"><fmt:formatDate value="${p.order_date}" pattern="yyyy.MM.dd hh:mm"/></h4>
 				<div class="row justify-content-center">
@@ -61,74 +61,10 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				</div>
 			</div>
 		</c:forEach>
-		
-		<div>
-		<b style="padding-left: 25px;">받는사람 정보</b>
-		<div class="col-sm-8" style="border-top: 2px solid gray; margin-left:25px; width: 75%; margin-top: 10px; border-bottom: 1px solid lightgray;">
-			<div class="row justify-content-start" style="margin-bottom: 10px; margin-top: 10px;">
-				<div class="col-md-2">
-					<b>받는사람</b>
-				</div>
-				<div class="col-md-2">
-					<b>${product[0].u_name}</b>
-				</div>
-			</div>
-			<div class="row justify-content-start" style="margin-bottom: 10px;">
-				<div class="col-md-2">
-					<b>연락처</b>
-				</div>
-				<div class="col-md-2">
-					<b>${product[0].phone}</b>
-				</div>
-			</div>
-			<div class="row justify-content-start" style="margin-bottom: 10px;">
-				<div class="col-md-2">
-					<b>받는 주소</b>
-				</div>
-				<div class="col-md-7">
-					<b>${product[0].zip_code} ${product[0].address} ${product[0].address_detail}</b>
-				</div>
-			</div>
 		</div>
-		</div>
-		
-		<div style="margin-top: 40px;">
-		<b style="padding-left: 25px;">결제 정보</b>
-		<div class="col-sm-8" style="border-top: 2px solid gray; margin-left:25px; width: 75%; margin-top: 10px;border-bottom: 1px solid lightgray;">
-		<div class="row justify-content-between">
-			<div class="col-md-5 justify-content-start" style="margin-bottom: 10px; margin-top: 10px;">
-				<div class="col-md-4">
-					<b>결제 수단</b>
-				</div>
-				<div class="col-md-7">
-					<b>롯데카드 / 일시불</b>
-				</div>
-			</div>
-			<div class="col-md-5 row justify-content-start" style="margin-bottom: 10px;">
-			
-				<div class="col-md-6" style="height: 25px; margin-top:10px;">
-					<b>총 상품가격</b>
-				</div>
-				<div class="col-md-5" style="height: 25px; margin-top:10px;">
-					<b>${product[0].price} 원</b>
-				</div>
-		
-			
-				<div class="col-md-6">
-					<b>배송비</b>
-				</div>
-				<div class="col-md-4">
-					<b>가격</b>
-				</div>
-	
-		</div>
-		</div>
-		</div>
-		
-	</div>
-	</div>
 	</div>
 </div>
+
 <!-- 모달창 구현 -->
 <div class="modal fade" id="mymodal" role="dialog" tabindex="-1" aria-hidden="true" >
 	<div class="modal-dialog">
