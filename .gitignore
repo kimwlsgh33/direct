@@ -243,6 +243,7 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-!/src/main/resources/jdbc.properties
-!/.vim/
-!/.idea/
+!/src/main/resources/config/jdbc.properties
+.vim/
+.idea/
+.fleet/

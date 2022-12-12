@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
+	#footerNav {
+		margin-top: 200px;
+		color: rgba(0, 0, 0, 0.5);
+	}
+
 	#footerNav a {
-		color: black;
+		color: rgba(0, 0, 0, 0.5);
 		text-decoration: none;
 	}
 
@@ -43,5 +48,5 @@
 	</div>
 	<div>대표전화 1588-3819</div>
 
-	<div style="font-size: 24px; padding: 10px;">DIRECT</div>
+	<div class="py-5" style="font-size: 24px;">DIRECT</div>
 </nav>

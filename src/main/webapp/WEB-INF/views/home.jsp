@@ -5,12 +5,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%
 	ArrayList<Integer> recommendList = new ArrayList<Integer>();
 	for (int i = 0; i < 10; i++) {
 		recommendList.add(i);
 	}
-
 %>
 <!DOCTYPE html>
 <html>
@@ -79,8 +79,71 @@
 		background-color: #F5F5F5;
 	}
 
-	.cardImage {
+	.itemCard {
+		opacity: 0;
+		box-shadow:
+				0.7px 0.7px 0.7px rgba(0, 0, 0, 0.02),
+				1.7px 1.8px 1.8px rgba(0, 0, 0, 0.028),
+				3.3px 3.4px 3.4px rgba(0, 0, 0, 0.035),
+				5.8px 6px 6px rgba(0, 0, 0, 0.042),
+				10.9px 11.3px 11.3px rgba(0, 0, 0, 0.05),
+				26px 27px 27px rgba(0, 0, 0, 0.07);
 	}
+
+	.itemCard:hover {
+		box-shadow:
+				0.7px 0.7px 0.7px rgba(0, 0, 0, 0.02),
+				1.7px 1.8px 1.8px rgba(0, 0, 0, 0.028),
+				3.3px 3.4px 3.4px rgba(0, 0, 0, 0.035),
+				5.8px 6px 6px rgba(0, 0, 0, 0.042),
+				10.9px 11.3px 11.3px rgba(0, 0, 0, 0.05),
+				26px 27px 27px rgba(0, 0, 0, 0.2);
+	}
+
+	.itemVO-lists {
+		overflow-x:scroll;
+		overflow-y:hidden;
+	}
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	.itemVO-lists::-webkit-scrollbar {
+		display: block;
+	}
+
+	.itemVO-lists::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.itemVO-lists::-webkit-scrollbar-thumb {
+		background: #888;
+		border-radius: 10px;
+	}
+
+	.itemVO-lists::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+
+
+	@keyframes testAnim {
+		0% {
+			opacity: 0;
+			transform: scale(0.5) translateX(100%);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1) translateX(0);
+		}
+	}
+
+	.fadeInRight {
+		animation-name: testAnim;
+		animation-duration: 1s;
+		opacity: 1;
+	}
+
 </style>
 <body>
 <jsp:include page="common/header.jsp" flush="false"/>
@@ -94,7 +157,7 @@
 </div>
 <div class="container-fluid pt-5 mainContainer">
 	<div class="row">
-		<div class="tete d-flex justify-content-center mb-4 fs-3 fw-bold">오늘바로 받아보는 당일배송</div>
+		<div class="d-flex justify-content-center mb-4 fs-3 fw-bold">오늘바로 받아보는 당일배송</div>
 	</div>
 	<div class="row">
 		<div class="col">
@@ -107,13 +170,13 @@
 				</div>
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary container-fluid mainNavs" style="padding:0 20px;">
 					<div class="navbar-nav container-fluid">
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">행사중</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">베스트</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">펫상담</a>
 						</li>
 					</div>
@@ -130,13 +193,13 @@
 				</div>
 				<nav class="navbar navbar-expand-lg navbar-dark container-fluid mainNavs" style="padding:0 20px; background-color: #EB5787;">
 					<div class="navbar-nav container-fluid">
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">행사중</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">베스트</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-itemVO">
 							<a href="#" class="nav-link">펫상담</a>
 						</li>
 					</div>
@@ -146,113 +209,18 @@
 	</div>
 
 	<div class="row mt-5 mb-4">
-		<div class="tete d-flex justify-content-center mb-2 fs-3 fw-bold">믿고사는 브랜드직영관</div>
+		<div class="d-flex justify-content-center mb-2 fs-3 fw-bold">믿고사는 브랜드직영관</div>
 	</div>
 
 	<div class="container text-center d-flex justify-content-center flex-wrap gap-4 mb-4">
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-crown fa-xl" style="color: gold;"></i>
-			</div>
-			<span>베스트</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-gift fa-xl" style="color:goldenrod;"></i>
-			</div>
-			<span>단독상품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-umbrella-beach fa-xl" style="color: lightskyblue;"></i>
-			</div>
-			<span>시즌상품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-bowl-food fa-xl" style="color: wheat"></i>
-			</div>
-			<span>음식</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-heart fa-xl" style="color: red"></i>
-			</div>
-			<span>건강/관리</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-shirt fa-xl"></i>
-			</div>
-			<span>패션</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-pump-soap fa-xl" style="color: mediumpurple"></i>
-			</div>
-			<span>미용</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-campground fa-xl" style="color: forestgreen"></i>
-			</div>
-			<span>캠핑용품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-fish-fins fa-xl" style="color: blue"></i>
-			</div>
-			<span>낚시용품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-mobile fa-xl" style="color: black"></i>
-			</div>
-			<span>전자제품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-ghost fa-xl" style="color: darkgray"></i>
-			</div>
-			<span>장난감</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-paw fa-xl" style="color: hotpink"></i>
-			</div>
-			<span>펫 용품</span>
-		</a>
-		<a href="#" class="link-dark btn-circle">
-
-
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
-				<i class="fa-solid fa-boxes-stacked fa-xl" style="color: sandybrown"></i>
-			</div>
-			<span>기타</span>
-		</a>
+		<c:forEach var="category" items="${categoryList}">
+			<a href="${ctx}/search?categoryVO=${category.category_id}" class="link-dark btn-circle">
+				<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
+					<i class="${category.icon} fa-xl" style="color:  ${category.color}"></i>
+				</div>
+				<span>${category.name}</span>
+			</a>
+		</c:forEach>
 	</div>
 
 	<hr class="my-4">
@@ -291,22 +259,21 @@
 		<i class="fa-solid fa-chevron-left"></i>
 	</a>
 </div>
-<div class="containerfluid p-3 mt-2 mainContainer">
-	<div class="mb-3">
+<div class="w-100 mt-2 mainContainer">
+	<div class="p-3">
 		<i class="fa-solid fa-basket-shopping" style="color:pink"></i>
-		<span>오늘의 쇼핑제안</span>
+		<span class="fw-bold">오늘의 쇼핑제안</span>
 	</div>
-
-	<div class="gap-3 d-flex" style="overflow:scroll">
-		<c:forEach var="item" items="<%=recommendList%>">
-			<div id="list-item-${item+1}" class="rounded-4 shadow mb-3 pt-3" >
+	<div class="gap-3 d-flex px-3 pb-4 itemVO-lists" >
+		<c:forEach var="itemVO" items="<%=recommendList%>">
+			<a id="list-recommend-${itemVO+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/itemVO?id=itemId">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
 					<p class="card-text mb-1"><small class="text-muted">75% / 1000+</small></p>
 					<div class="progress">
 						<c:choose>
-							<c:when test="${item == 3}">
+							<c:when test="${itemVO == 3}">
 								<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 							</c:when>
 							<c:otherwise>
@@ -315,25 +282,23 @@
 						</c:choose>
 					</div>
 				</div>
-			</div>
+			</a>
 		</c:forEach>
 	</div>
-</div>
-<div class="container-fluid p-3 mt-2 mainContainer">
-	<div>
+	<div class="p-3">
 		<i class="fa-solid fa-certificate" style="color:gold"></i>
-		<span style="color:orangered">특가 상품</span>
+		<span class="fw-bold" style="color:orangered">특가 상품</span>
 	</div>
-	<div class="gap-3 d-flex" style="overflow:scroll">
-		<c:forEach var="item" items="<%=recommendList%>">
-			<div id="list-item-${item+1}" class="rounded-4 shadow mb-3 pt-3" >
+	<div class="gap-3 d-flex px-3 pb-4 itemVO-lists" style="overflow:scroll">
+		<c:forEach var="itemVO" items="<%=recommendList%>">
+			<a id="list-itemVO-${itemVO+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/itemVO?id=${itemId}">
 				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
 					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
 					<p class="card-text mb-1"><small class="text-muted">75% / 1000+</small></p>
 					<div class="progress">
 						<c:choose>
-							<c:when test="${item == 1}">
+							<c:when test="${itemVO == 1}">
 								<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 							</c:when>
 							<c:otherwise>
@@ -342,15 +307,41 @@
 						</c:choose>
 					</div>
 				</div>
-			</div>
+			</a>
 		</c:forEach>
 	</div>
 </div>
-<div class="container-fluid p-3 mt-2 mainContainer">
-	<div class="progress">
-		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-	</div>
+<div class="w-100 mt-2 mainContainer">
+<%--	<div class="progress">--%>
+<%--		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>--%>
+<%--	</div>--%>
 </div>
 <jsp:include page="common/footer.jsp" flush="false"/>
 </body>
+<script>
+	// id에 itemVO-list-1~5까지의 id를 가진 a태그를 선택
+	// 선택된 a태그에 click 이벤트를 할당
+
+
+	const itemCards = document.querySelectorAll('.itemVO-lists a');
+
+	//const btn1 = document.querySelector("#list-itemVO-1");
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry, idx) => {
+			if (entry.isIntersecting) {
+				setTimeout(() => {
+					entry.target.classList.add('fadeInRight');
+				}, 50 * idx);
+			} else {
+				// entry.target.classList.remove('fadeInRight');
+			}
+		});
+	});
+
+	//observer.observe(btn1);
+	itemCards.forEach((itemCard) => {
+		observer.observe(itemCard);
+	});
+
+</script>
 </html>

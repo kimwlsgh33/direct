@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml 선언 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--태그 규칙 선언-->
+
+<mapper namespace="order">
+    <insert id="create" parameterType="com.linker.direct.order.vo.OrderVO">
+        <![CDATA[
+            INSERT INTO `order` (user_id)
+            VALUES (#{user_id})
+        ]]>
+        <selectKey keyColumn="order_id" keyProperty="order_id" order="AFTER" resultType="java.lang.Long">
+            SELECT order_id FROM `order` WHERE order_id = LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+</mapper>
