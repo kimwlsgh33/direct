@@ -1,9 +1,7 @@
 package com.linker.direct.search.dao;
 
-import com.linker.direct.cart.dto.CartDTO;
-import com.linker.direct.common.util.Criteria;
 import com.linker.direct.common.util.SearchCriteria;
-import com.linker.direct.search.dto.SearchDTO;
+import com.linker.direct.search.dto.itemDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +30,9 @@ public class SearchDAOImpl implements SearchDAO {
 //    }
 
     @Override
-    public List<SearchDTO> searchListPaging(SearchCriteria cri) throws Exception {
+    public List<itemDTO> searchListPaging(SearchCriteria cri) throws Exception {
         logger.info("SearchDAOImpl searchListPaging(Criteria cri) 게시글 목록 가져오기..... => paging처리");
-        List<SearchDTO> searchListPaging = sqlSession.selectList(namespace + ".searchListPaging", cri);
+        List<itemDTO> searchListPaging = sqlSession.selectList(namespace + ".searchListPaging", cri);
         logger.info("SearchDAOImpl searchListPaging(Criteria cri) Data ==> " + searchListPaging);
         return searchListPaging;
     }
@@ -49,9 +47,9 @@ public class SearchDAOImpl implements SearchDAO {
     }
 
     @Override
-    public List<SearchDTO> searchListAll(SearchCriteria cri) throws Exception {
+    public List<itemDTO> searchListAll(SearchCriteria cri) throws Exception {
         logger.info("SearchDAOImpl searchListAll(Criteria cri) 게시글 목록 가져오기..... => paging처리" + cri);
-        List<SearchDTO> searchListAll = sqlSession.selectList(namespace + ".searchListAll", cri);
+        List<itemDTO> searchListAll = sqlSession.selectList(namespace + ".searchListAll", cri);
         logger.info("SearchDAOImpl searchListAll(Criteria cri) Data ==> " + searchListAll);
         return searchListAll;
     }

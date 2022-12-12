@@ -55,7 +55,7 @@
             <form id="searchList" method="get"  action="${ctx}/search/searchList">
                 <div class="form-group justify-content-between w-100">
                     <span id="searchBar" class="input-group w-100 align-items-center">
-                        <input class="form-control" type="text" id="searchKeyword" value="${keyword}"  name="keyword" placeholder="원하시는 상품을 찾아보세요!" style="border-width: thin">
+                        <input class="form-control" type="text" id="searchKeyword" value="${keyward}"  name="keyword" placeholder="원하시는 상품을 찾아보세요!" style="border-width: thin">
                         <button id="searchButton" type="submit" class="btn" style="border-width: 0">
                             <i class="fas fa-search"></i>
                         </button>
@@ -84,7 +84,7 @@
                 <li class="nav-item user">
                     <i class="fas fa-user-circle" style="color: black" ></i>
                 </li>
-                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList()">
+                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList(1)">
                     <form method="get" action="${ctx}/cart/cartList">
                     <i class="fas fa-shopping-cart" style="color: black" ></i>
                     </form>
@@ -104,8 +104,8 @@
                 </div>
 
                 <div class="modal-body">
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
@@ -129,7 +129,7 @@
 </script>
 <script>
 
-    function fn_cartList() {
+    function fn_cartList(user_id) {
         // cartController에서 ajax로 cartList를 가져온다.
         $.ajax({
             url: "${ctx}/cart/cartList",
@@ -142,6 +142,7 @@
                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
+
     }
 
 </script>

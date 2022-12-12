@@ -159,23 +159,23 @@
                 <%--========================================================================================================  --%>
                 <div >
                     <a class="d-flex flex-wrap justify-content-evenly" style="text-decoration: none; color: black" href="#">
-                    <c:forEach var="product" items="${searchList}">
+                    <c:forEach var="item" items="${searchList}">
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
-                                <img src="${product.product_image}" />
-                                <h3>${product.product_name}</h3>
-                                <h1>${product.product_price}원</h1>
-                                <p>${product.product_date}</p>
+<%--                                <img src="${item.product_image}" />--%>
+                                <h3>${item.name}</h3>
+                                <h1>${item.price}원</h1>
+                                <p>${item.created_at}</p>
                                 <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
                                     <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="flip-card-back align-items-center" >
                                 <form>  <!-- 나중에 제품 상세 페이지로 ACTION 주기. -->
-                                <img src="${product.product_image}"/>
+<%--                                <img src="${item.product_image}"/>--%>
                                 </form>
-                                <button class="btn btn-outline-dark" id="${product.product_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${product.product_id})" ><i class="fas fa-shopping-cart"></i></button>
+                                <button class="btn btn-outline-dark" id="${item.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${item.item_id})" ><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
@@ -211,18 +211,18 @@
 <jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 <script>
-    function fn_addCart(product_id) {
+    function fn_addCart(item_id) {
         $.ajax({
             url: "/cart/addCart",
             type: "POST",
             data: {
-                "product_id": product_id
+                "item_id": item_id,
             },
             success: function (data) {
                 alert("장바구니에 추가되었습니다.");
             },
             error: function (request, status, error) {
-                alert(product_id + "============================" + "code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                alert(item_id + "============================" + "code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
             }
         });
     }

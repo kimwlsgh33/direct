@@ -2,22 +2,15 @@ package com.linker.direct.cart.controller;
 
 import com.linker.direct.cart.dto.CartDTO;
 import com.linker.direct.cart.service.CartService;
-import com.linker.direct.common.util.SearchCriteria;
-import com.linker.direct.search.dto.SearchDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 // 모달 안에 보여줄 장바구니 목록
 @Controller
@@ -38,7 +31,9 @@ public class CartController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("common/cartList");
         mav.addObject("cartList", cartService.CartList());
-        mav.addObject("product_id", cartDTO.getProduct_id());
+        mav.addObject("item_id", cartDTO.getItem_id());
+        mav.addObject("user_id", cartDTO.getUser_id());
+        mav.addObject("item_count", cartDTO.getItem_count());
 
         logger.info("CartController cartList() 장바구니 목록 보여주기.." + cartService.CartList());
 
@@ -55,27 +50,27 @@ public class CartController {
 
     //장바구니 삭제
     @RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
-    public String deleteCart(Integer product_id) throws Exception {
+    public String deleteCart(long item_id) throws Exception {
 
         logger.info("CartController deleteCart() 장바구니 삭제..");
-        cartService.deleteCart(product_id);
+        cartService.deleteCart(item_id);
         return "redirect:/cart/cartList";
     }
 
     //장바구니 전체 삭제
     @RequestMapping(value = "/deleteAllCart", method = RequestMethod.POST)
-    public String deleteAllCart(String user_id) throws Exception {
+    public String deleteAllCart(long user_id) throws Exception {
 
         logger.info("CartController deleteAllCart() 장바구니 전체 삭제..");
         cartService.deleteAllCart(user_id);
         return "redirect:/cart/cartList";
     }
 
-    @RequestMapping(value = "/cartCount", method = RequestMethod.GET)
-    public int cartCount(int user_id) throws Exception {
-        logger.info("CartController cartCount() 장바구니 든 프로덕트 개수..");
-        int result =  cartService.cartCount(user_id);
-        logger.info("CartController cartCount() 장바구니 든 프로덕트 개수.."+result);
+    @RequestMapping(value = "/itemCount", method = RequestMethod.GET)
+    public int itemCount(long user_id) throws Exception {
+        logger.info("CartController itemCount() 장바구니 든 프로덕트 개수..");
+        int result =  cartService.itemCount(user_id);
+        logger.info("CartController itemCount() 장바구니 든 프로덕트 개수.."+result);
         return result;
     }
 

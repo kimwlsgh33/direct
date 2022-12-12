@@ -7,28 +7,28 @@
 
 	
 	<!-- 게시글 전체 목록 가져오기 -->
-	<select id="searchListAll" resultType="com.linker.direct.search.dto.SearchDTO">
-		<![CDATA[select * from sr_product order by product_id desc]]>
+	<select id="searchListAll" resultType="com.linker.direct.search.dto.itemDTO">
+		<![CDATA[select * from item]]>
 	</select>
 
 <!--	페이징-->
 	<select id="searchListTotalCount" parameterType="com.linker.direct.common.util.Criteria" resultType="Integer">
 		<![CDATA[
 		SELECT	COUNT(*)
-		FROM	sr_product
+		FROM	item
 		WHERE	1 = 1
 		]]>
 	</select>
 
 	<!-- 낮은 가격순 정렬 -->
-	<select id="searchListPaging" parameterType="hashmap" resultType="com.linker.direct.search.dto.SearchDTO">
+	<select id="searchListPaging" parameterType="hashmap" resultType="com.linker.direct.search.dto.itemDTO">
 		<![CDATA[
 		select *
 		from (select *, ROW_NUMBER() OVER(
 		]]>
 		<include refid="searchOrder" />
 		<![CDATA[
-		) as rNUM from sr_product where 1 = 1
+		) as rNUM from item where 1 = 1
 		]]>
 		<include refid="searchMySQL"/>
 		<![CDATA[
@@ -39,22 +39,22 @@
 	</select>
 
 	<sql id="searchMySQL">
-		AND product_name LIKE CONCAT('%', #{keyword}, '%')
+		AND name LIKE CONCAT('%', #{keyword}, '%')
 	</sql>
 
 	<sql id="searchOrder">
 		<if test="subFilter == 'lowPrice'">
-			order by product_price
+			order by price
 		</if>
 		<if test="subFilter == 'highPrice'">
-			order by product_price desc
+			order by price desc
 		</if>
-		<if test="subFilter == 'product_date'">
-			order by product_date desc
+		<if test="subFilter == 'created_at'">
+			order by created_at desc
 		</if>
 		<choose>
 			<when test="subFilter == null">
-				order by product_price
+				order by price
 			</when>
 		</choose>
 	</sql>

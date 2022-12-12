@@ -34,15 +34,15 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
-    public int deleteCart(int product_id) throws Exception {
+    public int deleteCart(long item_id) throws Exception {
         logger.info("CartDAOImpl delete() 장바구니 삭제....");
-        int result = sqlSession.delete(namespace + ".deleteCart", product_id);
+        int result = sqlSession.delete(namespace + ".deleteCart", item_id);
         logger.info("CartDAOImpl delete() Data ==> " + result);
         return result;
     }
 
     @Override
-    public int deleteAllCart(String user_id) throws Exception {
+    public int deleteAllCart(long user_id) throws Exception {
         logger.info("CartDAOImpl deleteAll() 장바구니 전체 삭제....");
         int result = sqlSession.delete(namespace + ".deleteAllCart", user_id);
         logger.info("CartDAOImpl deleteAll() Data ==> " + result);
@@ -51,10 +51,10 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
-    public int cartCount(int user_id) throws Exception {
-        logger.info("CartDAOImpl cartCount() 장바구니 든 프로덕트 개수....");
-        int result = sqlSession.selectOne(namespace + ".cartCount", user_id);
-        logger.info("CartDAOImpl cartCount() Data ==> " + result);
+    public int itemCount(long user_id) throws Exception {
+        logger.info("CartDAOImpl itemCount() 장바구니 든 프로덕트 개수....");
+        int result = sqlSession.selectOne(namespace + ".itemCount", user_id);
+        logger.info("CartDAOImpl itemCount() Data ==> " + result);
         return result;
     }
 

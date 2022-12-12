@@ -5,13 +5,12 @@ import com.linker.direct.cart.dto.CartDTO;
 import com.linker.direct.cart.service.CartService;
 import com.linker.direct.common.util.PageMaker;
 import com.linker.direct.common.util.SearchCriteria;
-import com.linker.direct.search.dto.SearchDTO;
+import com.linker.direct.search.dto.itemDTO;
 import com.linker.direct.search.service.SearchService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
@@ -53,7 +52,7 @@ public class SearchController {
 //    }
 
     @RequestMapping(value = "/searchList", method = RequestMethod.GET)
-    public ModelAndView searchList(SearchCriteria cri, SearchDTO searchDTO, CartDTO cartDTO) throws Exception {
+    public ModelAndView searchList(SearchCriteria cri, itemDTO itemDTO, CartDTO cartDTO) throws Exception {
 
         logger.info("------------------------------------------------------------------------");
         logger.info("BoardController 게시글 목록 보여주기 (Paging 처리) cri ==> " + cri);
@@ -91,20 +90,21 @@ public class SearchController {
 
 
         // cri에 해당하는 게시글을 가져와서 View에게 넘겨준다.
-        List<SearchDTO> searchList = searchService.searchListPaging(cri);
+        List<itemDTO> searchList = searchService.searchListPaging(cri);
 
 
         logger.info("SearchController 게시글 목록 보여주기 (Paging 처리) " +
                 "cri에 해당하는 게시글을 가져와서 View에게 넘겨준다. ==> END END END" + pageMaker);
         mav.addObject("searchList", searchList);
         mav.addObject("pageMaker", pageMaker);
-        logger.info("searchDTO ====> " + searchDTO);
-        mav.addObject("product_id", cartDTO.getProduct_id());
+        logger.info("searchDTO ====> " + itemDTO);
+        mav.addObject("item_id", cartDTO.getItem_id());
         mav.addObject("product_count", cartDTO.getCount());
         mav.addObject("cart_date", cartDTO.getCreated_at());
         mav.addObject("subFilter", cri.getSubFilter());
         mav.addObject("perPageNum", cri.getPerPageNum());
         mav.addObject("searchListAll", searchService.searchListAll(cri));
+        mav.addObject("user_id", cartDTO.getUser_id());
 
         return mav;
     }
