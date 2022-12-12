@@ -61,7 +61,7 @@
 <script>
     // deleteCart
     function deleteCart(item_id) {
-        alert("궁금하지?")
+        alert(${user_id})
         $.ajax({
             url: "/cart/deleteCart",
             type: "post",
