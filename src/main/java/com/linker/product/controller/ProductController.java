@@ -51,17 +51,36 @@ public class ProductController {
 	
 		// 상품번호에 해당하는 상품정보 추출하기
 		@RequestMapping(value = "/productSelect", method=RequestMethod.GET)
-		public ModelAndView selectProduct(@RequestParam(value = "product_no") int product_no, HttpServletRequest request, HttpServletResponse response)
+		public ModelAndView selectProduct(@RequestParam(value = "item_id") Long item_id, HttpServletRequest request, HttpServletResponse response)
 				throws Exception {
 			
-			System.out.println("ProductController 회원 정보 조회 product_no ==> " + product_no);
+			System.out.println("ProductController 회원 정보 조회 product_no ==> " + item_id);
 			
 			//상품 no에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
-			List<ProductDTO> ProductDTO = ProductService.selectProduct(Integer.parseInt((String)request.getParameter("product_no")));
+			List<ProductDTO> ProductDTO = ProductService.selectProduct((long) Integer.parseInt((String)request.getParameter("item_id")));
 			System.out.println("ProductController 상품 정보 조회 => " + ProductDTO);
 			
 			// 찾아온 데이터를 가지고 해당 화면으로 넘어간다.
 			ModelAndView mav = new ModelAndView("/product/productSelect");
+			mav.addObject("product", ProductDTO);
+			
+			return mav;
+			
+		}
+		
+		// user_id에 해당하는 상품정보 추출하기
+		@RequestMapping(value = "/productRefund", method=RequestMethod.GET)
+		public ModelAndView productRefund(@RequestParam(value = "user_id") Long user_id, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			
+			System.out.println("ProductController 회원 정보 조회 user_id ==> " + user_id);
+			
+			//상품 no에 해당하는 정보를 찾는 일을 서비스에게 부탁한다.
+			List<ProductDTO> ProductDTO = ProductService.productRefund((long) Integer.parseInt((String)request.getParameter("user_id")));
+			System.out.println("ProductController 상품 정보 조회 => " + ProductDTO);
+			
+			// 찾아온 데이터를 가지고 해당 화면으로 넘어간다.
+			ModelAndView mav = new ModelAndView("/product/productRefund");
 			mav.addObject("product", ProductDTO);
 			
 			return mav;

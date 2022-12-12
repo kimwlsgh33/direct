@@ -59,7 +59,7 @@
 			<div class="col-sm-3">
 				<select>
 				<c:forEach var="p" items="${product}" varStatus="status">
-					<option id="product_no" value="${p.product_no}">${p.product_no}.${p.order_product_name}</option>
+					<option id="item_id" value="${p.item_id}">${p.item_id}.${p.name}</option>
 				</c:forEach>
 				</select>
 			</div>

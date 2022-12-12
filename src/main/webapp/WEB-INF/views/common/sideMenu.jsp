@@ -17,7 +17,7 @@
 			<li><h2 id="mypage">My page</h2></li>
 			<li><h4>My 쇼핑</h4></li>
 			<li><a href = "${contextPath}/main.do">주문목록/배송조회</a></li>
-			<li><a href="#">취소/반품/교환/환불 내역</a></li>
+			<li><a href="${contextPath}/product/productRefund?user_id=${member.user_id}">취소/반품/교환/환불 내역</a></li>
 			<li><hr class="dropdown-divider"></li>
 			<li><h4>My 혜택</h4></li>
 			<li><a href="#">할인쿠폰</a></li>

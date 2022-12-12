@@ -33,10 +33,17 @@ public class ProductServiceImpl implements ProductService {
 
 	// 상품번호에 해당하는 상품정보 추출하기
 	@Override
-	public List<ProductDTO> selectProduct(int product_no) throws DataAccessException {
+	public List<ProductDTO> selectProduct(Long item_id) throws DataAccessException {
 		
 		logger.info("ProductController 아이디에 해당하는 상품 목록 조회 시작......");
-		List<ProductDTO> ProductDTO = ProductDAO.selectProduct(product_no);
+		List<ProductDTO> ProductDTO = ProductDAO.selectProduct(item_id);
+		return ProductDTO;
+	}
+
+	// user_id에 해당하는 상품정보 추출하기
+	@Override
+	public List<ProductDTO> productRefund(Long user_id) throws DataAccessException {
+		List<ProductDTO> ProductDTO = ProductDAO.readRefund(user_id);
 		return ProductDTO;
 	}
 

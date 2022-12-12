@@ -11,28 +11,24 @@ import lombok.Data;
 @Data
 public class MemberVO {	
 	
-	private int user_id;	// 사용자 식별 아이디
+	private Long user_id;	// 사용자 식별 아이디
 	private String id;	// 사용자 아이디
 	private String name;	// 사용자 이름
 	private String zip_code;	//우편번호
 	private String address;	// 사용자 주소
 	private String address_detail;	// 상세주소
-	private String password;	// 사용자 비밀번호
-	private Timestamp joinDate;	// 가입일자
+	private String pwd;	// 사용자 비밀번호 pwd로 수정
+	private Timestamp created_at;	// 가입일자 created_at으로 수정
 	private String email;	// 사용자 이메일
-	private String number;	// 사용자 연락처
+	private String phone;	// 사용자 연락처
 	
 	private int address_id;	// 대표주소 설정 시 mapper에서 이름만 사용
-
-	public MemberVO() {}	// 기본 생성자
-	public MemberVO(String id, String name, String address, String password, String email, String number) {	// 매개변수 있는 생성자
-		// this를 안붙이면 그냥 셋 다 지역변수임
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.password = password;
-		this.email = email;
-		this.number = number;
-	}
 	
+	// 나는 사용안하는데 일단 통일
+	private String birthday;
+	private int point;
+	private Timestamp updated_at;
+	private String status;
+	//private	Role role;	// 권한
+	//private Grade grade;	// 유저 등급
 }

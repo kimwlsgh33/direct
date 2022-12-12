@@ -7,13 +7,12 @@ function fn_reviewRegister() {
   // 입력한 값을 가져온다.
   let subject = $("#subject").val();
   let user_id = $("#user_id").val();
-  let product_no = $("#product_no").val();
+  let item_id = $("#item_id").val();
   let rating = $("#rating").val();
   let content = $("#content").val();
-  let img_url = $("#img_url").val();
   //let item_name = $("#item_name").val();
 
-  alert(subject + ":" + rating + ":" + content + ":" + product_no + ":" + img_url);
+  alert(subject + ":" + rating + ":" + content + ":" + item_id);
 
   // 제목 항목에 값이 없으면 입력하도록 한다.
   if ($("#subject").val() == "") {
@@ -30,9 +29,9 @@ function fn_reviewRegister() {
   }
   
    // 상품번호 항목에 값이 없으면 입력하도록 한다.
-  if ($("#product_no").val() == "") {
+  if ($("#item_id").val() == "") {
     alert("상품번호는 필수 입력 항목입니다.");
-    $("#product_no").focus();
+    $("#item_id").focus();
     return false;
   }
 
@@ -50,9 +49,8 @@ function fn_reviewRegister() {
       subject: subject,
       user_id: user_id,
       rating: rating,
-      product_no: product_no,
+      item_id: item_id,
       content: content,
-      img_url: img_url,
       //item_name: item_name,
     },
     success: function (data) {

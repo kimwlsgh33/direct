@@ -47,7 +47,7 @@
 						<div class="form-group">
 							<label for="pwd"><span class="glyphicon glyphicon-eye-open">
 								</span> Password</label>
-							<input type="password" class="form-control" id="pwd" name="password"
+							<input type="password" class="form-control" id="pwd" name="pwd"
 								maxlength="10" placeholder="Enter Password"/>
 						</div>
 						<button type="submit" class="btn  btn-block">

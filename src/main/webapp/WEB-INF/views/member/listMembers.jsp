@@ -60,8 +60,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<td align="center">${member.zip_code}</td>
 			<td align="center">${member.address}</td>
 			<td align="center">${member.address_detail}</td>
-			<td align="center">${member.password}</td>
-			<td align="center"><fmt:formatDate value="${member.joinDate}" pattern="yyyy년 MM월 dd일"/></td>
+			<td align="center">${member.pwd}</td>
+			<td align="center"><fmt:formatDate value="${member.created_at}" pattern="yyyy년 MM월 dd일"/></td>
 			<td align="center">${member.email}</td>
 			<td align="center"><a class="btn btn-sm" href="${contextPath}/member/updateMemberForm.do?user_id=${member.user_id}">수정</a></td>
 			<td align="center"><a class="btn btn-sm" href="${contextPath}/member/removeMember.do?user_id=${member.user_id}">삭제</a></td>

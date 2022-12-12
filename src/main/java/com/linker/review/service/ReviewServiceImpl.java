@@ -71,8 +71,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 리뷰 등록 화면 띄울 때 구매한 상품 정보 가져오기
 	@Override
-	public List<ProductDTO> read(int product_no) throws Exception {
-		return productDAO.read(product_no);
+	public List<ProductDTO> read(Long user_id) throws Exception {
+		return productDAO.read(user_id);
 	}
 
 }

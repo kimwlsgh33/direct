@@ -31,7 +31,7 @@
 		<div class="form-group">
 			<label for="id" class="col-sm-3 control-label">비밀번호</label>
 			<div class="col-sm-3">
-				<input type="password" class="form-control" id="pwd" name="password" maxlength="20" placeholder="비밀번호 입력"/>
+				<input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" placeholder="비밀번호 입력"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -55,7 +55,7 @@
 		<div class="form-group">
 			<label for="id" class="col-sm-3 control-label">연락처</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="number" name="number" maxlength="50" placeholder="전화번호 입력"/>
+				<input type="text" class="form-control" id="phone" name="phone" maxlength="50" placeholder="전화번호 입력"/>
 			</div>
 		</div>
 		<div class="form-group">

@@ -30,23 +30,23 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					</div>
 					<div class="col-md-4" style=" margin-top: 10px;">
 						<a class="btn btn-sm btn-outline-success" style="margin-left: 95px; "
-						href="${contextPath}/product/productSelect?product_no=${p.product_no}">자세히 보기</a>
+						href="${contextPath}/product/productSelect?item_id=${p.item_id}">자세히 보기</a>
 					</div>
 				</div>
 				<div class="row justify-content-center">
 					<div class="col-sm-7">
 						<div style="margin-left: 20px; margin-top: 10px;">
-							<span>배송완료
+							<span>${p.status}
 							<span class="btn" data-bs-toggle="modal" data-bs-target="#mymodal"><i class="bi bi-three-dots-vertical"></i></span>
 							</span>
 						</div>
 						<div class="col-md-10 row justify-content-start" style="margin-top: 15px;">
 							<div class="col-md-3">
-								<span><img src="${p.order_product_url}" width="100" height="100"/></span>
+								<span><img src="${p.item_url}" width="100" height="100"/></span>
 							</div>
 							<div class="col-md-6">
-								<p>${p.order_product_name}</p><br>
-								<p>${p.order_product_price}원, ${p.order_product_count}개</p>
+								<p>${p.name}</p><br>
+								<p>${p.price}원, ${p.count}개</p>
 								<button id="detail" class="btn btn-sm btn-outline-success" data-toggle="modal">장바구니 담기</button>
 							</div>
 						</div>
