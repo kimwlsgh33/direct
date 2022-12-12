@@ -5,10 +5,10 @@ package com.linker.direct.item.service;
 // entity
 
 import com.linker.direct.item.ItemSellStatus;
-import com.linker.direct.item.dao.ItemDao;
-import com.linker.direct.item.dao.ItemImgDao;
-import com.linker.direct.item.dto.ItemFormDto;
-import com.linker.direct.item.dto.ItemImgDto;
+import com.linker.direct.item.dao.ItemDAO;
+import com.linker.direct.item.dao.ItemImgDAO;
+import com.linker.direct.item.dto.ItemFormDTO;
+import com.linker.direct.item.dto.ItemImgDTO;
 import com.linker.direct.item.vo.ItemVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +22,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
     private final ItemImgService itemImgService;
-    private final ItemDao itemDao;
-    private final ItemImgDao itemImgDao;
+    private final ItemDAO itemDao;
+    private final ItemImgDAO itemImgDao;
 
 
     @Override
-    public void create(ItemFormDto itemFormDto, List<MultipartFile> uploadFiles) throws Exception {
+    public void create(ItemFormDTO itemFormDto, List<MultipartFile> uploadFiles) throws Exception {
         itemFormDto.setStatus(ItemSellStatus.SELLING); // 판매 상태 : 판매중
         //====================================================================================================
         // 상품 등록 ====================================================================================================
@@ -42,7 +42,7 @@ public class ItemServiceImpl implements ItemService {
         //==================================================================================================
         log.info("상품 이미지 등록 : " + uploadFiles.size());
         for(MultipartFile uploadFile : uploadFiles) {
-            ItemImgDto itemImgDto = ItemImgDto.of(uploadFile, itemVO);
+            ItemImgDTO itemImgDto = ItemImgDTO.of(uploadFile, itemVO);
             itemImgService.upload(itemImgDto); // 사진업로드, item_img 테이블 저장
         }
     }

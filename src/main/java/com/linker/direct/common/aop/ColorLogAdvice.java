@@ -46,7 +46,7 @@ public class ColorLogAdvice {
     // 첫번째 * : 리턴 타입을 의미
     // 두번째 * : 모든 클래스를 의미
     // 세번째 * : 모든 메서드를 의미
-    @Before("execution(* com.linker.direct..*.*(..))")
+    @Before("execution(* com.linker.direct.*..*.*(..))")
     public void before(JoinPoint jp) { // JoinPoint : Advice가 적용된 메서드의 정보를 가지고 있는 객체
         defaultLogging(jp.getSignature().toString(), AopType.BEFORE);
     }

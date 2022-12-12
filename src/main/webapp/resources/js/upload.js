@@ -1,4 +1,5 @@
 
+
 function uploadFiles() {
   let formData = new FormData(); // 폼 데이터 객체 생성
 
@@ -70,4 +71,8 @@ function uploadFiles() {
 function deleteFile(fileIndex) {
   $("#fileIndex" + fileIndex).remove(); // 파일 div 삭제
   fileArray.splice(fileIndex, 1); // 배열에서 해당 파일 삭제
+}
+function addOption(){
+  let optionLength = $("#option tr").length;
+  const optionForm = '<div><input type="text" name="optionName" placeholder="옵션명" /><input type="text" name="optionPrice" placeholder="옵션가격" /><input type="text" name="optionStock" placeholder="옵션재고" /></div>';
 }

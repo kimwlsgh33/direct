@@ -7,9 +7,9 @@ public interface CategoryService {
 
   void create(CategoryVO categoryVO) throws Exception;
 
-  CategoryVO read(CategoryDto categoryDto) throws Exception;
+  CategoryVO read(CategoryDTO categoryDto) throws Exception;
 
   void update(CategoryVO categoryVO) throws Exception;
 
-  void delete(CategoryDto categoryDto) throws Exception;
+  void delete(CategoryDTO categoryDto) throws Exception;
 }

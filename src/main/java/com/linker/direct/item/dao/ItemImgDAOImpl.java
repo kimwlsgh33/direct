@@ -12,7 +12,7 @@ import java.util.List;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class ItemImgDaoImpl implements ItemImgDao {
+public class ItemImgDAOImpl implements ItemImgDAO {
     private final SqlSession sqlSession;
     private static final String NAMESPACE = "itemImg";
     /*

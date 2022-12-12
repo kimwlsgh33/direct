@@ -5,8 +5,8 @@ package com.linker.direct.item.service;
 // entity
 // lombok
 import com.linker.direct.item.vo.ItemImgVO;
-import com.linker.direct.item.dao.ItemImgDao;
-import com.linker.direct.item.dto.ItemImgDto;
+import com.linker.direct.item.dao.ItemImgDAO;
+import com.linker.direct.item.dto.ItemImgDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 // springframework
@@ -27,11 +27,11 @@ public class ItemImgServiceImpl implements ItemImgService {
 //    @Resource(name="uploadPath")
     @Value("${uploadPath}")
     private String uploadPath;
-    private final ItemImgDao itemImgDao;
+    private final ItemImgDAO itemImgDao;
 
 
     // uuid 이용해, 파일 저장하기
-    public void upload(ItemImgDto itemImgDto) throws Exception {
+    public void upload(ItemImgDTO itemImgDto) throws Exception {
         log.info("업로드 경로 : " + uploadPath);
 
         MultipartFile uploadFile = itemImgDto.getUploadFile();

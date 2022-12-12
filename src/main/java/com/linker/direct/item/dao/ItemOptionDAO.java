@@ -1,10 +1,10 @@
 package com.linker.direct.item.dao;
 
-import com.linker.direct.item.vo.ItemVO;
 import com.linker.direct.item.vo.ItemOptionVO;
+import org.springframework.dao.DataAccessException;
 
 public interface ItemOptionDAO {
-    void create(ItemOptionVO itemOptionVO);
+    void create(ItemOptionVO itemOptionVO) throws DataAccessException;
 
-    ItemVO read(ItemOptionVO itemOptionVO);
+    ItemOptionVO read(ItemOptionVO itemOptionVO) throws DataAccessException;
 }

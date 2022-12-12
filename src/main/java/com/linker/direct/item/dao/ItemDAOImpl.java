@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class ItemDaoImpl implements ItemDao {
+public class ItemDAOImpl implements ItemDAO {
     private final SqlSession sqlSession;
 
     private static final String NAMESPACE = "item";

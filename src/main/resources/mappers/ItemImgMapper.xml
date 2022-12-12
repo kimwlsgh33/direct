@@ -8,7 +8,7 @@
 <mapper namespace="itemImg">
     <select id="listAll" resultType="com.linker.direct.item.vo.ItemImgVO">
         <![CDATA[
-            SELECT * FROM item_img ORDER BY item_img
+            SELECT * FROM item_img ORDER BY item_img_id
         ]]>
     </select>
 
@@ -21,7 +21,7 @@
 
     <select id="read" resultType="com.linker.direct.item.vo.ItemImgVO">
         <![CDATA[
-            SELECT * FROM item_img WHERE id = #{id}
+            SELECT * FROM item_img WHERE item_img_id = #{item_img_id}
         ]]>
     </select>
 </mapper>

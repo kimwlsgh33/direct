@@ -5,7 +5,7 @@ import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
-public interface ItemImgDao {
+public interface ItemImgDAO {
     void create(ItemImgVO itemImgVO) throws DataAccessException;
 
     List<ItemImgVO> readItemImgs(int itemId) throws DataAccessException;

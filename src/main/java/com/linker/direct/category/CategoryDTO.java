@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CategoryDto {
+public class CategoryDTO {
     private int id;
 
     public CategoryVO toVo() {

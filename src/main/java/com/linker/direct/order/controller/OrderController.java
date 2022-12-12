@@ -2,7 +2,7 @@ package com.linker.direct.order.controller;
 
 import com.linker.direct.item.service.ItemService;
 import com.linker.direct.item.vo.ItemVO;
-import com.linker.direct.order.dto.OrderFormDto;
+import com.linker.direct.order.dto.OrderFormDTO;
 import com.linker.direct.order.service.OrderItemService;
 import com.linker.direct.order.vo.OrderVO;
 import com.linker.direct.order.service.OrderService;
@@ -29,7 +29,7 @@ public class OrderController {
     private final ItemService itemService;
 
     @RequestMapping("/createForm")
-    public String createForm(Model model, HttpServletRequest request, OrderFormDto orderFormDto) throws Exception {
+    public String createForm(Model model, HttpServletRequest request, OrderFormDTO orderFormDto) throws Exception {
 
         HttpSession session = request.getSession();
         MemberVO memberVO = (MemberVO) session.getAttribute("user");

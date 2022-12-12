@@ -1,6 +1,6 @@
 package com.linker.direct.item.vo;
 
-import com.linker.direct.item.dto.ItemFormDto;
+import com.linker.direct.item.dto.ItemFormDTO;
 import com.linker.direct.item.ItemSellStatus;
 import com.linker.direct.item.OutOfStockException;
 import lombok.*;
@@ -21,7 +21,7 @@ public class ItemVO {
   private Timestamp updated_at;
   private Long category_id; // 카테고리 연결
   public ItemVO(){}
-  public void updateItem(ItemFormDto itemFormDto) { // 아이템 상태 업데이트
+  public void updateItem(ItemFormDTO itemFormDto) { // 아이템 상태 업데이트
     this.item_id = itemFormDto.getItem_id();
     this.user_id = itemFormDto.getUser_id();
     this.name = itemFormDto.getName();

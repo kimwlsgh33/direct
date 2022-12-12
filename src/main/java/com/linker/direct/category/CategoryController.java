@@ -36,14 +36,14 @@ public class CategoryController {
 
     @RequestMapping("/read")
     public void read(int id, Model model) throws Exception {
-      CategoryDto categoryDto = new CategoryDto();
+      CategoryDTO categoryDto = new CategoryDTO();
       categoryDto.setId(id);
       model.addAttribute("category", categoryService.read(categoryDto));
     }
 
     @RequestMapping("/updateForm")
     public String updateForm(int id, Model model) throws Exception {
-        CategoryDto categoryDto = new CategoryDto();
+        CategoryDTO categoryDto = new CategoryDTO();
         categoryDto.setId(id);
         model.addAttribute("category", categoryService.read(categoryDto));
         return "/category/update";
@@ -59,7 +59,7 @@ public class CategoryController {
 
     @RequestMapping("/delete")
     public String delete(int id) throws Exception {
-      CategoryDto categoryDto = new CategoryDto();
+      CategoryDTO categoryDto = new CategoryDTO();
       categoryDto.setId(id);
       categoryService.delete(categoryDto);
       return "redirect:/category/list";

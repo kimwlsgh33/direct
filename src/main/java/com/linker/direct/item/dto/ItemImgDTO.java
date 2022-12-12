@@ -6,12 +6,12 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 @Getter @Setter
-public class ItemImgDto {
+public class ItemImgDTO {
     private MultipartFile uploadFile;
     private ItemVO itemVO;
 
-    public static ItemImgDto of(MultipartFile uploadFile, ItemVO itemVO) {
-        ItemImgDto itemImgDto = new ItemImgDto();
+    public static ItemImgDTO of(MultipartFile uploadFile, ItemVO itemVO) {
+        ItemImgDTO itemImgDto = new ItemImgDTO();
         itemImgDto.uploadFile = uploadFile;
         itemImgDto.itemVO = itemVO;
         return itemImgDto;

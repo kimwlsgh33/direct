@@ -22,10 +22,10 @@
 </head>
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
-<div class="container-fluid">
-    <form id="uploadForm" action="${ctx}/itemVO/create" method="post">
+<div class="w-100 d-flex flex-column align-items-center">
+    <form id="uploadForm" action="${ctx}/itemVO/create" method="post" class="w-75">
         <input type="hidden" name="_method" value="put">
-        <div class="container-fluid pt-3">
+        <div class="w-100 pt-3">
             <div class="w-25 d-flex align-items-center mb-3">
                 <div class="me-2">카테고리</div>
                 <select id="selectCategory" class="form-select-sm" aria-label="Select Category">
@@ -38,6 +38,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-text">상품명</div>
                 <input id="name" name="name" type="text" class="form-control" aria-label="Product Name">
+                <button id="optionAdd" class="btn btn-primary" type="button" onclick="console.log('option');">옵션 추가</button>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-text">가격</div>

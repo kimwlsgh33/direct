@@ -35,7 +35,4 @@ public class HomeController {
     model.addAttribute("categoryList", categoryList);
     return "home";
   }
-
-    
-
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-    private final CategoryDao categoryDao;
+    private final CategoryDAO categoryDao;
 
     @Override
     public List<CategoryVO> listAll() throws Exception {
@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryVO read(CategoryDto categoryDto) throws Exception {
+    public CategoryVO read(CategoryDTO categoryDto) throws Exception {
         return categoryDao.read(categoryDto);
     }
 
@@ -32,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void delete(CategoryDto categoryDto) throws Exception {
+    public void delete(CategoryDTO categoryDto) throws Exception {
         categoryDao.delete(categoryDto);
     }
 }

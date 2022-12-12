@@ -1,8 +1,10 @@
 package com.linker.direct.item.controller;
 
 // entity
-import com.linker.direct.item.dto.ItemFormDto;
+import com.linker.direct.item.dto.ItemFormDTO;
+import com.linker.direct.item.service.ItemOptionService;
 import com.linker.direct.item.service.ItemService;
+import com.linker.direct.item.vo.ItemOptionVO;
 import com.linker.direct.member.vo.MemberVO;
 import com.linker.direct.category.CategoryVO;
 // dto
@@ -41,7 +43,7 @@ public class ItemController {
 
     @ResponseBody
     @RequestMapping(value="/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDto itemFormDto, Model model, HttpServletRequest request) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
+    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDTO itemFormDto, HttpServletRequest request) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
 
         //==================================================================================================
         // 로그인 여부 확인 ==================================================================================================
@@ -66,6 +68,4 @@ public class ItemController {
 
         return new ResponseEntity<>("upload success", HttpStatus.OK);
     }
-
-
 }

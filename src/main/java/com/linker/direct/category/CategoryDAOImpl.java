@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class CategoryDaoImpl implements CategoryDao {
+public class CategoryDAOImpl implements CategoryDAO {
 
     private static final String NAMESPACE = "category";
     private final SqlSession sqlSession;
 
-    public CategoryDaoImpl(SqlSession sqlSession) {
+    public CategoryDAOImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
 
@@ -27,7 +27,7 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public CategoryVO read(CategoryDto categoryDto) throws DataAccessException {
+    public CategoryVO read(CategoryDTO categoryDto) throws DataAccessException {
         CategoryVO categoryVO = categoryDto.toVo();
         return sqlSession.selectOne(NAMESPACE + ".read", categoryVO);
     }
@@ -38,7 +38,7 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public void delete(CategoryDto categoryDto) throws DataAccessException {
+    public void delete(CategoryDTO categoryDto) throws DataAccessException {
         CategoryVO categoryVO = categoryDto.toVo();
         sqlSession.delete(NAMESPACE + ".delete", categoryVO);
     }

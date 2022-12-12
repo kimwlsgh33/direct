@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderItemDaoImpl implements OrderItemDao {
+public class OrderItemDAOImpl implements OrderItemDAO {
 
     private static final String NAMESPACE = "orderItem";
     private final SqlSession sqlSession;

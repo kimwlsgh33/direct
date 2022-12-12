@@ -6,13 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ItemDto {
+public class ItemDTO {
     private Integer id;
     private MemberVO memberVO;
     private ItemVO itemVO;
 
-    public static ItemDto of(MemberVO memberVO, ItemVO itemVO) {
-        ItemDto itemDto = new ItemDto();
+    public static ItemDTO of(MemberVO memberVO, ItemVO itemVO) {
+        ItemDTO itemDto = new ItemDTO();
         itemDto.id = null;
         itemDto.memberVO = memberVO;
         itemDto.itemVO = itemVO;
