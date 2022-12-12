@@ -12,7 +12,7 @@ public interface ProductService {
 		public List<ProductDTO> productList() throws DataAccessException;
 		
 		// 상품번호에 해당하는 상품정보 추출하기
-		public List<ProductDTO> selectProduct(int product_no) throws DataAccessException;
+		public List<ProductDTO> selectProduct(Long item_id) throws DataAccessException;
 
 	
 }

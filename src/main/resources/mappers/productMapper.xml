@@ -8,23 +8,23 @@
 	<!-- 회원 전체 목록 추출하기 -->
 	<select id="selectAllProduct" resultType="com.linker.product.dto.ProductDTO">
 		<![CDATA[
-			SELECT user_id, id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url
-			FROM order_product
-			ORDER BY order_product_no
+			SELECT user_id, item_id, order_id, count, price, name, order_date, item_url
+			FROM order_item
+			ORDER BY order_id
 		]]>
 	</select>
 	
 	<!-- 상품번호에 해당하는 상품정보 추출하기 -->
 	<select id="selectProduct" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
 		<![CDATA[
-			SELECT user_id, id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url,
-			(select name from user where order_product.user_id = user.user_id) AS name,
-			(select address from user where order_product.user_id = user.user_id) AS address,
-			(select zip_code from user where order_product.user_id = user.user_id) AS zip_code,
-			(select address_detail from user where order_product.user_id = user.user_id) AS address_detail,
-			(select phone from user where order_product.user_id = user.user_id) AS phone
-			FROM order_product
-			WHERE product_no = #{product_no}
+			SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,
+			(select name from user where order_item.user_id = user.user_id) AS u_name,
+			(select address from user where order_item.user_id = user.user_id) AS address,
+			(select zip_code from user where order_item.user_id = user.user_id) AS zip_code,
+			(select address_detail from user where order_item.user_id = user.user_id) AS address_detail,
+			(select phone from user where order_item.user_id = user.user_id) AS phone
+			FROM order_item
+			WHERE item_id = #{item_id}
 			ORDER BY order_date desc
 		]]>
 	</select>
@@ -32,8 +32,8 @@
 	<!-- 아이디에 해당하는 상품정보 추출하기 -->
 	<select id="readProduct" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
 		<![CDATA[
-			SELECT user_id, id, product_no, order_product_no, order_product_count, order_product_price, order_product_name, order_date, order_product_url
-			FROM order_product
+			SELECT user_id, item_id, order_id, count, price, name, order_date, item_url
+			FROM order_item
 			WHERE user_id = #{user_id}
 		]]>
 	</select>

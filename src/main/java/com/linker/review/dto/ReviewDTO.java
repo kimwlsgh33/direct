@@ -11,7 +11,7 @@ public class ReviewDTO {
 	
 	private int review_no;	// 리뷰 고유 번호
 	private Long user_id;	// 유저 고유 번호
-	private int product_no;	// 리뷰할 상품 번호
+	private Long item_id;	// 리뷰할 상품 번호
 	private int rating;	// 구매 평점
 	private String img_url;	// 상품 이미지url
 	private String subject;	// 리뷰 제목

@@ -30,7 +30,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				<h5><fmt:formatDate value="${product[0].order_date}" pattern="yyyy.MM.dd hh:mm"/></h5>
 			</div>
 			<div class="col-md-2">
-				<h5>주문번호 ${product[0].order_product_no}</h5>
+				<h5>주문번호 ${product[0].order_id}</h5>
 			</div>
 		</div>
 		<c:forEach var="p" items="${product}">	
@@ -45,11 +45,11 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						</div>
 						<div class="col-md-10 row justify-content-start" style="margin-top: 15px;">
 							<div class="col-md-3">
-								<span><img src="${p.order_product_url}" width="100" height="100"/></span>
+								<span><img src="${p.item_url}" width="100" height="100"/></span>
 							</div>
 							<div class="col-md-6">
-								<p>${p.order_product_name}</p><br>
-								<p>${p.order_product_price}원, ${p.order_product_count}개</p>
+								<p>${p.name}</p><br>
+								<p>${p.price}원, ${p.count}개</p>
 								<button id="detail" class="btn btn-sm btn-outline-success" data-toggle="modal">장바구니 담기</button>
 							</div>
 						</div>
@@ -70,7 +70,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<b>받는사람</b>
 				</div>
 				<div class="col-md-2">
-					<b>${product[0].name}</b>
+					<b>${product[0].u_name}</b>
 				</div>
 			</div>
 			<div class="row justify-content-start" style="margin-bottom: 10px;">
@@ -110,7 +110,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					<b>총 상품가격</b>
 				</div>
 				<div class="col-md-5" style="height: 25px; margin-top:10px;">
-					<b>${product[0].order_product_price} 원</b>
+					<b>${product[0].price} 원</b>
 				</div>
 		
 			
