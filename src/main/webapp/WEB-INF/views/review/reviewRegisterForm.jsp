@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>리뷰 등록 화면</title>
-	<script src="${contextPath}/resources/js/review.js"></script>
-	<% // wepapp 밑의 resouces를 의미함%>
-	<script>
-	  $("#product_no").click(function() { 
-		  var tValue = $('#tableId tr:eq(4)>td:eq(2)').html()
-	  }
-	  
-	</script>
+	<script src="${ctx}/resources/js/review.js"></script>
 </head>
 <body>
 
@@ -57,9 +50,9 @@
 		<div class="form-group">
 			<label class="form-label">상품명</label>
 			<div class="col-sm-3">
-				<select>
+				<select id="select" onchange="fn_select(this);">
 				<c:forEach var="p" items="${product}" varStatus="status">
-					<option id="item_id" value="${p.item_id}">${p.item_id}.${p.name}</option>
+					<option id="item_id" value="${p.item_id}" >${p.item_id}.${p.name}</option>
 				</c:forEach>
 				</select>
 			</div>

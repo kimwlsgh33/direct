@@ -21,25 +21,30 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.linker.main" />
-	<context:component-scan base-package="com.linker.test" />
-	<context:component-scan base-package="com.linker.member" />
-	<context:component-scan base-package="com.linker.util" />
-	<context:component-scan base-package="com.linker.product" />
-	<context:component-scan base-package="com.linker.review" />
-	<context:component-scan base-package="com.linker.review.controller" />
+	<context:component-scan base-package="com.linker.direct" />
+	<context:component-scan base-package="com.linker.direct.member" />
+	<context:component-scan base-package="com.linker.direct.util" />
+	<context:component-scan base-package="com.linker.direct.product" />
+	<context:component-scan base-package="com.linker.direct.review" />
+	<context:component-scan base-package="com.linker.direct.review.controller" />
 	
-	<!-- 파일업로드에 관련한 설정 -->
-	<!-- 스프링프레임워크에 내장된 CommonsMultipartResolver를 등록한다. -->
-	<beans:bean id="multipartResolver" 
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- 업로드할 파일의 최대용량(byte) 10메가-->
-		<beans:property name="maxUploadSize" value="10485740"></beans:property>
-	</beans:bean>
-	<!-- 파일 업로드를 위한 경로 설정 -->
-	<!-- String uploadPath = new String("c:/upload"); -->
-	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="c:/data/upload"/>
+	<!-- 회원가입 메일 인증 -->
+	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com" />
+		<beans:property name="port" value="587" /><!-- 465 or 25 -->
+		<beans:property name="username" value="forourdirect2022@gmail.com" />
+		<beans:property name="password" value="cvdoraqqmxkdpwfu" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+				<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+				<beans:prop key="mail.smtp.ssl.protocols">TLSv1.2</beans:prop>
+			</beans:props>
+		</beans:property>
 	</beans:bean>
 	
 	

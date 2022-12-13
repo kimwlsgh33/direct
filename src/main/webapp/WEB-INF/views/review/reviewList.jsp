@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
 
 <%
 if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").equals("")) {
-	response.sendRedirect("/member/loginForm.do");
+	response.sendRedirect("/member/loginForm");
 }
 %>
 
@@ -54,7 +54,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						<td align="center">${review.review_no}</td>
 						<td align="center"><c:if test="${review.img_url != null}"><img src="${review.img_url}" width="50" height="50"/></c:if></td>
 						<td align="center">${review.item_name}</td>
-						<td align="center"><a href="${contextPath}/review/reviewDetail?review_no=${review.review_no}">${review.subject}</a></td>
+						<td align="center"><a href="${ctx}/review/reviewDetail?review_no=${review.review_no}">${review.subject}</a></td>
 						<td align="center">${review.content}</td>
 						<td align="center">${review.rating}</td>
 						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="MM월 dd일 a hh시 mm분"/></td>

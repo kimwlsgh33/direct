@@ -3,21 +3,29 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
-<mapper namespace="com.linker.member">
+<mapper namespace="com.linker.direct.member">
 
-	<resultMap id="memberResult" type="com.linker.member.vo.MemberVO">
-		<result property="user_id" column="user_id"/>
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="address" column="address"/>
-		<result property="pwd" column="pwd"/>
-		<result property="joinDate" column="joinDate"/>
-		<result property="email" column="email"/>
-		<result property="phone" column="phone"/>
+	<resultMap id="memberResult" type="com.linker.direct.member.vo.MemberVO">
+		<result property="user_id"			column="user_id" />
+		<result property="id"				column="id" />
+		<result property="pwd"				column="pwd" />
+		<result property="name"				column="name" />
+		<result property="email"			column="email" />
+		<result property="phone"			column="phone" />
+		<result	property="birthday" 		column="birthday" />
+		<result	property="zip_code" 		column="zip_code" />
+		<result	property="address" 			column="address" />
+		<result	property="address_detail" 	column="address_detail" />
+		<result	property="point"	 		column="point" />
+		<result property="created_at"		column="created_at" />
+		<result property="updated_at"		column="updated_at" />
+		<result property="status"			column="status" />
+		<result property="grade"			column="grade" />
+		<result property="role"				column="role" />
 	</resultMap>
 	
 	<!-- 로그인 처리 -->
-	<select id="loginByID" parameterType="com.linker.member.vo.MemberVO" resultMap="memberResult">
+	<select id="loginByID" parameterType="com.linker.direct.member.vo.MemberVO" resultMap="memberResult">
 	
 		<![CDATA[
 			SELECT * 
@@ -28,7 +36,7 @@
 	</select>
 	
 	<!-- 회원가입 처리 -->
-	<insert id="addMember" parameterType="com.linker.member.vo.MemberVO">
+	<insert id="addMember" parameterType="com.linker.direct.member.vo.MemberVO">
 		<![CDATA[
 			INSERT INTO user (user_id, id, name, address, pwd, created_at, email, phone)
 			SELECT IFNULL(MAX(user_id), 0) + 1, #{id}, #{name}, #{address}, #{pwd}, sysdate(), #{email}, #{phone}
@@ -46,7 +54,7 @@
 	</select>
 	
 	<!-- 아이디에 해당하는 회원 정보 가져오기 -->
-	<select id="selectMember" parameterType="com.linker.member.vo.MemberVO" resultType="com.linker.member.vo.MemberVO">
+	<select id="selectMember" parameterType="com.linker.direct.member.vo.MemberVO" resultType="com.linker.direct.member.vo.MemberVO">
 		<![CDATA[
 		SELECT user_id, id, name, zip_code, address, address_detail, pwd, created_at, email, phone
 		FROM user 
@@ -55,7 +63,7 @@
 	</select>
 	
 	<!-- 아이디에 해당하는 회원 정보 수정하기 -->
-	<update id="updateMember" parameterType="com.linker.member.vo.MemberVO">
+	<update id="updateMember" parameterType="com.linker.direct.member.vo.MemberVO">
 		<![CDATA[
 		UPDATE 	user
 		SET		pwd=#{pwd}, name=#{name}, zip_code=#{zip_code}, email=#{email}, address=#{address}, address_detail=#{address_detail}, phone=#{phone}
@@ -64,7 +72,7 @@
 	</update>
 	
 	<!-- 아이디에 해당하는 회원 정보 삭제하기 -->
-	<delete id="deleteMember" parameterType="com.linker.member.vo.MemberVO">
+	<delete id="deleteMember" parameterType="com.linker.direct.member.vo.MemberVO">
 		<![CDATA[
 		DELETE	FROM user
 		WHERE	user_id = #{user_id}
@@ -72,12 +80,20 @@
 	</delete>
 	
 	<!-- 아이디 중복 검사 : 입력한 아이디가 존재하는지 알아낸다. -->
-	<select id="idCheck" parameterType="com.linker.member.vo.MemberVO" resultType="int">
+	<select id="idCheck" parameterType="com.linker.direct.member.vo.MemberVO" resultType="int">
 	<![CDATA[
 		SELECT count(*)
 		FROM user
 		WHERE id = #{id}
 	]]>
 	</select>
+	
+		<!-- 가입 진행 후 약관 동의 정보 저장 
+	<insert id="addTerms" parameterType="com.linker.direct.main.member.VO.TermVO">
+		<![CDATA[
+			insert into terms (commercial, night, user_id) values (#{commercial}, #{night}, #{user_id})
+		]]>
+	</insert>-->
+	
 
 </mapper>

@@ -3,10 +3,10 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
-<mapper namespace="com.linker.product">
+<mapper namespace="com.linker.direct.product">
 
 	<!-- 회원 전체 목록 추출하기 -->
-	<select id="selectAllProduct" resultType="com.linker.product.dto.ProductDTO">
+	<select id="selectAllProduct" resultType="com.linker.direct.product.dto.ProductDTO">
 		<![CDATA[
 			SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,
 			(select status from `order` where `order`.order_id = order_item.order_id) as status
@@ -16,7 +16,7 @@
 	</select>
 	
 	<!-- 상품번호에 해당하는 상품정보 추출하기 -->
-	<select id="selectProduct" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
+	<select id="selectProduct" resultType="com.linker.direct.product.dto.ProductDTO" parameterType="com.linker.direct.product.dto.ProductDTO">
 		<![CDATA[
 			SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,
 			(select name from user where order_item.user_id = user.user_id) AS u_name,
@@ -32,7 +32,7 @@
 	</select>
 	
 	<!-- 아이디에 해당하는 상품정보 추출하기 -->
-	<select id="readProduct" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
+	<select id="readProduct" resultType="com.linker.direct.product.dto.ProductDTO" parameterType="com.linker.direct.product.dto.ProductDTO">
 		<![CDATA[
 			select (select name from order_item where order_item.order_id=`order`.order_id) as name,
 			(select item_id from order_item where order_item.order_id=`order`.order_id) as item_id
@@ -43,7 +43,7 @@
 	</select>
 	
 	<!-- 아이디에 해당하는 상품상태 추출하기 -->
-	<select id="readRefund" resultType="com.linker.product.dto.ProductDTO" parameterType="com.linker.product.dto.ProductDTO">
+	<select id="readRefund" resultType="com.linker.direct.product.dto.ProductDTO" parameterType="com.linker.direct.product.dto.ProductDTO">
 		<![CDATA[
 			SELECT (select name from order_item where `order`.order_id = order_item.order_id) as name, status,
 			(select order_date from order_item where `order`.order_id = order_item.order_id) as order_date,

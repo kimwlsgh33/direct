@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%	// https://postcode.map.daum.net/guide 다음 주소 검색 API
 	request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주소 검색</title>
-<script src="${contextPath}/resources/js/address.js"></script>
+<script src="${ctx}/resources/js/address.js"></script>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
 			<h2 class="col-sm-3" style="padding-top: 30px;">배송지 등록</h2>
 			<div class="col-md-4" style="padding-top: 35px; margin-left: 230px;">
 				<a class="btn btn-sm btn-outline-success"
-				href="${contextPath}/util/addressList?user_id=${member.user_id}">배송지 목록 가기</a>
+				href="${ctx}/util/addressList?user_id=${member.user_id}">배송지 목록 가기</a>
 			</div>
 			<div class="form-group" style="margin-top: 50px;">
 				<label class="form-label" style="text-align: right">받는사람</label>
