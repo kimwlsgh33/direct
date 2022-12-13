@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -14,21 +14,12 @@
 <!--fontawesome-->
 <script src="https://kit.fontawesome.com/217192a703.js" crossorigin="anonymous"></script>
 
-<!-- reset.css 
-<link href="${contextPath}/resources/styles/reset.css" rel="stylesheet">
--->
+<!-- reset.css -->
+<link href="${ctx}/resources/styles/reset.css" rel="stylesheet">
 
 <!--bootstrap 5.2.2-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
-
-<!-- bootstrap 3.3.2
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
--->
-<jsp:include page="../common/css.jsp" flush="false"/> 
 
 <%	/*
 	sticky-top은 상단 공간을 차지하면서 위에 고정하고,
@@ -38,8 +29,8 @@
 %>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="${contextPath}/main.do">
-        <img src="${contextPath}/resources/icons/logo.svg" alt="home" width="30" height="24" class="d-inline-block align-text-top">
+        <a class="navbar-brand" href="${ctx}/main">
+        <img src="${ctx}/resources/icons/logo.svg" alt="home" width="30" height="24" class="d-inline-block align-text-top">
         DIRECT
         </a>
 
@@ -50,28 +41,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${contextPath}/main.do">홈</a>
+                    <a class="nav-link active" aria-current="page" href="${ctx}/main">홈</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     회원관리
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       	<li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
-						<li><a href="${contextPath}/member/memberForm.do">회원가입</a></li>
+                       	<li><a href="${ctx}/member/loginForm">로그인</a></li>
+						<li><a href="${ctx}/member/memberForm">회원가입</a></li>
 						<li><hr class="dropdown-divider"></li>
-						<li><a href="${contextPath}/member/registerAjaxForm.do">회원가입(AJAX))</a></li>
-						<li><a href="${contextPath}/member/listMembers.do">회원목록</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        파일올리기
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    	<li><a href="${contextPath}/util/upload/uploadForm">파일 올리기 (Form)</a></li>
-						<li><a href="${contextPath}/util/upload/uploadAjax">파일 올리기 (Ajax)</a></li>
+						<li><a href="${ctx}/member/registerAjax">회원가입(AJAX))</a></li>
+						<li><a href="${ctx}/member/listMembers">회원목록</a></li>
                     </ul>
                 </li>
             </ul>
@@ -80,12 +61,12 @@
 				  <button type="button" class="btn btn-outline-success">search</button>
 				</div>
             <div class="d-flex justify-content-end">
-                <form class="navbar-form" method="post" action="${contextPath}/member/login.do">
+                <form class="navbar-form" method="post" action="${ctx}/member/login">
 					<c:choose>
 						<c:when test="${isLogOn == true && member != null}">
 						<div class="d-flex" >
 							<p style="color: gray; margin-top: 10px; margin-right: 20px;"><b>${member.id}님 환영합니다.</b></p>
-							<a href="${contextPath}/member/logout.do" class="btn btn-outline-success">로그아웃</a>
+							<a href="${ctx}/member/logout" class="btn btn-outline-success">로그아웃</a>
 						</div>
 						</c:when>
 						<c:otherwise>

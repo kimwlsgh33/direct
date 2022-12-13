@@ -7,7 +7,7 @@ function fn_reviewRegister() {
   // 입력한 값을 가져온다.
   let subject = $("#subject").val();
   let user_id = $("#user_id").val();
-  let item_id = $("#item_id").val();
+  let item_id = $("#select").val();
   let rating = $("#rating").val();
   let content = $("#content").val();
   //let item_name = $("#item_name").val();
@@ -144,5 +144,15 @@ function fn_reviewDelete(review_no){
 // 게시글 번호에 해당하는 상세페이지로 이동하기
 function fn_boardDetail(review_no) {
 	location.href = "/review/reviewDetail?review_no=" + review_no;
+}
+
+// 상품명 select 박스
+function fn_select(event){
+ 
+	console.log(event);
+	let test = $(event);
+	alert(test.val());
+	console.log("확인" + test.val());
+	
 }
 

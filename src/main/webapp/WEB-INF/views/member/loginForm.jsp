@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="result"		 value="${param.result}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
@@ -8,7 +8,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>로그인</title>
-	<!--bootstrap 5.2.2-->
+
+<!--bootstrap 5.2.2-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 </script>
@@ -35,7 +36,7 @@
 
 <div class="container">
 <div class="row justify-content-center">
-	<form class="form-horizontal" method="post" action="${contextPath}/member/login.do">
+	<form class="form-horizontal" method="post" action="${ctx}/member/login">
 		<div class="form-group row justify-content-center">
 			<div class="col-sm-4">
 				<div align="center" style="margin-top: 30px;">
@@ -66,7 +67,7 @@
 			</div>
 		</div>
 	</form>
-	<form class="form-horizontal" method="get" action="${contextPath}/member/memberForm.do">
+	<form class="form-horizontal" method="get" action="${ctx}/member/memberForm.do">
 		<div class="form-group row justify-content-center">
 			<div class="col-sm-4 row justify-content-center">
 				<button type="submit"	class="btn btn-lg btn-outline-secondary" style="margin: 10px;">회원가입</button>

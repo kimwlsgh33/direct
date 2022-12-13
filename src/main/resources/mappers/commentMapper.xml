@@ -3,7 +3,7 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
-<mapper namespace="com.linker.review.mappers.commentMapper">
+<mapper namespace="com.linker.direct.review.mappers.commentMapper">
 
 	<!-- 제일 큰(최근) 댓글 번호 가져오기 -->
 	<select id="maxNo" resultType="java.lang.Integer">
@@ -20,13 +20,13 @@
 	-->
 	
 	<!-- 댓글 목록 -->
-	<select id="commentList" parameterType="int" resultType="com.linker.review.dto.CommentDTO">
+	<select id="commentList" parameterType="int" resultType="com.linker.direct.review.dto.CommentDTO">
 	SELECT	*	FROM comment
 	WHERE	review_no = #{review_no}
 	</select>
 	
 	<!-- 댓글 등록 -->
-	<insert id="commentInsert" parameterType="com.linker.review.dto.CommentDTO">
+	<insert id="commentInsert" parameterType="com.linker.direct.review.dto.CommentDTO">
 		<![CDATA[
 			INSERT	INTO comment (CNO, review_no, CONTENT, WRITER, REG_DATE)
 			SELECT	ifnull(max(cno), 0) + 1,	#{review_no},	#{content},	#{writer},	now()
@@ -35,7 +35,7 @@
 	</insert>
 	
 	<!-- 댓글 수정 -->
-	<update id="commentUpdate" parameterType="com.linker.review.dto.CommentDTO">
+	<update id="commentUpdate" parameterType="com.linker.direct.review.dto.CommentDTO">
 	UPDATE	comment
 	SET		CONTENT		= #{content}
 	WHERE	CNO			= #{cno}

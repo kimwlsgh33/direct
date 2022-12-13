@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
 
 <%
 if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").equals("")) {
-	response.sendRedirect("/member/loginForm.do");
+	response.sendRedirect("/member/loginForm");
 }
 %>
 
@@ -30,7 +30,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 					</div>
 					<div class="col-md-4" style=" margin-top: 10px;">
 						<a class="btn btn-sm btn-outline-success" style="margin-left: 95px; "
-						href="${contextPath}/product/productSelect?item_id=${p.item_id}">자세히 보기</a>
+						href="${ctx}/product/productSelect?item_id=${p.item_id}">자세히 보기</a>
 					</div>
 				</div>
 				<div class="row justify-content-center">

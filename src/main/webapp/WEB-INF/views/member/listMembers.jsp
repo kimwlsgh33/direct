@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
 
 <%
 if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").equals("")) {
-	response.sendRedirect("/member/loginForm.do");
+	response.sendRedirect("/member/loginForm");
 }
 /*
 <c:choose>
@@ -37,8 +37,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 <div class="container">
 	<h1 align="center">회원 전체 목록</h1>
 	<div>
-		<a href="${contextPath}/member/logout.do" class="btn btn-sm btn-outline-success"><span class="glyphicon glyphicon-log-out">로그아웃</span></a>
-		<a class="btn btn-sm btn-outline-success" href="${contextPath}/member/loginModalForm.do">로그인(Modal)</a>
+		<a href="${ctx}/member/logout" class="btn btn-sm btn-outline-success"><span class="glyphicon glyphicon-log-out">로그아웃</span></a>
+		<a class="btn btn-sm btn-outline-success" href="${ctx}/member/loginModalForm">로그인(Modal)</a>
 	</div>
 	<table class="table table-bordered table-striped table-hover">
 		<tr class="info">
@@ -63,8 +63,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<td align="center">${member.pwd}</td>
 			<td align="center"><fmt:formatDate value="${member.created_at}" pattern="yyyy년 MM월 dd일"/></td>
 			<td align="center">${member.email}</td>
-			<td align="center"><a class="btn btn-sm" href="${contextPath}/member/updateMemberForm.do?user_id=${member.user_id}">수정</a></td>
-			<td align="center"><a class="btn btn-sm" href="${contextPath}/member/removeMember.do?user_id=${member.user_id}">삭제</a></td>
+			<td align="center"><a class="btn btn-sm" href="${ctx}/member/updateMemberForm?user_id=${member.user_id}">수정</a></td>
+			<td align="center"><a class="btn btn-sm" href="${ctx}/member/removeMember?user_id=${member.user_id}">삭제</a></td>
 		</tr>
 	</c:forEach>	
 	</table>

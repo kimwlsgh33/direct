@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
 		<jsp:include page="../common/headMenu.jsp" flush="false"/>
-	<form class="form-horizontal" method="post" name="memModifyForm" action="${contextPath}/member/modifyMember.do" style="margin-left: 20%;">
+	<form class="form-horizontal" method="post" name="memModifyForm" action="${ctx}/member/modifyMember" style="margin-left: 20%;">
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5" style="margin-top: 30px;">
 				<h2>개인정보 확인/수정</h2>

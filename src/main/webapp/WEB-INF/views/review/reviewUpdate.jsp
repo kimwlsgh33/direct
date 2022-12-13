@@ -2,14 +2,14 @@
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <%@ page import="java.util.*" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%	request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>리뷰 수정</title>
-	<script src="${contextPath}/resources/js/review.js"></script>
+	<script src="${ctx}/resources/js/review.js"></script>
 </head>
 <body>
 
@@ -71,7 +71,7 @@
 			<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewUpdate();">
 				게시글 수정
 			</button>
-			<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='${contextPath}/review/reviewList'">
+			<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='${ctx}/review/reviewList'">
 				게시글 목록
 			</button>
 		</div>

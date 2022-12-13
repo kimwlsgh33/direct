@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>주소지 목록</title>
-<script src="${contextPath}/resources/js/address.js"></script>
+<script src="${ctx}/resources/js/address.js"></script>
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 					<h2 class="col-md-4">배송지 목록</h2>
 					<div class="col-md-4" style="margin-right: 110px;">
 						<a class="btn btn-sm btn-outline-success"
-						href="${contextPath}/util/address">배송지 추가</a>
+						href="${ctx}/util/address">배송지 추가</a>
 					</div>
 				</div>
 				<c:forEach var="addr" items="${address}">
