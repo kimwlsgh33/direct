@@ -16,11 +16,7 @@
     INSERT INTO category (name, icon, color) SELECT #{name}, #{icon}, #{color} FROM categoryVO
     ]]>
   </insert>
-  <select id="read" parameterType="com.linker.direct.category.CategoryVO" resultType="com.linker.direct.category.CategoryVO">
-    <![CDATA[
-    SELECT * FROM category WHERE category_id = #{category_id}
-    ]]>
-  </select>
+
   <update id="update" parameterType="com.linker.direct.category.CategoryVO">
     <![CDATA[
       UPDATE category SET name=#{name}, icon=#{icon}, color=#{color}
@@ -32,4 +28,9 @@
         DELETE FROM category WHERE id=#{category_id}
     ]]>
   </delete>
+  <select id="read" resultType="com.linker.direct.category.CategoryVO">
+    <![CDATA[
+    SELECT * FROM category WHERE category_id = #{category_id}
+    ]]>
+  </select>
 </mapper>

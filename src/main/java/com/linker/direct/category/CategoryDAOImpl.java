@@ -1,5 +1,6 @@
 package com.linker.direct.category;
 
+import com.linker.direct.item.vo.ItemVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
@@ -41,5 +42,10 @@ public class CategoryDAOImpl implements CategoryDAO {
     public void delete(CategoryDTO categoryDto) throws DataAccessException {
         CategoryVO categoryVO = categoryDto.toVo();
         sqlSession.delete(NAMESPACE + ".delete", categoryVO);
+    }
+
+    @Override
+    public CategoryVO readByItem(ItemVO itemVO) throws DataAccessException {
+        return sqlSession.selectOne(NAMESPACE + ".read", itemVO);
     }
 }

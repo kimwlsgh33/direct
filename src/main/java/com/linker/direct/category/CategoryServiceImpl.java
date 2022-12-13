@@ -1,5 +1,6 @@
 package com.linker.direct.category;
 
+import com.linker.direct.item.vo.ItemVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(CategoryDTO categoryDto) throws Exception {
         categoryDao.delete(categoryDto);
+    }
+
+    @Override
+    public CategoryVO readByItem(ItemVO itemVO) throws Exception {
+        return categoryDao.readByItem(itemVO);
     }
 }

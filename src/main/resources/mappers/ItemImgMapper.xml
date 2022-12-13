@@ -19,9 +19,9 @@
         ]]>
     </insert>
 
-    <select id="read" resultType="com.linker.direct.item.vo.ItemImgVO">
+    <select id="readByItem" parameterType="com.linker.direct.item.vo.ItemVO" resultType="com.linker.direct.item.vo.ItemImgVO">
         <![CDATA[
-            SELECT * FROM item_img WHERE item_img_id = #{item_img_id}
+            SELECT * FROM item_img WHERE item_id = #{item_id}
         ]]>
     </select>
 </mapper>

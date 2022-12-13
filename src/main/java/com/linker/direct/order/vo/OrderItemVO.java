@@ -1,10 +1,12 @@
 package com.linker.direct.order.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
-@Data
+@Getter @Setter
 public class OrderItemVO {
     private Long order_item_id;
     private Long order_id;

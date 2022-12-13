@@ -1,5 +1,7 @@
 package com.linker.direct.category;
 
+import com.linker.direct.item.vo.ItemVO;
+
 import java.util.List;
 
 public interface CategoryService {
@@ -12,4 +14,6 @@ public interface CategoryService {
   void update(CategoryVO categoryVO) throws Exception;
 
   void delete(CategoryDTO categoryDto) throws Exception;
+
+    CategoryVO readByItem(ItemVO itemVO) throws Exception;
 }

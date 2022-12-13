@@ -27,6 +27,11 @@ public class FileService {
         return savedName; // uuid.확장자
     }
 
+    // 파일 불러오기
+    public File getFile(String uploadPath, String fileName) throws Exception {
+        return new File(uploadPath + "/" + fileName);
+    }
+
     // 파일 삭제
     public void deleteFile(String filePath) throws Exception {
         File deleteFile = new File(filePath);

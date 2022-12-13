@@ -23,14 +23,14 @@
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
 <div class="w-100 d-flex flex-column align-items-center">
-    <form id="uploadForm" action="${ctx}/itemVO/create" method="post" class="w-75">
+    <form id="uploadForm" action="${ctx}/item/create" method="post" class="w-75">
         <input type="hidden" name="_method" value="put">
         <div class="w-100 pt-3">
             <div class="w-25 d-flex align-items-center mb-3">
                 <div class="me-2">카테고리</div>
                 <select id="selectCategory" class="form-select-sm" aria-label="Select Category">
                     <option selected>카테고리 선택</option>
-                    <c:forEach var="categoryVO" items="${categoryVOList}">
+                    <c:forEach var="categoryVO" items="${categoryList}">
                         <option value="${categoryVO.category_id}" class="dropdown-itemVO">${categoryVO.name}</option>
                     </c:forEach>
                 </select>

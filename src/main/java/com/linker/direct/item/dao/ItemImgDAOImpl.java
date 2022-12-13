@@ -1,6 +1,7 @@
 package com.linker.direct.item.dao;
 
 import com.linker.direct.item.vo.ItemImgVO;
+import com.linker.direct.item.vo.ItemVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
@@ -30,7 +31,7 @@ public class ItemImgDAOImpl implements ItemImgDAO {
     }
 
     @Override
-    public List<ItemImgVO> readItemImgs(int itemId) throws DataAccessException {
-        return sqlSession.selectList(NAMESPACE + ".readItemImg", itemId);
+    public List<ItemImgVO> readByItem(ItemVO itemVO) throws DataAccessException {
+        return sqlSession.selectList(NAMESPACE + ".readByItem", itemVO);
     }
 }

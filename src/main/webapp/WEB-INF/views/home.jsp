@@ -147,14 +147,7 @@
 </style>
 <body>
 <jsp:include page="common/header.jsp" flush="false"/>
-<div class="container-fluid p-3 my-2 mainContainer">
-	<form class="input-group" method="post" action="${ctx}/search">
-		<input id="search" class="form-control" type="search" placeholder="원하는 상품을 검색해보세요" aria-label="Search">
-		<button class="btn btn-outline-primary" type="submit">
-			<i class="fas fa-search"></i>
-		</button>
-	</form>
-</div>
+
 <div class="container-fluid pt-5 mainContainer">
 	<div class="row">
 		<div class="d-flex justify-content-center mb-4 fs-3 fw-bold">오늘바로 받아보는 당일배송</div>

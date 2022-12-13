@@ -11,8 +11,7 @@ import java.sql.Timestamp;
 @Data
 public class ItemVO {
   private Long item_id; // 구분자
-  private Long user_id; // 판매자
-  private String name;
+  private String name; // 상품명
   private int price;
   private int stock;
   private String description;
@@ -21,9 +20,9 @@ public class ItemVO {
   private Timestamp updated_at;
   private Long category_id; // 카테고리 연결
   public ItemVO(){}
+
   public void updateItem(ItemFormDTO itemFormDto) { // 아이템 상태 업데이트
     this.item_id = itemFormDto.getItem_id();
-    this.user_id = itemFormDto.getUser_id();
     this.name = itemFormDto.getName();
     this.price = itemFormDto.getPrice();
     this.stock = itemFormDto.getStock();

@@ -1,13 +1,18 @@
 package com.linker.direct.order.controller;
 
-import com.linker.direct.item.service.ItemService;
-import com.linker.direct.item.vo.ItemVO;
+//vo
+import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.item.dto.ItemDTO;
 import com.linker.direct.order.dto.OrderFormDTO;
-import com.linker.direct.order.service.OrderItemService;
 import com.linker.direct.order.vo.OrderVO;
-import com.linker.direct.order.service.OrderService;
 import com.linker.direct.order.vo.OrderItemVO;
-import com.linker.direct.member.vo.MemberVO;
+import com.linker.direct.user.vo.UserVO;
+import com.linker.direct.item.vo.ItemVO;
+// service
+import com.linker.direct.item.service.ItemService;
+import com.linker.direct.order.service.OrderService;
+import com.linker.direct.order.service.OrderItemService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,12 +34,13 @@ public class OrderController {
     // Test용 메소드
     private final ItemService itemService;
 
-    @RequestMapping("/createForm")
-    public String createForm(Model model, HttpServletRequest request, OrderFormDTO orderFormDto) throws Exception {
+    @RequestMapping("/createForm") // 요기 - 장바구니 아이템 받아서, 주문 생성화면으로 이동
+    public String createForm(Model model, HttpServletRequest request, List<CartDTO> cartList) throws Exception {
 
         HttpSession session = request.getSession();
-        MemberVO memberVO = (MemberVO) session.getAttribute("user");
-        model.addAttribute("user", memberVO);
+        UserVO userVO = (UserVO) session.getAttribute("user");
+        model.addAttribute("user", userVO);
+
 
         return "order/createForm";
     }
@@ -45,8 +52,8 @@ public class OrderController {
 
         // 유저 정보 가져옴
         HttpSession session = request.getSession();
-        MemberVO memberVO = (MemberVO) session.getAttribute("user");
-        orderVO.setUser_id(memberVO.getUser_id());
+        UserVO userVO = (UserVO) session.getAttribute("user");
+        orderVO.setUser_id(userVO.getUser_id());
 
         // 주문 정보 생성
         orderService.create(orderVO);
@@ -54,15 +61,18 @@ public class OrderController {
         OrderItemVO orderItemVO = new OrderItemVO();
 
         //TEST: 임시로 상품 생성
-        ItemVO forItemIdVO = new ItemVO();
-        forItemIdVO.setItem_id(1L);
+        ItemVO itemVO = new ItemVO();
+        itemVO.setItem_id(1L);
 
         // 상품 정보 가져옴
-        ItemVO itemVO = itemService.read(forItemIdVO);
+        itemService.read(itemVO);
+
         orderItemVO.setOrder_id(orderVO.getOrder_id());
         orderItemVO.setItem_id(itemVO.getItem_id());
         orderItemVO.setCount(1);
         orderItemVO.setPrice(itemVO.getPrice());
+
+
         System.out.println(orderItemVO.toString());
 
         // 주문 아이템 생성

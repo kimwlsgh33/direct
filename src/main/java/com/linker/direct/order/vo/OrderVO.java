@@ -2,10 +2,12 @@ package com.linker.direct.order.vo;
 
 import com.linker.direct.order.OrderStatus;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
-@Data
+@Getter @Setter
 public class OrderVO { // 주문 정보
     private Long order_id;
     private Long user_id;

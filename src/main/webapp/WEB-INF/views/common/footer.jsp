@@ -13,8 +13,29 @@
 	#footerNav a:hover {
 		color: darkslateblue;
 	}
+
+	.btn_gotop {
+		position:fixed;
+		bottom:30px;
+		right:30px;
+		z-index:999;
+		border:1px solid #ccc;
+		outline:none;
+		background-color:white;
+		color:#333;
+		cursor:pointer;
+		padding:15px 20px;
+		border-radius:100%;
+	}
 </style>
 <nav id="footerNav" class="container text-center">
+	<a href="#" class="btn_gotop">
+		<div class="glyphicon glyphicon-chevron-up">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+			</svg>
+		</div>
+	</a>
 	<a class="nav-link my-3" id="footerExtContents" data-bs-toggle="collapse" href="#collapseFooter" aria-expanded="false">Linker(주) 사업자 정보</a>
 	<div class="collapse" id="collapseFooter">
 		<ul class="card card-body gap-3">

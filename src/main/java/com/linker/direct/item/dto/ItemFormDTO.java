@@ -2,14 +2,12 @@ package com.linker.direct.item.dto;
 
 import com.linker.direct.item.ItemSellStatus;
 import com.linker.direct.item.vo.ItemVO;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter @Setter @ToString
+@Data
 public class ItemFormDTO {
     private Long item_id;
     private Long user_id;
@@ -19,13 +17,12 @@ public class ItemFormDTO {
     private int stock;
     private String description;
     private ItemSellStatus status;
-    private List<ItemImgDTO> itemImgDTOList = new ArrayList<>(); // output
+    private List<ItemImgSaveDTO> itemImgSaveDTOList = new ArrayList<>(); // output
 
     // Item -> ItemFormDto
     public static ItemFormDTO of(ItemVO itemVO) {
         ItemFormDTO itemFormDto = new ItemFormDTO();
         itemFormDto.setItem_id(itemVO.getItem_id());
-        itemFormDto.setUser_id(itemVO.getUser_id());
         itemFormDto.setName(itemVO.getName());
         itemFormDto.setPrice(itemVO.getPrice());
         itemFormDto.setStock(itemVO.getStock());
@@ -39,7 +36,6 @@ public class ItemFormDTO {
     public static ItemVO toVO(ItemFormDTO itemFormDto) {
         ItemVO itemVO = new ItemVO();
         itemVO.setItem_id(itemFormDto.getItem_id());
-        itemVO.setUser_id(itemFormDto.getUser_id());
         itemVO.setName(itemFormDto.getName());
         itemVO.setPrice(itemFormDto.getPrice());
         itemVO.setStock(itemFormDto.getStock());

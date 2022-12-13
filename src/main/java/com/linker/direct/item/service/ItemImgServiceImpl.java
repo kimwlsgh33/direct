@@ -4,9 +4,11 @@ package com.linker.direct.item.service;
 // dto
 // entity
 // lombok
+import com.linker.direct.item.dto.ItemImgReadDTO;
 import com.linker.direct.item.vo.ItemImgVO;
 import com.linker.direct.item.dao.ItemImgDAO;
-import com.linker.direct.item.dto.ItemImgDTO;
+import com.linker.direct.item.dto.ItemImgSaveDTO;
+import com.linker.direct.item.vo.ItemVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 // springframework
@@ -15,7 +17,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,11 +36,13 @@ public class ItemImgServiceImpl implements ItemImgService {
     private final ItemImgDAO itemImgDao;
 
 
-    // uuid 이용해, 파일 저장하기
-    public void upload(ItemImgDTO itemImgDto) throws Exception {
+    //==================================================================================================
+    // 상품 이미지 업로드
+    //==================================================================================================
+    public void upload(ItemImgSaveDTO itemImgSaveDto) throws Exception {
         log.info("업로드 경로 : " + uploadPath);
 
-        MultipartFile uploadFile = itemImgDto.getUploadFile();
+        MultipartFile uploadFile = itemImgSaveDto.getUploadFile();
 
         String originName = uploadFile.getOriginalFilename();
         byte[] fileData = uploadFile.getBytes();
@@ -54,14 +62,43 @@ public class ItemImgServiceImpl implements ItemImgService {
         // DB에 저장 =================================================================================================
         //================================================================================================
         ItemImgVO itemImgVO = new ItemImgVO();
-        itemImgVO.updateItemImg(itemImgDto.getItemVO().getItem_id(), uuid, originName);
+        itemImgVO.updateItemImg(itemImgSaveDto.getItemVO().getItem_id(), uuid, originName);
 
         itemImgDao.create(itemImgVO);
     }
 
+
+    //==================================================================================================
+    // 상품 이미지 조회
+    //==================================================================================================
     @Override
-    public List<ItemImgVO> read(int id) throws Exception {
-        return itemImgDao.readItemImgs(id);
+    public List<ItemImgReadDTO> readByItem(ItemVO itemVO) throws Exception {
+        List<ItemImgVO> itemImgList = itemImgDao.readByItem(itemVO);
+
+        List<ItemImgReadDTO> itemImgReadList = new ArrayList<>();
+
+        for (ItemImgVO itemImgVO : itemImgList) {
+            String readImgFileUrl = readImgFileUrl(itemImgVO);
+            String originName = itemImgVO.getOrigin_name();
+
+            ItemImgReadDTO itemImgReadDTO = ItemImgReadDTO.of(originName, readImgFileUrl);
+            itemImgReadList.add(itemImgReadDTO);
+        }
+
+        return itemImgReadList;
+    }
+
+    //==================================================================================================
+    // 상품 이미지 파일 base64 URL 가져오기
+    //==================================================================================================
+    public String readImgFileUrl(ItemImgVO itemImgVO) throws Exception {
+        String separator = File.separator; // 윈도우는 \, 리눅스는 /를 사용한다.
+        String fileUrl = uploadPath + separator + itemImgVO.getImg_name(); // 파일 경로
+        return "data:image/png;base64," + Base64.getEncoder().encodeToString(FileCopyUtils.copyToByteArray(new File(fileUrl)));
+
+        // Base64 : 바이너리 데이터를 텍스트로 인코딩하는 방식
+        // Base64.getEncoder().encodeToString() : 바이너리 데이터를 인코딩한다.
+        // FileCopyUtils.copyToByteArray() : 파일을 바이너리 데이터로 복사한다.
     }
 }
 

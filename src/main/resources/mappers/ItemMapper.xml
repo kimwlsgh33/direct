@@ -28,4 +28,65 @@
             SELECT * FROM item WHERE item_id = #{item_id}
         ]]>
     </select>
+
+    <!-- ================================================================================================ -->
+    <!-- ================================================================================================ -->
+    <!-- ================================================================================================ -->
+    <!-- 상품 전체 목록 가져오기 -->
+    <select id="searchListAll" resultType="com.linker.direct.item.vo.ItemVO">
+		<![CDATA[select * from item]]>
+	</select>
+
+    <!-- 페이징 -->
+    <select id="searchListTotalCount" parameterType="com.linker.direct.common.util.Criteria" resultType="Integer">
+		<![CDATA[
+        SELECT	COUNT(*)
+        FROM	item
+        WHERE	1 = 1
+        ]]>
+	</select>
+
+    <!-- 낮은 가격순 정렬 -->
+    <select id="searchListPaging" parameterType="hashmap" resultType="com.linker.direct.item.vo.ItemVO">
+        <![CDATA[
+		select *
+		from (select *, ROW_NUMBER() OVER(
+		]]>
+        <include refid="searchOrder" />
+        <![CDATA[
+		) as rNUM from item where 1 = 1
+		]]>
+        <include refid="searchMySQL"/>
+        <![CDATA[
+		) brd
+		where rNum between 1+(#{perPageNum}*(#{page}-1)) and #{perPageNum} + (#{perPageNum}*(#{page}-1))
+		]]>
+        <include refid="searchOrder"/>
+    </select>
+
+
+
+
+    <sql id="searchMySQL">
+        AND name LIKE CONCAT('%', #{keyword}, '%')
+    </sql>
+
+
+
+    <sql id="searchOrder">
+        <if test="subFilter == 'lowPrice'">
+            order by price
+        </if>
+        <if test="subFilter == 'highPrice'">
+            order by price desc
+        </if>
+        <if test="subFilter == 'created_at'">
+            order by created_at desc
+        </if>
+        <choose>
+            <when test="subFilter == null">
+                order by price
+            </when>
+        </choose>
+    </sql>
 </mapper>

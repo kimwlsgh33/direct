@@ -64,7 +64,7 @@ function uploadFiles() {
     },
     error: function (result) {
       alert("업로드 실패");
-      console.log(result);
+      console.log(result.message);
     },
   });
 }
