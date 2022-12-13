@@ -36,6 +36,33 @@ function uploadFiles() {
   } else if(typeof stock != "number") {
     alert("재고는 숫자만 입력 가능합니다.");
     return;
+  } else if(price < 0) {
+    alert("가격은 0보다 작을 수 없습니다.");
+    return;
+  } else if(stock < 0) {
+    alert("재고는 0보다 작을 수 없습니다.");
+    return;
+  } else if(price % 1 != 0) {
+    alert("가격은 소수점을 포함할 수 없습니다.");
+    return;
+  } else if(stock % 1 != 0) {
+    alert("재고는 소수점을 포함할 수 없습니다.");
+    return;
+  } else if(price > 1000000000) {
+    alert("가격은 10억 이하로 입력하세요.");
+    return;
+  } else if(stock > 1000000000) {
+    alert("재고는 10억 이하로 입력하세요.");
+    return;
+  } else if(description.length > 1000) {
+    alert("상품 설명은 1000자 이하로 입력하세요.");
+    return;
+  } else if(name.length > 100) {
+    alert("상품명은 100자 이하로 입력하세요.");
+    return;
+  } else if(stock == 0) {
+    alert("재고는 0보다 커야 합니다.");
+    return;
   }
 
   alert("업로드를 시작합니다." + "[카테고리 : " + category_id + "][상품명 : " + name + "][가격 : " + price + "][재고 : " + stock + "][상품설명 : " + description + "]");

@@ -14,8 +14,8 @@
 
     <insert id="create" parameterType="com.linker.direct.item.vo.ItemVO">
         <![CDATA[
-            INSERT INTO item (user_id, name, price, stock, description, status, category_id)
-            VALUES (#{user_id}, #{name}, #{price}, #{stock}, #{description}, #{status}, #{category_id})
+            INSERT INTO item (name, price, stock, description, status, category_id)
+            VALUES (#{name}, #{price}, #{stock}, #{description}, #{status}, #{category_id})
         ]]>
         <!-- 쿼리문 실행 이후(orderVO), Item 객체의 id(keyProperty)에, 새로 생성된 id(keyColumn)를 set 해준다. -->
         <selectKey keyColumn="item_id" keyProperty="item_id" order="AFTER" resultType="java.lang.Long">
@@ -46,7 +46,7 @@
         ]]>
 	</select>
 
-    <!-- 낮은 가격순 정렬 -->
+    <!-- 상품 정렬 -->
     <select id="searchListPaging" parameterType="hashmap" resultType="com.linker.direct.item.vo.ItemVO">
         <![CDATA[
 		select *
@@ -64,15 +64,12 @@
         <include refid="searchOrder"/>
     </select>
 
-
-
-
+    <!-- 상품 검색 (이름) -->
     <sql id="searchMySQL">
         AND name LIKE CONCAT('%', #{keyword}, '%')
     </sql>
 
-
-
+    <!-- 정렬 기준 -->
     <sql id="searchOrder">
         <if test="subFilter == 'lowPrice'">
             order by price

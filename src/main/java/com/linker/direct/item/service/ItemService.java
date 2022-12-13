@@ -13,7 +13,7 @@ public interface ItemService {
     void create(ItemFormDTO itemFormDto, List<MultipartFile> uploadFiles) throws Exception;
 
     ItemDTO read(ItemVO itemVO) throws Exception;
-    List<ItemVO> searchListPaging(SearchCriteria cri) throws Exception;
+    List<ItemDTO> searchListPaging(SearchCriteria cri) throws Exception;
     int totalCount(SearchCriteria cri) throws Exception;
     public List<ItemVO> searchListAll(SearchCriteria cri) throws Exception;
 

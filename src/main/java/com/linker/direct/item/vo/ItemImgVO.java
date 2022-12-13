@@ -9,11 +9,9 @@ import java.sql.Timestamp;
 // DB - item_img
 @Getter @Setter @ToString
 public class ItemImgVO { // 상품 이미지 정보
-    private Long item_img_id; // 상품 이미지 ID
     private Long item_id; // 상품 연결
-    private String img_name; // 상품 이미지 이름 - uuid.ext
+    private String img_name; // 상품 이미지 이름 - uuid.ext ( Primary Key )
     private String origin_name; // 원본 이미지 이름 - origin.ext
-
     private Timestamp created_at; // 생성일
 
     public void updateItemImg(Long item_id, String img_name, String origin_name) {

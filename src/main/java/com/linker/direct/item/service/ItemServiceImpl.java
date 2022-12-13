@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import com.linker.direct.item.ItemSellStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -69,16 +71,34 @@ public class ItemServiceImpl implements ItemService {
         List<ItemImgReadDTO> itemImgs = itemImgService.readByItem(resultItem);
 
         // 상품, 카테고리, 상품 이미지 DTO에 저장
-        return ItemDTO.of(resultItem, categoryVO, itemImgs);
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setItemVO(resultItem);
+        itemDTO.setCategoryVO(categoryVO);
+        itemDTO.setImgList(itemImgs);
+        return itemDTO;
     }
 
     //==================================================================================================
     // 상품 검색 목록 조회 (페이징)
     //==================================================================================================
     @Override
-    public List<ItemVO> searchListPaging(SearchCriteria cri) throws Exception {
+    public List<ItemDTO> searchListPaging(SearchCriteria cri) throws Exception {
         List<ItemVO> searchListPaging = itemDao.searchListPaging(cri);
-        return searchListPaging;
+
+        // 상품 정보 & 상품 이미지
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+        for(ItemVO itemVO : searchListPaging) {
+            // 상품 이미지 가져옴
+            List<ItemImgReadDTO> itemImgs = itemImgService.readByItem(itemVO);
+            // 상품, 상품 이미지 DTO에 저장
+            ItemDTO itemDTO = new ItemDTO();
+            itemDTO.setItemVO(itemVO);
+            itemDTO.setImgList(itemImgs);
+            // 리스트에 추가
+            itemDTOList.add(itemDTO);
+        }
+
+        return itemDTOList;
     }
 
     //==================================================================================================

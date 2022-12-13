@@ -100,8 +100,6 @@
     <%--상품 검색 결과--%>
     <div class="mainContainer flex-wrap" style=""> <!-- 헤더 밑 전체 부분 -->
         <div class="mainContainer_style "> <!-- 전체 부분 포지션 잡기 위한 div  -->
-
-
         <%--            <h2 class="blind">검색결과</h2>--%>
             <div class="d-flex align-items-center"  style="height: 40px"> <!-- "에 대한 검색 결과입니다" 큰 div -->
                 <div class="result_info_text" >
@@ -157,56 +155,54 @@
                 <%--========================================================================================================  --%>
                 <%--===============================================구 매 할 제 품============================================  --%>
                 <%--========================================================================================================  --%>
-                <div >
+                <div>
                     <a class="d-flex flex-wrap justify-content-evenly" style="text-decoration: none; color: black" href="#">
-                    <c:forEach var="item" items="${searchList}">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-<%--                                <img src="${item.product_image}" />--%>
-                                <h3>${item.name}</h3>
-                                <h1>${item.price}원</h1>
-                                <p>${item.created_at}</p>
-                                <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
-                                    <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <c:forEach var="itemDTO" items="${searchList}">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                    <img src="${itemDTO.imgList[0].img_url}" width="100%" height="100%" />
+                                    <h3>${itemDTO.itemVO.name}</h3>
+                                    <h1>${itemDTO.itemVO.price}원</h1>
+                                    <p>${itemDTO.itemVO.created_at}</p>
+                                    <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
+                                        <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                    <div class="flip-card-back align-items-center" >
+                                        <form>  <!-- 나중에 제품 상세 페이지로 ACTION 주기. -->
+                                            <img src="${itemDTO.imgList[0].img_url}"/>
+                                        </form>
+                                    </div>
+                                    <button class="btn btn-outline-dark" id="${itemDTO.itemVO.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${itemDTO.itemVO.item_id})" ><i class="fas fa-shopping-cart"></i></button>
                                 </div>
                             </div>
-                            <div class="flip-card-back align-items-center" >
-                                <form>  <!-- 나중에 제품 상세 페이지로 ACTION 주기. -->
-<%--                                <img src="${item.product_image}"/>--%>
-                                </form>
-                                <button class="btn btn-outline-dark" id="${item.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${item.item_id})" ><i class="fas fa-shopping-cart"></i></button>
-                            </div>
                         </div>
-                    </div>
-                </c:forEach>
-                </a>
+                        </c:forEach>
+                    </a>
                 </div>
-
-                <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <c:if test="${pageMaker.prev }">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
+                                <a class="page-link" href='<c:url value="/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
                             </li>
                         </c:if>
                         <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageNum }"/>'><i>${pageNum }</i></a>
+                                <a class="page-link" href='<c:url value="/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageNum }"/>'><i>${pageNum }</i></a>
                             </li>
                         </c:forEach>
                         <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.endPage+1 }"/>'>다음</a>
+                                <a class="page-link" href='<c:url value="/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.endPage+1 }"/>'>다음</a>
                             </li>
                         </c:if>
                     </ul>
                 </nav>
-            </div>
         </div>
     </div>
 </div>
-
 
 <jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
@@ -230,6 +226,7 @@
 </script>
 
 <script>
+    //console.log(${searchList});
     const toastTrigger = document.getElementById('addCart')
     const toastLiveExample = document.getElementById('liveToast')
     if (toastTrigger) {
@@ -252,9 +249,6 @@
         }
 
     })
-
-
-
 </script>
 
 </html>

@@ -4,7 +4,9 @@ package com.linker.direct.item.controller;
 import com.linker.direct.common.util.PageMaker;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.item.dto.ItemDTO;
+import com.linker.direct.item.dto.ItemResultDTO;
 import com.linker.direct.item.vo.ItemVO;
+import com.linker.direct.user.constant.Role;
 import com.linker.direct.user.vo.UserVO;
 import com.linker.direct.category.CategoryVO;
 // dto
@@ -28,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 // java
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -54,30 +57,26 @@ public class ItemController {
     @ResponseBody
     @RequestMapping(value="/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDTO itemFormDto, HttpServletRequest request) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
-
-        //==================================================================================================
         // 로그인 여부 확인 ==================================================================================================
-        //==================================================================================================
         // UserVO userVO = (UserVO) request.getSession().getAttribute("user");
         UserVO userVO = new UserVO();
         userVO.setUser_id(1L);
+        userVO.setRole(Role.ADMIN);
+
+        // 조건 확인 ==================================================================================================
         if(userVO == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("로그인이 필요합니다.", HttpStatus.UNAUTHORIZED);
+        } else if (userVO.getRole() != Role.ADMIN) {
+            // 관리자가 아닌 경우
+            return new ResponseEntity<>("관리자만 접근 가능합니다.", HttpStatus.UNAUTHORIZED);
         }
-        //==================================================================================================
-        itemFormDto.setUser_id(userVO.getUser_id()); // 생성자 id : 로그인한 사용자 id
-        //==================================================================================================
         // 사진 정보 확인 ==================================================================================================
-        //==================================================================================================
         if(uploadFiles == null) { // 파일이 없을 경우 에러 발생
             return new ResponseEntity<>("fail_no_img", HttpStatus.BAD_REQUEST);
         }
 
-        //==================================================================================================
         // item 저장 ==================================================================================================
-        //==================================================================================================
         itemService.create(itemFormDto, uploadFiles); // item 테이블에 저장
-
         return new ResponseEntity<>("upload success", HttpStatus.OK);
     }
 
@@ -86,24 +85,21 @@ public class ItemController {
     // 상품 목록
     //==================================================================================================
     @RequestMapping(value = "/searchList", method = RequestMethod.GET)
-    public ModelAndView searchList(SearchCriteria cri, ItemVO itemVO, CartDTO cartDTO) throws Exception {
-        ModelAndView mav = new ModelAndView("/search/searchList");
+    public ModelAndView searchList(SearchCriteria cri, CartDTO cartDTO) throws Exception {
+        ModelAndView mav = new ModelAndView("/item/searchList");
 
-        String subFilter = cri.getSubFilter();
-        String keyword = cri.getKeyword();
-        log.info("keyword ==> " + keyword);
-
-        // 키워드 검사
-        if(keyword == "") {
-            mav.setViewName("/search/noSearch");
-        } else {
-            mav.setViewName("/search/searchList");
+        String subFilter = cri.getSubFilter();;
+        // logger.info("subFilter ==> " + subFilter);
+        if(subFilter == null){
+            // 검색 조건이 없으면, 낮은 가격순으로 정렬
+            subFilter  = "lowPrice";
         }
 
-        // 검색 조건이 없으면, 낮은 가격순으로 정렬
-        if(subFilter == null){
-            subFilter  = "lowPrice";
-            // logger.info("subFilter ==> " + subFilter);
+        String keyword = cri.getKeyword();
+        //log.info("keyword ==> " + keyword);
+        // 키워드 검사
+        if(keyword == "") {
+            mav.setViewName("/item/noSearch");
         }
 
         PageMaker pageMaker = new PageMaker();
@@ -111,22 +107,28 @@ public class ItemController {
 
         // 상품 전체 개수를 구한다.
         pageMaker.setTotalCount(itemService.totalCount(cri));
+        System.out.println("pageMaker.getTotalCount() ==> " + pageMaker.getTotalCount());
 
         // cri에 해당하는 게시글을 가져와서 View에게 넘겨준다.
-        List<ItemVO> searchList = itemService.searchListPaging(cri);
-
+        List<ItemDTO> searchList = itemService.searchListPaging(cri);
         mav.addObject("searchList", searchList);
+
+        // 페이지 메뉴
         mav.addObject("pageMaker", pageMaker);
+
+        // 장바구니
+        mav.addObject("user_id", cartDTO.getUser_id());
         mav.addObject("item_id", cartDTO.getItem_id());
         mav.addObject("product_count", cartDTO.getCount());
         mav.addObject("cart_date", cartDTO.getCreated_at());
-        mav.addObject("subFilter", cri.getSubFilter());
-        mav.addObject("perPageNum", cri.getPerPageNum());
-        mav.addObject("user_id", cartDTO.getUser_id());
+
+        // 검색 조건
+        mav.addObject("subFilter", subFilter);
         mav.addObject("keyword", keyword);
+        mav.addObject("perPageNum", cri.getPerPageNum());
+        // mav.addObject("searchListAll", itemService.searchListAll(cri));
 
-        mav.addObject("searchListAll", itemService.searchListAll(cri));
-
+        System.out.println("mav ==> " + mav);
         return mav;
     }
 

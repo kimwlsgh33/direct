@@ -15,13 +15,4 @@ public class ItemDTO {
     private ItemVO itemVO;
     private CategoryVO categoryVO;
     private List<ItemImgReadDTO> imgList;
-
-    // 아이템 & 이미지
-    public static ItemDTO of(ItemVO itemVO, CategoryVO categoryVO, List<ItemImgReadDTO> imgList) {
-        ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setItemVO(itemVO);
-        itemDTO.setCategoryVO(categoryVO);
-        itemDTO.setImgList(imgList);
-        return itemDTO;
-    }
 }
