@@ -23,16 +23,13 @@ public class UserVO {
 	private String email;	// 사용자 이메일
 	private String phone;	// 사용자 연락처
 	
-	private int address_id;	// 대표주소 설정 시 mapper에서 이름만 사용
+	private Long address_id;	// 대표주소 설정 시 mapper에서 이름만 사용
 	
 	// 나는 사용안하는데 일단 통일
 	private String birthday;
+	private String status;
 	private int point;
 	private Timestamp updated_at;
-	private String status;
-
-	private Grade grade;
-
-	private Role role;
-	
+	private Role role;	// 권한
+	private Grade grade;	// 유저 등급
 }

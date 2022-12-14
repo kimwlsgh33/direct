@@ -15,4 +15,54 @@
             SELECT order_item_id FROM order_item WHERE order_item_id = LAST_INSERT_ID()
         </selectKey>
     </insert>
+
+    <select id="selectAllProduct" resultType="com.linker.direct.product.dto.OrderItemVO">
+		<![CDATA[
+        SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,
+               (select status from `order` where `order`.order_id = order_item.order_id) as status
+        FROM order_item
+        ORDER BY order_id
+        ]]>
+	</select>
+
+    <!-- 상품번호에 해당하는 상품정보 추출하기 -->
+    <select id="selectProduct" resultType="com.linker.direct.product.dto.OrderItemVO" parameterType="com.linker.direct.product.dto.OrderItemVO">
+		<![CDATA[
+        SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,
+               (select name from user where order_item.user_id = user.user_id) AS u_name,
+               (select address from user where order_item.user_id = user.user_id) AS address,
+               (select zip_code from user where order_item.user_id = user.user_id) AS zip_code,
+               (select address_detail from user where order_item.user_id = user.user_id) AS address_detail,
+               (select phone from user where order_item.user_id = user.user_id) AS phone,
+               (select status from `order` where `order`.order_id = order_item.order_id) as status
+        FROM order_item
+        WHERE item_id = #{item_id}
+        ORDER BY order_id desc
+        ]]>
+	</select>
+
+    <!-- 아이디에 해당하는 상품정보 추출하기 -->
+    <select id="readProduct" resultType="com.linker.direct.product.dto.OrderItemVO" parameterType="com.linker.direct.product.dto.OrderItemVO">
+		<![CDATA[
+        select (select name from order_item where order_item.order_id=`order`.order_id) as name,
+               (select item_id from order_item where order_item.order_id=`order`.order_id) as item_id
+        from `order`
+        where status = 'order'
+          and (select user_id from order_item where order_item.order_id=`order`.order_id) = 1;
+        ]]>
+	</select>
+
+    <!-- 아이디에 해당하는 상품상태 추출하기 -->
+    <select id="readRefund" resultType="com.linker.direct.product.dto.OrderItemVO" parameterType="com.linker.direct.product.dto.OrderItemVO">
+		<![CDATA[
+        SELECT (select name from order_item where `order`.order_id = order_item.order_id) as name, status,
+               (select order_date from order_item where `order`.order_id = order_item.order_id) as order_date,
+               (select order_id from order_item where `order`.order_id = order_item.order_id) as order_id,
+               (select item_url from order_item where `order`.order_id = order_item.order_id) as item_url,
+               (select price from order_item where `order`.order_id = order_item.order_id) as price,
+               (select count from order_item where `order`.order_id = order_item.order_id) as count
+        FROM `order`
+        WHERE status = 'refund'
+        ]]>
+	</select>
 </mapper>

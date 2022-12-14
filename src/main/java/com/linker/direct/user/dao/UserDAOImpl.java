@@ -1,6 +1,8 @@
 package com.linker.direct.user.dao;
-import com.linker.direct.user.service.MemberServiceImpl;
+
+import com.linker.direct.user.service.UserServiceImpl;
 import com.linker.direct.user.vo.UserVO;
+import com.linker.direct.user.vo.TermVO;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,14 +14,14 @@ import java.util.List;
 
 // 회원정보 DAO
 @Repository("memberDAO")
-public class MemberDAOImpl implements MemberDAO {
+public class UserDAOImpl implements UserDAO {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private static final String Namespace = "com.linker.member";
+	private static final String Namespace = "user";
 	
 	// 로그인 처리
 	@Override
@@ -89,6 +91,17 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		logger.info("MemberDAOImpl idCheck(MemberVO memberVO) id : " + userVO.getId());
 		return sqlSession.selectOne(Namespace + ".idCheck", userVO);
+	}
+
+	// 가입 진행 후 약관 동의 정보 저장
+	@Override
+	public int addTerms(TermVO termVO) throws DataAccessException {
+		
+		logger.info("MemberServiceImpl 약관 동의 정보 처리() 시작......" + termVO);
+		
+		int result = sqlSession.insert(Namespace + ".addTerms", termVO);
+		
+		return result;
 	}
 
 

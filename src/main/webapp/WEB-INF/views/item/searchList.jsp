@@ -161,7 +161,7 @@
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
-                                    <img src="${itemDTO.imgList[0].img_url}" width="100%" height="100%" />
+                                    <img src="${itemDTO.imgList[0].img_url}" style="width: 200px; height: 200px;" />
                                     <h3>${itemDTO.itemVO.name}</h3>
                                     <h1>${itemDTO.itemVO.price}원</h1>
                                     <p>${itemDTO.itemVO.created_at}</p>
@@ -171,7 +171,7 @@
                                 </div>
                                     <div class="flip-card-back align-items-center" >
                                         <form>  <!-- 나중에 제품 상세 페이지로 ACTION 주기. -->
-                                            <img src="${itemDTO.imgList[0].img_url}"/>
+<%--                                            <img src="${itemDTO.imgList[0].img_url}" style="width: 300px; height: 200px;"/>--%>
                                         </form>
                                     </div>
                                     <button class="btn btn-outline-dark" id="${itemDTO.itemVO.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${itemDTO.itemVO.item_id})" ><i class="fas fa-shopping-cart"></i></button>
@@ -183,7 +183,7 @@
                 </div>
             <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
-                        <c:if test="${pageMaker.prev }">
+                        <c:if test="${pageMaker.prev}">
                             <li class="page-item">
                                 <a class="page-link" href='<c:url value="/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
                             </li>

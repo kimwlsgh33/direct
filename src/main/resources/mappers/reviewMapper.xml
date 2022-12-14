@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.linker.direct.review">
+
+	<!-- 제일 큰 게시글 번호 가져오기 -->
+	<select id="maxNo" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT max(review_no) FROM review
+		]]>
+	</select>
+	
+	<!-- 리뷰 쓰기 -->
+	<insert id="insertReview" parameterType="com.linker.direct.review.dto.ReviewDTO">
+		<![CDATA[
+			INSERT INTO review (review_no, user_id, item_id, subject, content, reg_date, rating, img_url)
+			SELECT IFNULL(MAX(review_no), 0) + 1, #{user_id}, #{item_id}, #{subject}, #{content}, now(), #{rating}, #{img_url}
+			FROM review
+		]]>
+	</insert>
+	
+	<!-- 리뷰 전체목록 가져오기 + comment table에서 댓글개수 가져오기 -->
+	<select id="listAll" resultType="com.linker.direct.review.dto.ReviewDTO">
+		<![CDATA[
+			SELECT review_no, user_id, item_id, subject, content, reg_date, rating, img_url,
+			(select distinct name from order_item where order_item.item_id = review.item_id) as item_name, 
+			(select count(cno) from comment where comment.review_no = review.review_no) AS cnt
+			FROM review
+			ORDER BY review_no desc
+		]]>
+	</select>	
+	
+	<!-- 리뷰 상세보기(게시글 번호에 해당하는 리뷰 정보 추출) -->
+	<select id="detail" resultType="com.linker.direct.review.dto.ReviewDTO">
+		<![CDATA[
+			SELECT review_no, user_id, item_id, subject, content, reg_date, rating, img_url,
+			(select distinct name from order_item where order_item.item_id = review.item_id) as item_name
+			FROM review
+			WHERE review_no = #{review_no}
+		]]>
+	</select>
+	
+	<!-- 게시글 수정  -->
+	<update id="update">
+		<![CDATA[
+		UPDATE	review
+		SET		SUBJECT = #{subject}, CONTENT = #{content}, RATING = #{rating}
+		WHERE	review_no = #{review_no}
+		]]>
+	</update>
+	
+	<!-- 게시글 번호에 해당하는 게시글 삭제하기  -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		DELETE	FROM	review
+		WHERE	review_no = #{review_no}
+		]]>
+	</delete>
+	
+
+
+</mapper>

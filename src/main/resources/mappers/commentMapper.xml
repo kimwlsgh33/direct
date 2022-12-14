@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.linker.direct.review.mappers.commentMapper">
+
+	<!-- 제일 큰(최근) 댓글 번호 가져오기 -->
+	<select id="maxNo" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT max(cno) FROM comment
+		]]>
+	</select>
+	
+	<!-- 리뷰 번호에 해당하는 댓글의 개수를 구한다. 
+	<select id="commentCount" resultType="int">
+	SELECT	COUNT(*) FROM comment
+	WHERE review_no = #{review_no}
+	</select>
+	-->
+	
+	<!-- 댓글 목록 -->
+	<select id="commentList" parameterType="int" resultType="com.linker.direct.review.dto.CommentDTO">
+	SELECT	*	FROM comment
+	WHERE	review_no = #{review_no}
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="commentInsert" parameterType="com.linker.direct.review.dto.CommentDTO">
+		<![CDATA[
+			INSERT	INTO comment (CNO, review_no, CONTENT, WRITER, REG_DATE)
+			SELECT	ifnull(max(cno), 0) + 1,	#{review_no},	#{content},	#{writer},	now()
+			FROM	comment
+		]]>
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="commentUpdate" parameterType="com.linker.direct.review.dto.CommentDTO">
+	UPDATE	comment
+	SET		CONTENT		= #{content}
+	WHERE	CNO			= #{cno}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="commentDelete" parameterType="int">
+	DELETE	
+	FROM	comment		
+	WHERE	CNO			= #{cno}
+	</delete>
+
+</mapper>

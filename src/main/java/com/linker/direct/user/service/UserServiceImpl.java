@@ -1,25 +1,29 @@
 package com.linker.direct.user.service;
-import com.linker.direct.user.dao.MemberDAO;
+
+import com.linker.direct.user.dao.UserDAO;
 import com.linker.direct.user.vo.UserVO;
-import lombok.RequiredArgsConstructor;
+import com.linker.direct.user.vo.TermVO;
+import com.linker.direct.util.address.AddressDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 // 회원정보 서비스
-@RequiredArgsConstructor
 @Service("memberService")
-public class MemberServiceImpl implements MemberService {
+public class UserServiceImpl implements UserService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-	private MemberDAO memberDAO;
+	@Autowired
+	private UserDAO userDAO;
 	
 	
-	// private AddressDAO addressDAO;
+	@Autowired
+	private AddressDAO addressDAO;
 	
 	
 	// 로그인 처리
@@ -28,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		logger.info("MemberServiceImpl login() 시작......");
 		
-		return memberDAO.loginByID(userVO);
+		return userDAO.loginByID(userVO);
 	}
 
 	// 회원가입 처리
@@ -36,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 	public int addMember(UserVO userVO) throws DataAccessException {
 		
 		logger.info("MemberServiceImpl 회원가입 처리() 시작......" + userVO);
-		return memberDAO.addMember(userVO);
+		return userDAO.addMember(userVO);
 	}
 	
 	// 회원전체 목록 가져오기
@@ -45,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		logger.info("MemberServiceImpl 회원 전체목록 가져오기 시작......");
 		List<UserVO> memberLists = null;
-		memberLists = memberDAO.selectAllMemberList();
+		memberLists = userDAO.selectAllMemberList();
 		
 		return memberLists;
 	}
@@ -58,7 +62,7 @@ public class MemberServiceImpl implements MemberService {
 	// public MemberVO selectMember(String id) throws DataAccessException {
 		public UserVO selectMember(UserVO userVO) throws DataAccessException {
 		//MemberVO memberVO = memberDAO.selectMember(memberVO);
-		return memberDAO.selectMember(userVO);
+		return userDAO.selectMember(userVO);
 	}
 
 	//-----------------------------------------------------------------------------------------------------------
@@ -66,20 +70,15 @@ public class MemberServiceImpl implements MemberService {
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
 	public int modifyMember(UserVO userVO) throws DataAccessException {
-		return memberDAO.updateMember(userVO);
+		return userDAO.updateMember(userVO);
 	}
 
 	//-----------------------------------------------------------------------------------------------------------
 	// 아이디에 해당하는 회원 주소만 수정하기
 	//-----------------------------------------------------------------------------------------------------------
+	@Override
 	public int memberAddress(UserVO userVO) throws DataAccessException {
-		
-		try {
-			// return addressDAO.memberAddress(memberVO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
+		return addressDAO.memberAddress(userVO);
 	}
 	
 	//-----------------------------------------------------------------------------------------------------------
@@ -87,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
 	//-----------------------------------------------------------------------------------------------------------
 	@Override
 	public int removeMember(UserVO userVO) throws DataAccessException {
-		return memberDAO.deleteMember(userVO);
+		return userDAO.deleteMember(userVO);
 	}
 
 	//-----------------------------------------------------------------------------------------------------------
@@ -97,9 +96,19 @@ public class MemberServiceImpl implements MemberService {
 	public int idCheck(UserVO userVO) throws Exception {
 		
 		logger.info("MemberServiceImpl 아이디 중복 검사 시작.....");
-		int result = memberDAO.idCheck(userVO);
+		int result = userDAO.idCheck(userVO);
 		
 		return result;
+	}
+
+	// 가입 진행 후 약관 동의 정보 저장
+	@Override
+	public int addTerms(TermVO termVO) throws DataAccessException {
+		
+		logger.info("MemberServiceImpl 회원가입 처리() 시작......" + termVO);
+		
+		return userDAO.addTerms(termVO);
+		
 	}
 
 

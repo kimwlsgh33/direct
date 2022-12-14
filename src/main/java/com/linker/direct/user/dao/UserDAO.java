@@ -1,12 +1,13 @@
 package com.linker.direct.user.dao;
 
 import com.linker.direct.user.vo.UserVO;
+import com.linker.direct.user.vo.TermVO;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
 // 회원정보 DAO
-public interface MemberDAO {
+public interface UserDAO {
 
 	// 로그인 처리
 	public UserVO loginByID(UserVO userVO) throws DataAccessException;
@@ -38,4 +39,7 @@ public interface MemberDAO {
 	// 아이디 중복 검사 (AJAX)
 	//-----------------------------------------------------------------------------------------------------------
 	public int idCheck(UserVO userVO) throws DataAccessException;
+	
+	// 가입 진행 후 약관 동의 정보 저장
+	public int addTerms(TermVO termVO) throws DataAccessException;
 }

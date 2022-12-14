@@ -279,6 +279,21 @@
 			<version>4.2</version>
 		</dependency>
 
+		<!-- 이메일 인증에 필요한 요소 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.3.20</version>
+		</dependency>
+
 
 		<!-- dependency 추가 끝 -->
 		<!-- dependency 추가 끝 -->
