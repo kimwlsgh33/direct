@@ -151,11 +151,11 @@ function fn_AAA() {
 	
 	$.ajax({
 		type: "POST",
-		url: "/member/memberAddress",
+		url: "/user/memberAddress",
 		data: {address_id: address_id, user_id: user_id, zip_code: zip_code, address: address, address_detail: address_detail},
 		success: function(data) {
 			alert("대표주소 설정 완료");
-			location.href = "/member/listMembers";
+			location.href = "/user/listMembers";
 			// location.href = "/util/addressList?user_id=" + user_id;
 		},
 		error: function(data) {

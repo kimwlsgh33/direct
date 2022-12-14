@@ -1,15 +1,14 @@
 package com.linker.direct.review.dto;
 
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
-import org.springframework.stereotype.Component;
-import lombok.Data;
-
-@Component("boardDTO")
 @Data // getter, setter, toString, (hash)Map
 public class ReviewDTO {
 	
-	private int review_no;	// 리뷰 고유 번호
+	private Long review_no;	// 리뷰 고유 번호
 	private Long user_id;	// 유저 고유 번호
 	private Long item_id;	// 리뷰할 상품 번호
 	private int rating;	// 구매 평점

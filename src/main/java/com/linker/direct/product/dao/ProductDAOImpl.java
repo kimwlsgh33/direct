@@ -1,7 +1,6 @@
 package com.linker.direct.product.dao;
 
-import java.util.List;
-
+import com.linker.direct.product.dto.ProductDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.linker.direct.product.dto.ProductDTO;
+import java.util.List;
 
 @Repository("ProductDAO")
 public class ProductDAOImpl implements ProductDAO {
@@ -36,8 +35,8 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductDTO> selectProduct(Long item_id) throws DataAccessException {
 		
 		logger.info("ProductController 아이디에 해당하는 상품 목록 조회 시작......");	
-		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".selectProduct", item_id);
-		return ProductDTO;
+		List<ProductDTO> OrderItemVO = sqlSession.selectList(Namespace + ".selectProduct", item_id);
+		return OrderItemVO;
 	}
 	
 	// user_id에 해당하는 상품정보 추출하기
@@ -45,15 +44,15 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductDTO> read(Long user_id) throws DataAccessException {
 		
 		logger.info("ProductController 아이디에 해당하는 상품 목록 조회 시작......");	
-		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".readProduct", user_id);
-		return ProductDTO;
+		List<ProductDTO> OrderItemVO = sqlSession.selectList(Namespace + ".readProduct", user_id);
+		return OrderItemVO;
 	}
 
 	// user_id에 해당하는 상품정보 추출하기
 	@Override
 	public List<ProductDTO> readRefund(Long user_id) throws DataAccessException {
-		List<ProductDTO> ProductDTO = sqlSession.selectList(Namespace + ".readRefund", user_id);
-		return ProductDTO;
+		List<ProductDTO> OrderItemVO = sqlSession.selectList(Namespace + ".readRefund", user_id);
+		return OrderItemVO;
 	}
 
 }

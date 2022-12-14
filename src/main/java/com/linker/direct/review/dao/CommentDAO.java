@@ -1,8 +1,8 @@
 package com.linker.direct.review.dao;
 
-import java.util.List;
-
 import com.linker.direct.review.dto.CommentDTO;
+
+import java.util.List;
 
 public interface CommentDAO {
 	
@@ -13,7 +13,7 @@ public interface CommentDAO {
 	public int commentInsert(CommentDTO comment) throws Exception;
 	
 	// 댓글 리스트
-	public List<CommentDTO> commentList(int review_no) throws Exception;
+	public List<CommentDTO> commentList(Long review_no) throws Exception;
 	
 	// 댓글 삭제
 	public int commentDelete(int cno) throws Exception;

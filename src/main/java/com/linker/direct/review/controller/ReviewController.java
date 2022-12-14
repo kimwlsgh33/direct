@@ -1,11 +1,8 @@
 package com.linker.direct.review.controller;
 
-import java.util.List;
-import java.util.Locale;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
+import com.linker.direct.product.dto.ProductDTO;
+import com.linker.direct.review.dto.ReviewDTO;
+import com.linker.direct.review.service.ReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.linker.direct.product.dto.ProductDTO;
-import com.linker.direct.review.dto.ReviewDTO;
-import com.linker.direct.review.service.ReviewService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping(value = "/review/*")
@@ -34,8 +32,8 @@ public class ReviewController {
 		public String reviewRegisterForm(Long user_id, Model model) throws Exception {
 			
 			logger.info("ReviewController 리뷰 등록 화면 불러오기......");
-			List<ProductDTO> productDTO = reviewService.read(user_id);
-			model.addAttribute("product", productDTO);
+			List<ProductDTO> orderItemVO = reviewService.read(user_id);
+			model.addAttribute("product", orderItemVO);
 			
 			return "/review/reviewRegisterForm";
 			
@@ -76,7 +74,7 @@ public class ReviewController {
 			System.out.println("ReviewController reviewDetail() review_no : " + Integer.parseInt((String)request.getParameter("review_no")));
 			
 			// review_no에 해당하는 리뷰 데이터를 가져온다.
-			ReviewDTO reviewDTO = reviewService.reviewDetail(Integer.parseInt((String)request.getParameter("review_no")));
+			ReviewDTO reviewDTO = reviewService.reviewDetail((long)Integer.parseInt((String)request.getParameter("review_no")));
 			model.addAttribute("reviewDetail", reviewDTO);
 			return "/review/reviewDetail";
 		}
@@ -88,7 +86,7 @@ public class ReviewController {
 			logger.info("ReviewController 게시글 수정화면 불러오기.....");
 			System.out.println("ReviewController reviewUpdateForm() review_no : " + request.getParameter("review_no"));
 
-			ReviewDTO reviewDTO = reviewService.reviewDetail(Integer.parseInt((String)request.getParameter("review_no")));
+			ReviewDTO reviewDTO = reviewService.reviewDetail((long)Integer.parseInt((String)request.getParameter("review_no")));
 			model.addAttribute("reviewDetail", reviewDTO);
 			logger.info("ReviewController 게시글 수정화면 끝.....");
 			return "/review/reviewUpdate";
@@ -112,7 +110,7 @@ public class ReviewController {
 		public String reviewDelete(Locale locale, Model model, HttpServletRequest request) throws Exception {
 			System.out.println("ReviewController reviewDelete() review_no : " + request.getParameter("review_no"));
 
-			if(reviewService.reviewDelete(Integer.parseInt((String)request.getParameter("review_no"))) == 1) {
+			if(reviewService.reviewDelete((long)Integer.parseInt((String)request.getParameter("review_no"))) == 1) {
 				return "Y";
 			}else {
 				return "N";
@@ -121,7 +119,7 @@ public class ReviewController {
 		
 		// 댓글 달 수 있는 상세정보 화면
 		@RequestMapping("/detailComment/{review_no}")
-		private String reviewDetailComment(@PathVariable int review_no, Model model) throws Exception {
+		public String reviewDetailComment(@PathVariable Long review_no, Model model) throws Exception {
 			// review_no 에 해당하는 자료를 찾아서 model에 담는다.
 			model.addAttribute("detail", reviewService.reviewDetail(review_no));
 			return "/review/detailComment";

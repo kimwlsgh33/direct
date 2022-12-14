@@ -1,13 +1,11 @@
 package com.linker.direct.review.service;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
-
 import com.linker.direct.review.dao.CommentDAO;
 import com.linker.direct.review.dto.CommentDTO;
+import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -23,7 +21,7 @@ public class CommentServiceImpl implements CommentService {
 
 	// 댓글 리스트
 	@Override
-	public List<CommentDTO> commentList(int review_no) throws Exception {
+	public List<CommentDTO> commentList(Long review_no) throws Exception {
 		return commentDAO.commentList(review_no);
 	}
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:context="http://www.springframework.org/schema/context"
+			 xmlns:aop="http://www.springframework.org/schema/aop"
+			 xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -20,14 +21,26 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
+	<!-- multipart upload 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize" value="100000000" />
+	</beans:bean>
+
+	<!-- upload 경로 설정 -->
+	<beans:bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<beans:property name="location">
+			<beans:value>classpath:config/file.properties</beans:value>
+		</beans:property>
+	</beans:bean>
+
 	<context:component-scan base-package="com.linker.direct" />
-	<context:component-scan base-package="com.linker.direct.member" />
-	<context:component-scan base-package="com.linker.direct.util" />
-	<context:component-scan base-package="com.linker.direct.product" />
-	<context:component-scan base-package="com.linker.direct.review" />
-	<context:component-scan base-package="com.linker.direct.review.controller" />
-	
+	<!-- aop 설정 -->
+	<aop:config proxy-target-class="true">
+	</aop:config>
+	<aop:aspectj-autoproxy/>
+
 	<!-- 회원가입 메일 인증 -->
 	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<beans:property name="host" value="smtp.gmail.com" />
@@ -46,6 +59,22 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-	
-	
+
+
+	<!-- 로그인 인터셉터 bean등록 -->
+<!--	<beans:bean id="LoginInterceptor" class="com.linker.direct.common.interceptor.LoginInterceptor" />-->
+<!--	<beans:bean id="AdminInterceptor" class="com.linker.direct.common.interceptor.AdminInterceptor" />-->
+
+	<!-- 로그인 인터셉터 매핑 ( 어떤 View에 적용할 지 ) -->
+	<!--
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<mapping path="/categoryVO/create"/>
+			<mapping path="/itemVO/create*"/>
+			<mapping path="/test/**"/>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	-->
 </beans:beans>

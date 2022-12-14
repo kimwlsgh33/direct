@@ -1,16 +1,13 @@
 package com.linker.direct.review.dao;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
+import com.linker.direct.review.dto.ReviewDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.linker.direct.product.dto.ProductDTO;
-import com.linker.direct.review.dto.ReviewDTO;
+import javax.inject.Inject;
+import java.util.List;
 
 @Repository
 public class ReviewDAOImpl implements ReviewDAO {
@@ -30,7 +27,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	// 리뷰 등록 처리
 	@Override
-	public int reviewRegister(ReviewDTO reviewDTO) {
+	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
 		logger.info("ReviewDAOImpl 리뷰 등록 처리 => " + reviewDTO);
 		return sqlSession.insert(namespace + ".insertReview", reviewDTO);
 	}
@@ -46,13 +43,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	// 리뷰 상세조회
 	@Override
-	public ReviewDTO reviewDetail(int review_no) {
+	public ReviewDTO reviewDetail(Long review_no) throws Exception {
 		return sqlSession.selectOne(namespace + ".detail", review_no);
 	}
 	
 	// 리뷰 수정
 	@Override
-	public int reviewUpdate(ReviewDTO reviewDTO) {
+	public int reviewUpdate(ReviewDTO reviewDTO) throws Exception {
 		logger.info("ReviewDAOImpl  리뷰 수정하기....." + reviewDTO);
 		System.out.println("ReviewDAOImpl  리뷰 수정하기.....");
 		return sqlSession.update(namespace + ".update", reviewDTO);
@@ -60,7 +57,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	// 리뷰 삭제
 	@Override
-	public int reviewDelete(int review_no) {
+	public int reviewDelete(Long review_no) throws Exception {
 		logger.info("ReviewDAOImpl  리뷰 삭제하기.....");
 		return sqlSession.delete(namespace + ".delete", review_no);
 	}

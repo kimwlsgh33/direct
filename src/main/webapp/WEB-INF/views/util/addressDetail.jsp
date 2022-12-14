@@ -15,7 +15,7 @@
 <body>
 
 <!-- 상단 메뉴 -->
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 
 <div class="container">
 	<div class="row">
@@ -61,7 +61,7 @@
 					<input type="text" class="form-control" id="address_detail" name="address_detail"value="${detail.address_detail}"readonly/>
 				</div>
 			</div>
-			<input type="hidden" class="form-control" name="user_id" id="user_id" value="${member.user_id}"/>
+			<input type="hidden" class="form-control" name="user_id" id="user_id" value="${user.user_id}"/>
 			<!--  <div class="form-group">
 				<div class="col-sm-6">
 					<input type="hidden" class="form-control" id="fulladdress" name="fulladdress"/>

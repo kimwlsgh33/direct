@@ -1,9 +1,9 @@
 package com.linker.direct.review.service;
 
-import java.util.List;
-
 import com.linker.direct.product.dto.ProductDTO;
 import com.linker.direct.review.dto.ReviewDTO;
+
+import java.util.List;
 
 public interface ReviewService {
 	
@@ -14,13 +14,13 @@ public interface ReviewService {
 	public List<ReviewDTO> reviewList() throws Exception;
 	
 	// 리뷰 상세조회
-	public ReviewDTO reviewDetail(int review_no) throws Exception;
+	public ReviewDTO reviewDetail(Long review_no) throws Exception;
 	
 	// 리뷰 수정
-	public int reviewUpdate(ReviewDTO reviewDTO);
+	public int reviewUpdate(ReviewDTO reviewDTO) throws Exception;
 	
 	// 리뷰 삭제
-	public int reviewDelete(int review_no);
+	public int reviewDelete(Long review_no) throws Exception;
 	
 	// 리뷰 등록 화면 띄울 때 구매한 상품 정보 가져오기
 	public List<ProductDTO> read(Long user_id) throws Exception;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml 선언 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--태그 규칙 선언-->
+
+<mapper namespace="category">
+  <select id="listAll" resultType="com.linker.direct.category.CategoryVO">
+    <![CDATA[
+    SELECT * FROM category ORDER BY category_id
+    ]]>
+  </select>
+  <insert id="create" parameterType="com.linker.direct.category.CategoryVO">
+    <![CDATA[
+    INSERT INTO category (name, icon, color) SELECT #{name}, #{icon}, #{color} FROM categoryVO
+    ]]>
+  </insert>
+
+  <update id="update" parameterType="com.linker.direct.category.CategoryVO">
+    <![CDATA[
+      UPDATE category SET name=#{name}, icon=#{icon}, color=#{color}
+      WHERE category_id=#{category_id}
+    ]]>
+  </update>
+  <delete id="delete" parameterType="com.linker.direct.category.CategoryVO">
+    <![CDATA[
+        DELETE FROM category WHERE id=#{category_id}
+    ]]>
+  </delete>
+  <select id="read" resultType="com.linker.direct.category.CategoryVO">
+    <![CDATA[
+    SELECT * FROM category WHERE category_id = #{category_id}
+    ]]>
+  </select>
+</mapper>

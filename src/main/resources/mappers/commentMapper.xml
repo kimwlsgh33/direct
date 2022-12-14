@@ -20,7 +20,7 @@
 	-->
 	
 	<!-- 댓글 목록 -->
-	<select id="commentList" parameterType="int" resultType="com.linker.direct.review.dto.CommentDTO">
+	<select id="commentList" parameterType="com.linker.direct.review.dto.CommentDTO" resultType="com.linker.direct.review.dto.CommentDTO">
 	SELECT	*	FROM comment
 	WHERE	review_no = #{review_no}
 	</select>
@@ -39,6 +39,7 @@
 	UPDATE	comment
 	SET		CONTENT		= #{content}
 	WHERE	CNO			= #{cno}
+	
 	</update>
 	
 	<!-- 댓글 삭제 -->

@@ -1,8 +1,7 @@
-// 게시글 관련 함수
+// 리뷰 관련 함수
 
-// 게시글 등록
+// 리뷰 등록
 function fn_reviewRegister() {
-  // alert("게시글 등록 버튼을 눌렀습니다.")
 
   // 입력한 값을 가져온다.
   let subject = $("#subject").val();
@@ -25,13 +24,6 @@ function fn_reviewRegister() {
   if ($("#rating").val() == "") {
     alert("평점은 필수 입력 항목입니다.");
     $("#rating").focus();
-    return false;
-  }
-  
-   // 상품번호 항목에 값이 없으면 입력하도록 한다.
-  if ($("#item_id").val() == "") {
-    alert("상품번호는 필수 입력 항목입니다.");
-    $("#item_id").focus();
     return false;
   }
 
@@ -65,7 +57,7 @@ function fn_reviewRegister() {
     },
   });
 }
-// 게시글 수정 화면 불러오기
+// 리뷰 수정 화면 불러오기
 
 // form에  action과 method가 없기 때문에 여기서 만든다.
 // <form action="/review/reviewUpdateForm", method="POST", id="frm">
@@ -86,7 +78,7 @@ function fn_reviewUpdateForm(review_no) {
 	f.submit();
 }
 
-// 게시글 수정
+// 리뷰 수정
 function fn_reviewUpdate() {
 	var review_no = $("#review_no").val();
 	var item_name = $("#item_name").val();
@@ -139,11 +131,6 @@ function fn_reviewDelete(review_no){
 			}
 		});
 	}
-}
-
-// 게시글 번호에 해당하는 상세페이지로 이동하기
-function fn_boardDetail(review_no) {
-	location.href = "/review/reviewDetail?review_no=" + review_no;
 }
 
 // 상품명 select 박스

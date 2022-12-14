@@ -1,9 +1,8 @@
 package com.linker.direct.review.dao;
 
-import java.util.List;
-
-import com.linker.direct.product.dto.ProductDTO;
 import com.linker.direct.review.dto.ReviewDTO;
+
+import java.util.List;
 
 public interface ReviewDAO {
 	
@@ -11,17 +10,17 @@ public interface ReviewDAO {
 	public Integer getMaxNo();
 	
 	// 리뷰 등록 처리
-	public int reviewRegister(ReviewDTO reviewDTO);
+	public int reviewRegister(ReviewDTO reviewDTO) throws Exception;
 	
 	// 리뷰 목록 가져오기
 	public List<ReviewDTO> reviewList() throws Exception;
 	
 	// 리뷰 상세조회
-	public ReviewDTO reviewDetail(int review_no);
+	public ReviewDTO reviewDetail(Long review_no)throws Exception;
 	
 	// 리뷰 수정
-	public int reviewUpdate(ReviewDTO reviewDTO);
+	public int reviewUpdate(ReviewDTO reviewDTO) throws Exception;
 	
 	// 리뷰 삭제
-	public int reviewDelete(int review_no);
+	public int reviewDelete(Long review_no) throws Exception;
 }

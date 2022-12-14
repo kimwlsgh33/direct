@@ -13,7 +13,7 @@
 <body>
 
 <!-- 상단 메뉴 -->
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
 	<jsp:include page="../common/sideMenu.jsp" flush="false"/>
@@ -32,7 +32,7 @@
 				<input type="text" class="form-control" id="subject" name="subject" maxlength="200" placeholder="제목을 입력하세요."/>
 			</div>
 		</div>
-		<input type="hidden" class="form-control" id=user_id name="user_id" maxlength="20" value="${member.user_id}"/>
+		<input type="hidden" class="form-control" id=user_id name="user_id" maxlength="20" value="${user.user_id}"/>
 		<!-- 
 		<div class="form-group">
 			<label class="form-label">상품번호</label>

@@ -14,7 +14,7 @@
 <body>
 
 <!-- 상단 메뉴 -->
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 
 <div class="container">
 	<div class="row">
@@ -69,10 +69,10 @@
 				다시 입력
 			</button>
 			<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewUpdate();">
-				게시글 수정
+				리뷰 수정
 			</button>
 			<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='${ctx}/review/reviewList'">
-				게시글 목록
+				리뷰 목록
 			</button>
 		</div>
 		</div>

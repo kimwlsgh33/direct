@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 
 <div class="container">
 	<div class="row">

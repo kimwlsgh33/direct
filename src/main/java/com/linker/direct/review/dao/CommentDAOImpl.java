@@ -1,15 +1,12 @@
 package com.linker.direct.review.dao;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
+import com.linker.direct.review.dto.CommentDTO;
+import lombok.extern.java.Log;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.linker.direct.review.dto.CommentDTO;
-
-import lombok.extern.java.Log;
+import javax.inject.Inject;
+import java.util.List;
 
 @Log
 @Repository
@@ -35,7 +32,7 @@ public class CommentDAOImpl implements CommentDAO {
 
 	// 리뷰 번호에 따른 댓글 리스트
 	@Override
-	public List<CommentDTO> commentList(int review_no) throws Exception {
+	public List<CommentDTO> commentList(Long review_no) throws Exception {
 		log.info("review_no => " + review_no);
 		return sqlSession.selectList(namespace + ".commentList", review_no);
 	}

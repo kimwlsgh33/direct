@@ -15,7 +15,7 @@
 <body>
 
 <!-- 상단 메뉴 -->
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 
 <div class="container">
 	<div class="row">
@@ -45,23 +45,23 @@
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">우편번호</label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="zip_code" id="zip_code" readonly/>
+					<input type="text" class="form-control" name="zip_code" id="zip_code" value="${detail.zip_code}" readonly/>
 					<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align: right">주 소</label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" id="address" name="address"/>
+					<input type="text" class="form-control" id="address" name="address" value="${detail.address}"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label" style="text-align:right">상세주소</label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" id="address_detail" name="address_detail"/>
+					<input type="text" class="form-control" id="address_detail" name="address_detail" value="${detail.address_detail}"/>
 				</div>
 			</div>
-			<input type="hidden" class="form-control" name="user_id" id="user_id" value="${member.user_id}"/>
+			<input type="hidden" class="form-control" name="user_id" id="user_id" value="${user.user_id}"/>
 			<!--  <div class="form-group">
 				<div class="col-sm-6">
 					<input type="hidden" class="form-control" id="fulladdress" name="fulladdress"/>

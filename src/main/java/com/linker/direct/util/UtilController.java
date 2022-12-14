@@ -1,12 +1,7 @@
 package com.linker.direct.util;
 
-import java.util.List;
-import java.util.Locale;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.linker.direct.util.address.AddressDTO;
+import com.linker.direct.util.address.AddressService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.linker.direct.util.address.AddressDTO;
-import com.linker.direct.util.address.AddressService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/util")

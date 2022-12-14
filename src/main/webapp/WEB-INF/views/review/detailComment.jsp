@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
@@ -36,9 +36,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="subject" class="form-label">아이디</label>
+					<label for="subject" class="form-label">평점</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="user_id" name="user_id" maxlength="20" value="${detail.user_id}" readonly/>
+						<input type="text" class="form-control" id="user_id" name="user_id" maxlength="20" value="${detail.rating}" readonly/>
 					</div>
 				</div>
 				<div class="form-group">

@@ -15,11 +15,11 @@
 
 <%
 if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").equals("")) {
-	response.sendRedirect("/member/loginForm");
+	response.sendRedirect("/user/signIn");
 }
 %>
 
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
@@ -29,7 +29,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<h3 style="margin: 25px;">리뷰 목록</h3>
 				<form class="form-horizontal" id="frm">
 					<div class="form-group">
-						<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/review/reviewRegisterForm?user_id=${member.user_id}'" style="margin-left: 25px; margin-bottom: 25px;">
+						<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/review/reviewRegisterForm?user_id=${user.user_id}'" style="margin-left: 25px; margin-bottom: 25px;">
 							리뷰 작성
 						</button>
 					</div>

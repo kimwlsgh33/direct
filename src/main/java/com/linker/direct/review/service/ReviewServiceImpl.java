@@ -1,17 +1,15 @@
 package com.linker.direct.review.service;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 import com.linker.direct.product.dao.ProductDAO;
 import com.linker.direct.product.dto.ProductDTO;
 import com.linker.direct.review.dao.ReviewDAO;
 import com.linker.direct.review.dto.ReviewDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -49,14 +47,14 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 리뷰 상세조회
 	@Override
-	public ReviewDTO reviewDetail(int review_no) throws Exception {
+	public ReviewDTO reviewDetail(Long review_no) throws Exception {
 		
 		return reviewDAO.reviewDetail(review_no);
 	}
 
 	// 리뷰 수정
 	@Override
-	public int reviewUpdate(ReviewDTO reviewDTO) {
+	public int reviewUpdate(ReviewDTO reviewDTO) throws Exception {
 		logger.info("ReviewServiceImpl  리뷰 수정하기....." + reviewDTO);
 		System.out.println("ReviewServiceImpl  리뷰 수정하기.....");
 		return reviewDAO.reviewUpdate(reviewDTO);
@@ -64,7 +62,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 리뷰 삭제
 	@Override
-	public int reviewDelete(int review_no) {
+	public int reviewDelete(Long review_no) throws Exception{
 		logger.info("ReviewServiceImpl  리뷰 삭제하기.....");
 		return reviewDAO.reviewDelete(review_no);
 	}

@@ -52,7 +52,7 @@
 	</update>
 	
 	<!-- 게시글 번호에 해당하는 게시글 삭제하기  -->
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="com.linker.direct.review.dto.ReviewDTO">
 		<![CDATA[
 		DELETE	FROM	review
 		WHERE	review_no = #{review_no}
