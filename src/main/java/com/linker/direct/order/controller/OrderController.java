@@ -35,14 +35,10 @@ public class OrderController {
     private final ItemService itemService;
 
     @RequestMapping("/createForm") // 요기 - 장바구니 아이템 받아서, 주문 생성화면으로 이동
-    public String createForm(Model model, HttpServletRequest request, List<CartDTO> cartList) throws Exception {
-
-        HttpSession session = request.getSession();
-        UserVO userVO = (UserVO) session.getAttribute("user");
-        model.addAttribute("user", userVO);
-
-
-        return "order/createForm";
+    public String createForm(Model model) throws Exception {
+        // 장바구니 아이템 받아서, 주문 생성화면으로 이동
+        List<CartDTO> cartList = orderService.getCartList();
+        return "order/create";
     }
 
     @RequestMapping("/create")

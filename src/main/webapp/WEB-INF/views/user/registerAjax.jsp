@@ -75,7 +75,7 @@
 <!-- 메뉴바 -->
 
 <div class="container" id="back0">
-	<form class="form-horizontal" method="post" action="${ctx}/member/addMember">
+	<form class="form-horizontal" method="post" action="${ctx}/user/addMember">
 		<div class="form-group col-sm-6 shadow">
 			<span class="input-group">
 				<label for="id" class="label">아 이 디</label>
@@ -238,7 +238,7 @@
 function fn_idCheck() {
 	// alert($("#id").val());
 	$.ajax({
-		url:		"/member/idCheck",
+		url:		"/user/idCheck",
 		type:		"post",
 		dataType:	"json",
 		data:		{"id" : $("#id").val()},
@@ -314,7 +314,7 @@ $(document).ready(function() {
 
 		// 입력한 아이디가 서버에 존재하는 지 알아낸다.
 		$.ajax({
-			url:		"/member/idCheck",
+			url:		"/user/idCheck",
 			type:		"post",
 			dataType:	"json",
 			data:		{"id" : $("#id").val()},
@@ -387,7 +387,7 @@ function fn_emailConfirm() {
 	
 	$.ajax({
 		
-		url		: "/member/mailCheck",
+		url		: "/user/mailCheck",
 		type	: "GET",
 		dataType: 'text',
 		data    : {"email" : $("#email").val()},

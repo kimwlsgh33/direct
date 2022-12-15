@@ -6,14 +6,14 @@
 <mapper namespace="com.linker.direct.cart">
 
 <!--    장바구니 리스트 보여주기-->
-    <select id="cartList" resultType="com.linker.direct.cart.dto.CartDTO">
+    <select id="cartList" resultType="com.linker.direct.cart.dto.CartDTO" parameterType="com.linker.direct.user.vo.UserVO">
 		<![CDATA[
         SELECT created_at, count, item_id, user_id,
         (select name from item where cart.item_id = item.item_id) as product_name,
         (select price from item where cart.item_id = item.item_id) as product_price
 --         (select product_image from item where cart.id = item.id) as product_image
         from cart
-        where user_id = 1
+        where user_id = #{user_id}
         ORDER BY created_at DESC
         ]]>
 	</select>
@@ -22,7 +22,7 @@
     <insert id="addCart" parameterType="com.linker.direct.cart.dto.CartDTO">
         <![CDATA[
         insert into cart (item_id, created_at, count, user_id)
-        values (#{item_id}, sysdate(), 1, 1)
+        values (#{item_id}, sysdate(), 1, #{user_id})
         ]]>
     </insert>
 
@@ -34,17 +34,18 @@
     </delete>
 
 <!--    장바구니 리스트 전체 삭제-->
-    <delete id="deleteAllCart" parameterType="String">
+    <delete id="deleteAllCart" parameterType="com.linker.direct.cart.dto.CartDTO">
         <![CDATA[
-        delete from cart where user_id = 1
+        delete from cart where user_id = #{user_id}
         ]]>
     </delete>
 
+<!--  구현 전  -->
     <select id="itemCount" parameterType="com.linker.direct.common.util.Criteria" resultType="Integer">
 		<![CDATA[
         SELECT	COUNT(*) as item_count
         FROM	cart
-        WHERE	user_id = 1
+        WHERE	user_id = #{user_id}
         ]]>
 	</select>
 

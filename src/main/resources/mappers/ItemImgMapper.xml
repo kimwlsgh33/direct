@@ -13,9 +13,20 @@
         ]]>
     </insert>
 
+    <!--  상품의 사진 불러오기  -->
     <select id="readByItem" parameterType="com.linker.direct.item.vo.ItemVO" resultType="com.linker.direct.item.vo.ItemImgVO">
         <![CDATA[
             SELECT * FROM item_img WHERE item_id = #{item_id}
         ]]>
     </select>
+
+    <!--  상품리스트의 모든 사진 불러오기  -->
+<!--    <select id="readByItems" parameterType="java.util.List" resultType="com.linker.direct.item.vo.ItemImgVO">-->
+<!--        <![CDATA[-->
+<!--            SELECT item_id, img_name, origin_name FROM item_img i WHERE item_id IN-->
+<!--        ]]>-->
+<!--        <foreach collection="list" item="item" open="(" separator="," close=")">-->
+<!--            #{item.item_id}-->
+<!--        </foreach>-->
+<!--    </select>-->
 </mapper>

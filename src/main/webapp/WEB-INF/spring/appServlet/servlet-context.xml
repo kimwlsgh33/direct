@@ -59,8 +59,6 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-
-
 	<!-- 로그인 인터셉터 bean등록 -->
 <!--	<beans:bean id="LoginInterceptor" class="com.linker.direct.common.interceptor.LoginInterceptor" />-->
 <!--	<beans:bean id="AdminInterceptor" class="com.linker.direct.common.interceptor.AdminInterceptor" />-->

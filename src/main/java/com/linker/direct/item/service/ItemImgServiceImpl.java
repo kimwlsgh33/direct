@@ -1,14 +1,12 @@
 package com.linker.direct.item.service;
 
-// dao
 // dto
-// entity
-// lombok
 import com.linker.direct.item.dto.ItemImgReadDTO;
 import com.linker.direct.item.vo.ItemImgVO;
 import com.linker.direct.item.dao.ItemImgDAO;
 import com.linker.direct.item.dto.ItemImgSaveDTO;
 import com.linker.direct.item.vo.ItemVO;
+// dao
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 // springframework
@@ -17,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -73,23 +69,28 @@ public class ItemImgServiceImpl implements ItemImgService {
     //==================================================================================================
     @Override
     public List<ItemImgReadDTO> readByItem(ItemVO itemVO) throws Exception {
+        // DB 조회
         List<ItemImgVO> itemImgList = itemImgDao.readByItem(itemVO);
+        // 실제 이미지 조회
+        return getItemsImgList(itemImgList);
+    }
 
-        List<ItemImgReadDTO> itemImgReadList = new ArrayList<>();
-
+    //==================================================================================================
+    // 상품 이미지 목록 받아서, 실제 이미지 파일 조회
+    //==================================================================================================
+    private List<ItemImgReadDTO> getItemsImgList(List<ItemImgVO> itemImgList) throws Exception {
+        List<ItemImgReadDTO> itemImgReadList = new ArrayList<ItemImgReadDTO>();
         for (ItemImgVO itemImgVO : itemImgList) {
-            String readImgFileUrl = readImgFileUrl(itemImgVO);
             String originName = itemImgVO.getOrigin_name();
-
+            String readImgFileUrl = readImgFileUrl(itemImgVO);
             ItemImgReadDTO itemImgReadDTO = ItemImgReadDTO.of(originName, readImgFileUrl);
             itemImgReadList.add(itemImgReadDTO);
         }
-
         return itemImgReadList;
     }
 
     //==================================================================================================
-    // 상품 이미지 파일 base64 URL 가져오기
+    // 실제 이미지 파일 base64 URL 가져오기
     //==================================================================================================
     public String readImgFileUrl(ItemImgVO itemImgVO) throws Exception {
         String separator = File.separator; // 윈도우는 \, 리눅스는 /를 사용한다.

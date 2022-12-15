@@ -71,10 +71,10 @@
 </head>
 <body>
 
-<jsp:include page="../common/topMenu.jsp" flush="false" />
+<jsp:include page="../common/header.jsp" flush="false" />
 
 <div class="container-sm" id="back">
-	<form class="form-horizontal" method="post" action="${ctx}/member/login">
+	<form class="form-horizontal" method="post" action="${ctx}/user/login">
 		<div class="form-group">
 			<div align="center">
 				<h1 align="center">

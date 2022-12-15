@@ -15,5 +15,5 @@ public interface CategoryService {
 
   void delete(CategoryDTO categoryDto) throws Exception;
 
-    CategoryVO readByItem(ItemVO itemVO) throws Exception;
+  String readByItem(ItemVO itemVO) throws Exception;
 }

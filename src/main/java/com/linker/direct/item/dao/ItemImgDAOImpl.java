@@ -25,6 +25,7 @@ public class ItemImgDAOImpl implements ItemImgDAO {
     반면에 stack 영역에는 메소드가 호출될 때 할당되고, 메소드가 종료되면 메모리에서 사라지게 된다.
      */
 
+    @Override
     public void create(ItemImgVO itemImgVO) throws DataAccessException {
         System.out.println("ItemImgDaoImpl.create" + itemImgVO.toString());
         sqlSession.insert(NAMESPACE + ".create", itemImgVO);

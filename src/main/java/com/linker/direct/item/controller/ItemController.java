@@ -100,6 +100,7 @@ public class ItemController {
         // 키워드 검사
         if(keyword == "") {
             mav.setViewName("/item/noSearch");
+            return mav;
         }
 
         PageMaker pageMaker = new PageMaker();
@@ -107,7 +108,6 @@ public class ItemController {
 
         // 상품 전체 개수를 구한다.
         pageMaker.setTotalCount(itemService.totalCount(cri));
-        System.out.println("pageMaker.getTotalCount() ==> " + pageMaker.getTotalCount());
 
         // cri에 해당하는 게시글을 가져와서 View에게 넘겨준다.
         List<ItemDTO> searchList = itemService.searchListPaging(cri);

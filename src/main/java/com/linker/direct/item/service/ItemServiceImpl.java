@@ -65,7 +65,7 @@ public class ItemServiceImpl implements ItemService {
         ItemVO resultItem = itemDao.read(itemVO);
 
         // 상품 카테고리 가져옴
-        CategoryVO categoryVO = categoryService.readByItem(resultItem);
+        String categoryName = categoryService.readByItem(resultItem);
 
         // 상품 이미지 가져옴
         List<ItemImgReadDTO> itemImgs = itemImgService.readByItem(resultItem);
@@ -73,7 +73,7 @@ public class ItemServiceImpl implements ItemService {
         // 상품, 카테고리, 상품 이미지 DTO에 저장
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItemVO(resultItem);
-        itemDTO.setCategoryVO(categoryVO);
+        itemDTO.setCategoryName(categoryName);
         itemDTO.setImgList(itemImgs);
         return itemDTO;
     }
@@ -83,10 +83,13 @@ public class ItemServiceImpl implements ItemService {
     //==================================================================================================
     @Override
     public List<ItemDTO> searchListPaging(SearchCriteria cri) throws Exception {
+        // 상품 목록
         List<ItemVO> searchListPaging = itemDao.searchListPaging(cri);
 
         // 상품 정보 & 상품 이미지
         List<ItemDTO> itemDTOList = new ArrayList<>();
+
+        // 상품 정보 마다, 상품 이미지 가져오기 ( select * from item_img where item_id = ? )
         for(ItemVO itemVO : searchListPaging) {
             // 상품 이미지 가져옴
             List<ItemImgReadDTO> itemImgs = itemImgService.readByItem(itemVO);

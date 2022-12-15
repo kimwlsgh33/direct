@@ -13,6 +13,6 @@ import java.util.List;
 @Getter @Setter @ToString
 public class ItemDTO {
     private ItemVO itemVO;
-    private CategoryVO categoryVO;
+    private String categoryName;
     private List<ItemImgReadDTO> imgList;
 }

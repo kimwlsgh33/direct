@@ -42,10 +42,8 @@ public class UserController {
 
 	// 로그인 화면
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
-	public ModelAndView signIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/user/signIn");
-		return mav;
+	public String signIn() {
+        return "user/signIn";
 	}
 
 	// 로그인 처리

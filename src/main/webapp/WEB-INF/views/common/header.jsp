@@ -80,15 +80,15 @@
 
                     </ul>
                 </li>
-                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList(1)">
-                    <form method="get" action="${ctx}/cart/cartList">
-                    <i class="fas fa-shopping-cart" style="color: black" ></i>
-                    </form>
-                </li>
                 <div class="d-flex justify-content-end">
                     <form class="navbar-form" method="post" action="${ctx}/user/login">
                         <c:choose>
                             <c:when test="${isLogOn == true && user != null}">
+                                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList()">
+                                    <form method="get" action="${ctx}/cart/cartList">
+                                        <i class="fas fa-shopping-cart" style="color: black" ></i>
+                                    </form>
+                                </li>
                                 <div class="d-flex" >
                                     <p style="color: gray; margin-top: 10px; margin-right: 20px;"><b>${user.id}님 환영합니다.</b></p>
                                     <a href="${ctx}/user/logout" class="btn btn-outline-success">로그아웃</a>
@@ -137,6 +137,7 @@
         </div>
     </div>
 </div>
+
 <script>
     //tooltip 구현
     $(document).ready(function(){
@@ -156,8 +157,7 @@
 </script>
 <script>
 
-    function fn_cartList(user_id) {
-        // cartController에서 ajax로 cartList를 가져온다.
+    function fn_cartList() {
         $.ajax({
             url: "${ctx}/cart/cartList",
             type: "get",
@@ -169,7 +169,6 @@
                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
-
     }
 
 </script>

@@ -87,7 +87,7 @@ function uploadFiles() {
     cache: false,
     success: function (result) {
       alert("업로드가 완료되었습니다.");
-      location.href = "/item/list";
+      location.href = "/item/createForm";
     },
     error: function (result) {
       alert("업로드 실패");

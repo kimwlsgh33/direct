@@ -31,6 +31,7 @@
 
     .flip-card-front, .flip-card-back {
         position: absolute;
+<%--         object-fit: cover; --%>
         width: 100%;
         height: 100%;
         -webkit-backface-visibility: hidden;
@@ -49,7 +50,7 @@
     }
 
     .flip-card-back {
-        background-image: linear-gradient(315deg, #FFFFFF, black);
+        background-image: linear-gradient(315deg, #FFFFFF, #EEEEEE);
         transform: rotateY(180deg);
     }
     .flip-card-back img {
@@ -161,23 +162,23 @@
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
-                                    <img src="${itemDTO.imgList[0].img_url}" style="width: 200px; height: 200px;" />
-                                    <h3>${itemDTO.itemVO.name}</h3>
-                                    <h1>${itemDTO.itemVO.price}원</h1>
-                                    <p>${itemDTO.itemVO.created_at}</p>
-                                    <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
-                                        <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                         <img src="${itemDTO.imgList[0].img_url}"/>
+                                        <h3>${itemDTO.itemVO.name}</h3>
+                                        <h1>${itemDTO.itemVO.price}원</h1>
+                                        <p>${itemDTO.itemVO.created_at}</p>
+                                        <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
+                                            <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="flip-card-back align-items-center" >
+                                        <form>
+                                             <img src="${itemDTO.imgList[0].img_url}"/>
+                                        </form>
+                                        <button class="btn btn-outline-dark" id="${itemDTO.itemVO.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${itemDTO.itemVO.item_id})" ><i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
-                                    <div class="flip-card-back align-items-center" >
-                                        <form>  <!-- 나중에 제품 상세 페이지로 ACTION 주기. -->
-<%--                                            <img src="${itemDTO.imgList[0].img_url}" style="width: 300px; height: 200px;"/>--%>
-                                        </form>
-                                    </div>
-                                    <button class="btn btn-outline-dark" id="${itemDTO.itemVO.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${itemDTO.itemVO.item_id})" ><i class="fas fa-shopping-cart"></i></button>
                                 </div>
                             </div>
-                        </div>
                         </c:forEach>
                     </a>
                 </div>
@@ -185,7 +186,7 @@
                     <ul class="pagination justify-content-center">
                         <c:if test="${pageMaker.prev}">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
+                                <a class="page-link" href='<c:url value="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
                             </li>
                         </c:if>
                         <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">

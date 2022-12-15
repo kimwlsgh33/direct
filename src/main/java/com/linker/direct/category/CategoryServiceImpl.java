@@ -38,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryVO readByItem(ItemVO itemVO) throws Exception {
+    public String readByItem(ItemVO itemVO) throws Exception {
         return categoryDao.readByItem(itemVO);
     }
 }

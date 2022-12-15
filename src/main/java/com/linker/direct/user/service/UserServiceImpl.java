@@ -29,25 +29,18 @@ public class UserServiceImpl implements UserService {
 	// 로그인 처리
 	@Override
 	public UserVO login(UserVO userVO) throws DataAccessException {
-		
-		logger.info("MemberServiceImpl login() 시작......");
-		
 		return userDAO.loginByID(userVO);
 	}
 
 	// 회원가입 처리
 	@Override
 	public int addMember(UserVO userVO) throws DataAccessException {
-		
-		logger.info("MemberServiceImpl 회원가입 처리() 시작......" + userVO);
 		return userDAO.addMember(userVO);
 	}
 	
 	// 회원전체 목록 가져오기
 	@Override
 	public List<UserVO> listMembers() throws DataAccessException {
-		
-		logger.info("MemberServiceImpl 회원 전체목록 가져오기 시작......");
 		List<UserVO> memberLists = null;
 		memberLists = userDAO.selectAllMemberList();
 		

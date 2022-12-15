@@ -45,7 +45,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public CategoryVO readByItem(ItemVO itemVO) throws DataAccessException {
-        return sqlSession.selectOne(NAMESPACE + ".read", itemVO);
+    public String readByItem(ItemVO itemVO) throws DataAccessException {
+        return sqlSession.selectOne(NAMESPACE + ".readNameByItem", itemVO);
     }
 }
