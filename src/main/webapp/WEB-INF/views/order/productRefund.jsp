@@ -50,13 +50,13 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 							<div class="col-md-6">
 								<p>${p.name}</p><br>
 								<p>${p.price}원, ${p.count}개</p>
-								<button id="detail" class="btn btn-sm btn-outline-success" data-toggle="modal">장바구니 담기</button>
+								<button id="detail" class="btn btn-sm btn-outline-primary" data-toggle="modal">장바구니 담기</button>
 							</div>
 						</div>
 					</div>
 					<span class="col-sm-2" style="margin-top: 45px;">
-						<button class="btn btn-outline-success" id="bucket">배송조회</button>
-						<button class="btn btn-outline-success" id="bucket">교환/반품</button>
+						<button class="btn btn-outline-primary" id="bucket">배송조회</button>
+						<button class="btn btn-outline-primary" id="bucket">교환/반품</button>
 					</span>
 				</div>
 			</div>

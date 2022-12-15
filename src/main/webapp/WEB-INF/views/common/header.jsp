@@ -91,7 +91,7 @@
                             <c:when test="${isLogOn == true && user != null}">
                                 <div class="d-flex" >
                                     <p style="color: gray; margin-top: 10px; margin-right: 20px;"><b>${user.id}님 환영합니다.</b></p>
-                                    <a href="${ctx}/user/logout" class="btn btn-outline-success">로그아웃</a>
+                                    <a href="${ctx}/user/logout" class="btn btn-outline-primary">로그아웃</a>
                                 </div>
                             </c:when>
                             <c:otherwise>
@@ -110,7 +110,7 @@
                                             placeholder="password"
                                             aria-label="Server"
                                     />
-                                    <button type="submit" class="btn btn-outline-success">로그인</button>
+                                    <button type="submit" class="btn btn-outline-primary">로그인</button>
                                 </div>
                             </c:otherwise>
                         </c:choose>

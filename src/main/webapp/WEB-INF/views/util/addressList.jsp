@@ -23,7 +23,7 @@
 				<div class="row justify-content-between">
 					<h2 class="col-md-4">배송지 목록</h2>
 					<div class="col-md-4" style="margin-right: 110px;">
-						<a class="btn btn-sm btn-outline-success"
+						<a class="btn btn-sm btn-outline-primary"
 						href="${ctx}/util/address">배송지 추가</a>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 						</div>
 					</div>
 					<div style="margin-top: 20px;">
-					<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/util/addressDetail?address_id=${addr.address_id}'">
+					<button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='/util/addressDetail?address_id=${addr.address_id}'">
 						주소 수정
 					</button>
 					</div>

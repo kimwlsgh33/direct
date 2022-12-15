@@ -33,6 +33,7 @@ $('[name=couponInsertBtn]').click(function() {
 // 댓글 등록
 //-----------------------------------------------------------------------------------------------------------
 function couponInsert(insertData){
+	var user_id = $
     $.ajax({
         url : '/coupon/insert',
         type : 'post',
@@ -51,9 +52,9 @@ function couponInsert(insertData){
 //댓글 목록 보기
 //-----------------------------------------------------------------------------------------------------------
 function couponList() {
-	alert("내 쿠폰 보여주세요.....");
 	
-	var user_id = ${user.user_id};
+	var user_id = ${userCoupon[0].user_id};
+	var coupon_id = 
 	alert("내 아이디 : " + user_id)
 	
 	$.ajax({

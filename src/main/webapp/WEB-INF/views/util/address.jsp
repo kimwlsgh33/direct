@@ -26,7 +26,7 @@
 		<form class="row g-3" style="margin-left: 20%;">
 			<h2 class="col-sm-3" style="padding-top: 30px;">배송지 등록</h2>
 			<div class="col-md-4" style="padding-top: 35px; margin-left: 230px;">
-				<a class="btn btn-sm btn-outline-success"
+				<a class="btn btn-sm btn-outline-primary"
 				href="${ctx}/util/addressList?user_id=${user.user_id}">배송지 목록 가기</a>
 			</div>
 			<div class="form-group" style="margin-top: 50px;">
@@ -67,7 +67,7 @@
 				</div>
 			</div>
 			-->
-			<button class="col-sm-1 btn btn-sm btn-outline-success" type="button" onclick="fn_addressRegister()" style="margin-left:10px;">등록</button>
+			<button class="col-sm-1 btn btn-sm btn-outline-primary" type="button" onclick="fn_addressRegister()" style="margin-left:10px;">등록</button>
 		</form>
 		</div>
 	</div>

@@ -28,7 +28,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						<h4 style="margin-left:15px;"><fmt:formatDate value="${p.order_date}" pattern="yyyy.MM.dd hh:mm"/></h4>
 					</div>
 					<div class="col-md-4" style=" margin-top: 10px;">
-						<a class="btn btn-sm btn-outline-success" style="margin-left: 95px; "
+						<a class="btn btn-sm btn-outline-primary" style="margin-left: 95px; "
 						href="${ctx}/product/productSelect?item_id=${p.item_id}">자세히 보기</a>
 					</div>
 				</div>
@@ -46,13 +46,13 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 							<div class="col-md-6">
 								<p>${p.name}</p><br>
 								<p>${p.price}원, ${p.count}개</p>
-								<button id="detail" class="btn btn-sm btn-outline-success" data-toggle="modal">장바구니 담기</button>
+								<button id="detail" class="btn btn-sm btn-outline-primary" data-toggle="modal">장바구니 담기</button>
 							</div>
 						</div>
 					</div>
 					<span class="col-sm-2" style="margin-top: 45px;">
-						<button class="btn btn-outline-success" id="bucket">배송조회</button>
-						<button class="btn btn-outline-success" id="bucket">교환/반품</button>
+						<button class="btn btn-outline-primary" id="bucket">배송조회</button>
+						<button class="btn btn-outline-primary" id="bucket">교환/반품</button>
 					</span>
 				</div>
 			</div>

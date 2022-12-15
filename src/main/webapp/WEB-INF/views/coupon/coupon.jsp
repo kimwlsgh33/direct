@@ -24,21 +24,19 @@
 				</div>
 				<!-- 쿠폰번호 입력하는 영역 -->
 				<div class="col-sm-6" style="margin-top: 20px;">
-					<label class="form-label">댓글</label>
+					<label class="form-label">쿠폰 번호</label>
 					<form name="couponInsertForm">
 						<div class="input-group">
 							<input type="hidden" id="user_id" name="user_id" value="${userCoupon[0].user_id}"/>
 							<input type="text" class="form-control" id="coupon_id" name="coupon_id" placeholder="쿠폰번호를 입력하십시오"/>
 							<span class="input-group-btn">
-								<button class="btn btn-outline-success" type="button" name="couponInsertBtn">등록</button>
+								<button class="btn btn-outline-primary" type="button" name="couponInsertBtn">등록</button>
 							</span>
 						</div>
 					</form>
 				</div>
 				<!-- 저장된 쿠폰목록을 보여주는 영역 -->
-				<div class="container">
-					<div class="couponList"></div>
-				</div>
+				<div class="couponList"></div>
 			</div>
 		</div>
 	</div>
@@ -52,7 +50,7 @@
 //페이지 로딩시 게시글에 연결된 쿠폰이 있으면 보여준다.
 //-----------------------------------------------------------------------------------------------------------
 $(document).ready(function() {
-	//couponList();
+	couponList();
 });
 
 //-----------------------------------------------------------------------------------------------------------
@@ -66,7 +64,6 @@ $(document).ready(function() {
 // 쿠폰 등록 버튼을 눌렀을 경우
 //-----------------------------------------------------------------------------------------------------------
 $('[name=couponInsertBtn]').click(function() {
-	alert("등록버튼");
 	var insertData = $('[name=couponInsertForm]').serialize();	//couponInsertForm의 내용을 가져온다.
 	couponInsert(insertData);	
 });
@@ -75,15 +72,19 @@ $('[name=couponInsertBtn]').click(function() {
 // 댓글 등록
 //-----------------------------------------------------------------------------------------------------------
 function couponInsert(insertData){
+	var user_id = $("#user_id").val();
+	var coupon_id = $("#coupon_id").val();
+	alert("user_id: " + user_id + "coupon_id: " + coupon_id);
+	
     $.ajax({
         url : '/coupon/insert',
         type : 'post',
         data : insertData,
         success : function(data){
             if(data == 1) {
+                $("#user_id").val();
+                $("#coupon_id").val();
                 couponList(); //쿠폰등록 후 쿠폰목록 reload
-                $('[name=coupon_id]').val('');
-                $('[name=user_id]').val('');
             }
         }
     });
@@ -93,23 +94,24 @@ function couponInsert(insertData){
 //댓글 목록 보기
 //-----------------------------------------------------------------------------------------------------------
 function couponList() {
-	var user_id = ${userCoupon[0].user_id};
-	alert("내 아이디 : " + user_id)
+	var user_id = $("#user_id").val();
+	var coupon_id = $("#coupon_id").val();
+	//alert("아이디: " + user_id + "쿠폰 번호: " + coupon_id)
 	
 	$.ajax({
 		url:	'/coupon/list',
 		type:	'get',
-		data:	{'coupon_id': coupon_id, 'user_id': user_id},
+		data:	{coupon_id : coupon_id, user_id: user_id},
 		success: function(data) {
 			var str = '';
 			$.each(data, function(key, value){ 
-				str += '<div>';
-				str += '<div>'+'쿠폰번호 : '+value.coupon_id;
-				str += '  <a class="btn btn-sm btn-outline-success"> 쿠폰만료일 </a>'+ value.expired_date;
-				str += '  쿠폰이름 : ' + value.name + '  ';
-				str += '<a class="btn btn-sm btn-outline-success"> ㅠㅠㅠ </a> </div>';
-				str += '<div> <p style="margin-top:10px; margin-bottom:10px;"> 최소금액 : '+value.min_price +'</p>';
-				str += '</div></div>';
+				str += '<div class="couponList">';
+				str += '<div class="row justify-content-start">'+ '<div class="col-md-2">' + '<b>' + '쿠폰번호 :</b> '+value.coupon_id + '</div>';
+				str += '<div class="col-md-5"><b>쿠폰이름 :</b> ' + value.name + '</div></div><br>';
+				str += '<b>유효기간 :</b> ' + value.expired_date + '  ';
+				str += '<b style="margin-left: 10px;">최소금액 : </b> ' + value.min_price + '원   ';
+				str += '<a class="btn btn-sm btn-outline-primary">사용하기</a>';
+				str += '</div>';
 			});
 			$(".couponList").html(str);
 		},

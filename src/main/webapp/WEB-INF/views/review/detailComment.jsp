@@ -64,7 +64,7 @@
 							<input type="hidden" name="review_no" value="${detail.review_no}"/>
 							<input type="text" class="form-control" id="content" name="content" placeholder="댓글을 입력하십시오"/>
 							<span class="input-group-btn">
-								<button class="btn btn-outline-success" type="button" name="commentInsertBtn">등록</button>
+								<button class="btn btn-outline-primary" type="button" name="commentInsertBtn">등록</button>
 							</span>
 						</div>
 					</form>

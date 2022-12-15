@@ -37,11 +37,8 @@ public class CouponController {
 	@ResponseBody
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public int couponInsert(UserCouponDTO usercouponDTO) throws Exception {
-		System.out.println("coupon_id => " + usercouponDTO);
-		
-		UserCouponDTO coupon = new UserCouponDTO();
-		return couponService.couponInsert(coupon);
-		
+		System.out.println("coupon_id => " + usercouponDTO);	
+		return couponService.couponInsert(usercouponDTO);
 	}
 	
 	// 쿠폰 리스트(쿠폰아이디)

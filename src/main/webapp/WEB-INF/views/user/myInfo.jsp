@@ -33,7 +33,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<h3 style="padding-left: 25px; margin-top: 30px;">주문목록</h3>
 			<div class="input-group" style="width: 80%; padding-left: 25px; margin-top: 20px;">
 				<input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-				<button type="button" class="btn btn-outline-success">search</button>
+				<button type="button" class="btn btn-outline-primary">search</button>
 			</div>
 			<div class="col-sm-10" style="width: 80%; margin-left: 15px;">
 				<ul class="nav nav-tabs justify-content-around" id="myTab" role="tablist">

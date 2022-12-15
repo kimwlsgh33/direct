@@ -26,7 +26,7 @@
 		<form class="row g-3" id="addr" style="margin-left: 20%;">
 			<h2 class="col-sm-4" style="padding-top: 30px;">배송지</h2>
 			<div class="col-md-4" style="padding-top: 35px; margin-left: 160px;">
-				<a class="btn btn-sm btn-outline-success"
+				<a class="btn btn-sm btn-outline-primary"
 				href="${ctx}/util/addressList?user_id=${member.user_id}">배송지 목록 가기</a>
 			</div>
 			<input type="hidden" class="form-control" name="address_id" id="address_id" value="${detail.address_id}"readonly/>
@@ -69,13 +69,13 @@
 			</div>
 			-->
 			<div class="form-group"  style="margin-top: 20px;">
-				<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_AAA()">
+				<button type="button" class="btn btn-sm btn-outline-primary" onclick="fn_AAA()">
 					대표주소 설정
 				</button>
-				<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressUpdateForm(${detail.address_id})">
+				<button type="button" class="btn btn-sm btn-outline-primary" onclick="fn_addressUpdateForm(${detail.address_id})">
 					주소 수정
 				</button>
-				<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_addressDelete(${detail.address_id})">
+				<button type="button" class="btn btn-sm btn-outline-primary" onclick="fn_addressDelete(${detail.address_id})">
 					주소 삭제
 				</button>
 			</div>

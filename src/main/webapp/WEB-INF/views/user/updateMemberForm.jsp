@@ -101,8 +101,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-4" style="margin-top: 20px;">
-				<button type="reset"  class="btn btn-sm btn-outline-success">다시 입력</button>
-				<button type="submit" class="btn btn-sm btn-outline-success">회원 정보 수정</button>
+				<button type="reset"  class="btn btn-sm btn-outline-primary">다시 입력</button>
+				<button type="submit" class="btn btn-sm btn-outline-primary">회원 정보 수정</button>
 			</div>
 		</div>
 	</form>

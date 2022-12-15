@@ -71,7 +71,7 @@ function fn_addressDelete(address_id){
 		$.ajax({
 			type: "POST",
 			url: "/util/addressDelete",
-			data: {address_id : address_id, user_id: user_id,},
+			data: {address_id : address_id, user_id: user_id},
 			success: function(data) {
 				if(data == "Y") {
 					alert("주소 삭제가 완료되었습니다.");

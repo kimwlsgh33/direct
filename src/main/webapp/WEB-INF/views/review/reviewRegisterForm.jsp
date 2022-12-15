@@ -66,8 +66,8 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5" style="margin-top: 20px;">
-				<button type="reset" class="btn btn-sm btn-outline-success">다시 입력</button>
-				<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewRegister();">리뷰 등록</button>
+				<button type="reset" class="btn btn-sm btn-outline-primary">다시 입력</button>
+				<button type="button" class="btn btn-sm btn-outline-primary" onclick="fn_reviewRegister();">리뷰 등록</button>
 			</div>
 		</div>
 	</form>

@@ -21,7 +21,7 @@ public class CouponDTO {
 	private Timestamp created_at;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Timestamp updated_at;
-	private Timestamp expired_date;
+	private String expired_date;
 	private String status;
 
 }

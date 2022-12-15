@@ -65,13 +65,13 @@
 			</div>
 		</div>
 		<div class="form-group"  style="margin-top: 20px;">
-			<button type="reset"  class="btn btn-sm btn-outline-success">
+			<button type="reset"  class="btn btn-sm btn-outline-primary">
 				다시 입력
 			</button>
-			<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewUpdate();">
+			<button type="button" class="btn btn-sm btn-outline-primary" onclick="fn_reviewUpdate();">
 				리뷰 수정
 			</button>
-			<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='${ctx}/review/reviewList'">
+			<button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='${ctx}/review/reviewList'">
 				리뷰 목록
 			</button>
 		</div>
