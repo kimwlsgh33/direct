@@ -8,8 +8,8 @@
 <!-- <mapper namespace="orderItem">
     <insert id="create" parameterType="com.linker.direct.order.vo.OrderVO">
         <![CDATA[
-            INSERT INTO order_item (order_id, item_id, `count`, price)
-            VALUES (#{order_id}, #{item_id}, #{count}, #{price})
+            INSERT INTO order_item (order_id, item_id, `count`, price, order_date)
+            VALUES (#{order_id}, #{item_id}, #{count}, #{price}, now())
         ]]>
         <selectKey keyColumn="order_item_id" keyProperty="order_item_id" order="AFTER" resultType="java.lang.Long">
             SELECT order_item_id FROM order_item WHERE order_item_id = LAST_INSERT_ID()

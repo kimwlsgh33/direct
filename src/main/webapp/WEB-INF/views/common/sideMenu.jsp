@@ -25,7 +25,7 @@
 			<li><a href="${ctx}/product/productRefund?user_id=${user.user_id}">취소/반품/교환/환불 내역</a></li>
 			<li><hr class="dropdown-divider"></li>
 			<li><h4>My 혜택</h4></li>
-			<li><a href="#">할인쿠폰</a></li>
+			<li><a href="${ctx}/coupon/coupon?user_id=${user.user_id}">할인쿠폰</a></li>
 			<li><hr class="dropdown-divider"></li>
 			<li><h4>My 활동</h4></li>
 			<li><a href="${ctx}/review/reviewRegisterForm?user_id=${user.user_id}">문의하기</a></li>
