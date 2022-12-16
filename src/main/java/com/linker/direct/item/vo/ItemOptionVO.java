@@ -14,6 +14,11 @@ public class ItemOptionVO { // 상품 이미지 정보
     private String status;
     private Timestamp created_at;
     private Timestamp updated_at;
+    
+    // test
+    private String optionName;
+    private int optionPrice;
+    private String optionDescription;
 
     public ItemOptionVO() {
     }

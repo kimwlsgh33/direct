@@ -38,27 +38,43 @@
             <div class="input-group mb-3">
                 <div class="input-group-text">상품명</div>
                 <input id="name" name="name" type="text" class="form-control" aria-label="Product Name">
-                <button id="optionAdd" class="btn btn-primary" type="button" onclick="console.log('option');">옵션 추가</button>
+                <a data-bs-toggle="collapse" href="#collapseDetail" aria-expanded="false" 
+                id="optionAdd" class="btn btn-primary" type="button" onclick="console.log('option');">옵션 추가</a>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-text">가격</div>
-                <input id="price" name="price" type="text" class="form-control" aria-label="Price">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-text">재고</div>
-                <input id="stock" name="stock" type="text" class="form-control" aria-label="Stock">
-            </div>
-            <div class="input-group">
-                <div class="input-group-text">상품 설명</div>
-                <textarea id="description" name="description" class="form-control" aria-label="Product Description"></textarea>
-            </div>
+            <!-- 옵션추가 클릭 시 input으로 받는 옵션, 설명, 가격 추가 -->
+			<div class="collapse" id="collapseDetail">
+	            <div class="input-group mb-3">
+	                <div class="input-group-text">옵션명</div>
+	                <input id="optionName" name="optionName" type="text" class="form-control" aria-label="optionName">
+	            </div>
+	            <div class="input-group mb-3">
+	                <div class="input-group-text">옵션 가격</div>
+	                <input id="optionPrice" name="optionPrice" type="text" class="form-control" aria-label="optionPrice">
+	            </div>
+	            <div class="input-group" style="margin-bottom: 15px;">
+	                <div class="input-group-text">옵션 설명</div>
+	                <textarea id="optionDescription" name="optionDescription" class="form-control" aria-label="optionDescription"></textarea>
+	            </div>
+        	</div>
+        	<div class="input-group mb-3">
+	            <div class="input-group-text">가격</div>
+	            <input id="price" name="price" type="text" class="form-control" aria-label="Price">
+	        </div>
+	        <div class="input-group mb-3">
+	            <div class="input-group-text">재고</div>
+	            <input id="stock" name="stock" type="text" class="form-control" aria-label="Stock">
+	        </div>
+	        <div class="input-group">
+	            <div class="input-group-text">상품 설명</div>
+	            <textarea id="description" name="description" class="form-control" aria-label="Product Description"></textarea>
+	        </div>
         </div>
 
         <div id="uploadList" class="w-100 d-flex flex-wrap mt-3 gap-3"></div>
         <div id="fileDrop" class="w-100 mt-3 position-relative">
             <div class="position-absolute top-50 start-50 translate-middle">사진을 드래그..</div>
         </div>
-        <button type="button" id="submitBtn" class="btn btn-primary mt-3" style="display: none;" onclick="uploadFiles()">Submit</button>
+        <button type="button" id="submitBtn" class="btn btn-primary mt-3" onclick="uploadFiles()">Submit</button>
     </form>
 </div>
 </body>

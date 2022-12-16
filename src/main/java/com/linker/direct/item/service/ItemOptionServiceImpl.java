@@ -2,6 +2,8 @@ package com.linker.direct.item.service;
 
 import com.linker.direct.item.dao.ItemOptionDAO;
 import com.linker.direct.item.vo.ItemOptionVO;
+import com.linker.direct.item.vo.ItemVO;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,10 @@ public class ItemOptionServiceImpl implements ItemOptionService {
     @Override
     public ItemOptionVO read(ItemOptionVO itemOptionVO) throws Exception {
         return itemOptionDAO.read(itemOptionVO);
+    }
+    
+    @Override
+    public ItemOptionVO readByItem(ItemVO itemVO) throws Exception {
+    	return itemOptionDAO.readByItem(itemVO);
     }
 }

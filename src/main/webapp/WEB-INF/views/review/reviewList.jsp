@@ -65,8 +65,9 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 				</c:forEach>
 			</tbody>	
 		</table>
-</div>
 	</div>
 </div>
+</div>
+<jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 </html>

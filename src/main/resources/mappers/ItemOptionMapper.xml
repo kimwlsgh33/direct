@@ -15,13 +15,13 @@
     <insert id="create" parameterType="com.linker.direct.item.vo.ItemOptionVO">
         <![CDATA[
             INSERT INTO item_option (item_id, `option`, description, price)
-            VALUES (#{item_id}, #{option}, #{description}, #{price})
+            VALUES (#{item_id}, #{optionName}, #{optionDescription}, #{optionPrice})
         ]]>
     </insert>
 
     <select id="read" resultType="com.linker.direct.item.vo.ItemOptionVO">
         <![CDATA[
-            SELECT * FROM item_option WHERE item_option_id = #{item_option_id}
+            SELECT * FROM item_option WHERE item_id = #{item_id}
         ]]>
     </select>
 </mapper>

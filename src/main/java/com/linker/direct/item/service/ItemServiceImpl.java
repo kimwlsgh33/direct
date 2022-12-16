@@ -6,6 +6,7 @@ import com.linker.direct.category.CategoryVO;
 import com.linker.direct.item.dto.ItemImgReadDTO;
 import com.linker.direct.item.vo.ItemVO;
 import com.linker.direct.item.vo.ItemImgVO;
+import com.linker.direct.item.vo.ItemOptionVO;
 import com.linker.direct.common.util.SearchCriteria;
 // dto
 import com.linker.direct.item.dto.ItemDTO;
@@ -31,12 +32,13 @@ public class ItemServiceImpl implements ItemService {
     private final ItemImgService itemImgService;
     private final CategoryService categoryService;
     private final ItemDAO itemDao;
+    private final ItemOptionService itemOptionService;
 
     //==================================================================================================
     // 상품 등록
     //==================================================================================================
     @Override
-    public void create(ItemFormDTO itemFormDto, List<MultipartFile> uploadFiles) throws Exception {
+    public void create(ItemFormDTO itemFormDto, List<MultipartFile> uploadFiles, /*추가*/ItemOptionVO itemOptionVO) throws Exception {
         itemFormDto.setStatus(ItemSellStatus.SELLING); // 판매 상태 : 판매중
         //====================================================================================================
         // 상품 등록 ====================================================================================================
@@ -46,6 +48,7 @@ public class ItemServiceImpl implements ItemService {
         itemDao.create(itemVO);
         log.info("상품 등록 완료" + itemVO.toString());
         
+        
         //==================================================================================================
         // itemImg 저장 ==================================================================================================
         //==================================================================================================
@@ -54,6 +57,18 @@ public class ItemServiceImpl implements ItemService {
             ItemImgSaveDTO itemImgSaveDto = ItemImgSaveDTO.of(uploadFile, itemVO);
             itemImgService.upload(itemImgSaveDto); // 사진업로드, item_img 테이블 저장
         }
+        
+        //==================================================================================================
+        // itemOption 저장 ==================================================================================================
+        //==================================================================================================
+        
+        itemOptionVO.setItem_id(itemVO.getItem_id());
+        itemOptionVO.setOptionName(itemOptionVO.getOptionName());
+        itemOptionVO.setOptionPrice(itemOptionVO.getOptionPrice());
+        itemOptionVO.setOptionDescription(itemOptionVO.getOptionDescription());
+        log.info("상품 옵션 등록 : " + itemOptionVO);
+        itemOptionService.create(itemOptionVO); // itemOption 테이블 저장
+        
     }
 
     //==================================================================================================
@@ -69,12 +84,17 @@ public class ItemServiceImpl implements ItemService {
 
         // 상품 이미지 가져옴
         List<ItemImgReadDTO> itemImgs = itemImgService.readByItem(resultItem);
+        
+        // 추가 아이템 옵션 정보 가져옴
+        ItemOptionVO itemOptionVO = itemOptionService.readByItem(resultItem);
 
         // 상품, 카테고리, 상품 이미지 DTO에 저장
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItemVO(resultItem);
         itemDTO.setCategoryVO(categoryVO);
         itemDTO.setImgList(itemImgs);
+        //추가
+        itemDTO.setItemOptionVO(itemOptionVO);
         return itemDTO;
     }
 

@@ -5,6 +5,7 @@ import com.linker.direct.common.util.PageMaker;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.item.dto.ItemDTO;
 import com.linker.direct.item.dto.ItemResultDTO;
+import com.linker.direct.item.vo.ItemOptionVO;
 import com.linker.direct.item.vo.ItemVO;
 import com.linker.direct.user.constant.Role;
 import com.linker.direct.user.vo.UserVO;
@@ -56,7 +57,8 @@ public class ItemController {
     //==================================================================================================
     @ResponseBody
     @RequestMapping(value="/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDTO itemFormDto, HttpServletRequest request) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
+    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDTO itemFormDto, HttpServletRequest request, 
+    		/*추가*/ItemOptionVO itemOptionVO) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
         // 로그인 여부 확인 ==================================================================================================
         // UserVO userVO = (UserVO) request.getSession().getAttribute("user");
         UserVO userVO = new UserVO();
@@ -76,7 +78,7 @@ public class ItemController {
         }
 
         // item 저장 ==================================================================================================
-        itemService.create(itemFormDto, uploadFiles); // item 테이블에 저장
+        itemService.create(itemFormDto, uploadFiles, /*추가*/itemOptionVO); // item 테이블에 저장
         return new ResponseEntity<>("upload success", HttpStatus.OK);
     }
 

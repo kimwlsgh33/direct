@@ -41,8 +41,8 @@
 		</div>
 	</div>
 </div>
-<!-- href="${contextPath}/util/address" -->
 <!-- 하단 메뉴 -->
+<jsp:include page="../common/footer.jsp" flush="false"/>
 
 <script>
 

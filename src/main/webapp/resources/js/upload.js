@@ -8,6 +8,9 @@ function uploadFiles() {
   const price = $("#price").val() * 1;
   const stock = $("#stock").val() * 1;
   const description = $("#description").val();
+  const optionName = $("#optionName").val();
+  const optionPrice = $("#optionPrice").val() * 1;
+  const optionDescription = $("#optionDescription").val();
 
   if(category_id == "") {
     alert("카테고리를 선택하세요.");
@@ -65,13 +68,16 @@ function uploadFiles() {
     return;
   }
 
-  alert("업로드를 시작합니다." + "[카테고리 : " + category_id + "][상품명 : " + name + "][가격 : " + price + "][재고 : " + stock + "][상품설명 : " + description + "]");
+  alert("업로드를 시작합니다." + "[카테고리 : " + category_id + "][상품명 : " + name + "][가격 : " + price + "][재고 : " + stock + "][상품설명 : " + description + "][옵션명 : " + optionName + "][옵션가격 : " + optionPrice + "][옵션설명 : " + optionDescription + "]");
 
   formData.append("category_id", category_id);
   formData.append("name", name);
   formData.append("price", price);
   formData.append("stock", stock);
   formData.append("description", description);
+  formData.append("optionName", optionName);
+  formData.append("optionPrice", optionPrice);
+  formData.append("optionDescription", optionDescription);
 
   for (let i = 0; i < fileArray.length; i++) {
     formData.append("uploadFiles", fileArray[i]); // 폼 데이터에 파일 추가
@@ -87,7 +93,8 @@ function uploadFiles() {
     cache: false,
     success: function (result) {
       alert("업로드가 완료되었습니다.");
-      location.href = "/item/list";
+      location.href = "/item/detail?item_id=1";
+      //location.href = "/item/list";
     },
     error: function (result) {
       alert("업로드 실패");
