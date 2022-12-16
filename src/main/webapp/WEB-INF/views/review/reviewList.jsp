@@ -59,7 +59,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						<td align="center">${review.rating}</td>
 						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="MM월 dd일 a hh시 mm분"/></td>
 						<td align="center" onclick="location.href='/review/detailComment/${review.review_no}'">
-						댓글<c:if test="${review.cnt > 0}" ><span style="color: #14A44D;">(${review.cnt})</span></c:if>
+						댓글<c:if test="${review.cnt > 0}" ><span style="color: #6495ED;">(${review.cnt})</span></c:if>
 						</td>
 					</tr>
 				</c:forEach>

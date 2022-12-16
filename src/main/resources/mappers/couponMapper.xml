@@ -18,16 +18,17 @@
 	<insert id="insert" parameterType="com.linker.direct.coupon.dto.UserCouponDTO">
 		<![CDATA[
 			INSERT	INTO user_coupon (coupon_id, user_id)
-			SELECT	#{coupon_id}, #{user_id}
-			FROM	user_coupon
+			VALUES	(#{coupon_id}, #{user_id})
 		]]>
 	</insert>
 	
 	<!-- 쿠폰 목록(유저 쿠폰이랑 연동하는 쿼리 어케 짜) -->
 	<select id="list" parameterType="com.linker.direct.coupon.dto.CouponDTO" resultType="com.linker.direct.coupon.dto.CouponDTO">
 		<![CDATA[
-			SELECT	coupon_id, name, discount_price, discount_rate, min_price ,created_at, updated_at, expired_date, status
-			FROM	coupon
+			SELECT	name, discount_price, discount_rate, min_price, created_at, updated_at, expired_date, status
+			FROM	coupon c, user_coupon uc
+			WHERE	c.coupon_id = uc.coupon_id
+			AND		uc.user_id = 1;
 		]]>
 	</select>
 	

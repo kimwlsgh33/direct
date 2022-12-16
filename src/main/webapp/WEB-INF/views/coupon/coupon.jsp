@@ -27,7 +27,7 @@
 					<label class="form-label">쿠폰 번호</label>
 					<form name="couponInsertForm">
 						<div class="input-group">
-							<input type="hidden" id="user_id" name="user_id" value="${userCoupon[0].user_id}"/>
+							<input type="hidden" id="user_id" name="user_id" value="${user.user_id}"/>
 							<input type="text" class="form-control" id="coupon_id" name="coupon_id" placeholder="쿠폰번호를 입력하십시오"/>
 							<span class="input-group-btn">
 								<button class="btn btn-outline-primary" type="button" name="couponInsertBtn">등록</button>
@@ -84,7 +84,9 @@ function couponInsert(insertData){
             if(data == 1) {
                 $("#user_id").val();
                 $("#coupon_id").val();
-                couponList(); //쿠폰등록 후 쿠폰목록 reload
+                //couponList(); //쿠폰등록 후 쿠폰목록 reload
+                alert("등록 완료!");
+                location.href = "/coupon/coupon?user_id=" + user_id;
             }
         }
     });
@@ -95,23 +97,20 @@ function couponInsert(insertData){
 //-----------------------------------------------------------------------------------------------------------
 function couponList() {
 	var user_id = $("#user_id").val();
-	var coupon_id = $("#coupon_id").val();
 	//alert("아이디: " + user_id + "쿠폰 번호: " + coupon_id)
 	
 	$.ajax({
 		url:	'/coupon/list',
 		type:	'get',
-		data:	{coupon_id : coupon_id, user_id: user_id},
+		data:	{user_id: user_id},
 		success: function(data) {
 			var str = '';
 			$.each(data, function(key, value){ 
 				str += '<div class="couponList">';
-				str += '<div class="row justify-content-start">'+ '<div class="col-md-2">' + '<b>' + '쿠폰번호 :</b> '+value.coupon_id + '</div>';
-				str += '<div class="col-md-5"><b>쿠폰이름 :</b> ' + value.name + '</div></div><br>';
-				str += '<b>유효기간 :</b> ' + value.expired_date + '  ';
+				str += '<div class="row justify-content-start">'+ '<div class="col-sm-4">' + '<b>' + '쿠폰이름 :</b> '+value.name + '</div></div>';
+				str += '<b>유효기간 :</b> ' + value.expired_date + '';
 				str += '<b style="margin-left: 10px;">최소금액 : </b> ' + value.min_price + '원   ';
-				str += '<a class="btn btn-sm btn-outline-primary">사용하기</a>';
-				str += '</div>';
+				str += '<a class="btn btn-sm btn-outline-primary" id="coupon">사용하기</a></div>';
 			});
 			$(".couponList").html(str);
 		},

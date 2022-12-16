@@ -21,7 +21,11 @@ public class CouponDTO {
 	private Timestamp created_at;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Timestamp updated_at;
-	private String expired_date;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private Timestamp expired_date;
 	private String status;
+
+	// MAPPER때문에 만듬, 데이터테이블엔 해당컬럼 없다.
+	private Long user_id;
 
 }

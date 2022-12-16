@@ -27,7 +27,7 @@
 			<h2 class="col-sm-3" style="padding-top: 30px;">배송지 수정</h2>
 			<div class="col-md-4" style="padding-top: 35px; margin-left: 230px;">
 				<a class="btn btn-sm btn-outline-primary"
-				href="${ctx}/util/addressList?user_id=${member.user_id}">배송지 목록 가기</a>
+				href="${ctx}/util/addressList?user_id=${user.user_id}">배송지 목록 가기</a>
 			</div>
 			<input type="hidden" class="form-control" name="address_id" id="address_id" value="${detail.address_id}"/>
 			<div class="form-group" style="margin-top: 50px;">
