@@ -8,13 +8,11 @@
 <mapper namespace="order">
     <insert id="create" parameterType="com.linker.direct.order.vo.OrderVO">
         <![CDATA[
-            INSERT INTO `order` (user_id)
-            VALUES (#{user_id})
+            INSERT INTO `order` (user_id, reciever, phone, address, address_detail, zip_code, status)
+            VALUES (#{user_id}, #{reciever}, #{phone}, #{address}, #{address_detail}, #{zip_code}, #{status})
         ]]>
         <selectKey keyColumn="order_id" keyProperty="order_id" order="AFTER" resultType="java.lang.Long">
             SELECT order_id FROM `order` WHERE order_id = LAST_INSERT_ID()
         </selectKey>
     </insert>
-
-
 </mapper>

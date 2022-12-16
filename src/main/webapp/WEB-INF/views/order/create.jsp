@@ -10,7 +10,9 @@
 <head>
     <title>Order Item</title>
     <style>
-
+        .address-list div {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -63,31 +65,18 @@
         <div class="flex-grow-1">
             <div>
                 <div class="fs-3 fw-bold mb-5">배송지 정보</div>
-                <div class="d-flex">
-                    <div class="fs-5 me-5">배송지 선택</div>
-                    <div>
-                        <div class="d-flex align-items-center">
-                            <div class="form-check d-flex align-items-end me-3">
-                                <input class="form-check-input me-1" type="radio" name="selectAddress" value="" id="oldAddress" checked>
-                                <label class="form-check-label" for="oldAddress">
-                                    기본 배송지
-                                </label>
+                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addressListModal" onclick="getAddressList()">배송지 선택하기</button>
+                <div class="modal fade" id="addressListModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addressModalLabel">배송지 목록</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="form-check d-flex align-items-end me-3">
-                                <input class="form-check-input me-1" type="radio" name="selectAddress" value="" id="newAddress">
-                                <label class="form-check-label" for="newAddress">
-                                    신규 배송지
-                                </label>
+                            <div id="addressList" class="modal-body">
                             </div>
-                            <button type="button" class="btn btn-sm btn-outline-primary">배송지 목록</button>
-                        </div>
-                        <div class="d-flex align-items-end">
-                            <div>최근 : </div>
-                            <div class="form-check d-flex align-items-end ms-2">
-                                <input class="form-check-input me-1" type="radio" name="selectAddress" value="" id="oldAddress1">
-                                <label class="form-check-label" for="oldAddress1">
-                                    기본 배송지
-                                </label>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                             </div>
                         </div>
                     </div>
@@ -95,22 +84,28 @@
             </div>
             <hr>
             <div class="d-grid gap-2">
-                <div class="mb-2 fw-bold">김진호 (김진호)</div>
-                <div class="mb-2">010-9118-6277</div>
-                <div class="mb-2">(05118) 서울특별시 광진구 광나루로 56길 <a class="stretched_link">정보수정</a></div>
-                <div class="mb-2">발효 크림 도넛 5종 수제도넛 도너츠 ( 맛 선책 : 카푸치노 )</div>
-                <input type="text" class="w-75 form-control mb-2" placeholder="배송메세지를 입력해주세요.">
+                <div id="ord_name" class="mb-2 fw-bold">${user.name}</div>
+                <div id="ord_phone" class="mb-2">${user.phone}</div>
+                <div class="d-flex">
+                    <div class="d-flex me-2">
+                        (<div id="ord_zip_code">${user.zip_code}</div>)
+                    </div>
+                    <div id="ord_address" class="me-1">${user.address}</div>
+                    <div id="ord_address_detail" class="me-2">${user.address_detail}</div>
+                    <a class="stretched_link" href="#">정보수정</a>
+                </div>
+                <input id="ord_msg" type="text" class="w-75 form-control mb-2" placeholder="배송메세지를 입력해주세요.">
                 <div class="d-flex" style="color: limegreen; font-size: 14px;">
-                    <i class="fa-solid fa-exclamation me-2"></i>
+                    <i class="fa-solid fa-exclamation me-2" style="color: limegreen;"></i>
                     <div>도서산간 지역의 경우 추후 수령시 추가 배송비가 과금될 수 있습니다.</div>
                 </div>
             </div>
         </div>
         <div class="w-25 border-start p-3">
-            <div>주문자 정보</div>
-            <div>김지노</div>
-            <div>01091186277</div>
-            <div>ㅏㅑㅡ진호97@ㅜㅁㅍㄷㄱ.채ㅡ</div>
+            <div class="mb-1">주문자 정보</div>
+            <div class="mb-1">${user.name}</div>
+            <div class="mb-1">${user.phone}</div>
+            <div class="mb-1">${user.email}</div>
         </div>
     </div>
     <div name="discount_point" class="bg-light w-75 d-flex shadow rounded-2 p-3 mb-4">
@@ -150,7 +145,6 @@
     </div>
     <div class="bg-light w-75 d-flex shadow rounded-2 p-3 mb-2">
         <div class="flex-grow-1">
-
             <div>
                 <div>
                     <div class="fs-3 fw-bold mb-2">결제수단</div>
@@ -165,13 +159,13 @@
                     </div>
                     <div class="p-2 border-bottom">
                         <div class="form-check d-flex align-items-end">
-                            <input class="form-check-input me-1" type="radio" name="payment" id="payment2" value="option1" checked>
+                            <input class="form-check-input me-1" type="radio" name="payment" id="payment2" value="option1">
                             <label class="form-check-label" for="payment2">계좌 간편결제</label>
                         </div>
                     </div>
                     <div class="p-2 border-bottom">
                         <div class="form-check d-flex align-items-end">
-                            <input class="form-check-input me-1" type="radio" name="payment" id="payment3" value="option1" checked>
+                            <input class="form-check-input me-1" type="radio" name="payment" id="payment3" value="option1">
                             <label class="form-check-label" for="payment3">카드 간편결제</label>
                         </div>
                     </div>
@@ -248,7 +242,7 @@
             </div>
             <hr>
             <div class="mb-3">
-                개인정보 제공 동의 : 랜선식당 상세보기
+                개인정보 제공 동의 : DIRECT 상세보기
             </div>
             <div>주문 내용을 확인하였으며, 정보 제공 등에 동의 합니다.</div>
         </div>
@@ -257,4 +251,65 @@
 </form>
 <jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
+<script>
+    const getAddressList = () => {
+        const exists = document.querySelector('.address-list');
+        if(exists) {
+            return;
+        }
+
+        $.ajax("${ctx}/util/addressList?user_id=${user.user_id}", {
+            type: "POST",
+            dataType: "json", // 서버에서 보내줄 데이터의 타입
+            success: (data) => {
+                let html = "";
+                data.forEach((item) => {
+                    console.log(item);
+                    html += `<div id="address-` + item.address_id + `" class="d-flex justify-content-between align-items-center border-bottom p-2 address-list">
+                                <div>`
+                        + `<div name="name">`
+                        + item.receiver
+                        + `</div><div name="phone">`
+                        + item.phone
+                        + `</div><div name="zip_code">`
+                        + item.zip_code
+                        + `</div><div name="address">`
+                        + item.address
+                        + `</div><div name="address_detail">`
+                        + item.address_detail
+                        + `</div></div>
+                                <div>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" onclick="selectAddress(` + item.address_id + `)">선택</button>
+                                </div>
+                            </div>`;
+                });
+                $("#addressList").html(html);
+                $("#addressList").show();
+            },
+            error: (e) => {
+                console.log(e);
+            }
+        });
+    }
+
+    const selectAddress = (address_id) => {
+        // alert('selectAddress');
+        const selected = document.querySelector('#address-' + address_id);
+
+        const name = selected.querySelector('[name=name]').innerText;
+        const phone = selected.querySelector('[name=phone]').innerText;
+        const zip_code = selected.querySelector('[name=zip_code]').innerText;
+        const address = selected.querySelector('[name=address]').innerText;
+        const address_detail = selected.querySelector('[name=address_detail]').innerText;
+
+        document.querySelector('#ord_name').innerHTML = name;
+        document.querySelector('#ord_phone').innerHTML = phone;
+        document.querySelector('#ord_zip_code').innerHTML = zip_code;
+        document.querySelector('#ord_address').innerHTML = address;
+        document.querySelector('#ord_address_detail').innerHTML = address_detail;
+
+        $("#addressListModal").close();
+
+    }
+</script>
 </html>

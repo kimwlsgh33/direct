@@ -26,7 +26,6 @@
 	
 	<!-- 로그인 처리 -->
 	<select id="loginByID" parameterType="com.linker.direct.user.vo.UserVO" resultMap="memberResult">
-	
 		<![CDATA[
 			SELECT * 
 			FROM user
@@ -34,13 +33,12 @@
 		]]>
 		
 	</select>
-	
-	<!-- 회원가입 처리 -->
-	<insert id="addMember" parameterType="com.linker.direct.user.vo.UserVO">
+
+    <!--  회원가입 (명)  -->
+    <insert id="addMember" parameterType="com.linker.direct.user.vo.UserVO">
 		<![CDATA[
-			INSERT INTO user (user_id, id, name, address, pwd, created_at, email, phone)
-			SELECT IFNULL(MAX(user_id), 0) + 1, #{id}, #{name}, #{address}, #{pwd}, sysdate(), #{email}, #{phone}
-			FROM user
+			insert into user (id, pwd, name, email, phone, birthday, zip_code, address, address_detail)
+			values (#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{birthday}, #{zip_code}, #{address}, #{address_detail})
 		]]>
 	</insert>
 	

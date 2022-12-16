@@ -73,7 +73,7 @@
 	</head>
 	<body>
 	
-	<jsp:include page="../common/topMenu.jsp" flush="false" />
+	<jsp:include page="../common/header.jsp" flush="false" />
 	
 		<div class="container bgi" id="bg">
 			<form class="form-horizontal" method="post" action="${ctx}/member/addTerms">

@@ -1,7 +1,4 @@
 package com.linker.direct.review.service;
-
-import com.linker.direct.product.dao.ProductDAO;
-import com.linker.direct.product.dto.OrderItemVO;
 import com.linker.direct.review.dao.ReviewDAO;
 import com.linker.direct.review.dto.ReviewDTO;
 import org.slf4j.Logger;
@@ -18,10 +15,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Inject
 	private ReviewDAO reviewDAO;
-	
-	@Inject
-	private ProductDAO productDAO;
-	
+
 	// 리뷰 등록하기
 	@Override
 	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
@@ -68,9 +62,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	// 리뷰 등록 화면 띄울 때 구매한 상품 정보 가져오기
-	@Override
-	public List<OrderItemVO> read(Long user_id) throws Exception {
-		return productDAO.read(user_id);
-	}
+//	@Override
+//	public List<OrderDTO> read(Long user_id) throws Exception {
+//		return productDAO.read(user_id);
+//	}
 
 }

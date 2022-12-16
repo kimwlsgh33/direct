@@ -16,7 +16,7 @@
         </selectKey>
     </insert>
 
-    <select id="selectAllProduct" resultType="com.linker.direct.product.dto.OrderItemVO">
+    <select id="selectAllProduct">
 		<![CDATA[
         SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,
                (select status from `order` where `order`.order_id = order_item.order_id) as status
@@ -26,7 +26,7 @@
 	</select>
 
     <!-- 상품번호에 해당하는 상품정보 추출하기 -->
-    <select id="selectProduct" resultType="com.linker.direct.product.dto.OrderItemVO" parameterType="com.linker.direct.product.dto.OrderItemVO">
+    <select id="selectProduct">
 		<![CDATA[
         SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,
                (select name from user where order_item.user_id = user.user_id) AS u_name,
@@ -42,7 +42,7 @@
 	</select>
 
     <!-- 아이디에 해당하는 상품정보 추출하기 -->
-    <select id="readProduct" resultType="com.linker.direct.product.dto.OrderItemVO" parameterType="com.linker.direct.product.dto.OrderItemVO">
+    <select id="readProduct">
 		<![CDATA[
         select (select name from order_item where order_item.order_id=`order`.order_id) as name,
                (select item_id from order_item where order_item.order_id=`order`.order_id) as item_id
@@ -53,7 +53,7 @@
 	</select>
 
     <!-- 아이디에 해당하는 상품상태 추출하기 -->
-    <select id="readRefund" resultType="com.linker.direct.product.dto.OrderItemVO" parameterType="com.linker.direct.product.dto.OrderItemVO">
+    <select id="readRefund" >
 		<![CDATA[
         SELECT (select name from order_item where `order`.order_id = order_item.order_id) as name, status,
                (select order_date from order_item where `order`.order_id = order_item.order_id) as order_date,

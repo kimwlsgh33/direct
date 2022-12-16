@@ -44,6 +44,8 @@ public class ItemServiceImpl implements ItemService {
         ItemVO itemVO = itemFormDto.toVO(itemFormDto);
         log.info("상품 등록 : " + itemVO.toString());
         itemDao.create(itemVO);
+
+        itemVO.getItem_id();
         log.info("상품 등록 완료" + itemVO.toString());
         
         //==================================================================================================
@@ -54,6 +56,7 @@ public class ItemServiceImpl implements ItemService {
             ItemImgSaveDTO itemImgSaveDto = ItemImgSaveDTO.of(uploadFile, itemVO);
             itemImgService.upload(itemImgSaveDto); // 사진업로드, item_img 테이블 저장
         }
+
     }
 
     //==================================================================================================

@@ -1,6 +1,5 @@
 package com.linker.direct.review.controller;
 
-import com.linker.direct.product.dto.OrderItemVO;
 import com.linker.direct.review.dto.ReviewDTO;
 import com.linker.direct.review.service.ReviewService;
 import org.slf4j.Logger;
@@ -32,8 +31,8 @@ public class ReviewController {
 		public String reviewRegisterForm(Long user_id, Model model) throws Exception {
 			
 			logger.info("ReviewController 리뷰 등록 화면 불러오기......");
-			List<OrderItemVO> orderItemVO = reviewService.read(user_id);
-			model.addAttribute("product", orderItemVO);
+			// List<OrderDTO> orderDTO = reviewService.read(user_id);
+			// model.addAttribute("product", orderDTO);
 			
 			return "/review/reviewRegisterForm";
 			

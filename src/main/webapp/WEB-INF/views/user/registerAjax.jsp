@@ -238,7 +238,7 @@
 function fn_idCheck() {
 	// alert($("#id").val());
 	$.ajax({
-		url:		"/user/idCheck",
+        url:		"/user/idCheck",
 		type:		"post",
 		dataType:	"json",
 		data:		{"id" : $("#id").val()},
@@ -303,10 +303,10 @@ $(document).ready(function() {
 			$("#email1").focus();
 			return false;
 		}
-});
+    });
 
 	// 아이디 입력란에 글자를 입력하면 실시간으로 사용가능한 아이디 인지 아닌지 검사한다.
-	$("#id").on("input", function() {
+	/*$("#id").on("input", function() {
 		// alert("글자를 입력하셨습니다. => " + $("#id").val());
 		
 		// 입력된 글자의 값을 변수에 저장한다.
@@ -345,7 +345,7 @@ $(document).ready(function() {
 		});
 		
 		
-	});
+	});*/
 	
 });
 </script>
@@ -368,6 +368,7 @@ $('#selectEmail').change(function(){
 		}
    });
 });
+
 </script>
 
 <!-- 입력받은 이메일 값 합쳐서 저장하고 이메일값으로 인증번호 발송 -->
@@ -377,7 +378,14 @@ var code = "";
 
 function fn_emailConfirm() {
 	$("#email").val($("#email1").val() + "@" + $("#email2").val());
-	alert("인증번호가 전송되었습니다.");
+
+    if($("#email").val() != "") {
+        alert("인증번호가 전송되었습니다.");
+    } else {
+        alert("이메일을 입력해주세요.");
+        return false;
+    }
+
 	
 	var confirmInput = $(".confirmInput");	// 입력란
 	var confirmResult = $(".confirmComp");	// 확인버튼

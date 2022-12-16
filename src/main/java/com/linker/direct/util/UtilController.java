@@ -51,6 +51,18 @@ public class UtilController {
 		
 		return mav;
 	}
+
+	//==================================================================================================
+	// 로그인 유저 주소지 목록 조회
+	//==================================================================================================
+
+	@ResponseBody
+	@RequestMapping(value = "/addressList", method = RequestMethod.POST)
+	public List<AddressDTO> addressList(@RequestParam("user_id") Long user_id) throws Exception {
+		List<AddressDTO> addressList = addressService.addressList(user_id);
+		System.out.println("addressList 조회 ==> " + addressList);
+		return addressList;
+	}
 	
 	// 주소지 등록 처리
 	@ResponseBody	// 값만 받는다.

@@ -137,7 +137,7 @@
                         <a id="lowPrice"  href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=lowPrice&perPageNum=${perPageNum}" role="button" class="col" style="color: black">낮은 가격순</a>
                         <a id="highPrice" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=highPrice&perPageNum=${perPageNum}" role="button" class="col" style="color: black">높은 가격순</a>
                         <a href="#" role="button" class="col" style="color: black">리뷰 높은순</a>
-                        <a id="product_date" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=product_date" role="button" class="col" style="color: black">등록일 순</a>
+                        <a id="product_date" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=product_date" role="button" class="col" style="color: black">등록일 순</a>
                     </div>
 
 <%--                    dropdown으로 버튼 만들기--%>
@@ -146,10 +146,10 @@
                             ${perPageNum}개씩 보기
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=8">8개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=12">12개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=16">16개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=20">20개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=8">8개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=12">12개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=16">16개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=20">20개씩 보기</a></li>
                         </ul>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ import com.linker.direct.item.service.ItemService;
 import com.linker.direct.order.service.OrderService;
 import com.linker.direct.order.service.OrderItemService;
 
+import com.linker.direct.util.address.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,15 +30,19 @@ public class OrderController {
 
     private final OrderService orderService;
     private final OrderItemService orderItemService;
+    private final AddressService addressService;
 
 
     // Test용 메소드
     private final ItemService itemService;
 
     @RequestMapping("/createForm") // 요기 - 장바구니 아이템 받아서, 주문 생성화면으로 이동
-    public String createForm(Model model) throws Exception {
-        // 장바구니 아이템 받아서, 주문 생성화면으로 이동
-        List<CartDTO> cartList = orderService.getCartList();
+    public String createForm(HttpServletRequest request, Model model) throws Exception {
+        // List<CartDTO> cartList = orderService.getCartList();
+        HttpSession session = request.getSession();
+        UserVO userVO = (UserVO) session.getAttribute("user");
+        model.addAttribute("user", userVO);
+        System.out.println(userVO.toString());
         return "order/create";
     }
 
