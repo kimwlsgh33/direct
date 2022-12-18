@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: gimjinho
   Date: 2022/12/01
@@ -6,6 +7,45 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    List<String> bankList = new ArrayList<>();
+    bankList.add("국민은행");
+    bankList.add("신한은행");
+    bankList.add("우리은행");
+    bankList.add("하나은행");
+    bankList.add("농협은행");
+    bankList.add("기업은행");
+    bankList.add("외환은행");
+    bankList.add("씨티은행");
+    bankList.add("카카오뱅크");
+    bankList.add("케이뱅크");
+    bankList.add("SC제일은행");
+    bankList.add("대구은행");
+    bankList.add("부산은행");
+    bankList.add("광주은행");
+    bankList.add("제주은행");
+    bankList.add("전북은행");
+    bankList.add("경남은행");
+    bankList.add("경기은행");
+    bankList.add("새마을금고");
+    bankList.add("신협");
+    bankList.add("수협");
+    bankList.add("우체국");
+    bankList.add("저축은행");
+    bankList.add("산업은행");
+    bankList.add("한국씨티은행");
+
+    // 총 25개의 은행이 존재한다.
+
+    // 할부 개월 리스트
+    List<String> installmentList = new ArrayList<>();
+    installmentList.add("일시불");
+    for(int i = 2; i <= 12; i++) {
+        installmentList.add(i + "개월");
+    }
+
+%>
 <html>
 <head>
     <title>Order Item</title>
@@ -14,6 +54,7 @@
             margin-bottom: 10px;
         }
     </style>
+    <link href="${ctx}/resources/styles/payments.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
@@ -151,28 +192,30 @@
                     <div class="mb-2">선택하신 카드/계좌정보 변경은 설정 메뉴에서 하실 수 있습니다.</div>
                 </div>
                 <div class="d-flex flex-column justify-content-center mb-2">
-                    <div class="p-2 border-bottom">
-                        <div class="form-check d-flex align-items-end">
-                            <input class="form-check-input me-1" type="radio" name="payment" id="payment1" value="option1" checked>
-                            <label class="form-check-label" for="payment1">Naver Pay</label>
+                    <div class="payment-select">
+                        <div id="naverPay" class="radio-btn-row">
+                            <div class="radio-btn-box">
+                                <input type="radio" name="radio" id="radio1" checked>
+                                <label for="radio1">Naver Pay</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2 border-bottom">
-                        <div class="form-check d-flex align-items-end">
-                            <input class="form-check-input me-1" type="radio" name="payment" id="payment2" value="option1">
-                            <label class="form-check-label" for="payment2">계좌 간편결제</label>
+                        <div id="accountPay" class="radio-btn-row">
+                            <div class="radio-btn-box">
+                                <input type="radio" name="radio" id="radio2">
+                                <label for="radio2">계좌결제</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2 border-bottom">
-                        <div class="form-check d-flex align-items-end">
-                            <input class="form-check-input me-1" type="radio" name="payment" id="payment3" value="option1">
-                            <label class="form-check-label" for="payment3">카드 간편결제</label>
+                        <div id="cardPay" class="radio-btn-row">
+                            <div class="radio-btn-box">
+                                <input type="radio" name="radio" id="radio3">
+                                <label for="radio3">카드결제</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2 border-bottom">
-                        <div class="form-check d-flex align-items-end">
-                            <input class="form-check-input me-1" type="radio" name="payment" id="payment4" value="option1" checked>
-                            <label class="form-check-label" for="payment4">일반결제</label>
+                        <div id="normalPay" class="radio-btn-row">
+                            <div class="radio-btn-box">
+                                <input type="radio" name="radio" id="radio4">
+                                <label for="radio4">일반결제</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -247,17 +290,12 @@
             <div>주문 내용을 확인하였으며, 정보 제공 등에 동의 합니다.</div>
         </div>
     </div>
-    <button class="w-75 btn btn-success mt-3 shadow">결제하기</button>
+    <button class="w-75 btn btn-success mt-3 shadow" onclick="location.href = '${ctx}/order/complete'">결제하기</button>
 </form>
 <jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 <script>
     const getAddressList = () => {
-        const exists = document.querySelector('.address-list');
-        if(exists) {
-            return;
-        }
-
         $.ajax("${ctx}/util/addressList?user_id=${user.user_id}", {
             type: "POST",
             dataType: "json", // 서버에서 보내줄 데이터의 타입
@@ -291,7 +329,6 @@
             }
         });
     }
-
     const selectAddress = (address_id) => {
         // alert('selectAddress');
         const selected = document.querySelector('#address-' + address_id);
@@ -311,5 +348,281 @@
         $("#addressListModal").close();
 
     }
+</script>
+<script>
+    const naverPayContent = `
+        <div class="naver-pay-contents pay-contents">
+            <dl>
+                <dt>출금 계좌</dt>
+                <dd>카카오뱅크 333****1796</dd>
+            </dl>
+            <dl>
+                <dt>충전</dt>
+                <dd>480,000원</dd>
+            </dl>
+            <dl>
+                <dt>사용</dt>
+                <dd>478,000원</dd>
+            </dl>
+        </div>
+    `;
+    const accountPayContent = `
+        <div class="account-pay-contents pay-contents">
+            <div class="card-view">
+                <button id="kakao-bank" class="card-layout">
+                    <div>kakao<span class="fw-bold">bank</span></div>
+                    <div>
+                        <div class="text-start text-secondary mb-2">계좌 번호</div>
+                        <div>3333-****-1796</div>
+                    </div>
+                </button>
+                <button id="sc-bank" class="card-layout">
+                    <div>
+                        <div class="fw-normal">Standard</div>
+                        <div class="fw-normal">Cartered</div>
+                    </div>
+                    <div>
+                        <div class="text-start text-light mb-2">계좌 번호</div>
+                        <div>3333-****-1796</div>
+                    </div>
+                </button>
+                <button id="add-bank" class="card-layout" onclick="">
+                <div class="btn-add">+</div>
+                <div>계좌 추가</div>
+                <div class="btn-add-meta">이용목적에 맞게 최대 30개까지<br>등록할 수 있습니다.</div>
+            </button>
+            </div>
+            <div class="selected-account-box">
+                <div>선택 : 카카오뱅크 3333-****-1796</div>
+            </div>
+        </div>
+    `;
+    const cardPayContent = `
+        <div class="card-pay-contents pay-contents">
+            <div class="card-view">
+                <button id="naver-pay-card" class="card-layout">
+                    <div>Naver <span class="fw-normal">Pay</span></div>
+                    <div>
+                        <div class="text-start text-secondary mb-2">카드 번호</div>
+                        <div>3333 **** **** 1796</div>
+                    </div>
+                </button>
+                <button id="kb-star-check" class="card-layout">
+                    <div>
+                        KB<span class="fw-normal">국민카드</span>
+                    </div>
+                    <div>
+                        <div class="text-start text-light mb-2">카드 번호</div>
+                        <div>4674 **** **** 2092</div>
+                    </div>
+                </button>
+                <button id="add-bank" class="card-layout" onclick="">
+                    <div class="btn-add">+</div>
+                    <div>카드 추가</div>
+                    <div class="btn-add-meta">
+                        <span style="color:#14A44D;">빠르고 간편한 결제</span>를 위해
+                        <br>카드를 등록할 수 있습니다.</div>
+                </button>
+            </div>
+            <div class="selected-account-box">
+                <div>선택 : 카카오뱅크 3333-****-1796</div>
+            </div>
+        </div>
+    `;
+    const normalPayContent = `
+        <div class="normal-pay-contents pay-contents">
+            <div class="normal-select">
+                <div>
+                    <input type="radio" name="normal-pay" id="normal-pay-1" checked>
+                    <label for="normal-pay-1">신용카드</label>
+                </div>
+                <div>
+                    <input type="radio" name="normal-pay" id="normal-pay-2">
+                    <label for="normal-pay-2">휴대폰 결제</label>
+                </div>
+                <div>
+                    <input type="radio" name="normal-pay" id="normal-pay-3">
+                    <label for="normal-pay-3">무통장 입금</label>
+                </div>
+            </div>
+            <div class="p-3">
+                <span class="text-primary">최대 10% 적립, 네이버 현대카드</span> 혜택 받기
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    `;
+
+    const normalCredit = `<div class="normal-credit-select pay-normal-selects">
+        <div>
+            <div class="normal-credit-meta">카드구분</div>
+            <div class="d-flex">
+                <div class="me-2">
+                    <input type="radio" name="normal-credit" id="normal-credit-1" checked>
+                    <label for="normal-credit-1">개인카드</label>
+                </div>
+                <div>
+                    <input type="radio" name="normal-credit" id="normal-credit-2">
+                    <label for="normal-credit-2">법인카드</label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="normal-credit-meta">카드선택</div>
+            <select>
+                <option>선택해주세요</option>
+                <c:forEach items="<%=bankList%>" var="bank" varStatus="status">
+                    <option value="${bank}">${bank}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div>
+            <div class="normal-credit-meta">할부개월</div>
+            <select id="installment-select">
+                <c:forEach items="<%=installmentList%>" var="month" varStatus="status">
+                    <option value="${month}">${month}</option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>`;
+    const normalMobile = `<div class="normal-mobile-select pay-normal-selects">
+        <div>
+            <div class="normal-mobile-meta">결제구분</div>
+            <div class="d-flex">
+                <div class="me-2">
+                    <input type="radio" name="normal-mobile" id="normal-mobile-1" checked>
+                    <label for="normal-mobile-1">간편결제</label>
+                </div>
+                <div>
+                    <input type="radio" name="normal-mobile" id="normal-mobile-2">
+                    <label for="normal-mobile-2">일반결제</label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="normal-mobile-meta">휴대폰 번호</div>
+            <div class="normal-mobile-value">
+                <select id="mobile-first">
+                    <option>010</option>
+                    <option>011</option>
+                    <option>016</option>
+                    <option>017</option>
+                    <option>018</option>
+                    <option>019</option>
+                </select>
+                <div class="m-1"> - </div>
+                <input type="text" id="mobile-middle" maxlength="4">
+                <div class="m-1"> - </div>
+                <input type="text" id="mobile-last" maxlength="4">
+            </div>
+        </div>`;
+    const normalBank = `<div class="normal-bank-select pay-normal-selects">
+        <div>
+            <div class="normal-bank-meta">입금은행</div>
+            <select>
+                <option>선택해주세요</option>
+                <c:forEach items="<%=bankList%>" var="bank" varStatus="status">
+                    <option value="${bank}">${bank}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div>
+            <div class="normal-bank-meta">입금자명</div>
+            <input type="text" id="normal-bank-name" maxlength="10" class="normal-bank-input">
+        </div>
+        <div>
+            <div class="normal-bank-meta">입금계좌</div>
+            <input type="text" id="normal-bank-account" maxlength="20" class="normal-bank-input">
+        </div>
+    </div>`;
+
+    $(document).ready(function () {
+        $('#naverPay').append(naverPayContent);
+
+        $('input[type=radio]').click(function () {
+            if ($(this).attr("id") == "radio1") {
+                // naverPay
+                if($('#naverPay').find('.naver-pay-contents').length === 0) {
+                    $('#naverPay').append(naverPayContent);
+                    $('#naverPay').find('.naver-pay-contents').css('animation', 'showPaymentContents 0.5s ease-in-out');
+                }
+
+                // pay-contents 클래스를 가진 div중에서, naver-pay-contents 클래스를 가진 div를 제외한 나머지 div를 제거
+                $('.pay-contents').not('.naver-pay-contents').remove();
+
+            } else if ($(this).attr("id") == "radio2") {
+                // accountPay
+                if($('#accountPay').find('.account-pay-contents').length === 0) {
+                    $('#accountPay').append(accountPayContent);
+                    $('#accountPay').find('.account-pay-contents').css('animation', 'showPaymentContents 0.5s ease-in-out');
+                }
+
+                $('.pay-contents').not('.account-pay-contents').remove();
+
+            } else if ($(this).attr("id") == "radio3") {
+                // cardPay
+                if($('#cardPay').find('.card-pay-contents').length === 0) {
+                    $('#cardPay').append(cardPayContent);
+                    $('#cardPay').find('.card-pay-contents').css('animation', 'showPaymentContents 0.5s ease-in-out');
+                }
+
+                $('.pay-contents').not('.card-pay-contents').remove();
+
+            } else if ($(this).attr("id") == "radio4") {
+                // normalPay
+                if($('#normalPay').find('.normal-pay-contents').length === 0) {
+                    $('#normalPay').append(normalPayContent);
+                    $('#normalPay').find('.normal-pay-contents').append(normalCredit);
+                    $('#normalPay').find('.normal-pay-contents').css('animation', 'showPaymentContents 0.5s ease-in-out');
+
+                    $('#normal-pay-1').click(function () {
+                        if($('#normalPay').find('.normal-credit-select').length === 0) {
+                            $('#normalPay').find('.normal-pay-contents').append(normalCredit);
+                            $('#normalPay').find('.normal-credit-select').css('animation', 'showPaymentContents 0.5s ease-in-out');
+                        }
+                        $('.pay-normal-selects').not('.normal-credit-select').remove();
+                    });
+                    $('#normal-pay-2').click(function () {
+                        if($('#normalPay').find('.normal-mobile-select').length === 0) {
+                            $('#normalPay').find('.normal-pay-contents').append(normalMobile);
+                            $('#normalPay').find('.normal-mobile-select').css('animation', 'showPaymentContents 0.5s ease-in-out');
+                            $('#mobile-middle').focus();
+                            $('#mobile-middle').keyup(function () {
+                                if($(this).val().length === 4) {
+                                    $('#mobile-last').focus();
+                                }
+                            });
+                        }
+                        $('.pay-normal-selects').not('.normal-mobile-select').remove();
+                    });
+                    $('#normal-pay-3').click(function () {
+                        if($('#normalPay').find('.normal-bank-select').length === 0) {
+                            $('#normalPay').find('.normal-pay-contents').append(normalBank);
+                            $('#normalPay').find('.normal-bank-select').css('animation', 'showPaymentContents 0.5s ease-in-out');
+                        }
+                        $('.pay-normal-selects').not('.normal-bank-select').remove();
+                    });
+
+
+                    // normal-credit
+                    $('#normal-credit-1').click(function () {
+                        $('#installment-select').attr('disabled', false);
+                    });
+                    $('#normal-credit-2').click(function () {
+                        $('#installment-select').val('일시불');
+                        $('#installment-select').attr('disabled', true);
+                    });
+                }
+                $('.pay-contents').not('.normal-pay-contents').remove();
+            }
+        });
+
+
+        $('#normal-mobile-1').click(function () {
+            $('#normalPay').find('.normal-pay-contents').append(normalMobile);
+        });
+        $('#normal-mobile-2').click(function () {
+            $('#normalPay').find('.normal-mobile-select').remove();
+        });
+    });
 </script>
 </html>

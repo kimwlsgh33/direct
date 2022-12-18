@@ -3,8 +3,6 @@ package com.linker.direct.item.dao;
 // vo
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.item.vo.ItemVO;
-import com.linker.direct.item.dto.ItemDTO;
-import com.linker.direct.search.dto.itemDTO; // search itemDTO
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.dao.DataAccessException;

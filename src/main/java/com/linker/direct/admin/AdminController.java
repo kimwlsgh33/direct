@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -22,8 +24,8 @@ public class AdminController {
         public void adminStore(){} // void return : /admin/store.jsp ( 메소드 이름 X )
 
         @RequestMapping("/test")
-        public String test() {
-            return "admin/test";
+        public String test(Model model) {
+                return "admin/test";
         }
 
         @RequestMapping("/test/createOptionForm")

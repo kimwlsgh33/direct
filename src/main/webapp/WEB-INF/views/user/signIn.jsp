@@ -2,7 +2,11 @@
 <%@ taglib prefix="c"	uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="result"		 value="${param.result}"/>
-<%	request.setCharacterEncoding("UTF-8"); %>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String msg = request.getAttribute("msg") == null ? "" : (String)request.getAttribute("msg");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,5 +147,11 @@
 
 <jsp:include page="../common/footer.jsp" flush="false" />
 </body>
-
+<script>
+	$(document).ready(function() {
+		if("<%=msg%>" != "") {
+			alert("<%=msg%>");
+		}
+	});
+</script>
 </html>

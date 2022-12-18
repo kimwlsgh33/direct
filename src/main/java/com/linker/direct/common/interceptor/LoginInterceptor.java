@@ -1,6 +1,15 @@
 package com.linker.direct.common.interceptor;
 
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
@@ -20,6 +29,23 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     // 인터셉터를 적용했을 때 요청이 작동되는 순서 (해당 interface에 있는 3가지 메서드를 모두 적용시킨다는 가정하에)
     // Request => DispatcherServlet => preHandle() => Controller => postHandle() => (ViewResolver) => View => afterCompletion() => (DispatcherServlet) => Response
 
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession session = request.getSession();
 
-
+        // 세션에 유저 정보가 없으면, 로그인 페이지로 이동
+        if (session.getAttribute("user") == null) {
+//            String uri = request.getContextPath() + "/user/signIn";
+//            // flashMap : redirect를 통해 이동할 때 데이터를 전달하는 방법, session과 비슷하지만 session은 데이터를 유지하지만 redirect를 통해 이동하면 데이터가 사라진다.
+//            FlashMap flashMap = RequestContextUtils.getOutputFlashMap(request);
+//            flashMap.put("msg", "로그인이 필요한 서비스입니다.");
+//            RequestContextUtils.saveOutputFlashMap(uri, request, response);
+//            // 로그인 페이지로 이동
+//            response.sendRedirect(uri);
+            request.setAttribute("msg", "로그인이 필요한 서비스입니다.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/user/signIn");
+            dispatcher.forward(request, response);
+            return false;
+        }
+        return true;
+    }
 }

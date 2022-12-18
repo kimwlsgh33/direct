@@ -94,4 +94,10 @@ public class OrderController {
     public String order() {
         return "order/list";
     }
+
+    @RequestMapping("/complete")
+    public String complete() {
+        return "order/complete";
+    }
+
 }

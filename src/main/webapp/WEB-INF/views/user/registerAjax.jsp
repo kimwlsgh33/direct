@@ -84,13 +84,13 @@
 					onClick="fn_idCheck();" value="N">중복확인</button>
 			</span>
 		</div><br>
-		<div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
 			<span class="input-group">
 		    	<label for="id" class="label">비밀번호</label>
 		        <input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" placeholder="Enter PASSWORD"/>
 			</span>
 	    </div><br>
-	    <div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
 	    	<span class="input-group">
 		    	<label for="id" class="label">비밀번호 확인</label>
 		        <input type="password" class="form-control" id="repwd" name="repwd" maxlength="20" placeholder="Enter PASSWORD RE"/>
@@ -130,19 +130,19 @@
        		<span id="mailConfirm"></span>
        	</div><br>
        			
-      	<div class="form-group col-sm-7 shadow">
+                   <div class="form-group col-sm-8 shadow">
       		<span class="input-group">
 	    		<label for="id" class="label">휴대폰 번호</label>
 	            <input type="text" class="form-control" id="phone" name="phone" maxlength="11" placeholder="Enter PHONE NUMBER (without -)"/>
       		</span>
 	    </div><br>
-	    <div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
 	    	<span class="input-group">
 	    		<label for="id" class="label">생년월일</label>
 	            <input type="text" class="form-control" id="birthday" name="birthday" maxlength="8" placeholder="Enter Your BirthDay (ex : 19900101)" />
 	    	</span>
 	    </div><br>
-  		<div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
   			<span class="input-group">
 	  			<label for="id" class="label">우편번호</label>
 				<input type="text" 		class="form-control" name="zip_code" id="zip_code" readonly />

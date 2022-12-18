@@ -56,7 +56,6 @@ public class ItemServiceImpl implements ItemService {
             ItemImgSaveDTO itemImgSaveDto = ItemImgSaveDTO.of(uploadFile, itemVO);
             itemImgService.upload(itemImgSaveDto); // 사진업로드, item_img 테이블 저장
         }
-
     }
 
     //==================================================================================================
