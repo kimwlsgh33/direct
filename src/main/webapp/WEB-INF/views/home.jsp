@@ -207,7 +207,7 @@
 
 	<div class="container text-center d-flex justify-content-center flex-wrap gap-4 mb-4">
 		<c:forEach var="category" items="${categoryList}">
-			<a href="${ctx}/search?categoryVO=${category.category_id}" class="link-dark btn-circle">
+			<a href="${ctx}/item/searchList?category_id=${category.category_id}" class="link-dark btn-circle">
 				<div class="rounded-pill d-flex justify-content-center align-items-center mb-2 circle" >
 					<i class="${category.icon} fa-xl" style="color:  ${category.color}"></i>
 				</div>

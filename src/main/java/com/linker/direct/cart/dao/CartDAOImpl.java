@@ -1,6 +1,7 @@
 package com.linker.direct.cart.dao;
 
 import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.order.dto.OrderFormDTO;
 import com.linker.direct.user.vo.UserVO;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -58,4 +59,11 @@ public class CartDAOImpl implements CartDAO {
     }
 
 
+    //================================================================================================
+    // forOrder
+    //================================================================================================
+    public List<OrderFormDTO> forOrder(UserVO userVO) throws Exception {
+        List<OrderFormDTO> cartList = sqlSession.selectList(namespace + ".forOrder", userVO);
+        return cartList;
+    }
 }

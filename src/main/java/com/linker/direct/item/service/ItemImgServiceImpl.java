@@ -82,7 +82,7 @@ public class ItemImgServiceImpl implements ItemImgService {
         List<ItemImgReadDTO> itemImgReadList = new ArrayList<ItemImgReadDTO>();
         for (ItemImgVO itemImgVO : itemImgList) {
             String originName = itemImgVO.getOrigin_name();
-            String readImgFileUrl = readImgFileUrl(itemImgVO);
+            String readImgFileUrl = readImgFileUrl(itemImgVO.getImg_name());
             ItemImgReadDTO itemImgReadDTO = ItemImgReadDTO.of(originName, readImgFileUrl);
             itemImgReadList.add(itemImgReadDTO);
         }
@@ -92,9 +92,9 @@ public class ItemImgServiceImpl implements ItemImgService {
     //==================================================================================================
     // 실제 이미지 파일 base64 URL 가져오기
     //==================================================================================================
-    public String readImgFileUrl(ItemImgVO itemImgVO) throws Exception {
+    public String readImgFileUrl(String img_name) throws Exception {
         String separator = File.separator; // 윈도우는 \, 리눅스는 /를 사용한다.
-        String fileUrl = uploadPath + separator + itemImgVO.getImg_name(); // 파일 경로
+        String fileUrl = uploadPath + separator + img_name;
         return "data:image/png;base64," + Base64.getEncoder().encodeToString(FileCopyUtils.copyToByteArray(new File(fileUrl)));
 
         // Base64 : 바이너리 데이터를 텍스트로 인코딩하는 방식

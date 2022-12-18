@@ -49,5 +49,17 @@
 	</select>
 
 
-
+    <select id="forOrder" parameterType="com.linker.direct.user.vo.UserVO" resultType="com.linker.direct.order.dto.OrderFormDTO">
+        <![CDATA[
+        SELECT  c.item_id, name, description, ANY_VALUE(img_name) as img_url, price as item_price, `count`
+        FROM cart c
+        INNER JOIN item i
+        ON c.item_id = i.item_id
+        INNER JOIN item_img ii
+        ON c.item_id = ii.item_id
+        WHERE user_id = #{user_id}
+        GROUP BY c.item_id
+        ORDER BY c.created_at DESC;
+        ]]>
+    </select>
 </mapper>

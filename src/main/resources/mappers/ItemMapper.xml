@@ -57,6 +57,7 @@
 		) as rNUM from item where 1 = 1
 		]]>
         <include refid="searchMySQL"/>
+        <include refid="searchCategory"/>
         <![CDATA[
 		) brd
 		where rNum between 1+(#{perPageNum}*(#{page}-1)) and #{perPageNum} + (#{perPageNum}*(#{page}-1))
@@ -66,7 +67,18 @@
 
     <!-- 상품 검색 (이름) -->
     <sql id="searchMySQL">
-        AND name LIKE CONCAT('%', #{keyword}, '%')
+        <if test="keyword != null">
+            <![CDATA[
+            AND name LIKE concat('%', #{keyword}, '%')
+            ]]>
+        </if>
+    </sql>
+
+    <!-- 상품 검색 (카테고리) -->
+    <sql id="searchCategory">
+        <if test="category_id != null">
+            AND category_id = #{category_id}
+        </if>
     </sql>
 
     <!-- 정렬 기준 -->

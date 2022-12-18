@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -53,6 +54,48 @@
         .address-list div {
             margin-bottom: 10px;
         }
+
+        .item-infos {
+            width: 75%;
+            margin: 20px 0 30px 0;
+        }
+
+        .item-info {
+            width: 100%;
+            background-color: #FEFEFE;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 30px;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .item-info-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-info-main {
+            width: 300px;
+        }
+
+        .item-info-column:not(:last-child) {
+            margin-right: 30px;
+        }
+
+        .item-info-value {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+        }
+
+        .item-img {
+            border-radius: 10px;
+            background-color: #F0F0F0;
+            margin-right: 15px;
+        }
     </style>
     <link href="${ctx}/resources/styles/payments.css" rel="stylesheet">
 </head>
@@ -71,37 +114,40 @@
         </div>
         <span>(사파리 : OS X 메뉴의 Safari > 환경설정 > 보안 > 팝업차단 해제)</span>
     </div>
-    <div name="item_info" class="bg-light w-75 d-flex justify-content-between shadow rounded-2 p-3 mb-4">
-        <div>
-            <div>상품정보</div>
-            <div class="d-flex align-items-center pt-2">
-                <img src="${ctx}/resources/icons/logo.svg" alt="logo" width="100" height="100">
-                <div>
-                    상세정보
+
+    <div name="item-infos" class="item-infos">
+        <c:forEach var="item" items="${cartList}">
+            <div class="item-info">
+                <div class="item-info-column item-info-main">
+                    <div>상품정보</div>
+                    <div class="d-flex align-items-center pt-2">
+                        <img src="${item.img_url}" alt="logo" width="100" height="100" class="item-img">
+                        <div>
+                            <div>${item.name}</div>
+                            <div>${item.description}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-info-column">
+                    <div>배송비</div>
+                    <div class="item-info-value"><span><i class="fa-solid fa-truck-fast"></i></span>, 4000원</div>
+                </div>
+                <div class="item-info-column">
+                    <div>수량</div>
+                    <div class="item-info-value">${item.count}개</div>
+                </div>
+                <div class="item-info-column">
+                    <div>할인</div>
+                    <div class="item-info-value">(-) 1000원</div>
+                </div>
+                <div class="item-info-column">
+                    <div>상품금액(할인포함)</div>
+                    <div class="item-info-value">${item.item_price}, 할인가(볼드)</div>
                 </div>
             </div>
-        </div>
-        <div class="h-auto d-flex flex-column">
-            <div>판매자</div>
-            <div class="flex-grow-1 d-flex align-items-center">Brand</div>
-        </div>
-        <div class="h-auto d-flex flex-column">
-            <div>배송비</div>
-            <div class="flex-grow-1 d-flex align-items-center"><span><i class="fa-solid fa-truck-fast"></i></span>, 4000원</div>
-        </div>
-        <div class="h-auto d-flex flex-column">
-            <div>수량</div>
-            <div class="flex-grow-1 d-flex align-items-center">1개</div>
-        </div>
-        <div class="h-auto d-flex flex-column">
-            <div>할인</div>
-            <div class="flex-grow-1 d-flex align-items-center">(-) 1000원</div>
-        </div>
-        <div class="h-auto d-flex flex-column">
-            <div>상품금액(할인포함)</div>
-            <div class="flex-grow-1 d-flex align-items-center">원가, 할인가(볼드)</div>
-        </div>
+        </c:forEach>
     </div>
+
     <div name="shipping_address" class="bg-light w-75 d-flex shadow rounded-2 p-3 mb-4">
         <div class="flex-grow-1">
             <div>
@@ -223,7 +269,7 @@
                 <div class="p-3">
                     <div class="d-flex align-items-center">
                         <div class="fs-5 me-5">현금영수증</div>
-                        <div >
+                        <div>
                             <div class="d-flex align-items-center">
                                 <div class="form-check d-flex align-items-center me-3">
                                     <input class="form-check-input me-1" type="radio" name="cash" value="" id="cash_invid" checked>

@@ -102,9 +102,12 @@
     <div class="mainContainer flex-wrap" style=""> <!-- 헤더 밑 전체 부분 -->
         <div class="mainContainer_style "> <!-- 전체 부분 포지션 잡기 위한 div  -->
         <%--            <h2 class="blind">검색결과</h2>--%>
+            <jsp:include page="../common/categoryTop.jsp" flush="false"/>
             <div class="d-flex align-items-center"  style="height: 40px"> <!-- "에 대한 검색 결과입니다" 큰 div -->
                 <div class="result_info_text" >
-                    <p id="searchResult"> <em style="color: gray; font-size: 20px;">${keyword}</em> 에 대한 검색 결과입니다. </p>
+                    <c:if test="${keyword} != null">
+                        <p id="searchResult"> <em style="color: gray; font-size: 20px;">${keyword}</em> 에 대한 검색 결과입니다. </p>
+                    </c:if>
                 </div>
             </div>
             <div class="filter_finder"> <!-- 결과 필터 부분 큰 div-->
@@ -156,9 +159,9 @@
                 <%--========================================================================================================  --%>
                 <%--===============================================구 매 할 제 품============================================  --%>
                 <%--========================================================================================================  --%>
-                <div>
-                    <a class="d-flex flex-wrap justify-content-evenly" style="text-decoration: none; color: black" href="#">
-                        <c:forEach var="itemDTO" items="${searchList}">
+                <div class="d-flex flex-wrap gap-2">
+                    <c:forEach var="itemDTO" items="${searchList}">
+                        <a style="text-decoration: none; color: black" href="#">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
@@ -177,10 +180,9 @@
                                         <button class="btn btn-outline-dark" id="${itemDTO.itemVO.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${itemDTO.itemVO.item_id})" ><i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
-                                </div>
                             </div>
-                        </c:forEach>
-                    </a>
+                        </a>
+                    </c:forEach>
                 </div>
             <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">

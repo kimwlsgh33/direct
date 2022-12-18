@@ -67,6 +67,8 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/**/create*"/>
+			<mapping path="/**/update*"/>
+			<mapping path="/user/myInfo"/>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 	</interceptors>

@@ -2,6 +2,8 @@ package com.linker.direct.cart.service;
 
 import com.linker.direct.cart.dao.CartDAO;
 import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.item.service.ItemImgService;
+import com.linker.direct.order.dto.OrderFormDTO;
 import com.linker.direct.user.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,10 @@ public class CartServiceImpl implements CartService {
 
     @Inject
     private CartDAO cartDAO;
+
+    // Jinho
+    @Inject
+    private ItemImgService itemImgService;
 
     @Override
     public List<CartDTO> CartList(UserVO user) throws Exception {
@@ -43,5 +49,17 @@ public class CartServiceImpl implements CartService {
     @Override
     public int itemCount(long user_id) throws Exception {
         return cartDAO.itemCount(user_id);
+    }
+
+    //================================================================================================
+    // forOrder
+    //================================================================================================
+    public List<OrderFormDTO> forOrder(UserVO user) throws Exception {
+        List<OrderFormDTO> cartList = cartDAO.forOrder(user);
+        for(OrderFormDTO orderFormDTO: cartList){
+            String fileUrl = itemImgService.readImgFileUrl(orderFormDTO.getImg_url());
+            orderFormDTO.setImg_url(fileUrl);
+        }
+        return cartList;
     }
 }

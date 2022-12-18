@@ -5,6 +5,7 @@ import com.linker.direct.common.util.PageMaker;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.item.dto.ItemDTO;
 import com.linker.direct.item.dto.ItemResultDTO;
+import com.linker.direct.item.vo.ItemOptionVO;
 import com.linker.direct.item.vo.ItemVO;
 import com.linker.direct.user.constant.Role;
 import com.linker.direct.user.vo.UserVO;
@@ -56,7 +57,9 @@ public class ItemController {
     //==================================================================================================
     @ResponseBody
     @RequestMapping(value="/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDTO itemFormDto, HttpServletRequest request) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
+    public ResponseEntity<String> uploadAjax(List<MultipartFile> uploadFiles, ItemFormDTO itemFormDto, HttpServletRequest request,/*추가*/ItemOptionVO
+    itemOptionVO) throws Exception { // uploadFile : ajax를 호출한 javascript 함수 ( 자동 매핑 )
+
         // 로그인 여부 확인 ==================================================================================================
         // UserVO userVO = (UserVO) request.getSession().getAttribute("user");
         UserVO userVO = new UserVO();
@@ -76,7 +79,7 @@ public class ItemController {
         }
 
         // item 저장 ==================================================================================================
-        itemService.create(itemFormDto, uploadFiles); // item 테이블에 저장
+        itemService.create(itemFormDto, uploadFiles, itemOptionVO); // item 테이블에 저장
         return new ResponseEntity<>("upload success", HttpStatus.OK);
     }
 
@@ -96,23 +99,29 @@ public class ItemController {
         }
 
         String keyword = cri.getKeyword();
-        //log.info("keyword ==> " + keyword);
-        // 키워드 검사
-        if(keyword == "") {
-            mav.setViewName("/item/noSearch");
-            return mav;
+        Long category_id = cri.getCategory_id();
+        if(category_id != null) {
+            cri.setCategory_id(category_id);
         }
 
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
+
+        // 카테고리
+        mav.addObject("categoryList", categoryService.listAll());
 
         // 상품 전체 개수를 구한다.
         pageMaker.setTotalCount(itemService.totalCount(cri));
 
         // cri에 해당하는 게시글을 가져와서 View에게 넘겨준다.
         List<ItemDTO> searchList = itemService.searchListPaging(cri);
-        mav.addObject("searchList", searchList);
+        // 검색 결과 없을 경우
+        if(searchList.size() == 0) {
+            mav.setViewName("/item/noSearch");
+            return mav;
+        }
 
+        mav.addObject("searchList", searchList);
         // 페이지 메뉴
         mav.addObject("pageMaker", pageMaker);
 
@@ -127,6 +136,7 @@ public class ItemController {
         mav.addObject("keyword", keyword);
         mav.addObject("perPageNum", cri.getPerPageNum());
         // mav.addObject("searchListAll", itemService.searchListAll(cri));
+
 
         System.out.println("mav ==> " + mav);
         return mav;

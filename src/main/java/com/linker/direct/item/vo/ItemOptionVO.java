@@ -15,6 +15,10 @@ public class ItemOptionVO { // 상품 이미지 정보
     private Timestamp created_at;
     private Timestamp updated_at;
 
+    private String optionName;
+    private int optionPrice;
+    private String optionDescription;
+
     public ItemOptionVO() {
     }
 }

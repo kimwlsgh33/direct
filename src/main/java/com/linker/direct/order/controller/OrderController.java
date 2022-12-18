@@ -2,6 +2,7 @@ package com.linker.direct.order.controller;
 
 //vo
 import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.cart.service.CartService;
 import com.linker.direct.item.dto.ItemDTO;
 import com.linker.direct.order.dto.OrderFormDTO;
 import com.linker.direct.order.vo.OrderVO;
@@ -32,6 +33,8 @@ public class OrderController {
     private final OrderItemService orderItemService;
     private final AddressService addressService;
 
+    private final CartService cartService;
+
 
     // Test용 메소드
     private final ItemService itemService;
@@ -42,7 +45,11 @@ public class OrderController {
         HttpSession session = request.getSession();
         UserVO userVO = (UserVO) session.getAttribute("user");
         model.addAttribute("user", userVO);
-        System.out.println(userVO.toString());
+
+        List<OrderFormDTO> cartList = cartService.forOrder(userVO);
+        model.addAttribute("cartList", cartList);
+        System.out.println("cartList: " + cartList);
+
         return "order/create";
     }
 
@@ -99,5 +106,6 @@ public class OrderController {
     public String complete() {
         return "order/complete";
     }
+
 
 }

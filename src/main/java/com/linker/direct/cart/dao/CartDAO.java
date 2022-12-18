@@ -1,6 +1,7 @@
 package com.linker.direct.cart.dao;
 
 import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.order.dto.OrderFormDTO;
 import com.linker.direct.user.vo.UserVO;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface CartDAO {
     public int itemCount(long user_id) throws Exception;
 
 
-
+    public List<OrderFormDTO> forOrder(UserVO userVO) throws Exception;
 }
