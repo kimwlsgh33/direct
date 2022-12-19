@@ -6,16 +6,28 @@
 <!--태그 규칙 선언-->
 
 <mapper namespace="orderItem">
-    <insert id="create" parameterType="com.linker.direct.order.vo.OrderVO">
+    <insert id="create" parameterType="com.linker.direct.order.vo.OrderItemVO">
         <![CDATA[
-            INSERT INTO order_item (order_id, item_id, `count`, price)
-            VALUES (#{order_id}, #{item_id}, #{count}, #{price})
+            INSERT INTO order_item (order_id, item_id, `count`)
+            VALUES (#{order_id}, #{item_id}, #{count})
         ]]>
-        <selectKey keyColumn="order_item_id" keyProperty="order_item_id" order="AFTER" resultType="java.lang.Long">
-            SELECT order_item_id FROM order_item WHERE order_item_id = LAST_INSERT_ID()
-        </selectKey>
     </insert>
 
+	<select id="orderItemList" parameterType="java.lang.Long" resultType="com.linker.direct.order.dto.OrderSendDTO">
+        <![CDATA[
+		SELECT oi.item_id, oi.status, name, price, count, ANY_VALUE(img_name) as img_url FROM `order_item` oi
+		INNER JOIN item i
+		ON oi.item_id = i.item_id
+		INNER JOIN item_img ii
+		ON oi.item_id = ii.item_id
+		WHERE order_id = #{order_id}
+		GROUP BY oi.item_id;
+		]]>
+    </select>
+
+	<!--	-->
+	<!--	-->
+	<!--	-->
     <select id="selectAllProduct">
 		<![CDATA[
         SELECT user_id, item_id, order_id, count, price, name, order_date, item_url,

@@ -1,6 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.AbstractMap" %><%--
+<%@ page import="java.util.Arrays" %><%--
   Created by IntelliJ IDEA.
   User: gimjinho
   Date: 2022/11/24
@@ -10,8 +9,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-    ArrayList<String> list = new ArrayList<String>();
+    ArrayList<String> list = new ArrayList<String>(Arrays.asList(""));
     list.add("상점ID");
     list.add("상점이름");
     list.add("상점주소");
@@ -27,50 +28,81 @@
 %>
 <html>
 <head>
-    <title>Store List</title>
+    <title>주문 목록</title>
+    <style>
+        .item-infos {
+            width: 75%;
+            margin: 20px 0 30px 0;
+        }
+
+        .item-info {
+            width: 100%;
+            background-color: #FEFEFE;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 30px;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .item-info-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-info-main {
+            width: 300px;
+        }
+
+        .item-info-column:not(:last-child) {
+            margin-right: 30px;
+        }
+
+    </style>
 </head>
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
 
-<div class="container-fluid">
-    <h1>Store List</h1>
-    <table class="table table-striped">
-    <thead>
-        <tr>
-            <c:forEach items="<%=list%>" var="itemVO">
-                <th>${itemVO}</th>
-            </c:forEach>
-            <th scope="col" class="d-flex justify-content-between align-items-end">
-                <div>category_id</div>
-                <a href="${ctx}/store/createForm" class="btn btn-success">Create</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach items="${storeList}" var="store">
-        <tr class="table-primary">
-            <td>${store.store_id}</td>
-            <td><a href="${ctx}/store/detail?store_id=${store.store_id}">${store.name}</a></td>
-            <td>${store.address}</td>
-            <td>${store.store_img_url}</td>
-            <td>${store.phone}</td>
-            <td>${store.introduce}</td>
-            <td>${store.rating}</td>
-            <td>${store.favorite_count}</td>
-            <td>${store.review_count}</td>
-            <td>${store.business_hour}</td>
-            <td>${store.holiday}</td>
-            <td>${store.status}</td>
-            <td class="d-flex justify-content-between">${store.name}
-                <div>
-                    <a href="${ctx}/store/updateForm?store_id=${store.store_id}" class="btn btn-primary me-2">update</a>
-                    <a href="${ctx}/store/delete?store_id=${store.store_id}" class="btn btn-danger">delete</a>
+<div class="container-fluid d-flex flex-column align-items-center p-3">
+    <h1>주문 목록</h1>
+    <div name="item-infos" class="item-infos">
+        <c:forEach var="item" items="${orderList}">
+            <div class="item-info">
+                <div class="item-info-column item-info-main">
+                    <div>상품정보</div>
+                    <div class="d-flex align-items-center pt-2">
+                        <img src="${item.img_url}" alt="logo" width="100" height="100" class="item-img">
+                        <div>
+                            <div>${item.item_name} 등 3개...</div>
+                        </div>
+                    </div>
                 </div>
-            </td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+                <div class="item-info-column">
+                    <div>수신자</div>
+                    <div class="my-2 item-info-value"><span><i class="fa-solid fa-truck-fast"></i></span>${item.receiver}</div>
+                    <div class="item-info-value">
+                        <c:out value="${fn:substring(item.phone, 0, 3)}-${fn:substring(item.phone, 3, 7)}-${fn:substring(item.phone, 7, 11)}"/>
+                    </div>
+                </div>
+                <div class="item-info-column">
+                    <div>주소</div>
+                    <div class="my-2 item-info-value">${item.address}${item.address_detail}(${item.zip_code})</div>
+                </div>
+                <div class="item-info-column">
+                    <div>배송메시지</div>
+                    <div class="item-info-value">${item.msg}</div>
+                </div>
+                <div class="item-info-column">
+                    <div>가격 </div>
+                    <div class="item-info-value">
+                        <fmt:formatNumber value="0" type="number" pattern="#,###" />
+                        원</div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 </div>
 <jsp:include page="../common/footer.jsp" flush="false"/>
 </body>

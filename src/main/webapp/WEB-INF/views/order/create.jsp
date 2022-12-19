@@ -2,7 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.linker.direct.order.dto.OrderFormDTO" %><%--
+<%@ page import="com.linker.direct.order.dto.OrderFormDTO" %>
+<%@ page import="java.util.Arrays" %><%--
   Created by IntelliJ IDEA.
   User: gimjinho
   Date: 2022/12/01
@@ -12,34 +13,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    List<String> bankList = new ArrayList<>();
-    bankList.add("국민은행");
-    bankList.add("신한은행");
-    bankList.add("우리은행");
-    bankList.add("하나은행");
-    bankList.add("농협은행");
-    bankList.add("기업은행");
-    bankList.add("외환은행");
-    bankList.add("씨티은행");
-    bankList.add("카카오뱅크");
-    bankList.add("케이뱅크");
-    bankList.add("SC제일은행");
-    bankList.add("대구은행");
-    bankList.add("부산은행");
-    bankList.add("광주은행");
-    bankList.add("제주은행");
-    bankList.add("전북은행");
-    bankList.add("경남은행");
-    bankList.add("경기은행");
-    bankList.add("새마을금고");
-    bankList.add("신협");
-    bankList.add("수협");
-    bankList.add("우체국");
-    bankList.add("저축은행");
-    bankList.add("산업은행");
-    bankList.add("한국씨티은행");
-
-    // 총 25개의 은행이 존재한다.
+    List<String> bankList = new ArrayList<>(Arrays.asList(
+            "국민은행",
+            "신한은행",
+            "우리은행",
+            "하나은행",
+            "농협은행",
+            "기업은행",
+            "외환은행",
+            "씨티은행",
+            "카카오뱅크",
+            "케이뱅크",
+            "SC제일은행",
+            "대구은행",
+            "부산은행",
+            "광주은행",
+            "제주은행",
+            "전북은행",
+            "경남은행",
+            "경기은행",
+            "새마을금고",
+            "신협중앙회",
+            "수협중앙회",
+            "우체국",
+            "저축은행",
+            "산업은행",
+            "수출입은행",
+            "도이치은행",
+            "HSBC은행",
+            "JP모간체이스은행",
+            "BOA은행",
+            "BOC은행",
+            "BNP파리바은행",
+            "UBS은행",
+            "DBS은행"
+    ));
 
     // 할부 개월 리스트
     List<String> installmentList = new ArrayList<>();
@@ -101,6 +109,7 @@
         .order-results {
             display: flex;
             padding: 20px;
+            margin-bottom: 30px;
         }
 
         .order-results div:not(:last-child) {
@@ -159,7 +168,7 @@
             </div>
         </c:forEach>
     </div>
-    <div class="bg-success text-light rounded-pill order-results">
+    <div class="bg-success text-light rounded-pill shadow order-results">
         <div>총 상품 가격</div>
         <div>
             <fmt:formatNumber value="${totalPrice}" />원
@@ -443,15 +452,25 @@
         document.body.appendChild(form);
 
         // 상품 정보
-        const itemList = ${cartList};
-        const 
-        itemList.forEach((item, idx) => {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'hidden');
-            input.setAttribute('name', 'item_id[' + idx + ']');
-            input.setAttribute('value', item.item_id);
-            form.appendChild(input);
-        });
+        <c:forEach items="${cartList}" var="cart" varStatus="status">
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name',  'itemList[' + ${status.index} + '].item_id');
+        input.setAttribute('value', ${cart.item_id} );
+        form.appendChild(input);
+
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name',  'itemList[' + ${status.index} + '].count');
+        input.setAttribute('value', ${cart.count} );
+        form.appendChild(input);
+
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name',  'itemList[' + ${status.index} + '].price');
+        input.setAttribute('value', ${cart.item_price} );
+        form.appendChild(input);
+        </c:forEach>
         form.submit();
 
 
@@ -572,10 +591,10 @@
                     <label for="normal-pay-3">무통장 입금</label>
                 </div>
             </div>
-            <div class="p-3">
+            <a class="p-3 mb-2" onclick="alert('이벤트 화면 이동');" style="cursor:pointer">
                 <span class="text-primary">최대 10% 적립, 네이버 현대카드</span> 혜택 받기
                 <i class="fa-solid fa-chevron-right"></i>
-            </div>
+            </a>
         </div>
     `;
 
