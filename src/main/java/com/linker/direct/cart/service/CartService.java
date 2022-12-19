@@ -23,6 +23,12 @@ public interface CartService {
     //장바구니 든 프로덕트 개수
     public int itemCount(long user_id) throws Exception;
 
+    // 장바구니 아이템 올리기
+    public int plusCount(CartDTO cartDTO) throws Exception;
+
+    // 장바구니 아아템 개수 내리기
+    public int minusCount(CartDTO cartDTO) throws Exception;
+
     //================================================================================================
     // forOrder
     //================================================================================================

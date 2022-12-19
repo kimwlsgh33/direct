@@ -18,7 +18,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 }
 %>
 
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
 <jsp:include page="../common/sideMenu.jsp" flush="false"/>
@@ -55,8 +55,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						</div>
 					</div>
 					<span class="col-sm-2" style="margin-top: 45px;">
-						<button class="btn btn-outline-success" id="bucket">배송조회</button>
-						<button class="btn btn-outline-success" id="bucket">교환/반품</button>
+						<button class="btn btn-outline-success" id="btn-shipping">배송조회</button>
+						<button class="btn btn-outline-success" id="btn-refund">교환/반품</button>
 					</span>
 				</div>
 			</div>

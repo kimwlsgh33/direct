@@ -3,15 +3,12 @@ package com.linker.direct.item.service;
 // vo
 import com.linker.direct.category.CategoryService;
 import com.linker.direct.category.CategoryVO;
-import com.linker.direct.item.dto.ItemImgReadDTO;
+import com.linker.direct.item.dto.*;
 import com.linker.direct.item.vo.ItemOptionVO;
 import com.linker.direct.item.vo.ItemVO;
 import com.linker.direct.item.vo.ItemImgVO;
 import com.linker.direct.common.util.SearchCriteria;
 // dto
-import com.linker.direct.item.dto.ItemDTO;
-import com.linker.direct.item.dto.ItemFormDTO;
-import com.linker.direct.item.dto.ItemImgSaveDTO;
 // dao
 import com.linker.direct.item.dao.ItemDAO;
 // lib
@@ -133,5 +130,26 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<ItemVO> searchListAll(SearchCriteria cri) throws Exception {
         return itemDao.searchListAll(cri);
+    }
+
+    //==================================================================================================
+    // 추천 상품 목록
+    //==================================================================================================
+    @Override
+    public List<ItemRecommDTO> recommendList() throws Exception {
+        List<ItemRecommDTO> before = itemDao.recommendList();
+
+
+        List<ItemRecommDTO> after = new ArrayList<>();
+        for(ItemRecommDTO itemRecommDTO : before) {
+            // 상품 이미지 가져옴
+            String base64 = itemImgService.readImgFileUrl(itemRecommDTO.getImg_url());
+            // 상품, 상품 이미지 DTO에 저장
+            itemRecommDTO.setImg_url(base64);
+            // 리스트에 추가
+            after.add(itemRecommDTO);
+        }
+
+        return after;
     }
 }

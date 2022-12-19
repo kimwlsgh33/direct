@@ -47,16 +47,18 @@ public class OrderController {
         model.addAttribute("user", userVO);
 
         List<OrderFormDTO> cartList = cartService.forOrder(userVO);
+        int totalPrice = 0;
+        for(OrderFormDTO cart : cartList) {
+            totalPrice += cart.getTotalPrice();
+        }
         model.addAttribute("cartList", cartList);
-        System.out.println("cartList: " + cartList);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "order/create";
     }
 
     @RequestMapping("/create")
-    public String create(HttpServletRequest request) throws Exception { //TODO: Order 객체, itemList 받아오기
-        //TEST: 임시로 주문 생성
-        OrderVO orderVO = new OrderVO();
+    public String create(HttpServletRequest request, OrderVO orderVO, List<OrderItemVO> orderItemList) throws Exception { //TODO: Order 객체, itemList 받아오기
 
         // 유저 정보 가져옴
         HttpSession session = request.getSession();
@@ -66,30 +68,12 @@ public class OrderController {
         // 주문 정보 생성
         orderService.create(orderVO);
 
-        OrderItemVO orderItemVO = new OrderItemVO();
-
-        //TEST: 임시로 상품 생성
-        ItemVO itemVO = new ItemVO();
-        itemVO.setItem_id(1L);
-
-        // 상품 정보 가져옴
-        itemService.read(itemVO);
-
-        orderItemVO.setOrder_id(orderVO.getOrder_id());
-        orderItemVO.setItem_id(itemVO.getItem_id());
-        orderItemVO.setCount(1);
-        orderItemVO.setPrice(itemVO.getPrice());
-
-
-        System.out.println(orderItemVO.toString());
-
-        // 주문 아이템 생성
-        orderItemService.create(orderItemVO);
-
-        // 주문 아이템 추가 되었으므로, total_price 업데이트
-        orderVO.addItem(orderItemVO);
-
-        System.out.println(orderVO.toString());
+        for(OrderItemVO orderItemVO : orderItemList) {
+            // 주문 아이템 생성
+            orderItemService.create(orderItemVO);
+            // 주문 아이템 추가 되었으므로, total_price 업데이트
+            orderVO.addItem(orderItemVO);
+        }
 
         // 주문 정보 수정
         // orderService.update(order);

@@ -258,15 +258,15 @@
 		<span class="fw-bold">오늘의 쇼핑제안</span>
 	</div>
 	<div class="gap-3 d-flex px-3 pb-4 itemVO-lists" >
-		<c:forEach var="itemVO" items="<%=recommendList%>">
-			<a id="list-recommend-${itemVO+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/itemVO?id=itemId">
-				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
+		<c:forEach var="itemRecomm" items="${recommendList}" varStatus="status">
+			<a id="list-recommend-${itemRecomm.item_id}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/item/detail?item_id=${itemRecomm.item_id}">
+				<img src="${itemRecomm.img_url}" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
-					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
+					<p class="text-bold mb-2" style="font-size:16px;">${itemRecomm.name}</p>
 					<p class="card-text mb-1"><small class="text-muted">75% / 1000+</small></p>
 					<div class="progress">
 						<c:choose>
-							<c:when test="${itemVO == 3}">
+							<c:when test="${status.index == 3}">
 								<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 							</c:when>
 							<c:otherwise>
@@ -283,15 +283,15 @@
 		<span class="fw-bold" style="color:orangered">특가 상품</span>
 	</div>
 	<div class="gap-3 d-flex px-3 pb-4 itemVO-lists" style="overflow:scroll">
-		<c:forEach var="itemVO" items="<%=recommendList%>">
-			<a id="list-itemVO-${itemVO+1}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/store/itemVO?id=${itemId}">
-				<img src="${ctx}/resources/icons/logo.svg" class="card-img-top cardImage" alt="상품명">
+		<c:forEach var="item" items="${saleList}" varStatus="status">
+			<a id="list-recommend-${item.item_id}" class="rounded-4 mb-3 pt-3 itemCard btn" href="${ctx}/item/detail?item_id=${item.item_id}">
+				<img src="${item.img_url}" class="card-img-top cardImage" alt="상품명">
 				<div class="m-2" style="width: 200px">
-					<p class="text-bold mb-2" style="font-size:16px;">블레이즈 C to C 케이블</p>
+					<p class="text-bold mb-2" style="font-size:16px;">${item.name}</p>
 					<p class="card-text mb-1"><small class="text-muted">75% / 1000+</small></p>
 					<div class="progress">
 						<c:choose>
-							<c:when test="${itemVO == 1}">
+							<c:when test="${status.index == 3}">
 								<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 							</c:when>
 							<c:otherwise>

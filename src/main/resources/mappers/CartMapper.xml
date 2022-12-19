@@ -8,12 +8,14 @@
     <!-- 장바구니 리스트 보여주기-->
     <select id="cartList" resultType="com.linker.direct.cart.dto.CartDTO" parameterType="com.linker.direct.user.vo.UserVO">
 		<![CDATA[
-        SELECT c.created_at, `count`, c.item_id, user_id, name as product_name, price as produect_price
+        SELECT c.created_at, `count`, c.item_id, user_id, name as product_name, i.price as product_price, ANY_VALUE(img_name) as imgName
         FROM cart c
-        INNER JOIN item i
-        ON c.item_id = i.item_id
+                 INNER JOIN item i
+                            ON c.item_id = i.item_id
+                 INNER JOIN item_img img
+                            ON c.item_id = img.item_id
         WHERE user_id = #{user_id}
-        ORDER BY created_at DESC;
+        GROUP BY item_id;
         ]]>
 	</select>
 
@@ -47,6 +49,20 @@
         WHERE	user_id = #{user_id}
         ]]>
 	</select>
+
+     <!-- plusCount -->
+    <update id="plusCount" parameterType="com.linker.direct.cart.dto.CartDTO">
+        <![CDATA[
+        update cart set count = #{count} where item_id = #{item_id}
+        ]]>
+    </update>
+
+    <!-- minusCount -->
+    <update id="minusCount" parameterType="com.linker.direct.cart.dto.CartDTO">
+        <![CDATA[
+        update cart set count = #{count} where item_id = #{item_id}
+        ]]>
+    </update>
 
 
     <select id="forOrder" parameterType="com.linker.direct.user.vo.UserVO" resultType="com.linker.direct.order.dto.OrderFormDTO">

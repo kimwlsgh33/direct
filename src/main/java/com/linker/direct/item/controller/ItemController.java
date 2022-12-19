@@ -4,9 +4,10 @@ package com.linker.direct.item.controller;
 import com.linker.direct.common.util.PageMaker;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.item.dto.ItemDTO;
-import com.linker.direct.item.dto.ItemResultDTO;
+import com.linker.direct.item.dto.ItemRecommDTO;
 import com.linker.direct.item.vo.ItemOptionVO;
 import com.linker.direct.item.vo.ItemVO;
+import com.linker.direct.review.service.ReviewService;
 import com.linker.direct.user.constant.Role;
 import com.linker.direct.user.vo.UserVO;
 import com.linker.direct.category.CategoryVO;
@@ -31,7 +32,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 // java
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -41,6 +41,7 @@ import java.util.List;
 public class ItemController {
     private final ItemService itemService;
     private final CategoryService categoryService;
+    private final ReviewService reviewService;
 
     //==================================================================================================
     // 상품 등록 페이지
@@ -147,9 +148,21 @@ public class ItemController {
     //==================================================================================================
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView detail(ItemVO itemVO) throws Exception {
-        ModelAndView mav = new ModelAndView("/item/detail");
+        ModelAndView mav = new ModelAndView("/detail/DetailProduct");
         ItemDTO itemDTO = itemService.read(itemVO);
         mav.addObject("itemDTO", itemDTO);
+        mav.addObject("reviewCount", reviewService.reviewCount(itemVO.getItem_id()));
+        mav.addObject("reviewList", reviewService.reviewList(itemVO.getItem_id()));
         return mav;
+    }
+
+    //==================================================================================================
+    // 상품 추천 목록
+    //==================================================================================================
+    @ResponseBody
+    @RequestMapping(value = "/recommendList", method = RequestMethod.GET)
+    public ResponseEntity<List<ItemRecommDTO>> recommendList() throws Exception {
+        List<ItemRecommDTO> recommendList = itemService.recommendList();
+        return new ResponseEntity<>(recommendList, HttpStatus.OK);
     }
 }

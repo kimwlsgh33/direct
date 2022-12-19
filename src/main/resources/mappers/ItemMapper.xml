@@ -98,4 +98,14 @@
             </when>
         </choose>
     </sql>
+
+    <select id="recommendList" resultType="com.linker.direct.item.dto.ItemRecommDTO">
+        <![CDATA[
+            SELECT i.item_id, name, price, ANY_VALUE(img_name) as img_url
+            FROM item i
+            INNER JOIN item_img ii
+            ON i.item_id = ii.item_id
+            ORDER BY RAND() LIMIT 8
+        ]]>
+    </select>
 </mapper>

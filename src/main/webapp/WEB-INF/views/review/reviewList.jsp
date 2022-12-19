@@ -15,11 +15,11 @@
 
 <%
 if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").equals("")) {
-	response.sendRedirect("/member/loginForm");
+	response.sendRedirect("/user/signIn");
 }
 %>
 
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
@@ -29,7 +29,7 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 			<h3 style="margin: 25px;">리뷰 목록</h3>
 				<form class="form-horizontal" id="frm">
 					<div class="form-group">
-						<button type="button" class="btn btn-sm btn-outline-success" onclick="location.href='/review/reviewRegisterForm?user_id=${member.user_id}'" style="margin-left: 25px; margin-bottom: 25px;">
+						<button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='/review/reviewRegisterForm?user_id=${user.user_id}'" style="margin-left: 25px; margin-bottom: 25px;">
 							리뷰 작성
 						</button>
 					</div>
@@ -59,14 +59,15 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 						<td align="center">${review.rating}</td>
 						<td align="center"><fmt:formatDate value="${review.reg_date}" pattern="MM월 dd일 a hh시 mm분"/></td>
 						<td align="center" onclick="location.href='/review/detailComment/${review.review_no}'">
-						댓글<c:if test="${review.cnt > 0}" ><span style="color: #14A44D;">(${review.cnt})</span></c:if>
+						댓글<c:if test="${review.cnt > 0}" ><span style="color: #6495ED;">(${review.cnt})</span></c:if>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>	
 		</table>
-</div>
 	</div>
 </div>
+</div>
+<jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 </html>

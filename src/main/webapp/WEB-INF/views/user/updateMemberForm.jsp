@@ -13,19 +13,19 @@
 
 <%
 if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").equals("")) {
-	response.sendRedirect("/member/loginForm.do");
+	response.sendRedirect("/user/signIn");
 }
 %>
 
 <!-- 메뉴바 -->
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 	
 <div class="container">
 	<div class="row">
 		<jsp:include page="../common/sideMenu.jsp" flush="false"/>
 		<div class="col-sm-10" id="top">
 		<jsp:include page="../common/headMenu.jsp" flush="false"/>
-	<form class="form-horizontal" method="post" name="memModifyForm" action="${ctx}/member/modifyMember" style="margin-left: 20%;">
+	<form class="form-horizontal" method="post" name="memModifyForm" action="${ctx}/user/modifyMember" style="margin-left: 20%;">
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5" style="margin-top: 30px;">
 				<h2>개인정보 확인/수정</h2>
@@ -34,62 +34,62 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		<div class="form-group" style="margin-top: 50px;">
 			<label for="id" class="form-label">아이디</label>
 			<div class="col-md-8">
-				<input type="text" class="form-control" id="id" name="id" maxlength="20" value="${member.id}" readonly/>
+				<input type="text" class="form-control" id="id" name="id" maxlength="20" value="${user.id}" readonly/>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-8">
-				<input type="hidden" class="form-control" id="user_id" name="user_id" value="${member.user_id}"/>
+				<input type="hidden" class="form-control" id="user_id" name="user_id" value="${user.user_id}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="id" class="form-label">비밀번호</label>
 			<div class="col-md-8">
-				<input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" value="${member.pwd}"/>
+				<input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" value="${user.pwd}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="id" class="form-label">비밀번호 확인</label>
 			<div class="col-md-8">
-				<input type="password" class="form-control" id="repwd" name="repwd" maxlength="20" value="${member.pwd}"/>
+				<input type="password" class="form-control" id="repwd" name="repwd" maxlength="20" value="${user.pwd}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="id" class="form-label">이  름</label>
 			<div class="col-md-8">
-				<input type="text" class="form-control" id="name" name="name" maxlength="50" value="${member.name}"/>
+				<input type="text" class="form-control" id="name" name="name" maxlength="50" value="${user.name}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="id" class="form-label">이메일</label>
 			<div class="col-md-8">
-				<input type="text" class="form-control" id="email" name="email" maxlength="20" value="${member.email}"/>
+				<input type="text" class="form-control" id="email" name="email" maxlength="20" value="${user.email}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="id" class="form-label">연락처</label>
 			<div class="col-md-8">
-				<input type="text" class="form-control" id="number" name="number" maxlength="20" value="${member.phone}"/>
+				<input type="text" class="form-control" id="number" name="number" maxlength="20" value="${user.phone}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="form-group" style="margin-top: 50px;">
 				<label class="form-label">우편번호</label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="zip_code" id="zip_code" value="${member.zip_code}" readonly/>
+					<input type="text" class="form-control" name="zip_code" id="zip_code" value="${user.zip_code}" readonly/>
 					<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label">주 소</label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" id="address" name="address" value="${member.address}"/>
+					<input type="text" class="form-control" id="address" name="address" value="${user.address}"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label">상세주소</label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" id="address_detail" name="address_detail" value="${member.address_detail}"/>
+					<input type="text" class="form-control" id="address_detail" name="address_detail" value="${user.address_detail}"/>
 				</div>
 			</div>
 			<!--  <div class="form-group">
@@ -101,8 +101,8 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-4" style="margin-top: 20px;">
-				<button type="reset"  class="btn btn-sm btn-outline-success">다시 입력</button>
-				<button type="submit" class="btn btn-sm btn-outline-success">회원 정보 수정</button>
+				<button type="reset"  class="btn btn-sm btn-outline-primary">다시 입력</button>
+				<button type="submit" class="btn btn-sm btn-outline-primary">회원 정보 수정</button>
 			</div>
 		</div>
 	</form>

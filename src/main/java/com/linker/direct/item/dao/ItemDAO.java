@@ -1,6 +1,7 @@
 package com.linker.direct.item.dao;
 
 import com.linker.direct.common.util.SearchCriteria;
+import com.linker.direct.item.dto.ItemRecommDTO;
 import com.linker.direct.item.vo.ItemVO;
 import org.springframework.dao.DataAccessException;
 
@@ -16,4 +17,6 @@ public interface ItemDAO {
     int totalCount(SearchCriteria cri) throws DataAccessException;
 
     List<ItemVO> searchListAll(SearchCriteria cri) throws DataAccessException;
+
+    List<ItemRecommDTO> recommendList() throws DataAccessException;
 }

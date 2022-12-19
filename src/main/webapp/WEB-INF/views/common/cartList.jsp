@@ -21,17 +21,25 @@
                  <c:forEach items="${cartList}" var="cart">
                 <div class="d-flex justify-content-between mb-2">
                     <div class="d-flex align-items-center">
-<!--                        <img src="${cart.product_image}" alt="product" style="width: 50px; height: 50px">-->
+                        <img src="${cart.imgName}" alt="product" style="width: 50px; height: 50px">
                         <p class="ms-2">${cart.product_name}</p>
                     </div>
                     <div class="d-flex align-items-center">
-                        <p class="me-2">${cart.product_price}</p>
+                        <button class="btn btn-outline-secondary" data-minus-id="${cart.item_id}" data-function-type="minus">-</button>
+                        <input type="text" class="form-control" style="width: 50px" value="${cart.count}" id="quantity_${cart.item_id}" readonly>
+                        <button class="btn btn-outline-secondary" data-plus-id="${cart.item_id}" data-function-type="plus">+</button>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <p class="me-2" id="1${cart.item_id}" value="${cart.product_price}">${cart.product_price}</p>
                             <a id="${cart.item_id}" onclick="deleteCart(${cart.item_id})">
                                 <i class="fas fa-circle-xmark"></i>
                             </a>
                     </div>
                 </div>
                  </c:forEach>
+                 <div class="d-flex justify-content-center" id="totalPrice" style="margin-top: 50px; margin-bottom: 50px">
+                     <%-- -------총금액------- --%>
+                 </div>
             <div class= "d-flex justify-content-center">
                 <button class="btn btn-primary" type="button" onclick="location.href = '${ctx}/order/createForm'">Complete Purchase</button>
             </div>
@@ -39,4 +47,63 @@
     </c:choose>
 </div>
 <script src="${ctx}/resources/js/cart.js"></script>
+<script>
+    // 이거 최재록 올타임 레전드.
+    //goat
+    $("[data-function-type='plus']").click(function () {
+        let id = $(this).data("plus-id");
+        let quantity = $("#quantity_" + id).val();
+        quantity++;
+        $("#quantity_" + id).val(quantity);
+        let price = $("#1" + id).attr("value");
+        let totalPrice = price * quantity;
+        $("#1" + id).text(totalPrice);
+        let total = 0;
+        $("[id^='1']").each(function () {
+            total += Number($(this).text());
+        });
+        $("#totalPrice").text("총 금액 : " + total);
 
+        $.ajax({
+            url: "${ctx}/cart/plusCount",
+            type: "post",
+            data: {
+                item_id: id,
+                count: quantity,
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $("[data-function-type='minus']").click(function() {
+        let id = $(this).data("minus-id");
+        let quantity = $("#quantity_" + id).val();
+        if (quantity > 1) {
+            quantity--;
+            $("#quantity_" + id).val(quantity);
+            let price = $("#1" + id).attr("value");
+            let totalPrice = price * quantity;
+            $("#1" + id).text(totalPrice);
+            let total = 0;
+            $("[id^='1']").each(function () {
+                total += Number($(this).text());
+            });
+            $("#totalPrice").text("총 금액 : " + total);
+
+            $.ajax({
+                url: "${ctx}/cart/minusCount",
+                type: "post",
+                data: {
+                    item_id: id,
+                    count: quantity,
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    });
+
+</script>

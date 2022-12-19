@@ -63,9 +63,9 @@ function commentList() {
 			$.each(data, function(key, value){ 
 				str += '<div class="commentArea" >';
 				str += '<div class="commentInfo">'+'작성자 : '+value.writer;
-				str += '  <a class="btn btn-sm btn-outline-success" onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
+				str += '  <a class="btn btn-sm btn-outline-primary" onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
 				str += '  날짜 : ' + value.reg_date + '  ';
-				str += '<a class="btn btn-sm btn-outline-success" onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
+				str += '<a class="btn btn-sm btn-outline-primary" onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
 				str += '<div class="commentContent'+value.cno+'"> <p style="margin-top:10px; margin-bottom:10px;"> 내용 : '+value.content +'</p>';
 				str += '</div></div>';
 			});
@@ -155,7 +155,7 @@ function commentUpdate(cno, content) {
 
 	str += '<div class="input-group">';
 	str += '<input type="text" class="form-control" name="content_' + cno + '" value="' +content + '"/>';
-	str += '<span class="input-group-btn"><button class="btn btn-sm btn-outline-success" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+	str += '<span class="input-group-btn"><button class="btn btn-sm btn-outline-primary" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
 	str += '</div>';
 
 	$('.commentContent' + cno).html(str);

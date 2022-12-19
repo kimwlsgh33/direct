@@ -37,8 +37,8 @@
     <!--  회원가입 (명)  -->
     <insert id="addMember" parameterType="com.linker.direct.user.vo.UserVO">
 		<![CDATA[
-			insert into user (id, pwd, name, email, phone, birthday, zip_code, address, address_detail)
-			values (#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{birthday}, #{zip_code}, #{address}, #{address_detail})
+			insert into user (id, pwd, name, email, phone, birthday, zip_code, address, address_detail, terms_status)
+			values (#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{birthday}, #{zip_code}, #{address}, #{address_detail}, #{terms_status})
 		]]>
 	</insert>
 	

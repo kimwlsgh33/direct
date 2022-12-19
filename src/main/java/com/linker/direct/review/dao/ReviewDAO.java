@@ -1,6 +1,7 @@
 package com.linker.direct.review.dao;
 
 import com.linker.direct.review.dto.ReviewDTO;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
@@ -23,4 +24,10 @@ public interface ReviewDAO {
 	
 	// 리뷰 삭제
 	public int reviewDelete(int review_no);
+
+	// 상품에 해당하는 리뷰
+	List<ReviewDTO> reviewList(Long item_id) throws DataAccessException;
+
+	// 상품 리뷰 개수
+	int reviewCount(Long item_id) throws DataAccessException;
 }

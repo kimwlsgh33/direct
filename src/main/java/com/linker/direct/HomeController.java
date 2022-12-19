@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.linker.direct.category.CategoryVO;
 import com.linker.direct.category.CategoryService;
+import com.linker.direct.item.dto.ItemRecommDTO;
+import com.linker.direct.item.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +20,11 @@ import javax.servlet.http.HttpSession;
  * Handles requests for the application home page.
  */
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class HomeController {
+  private final ItemService itemService;
   private final CategoryService categoryService;
-
-  public HomeController(CategoryService categoryService) {
-    this.categoryService = categoryService;
-  }
 
   /**
    * Simply selects the home view to render by returning its name.
@@ -32,7 +33,11 @@ public class HomeController {
   public String home(Model model, HttpServletRequest request) throws Exception {
     HttpSession session = request.getSession();
     List<CategoryVO> categoryList = categoryService.listAll();
+    List<ItemRecommDTO> recommendList = itemService.recommendList();
+    List<ItemRecommDTO> saleList = itemService.recommendList();
     model.addAttribute("categoryList", categoryList);
+    model.addAttribute("recommendList", recommendList);
+    model.addAttribute("saleList", saleList);
     return "home";
   }
 }

@@ -13,7 +13,7 @@
 <body>
 
 <!-- 상단 메뉴 -->
-<jsp:include page="../common/topMenu.jsp" flush="false"/>
+<jsp:include page="../common/header.jsp" flush="false"/>
 <div class="container">
 	<div class="row">
 	<jsp:include page="../common/sideMenu.jsp" flush="false"/>
@@ -32,7 +32,7 @@
 				<input type="text" class="form-control" id="subject" name="subject" maxlength="200" placeholder="제목을 입력하세요."/>
 			</div>
 		</div>
-		<input type="hidden" class="form-control" id=user_id name="user_id" maxlength="20" value="${member.user_id}"/>
+		<input type="hidden" class="form-control" id=user_id name="user_id" maxlength="20" value="${user.user_id}"/>
 		<!-- 
 		<div class="form-group">
 			<label class="form-label">상품번호</label>
@@ -51,9 +51,9 @@
 			<label class="form-label">상품명</label>
 			<div class="col-sm-3">
 				<select id="select" onchange="fn_select(this);">
-				<c:forEach var="p" items="${product}" varStatus="status">
-					<option id="item_id" value="${p.item_id}" >${p.item_id}.${p.name}</option>
-				</c:forEach>
+					<c:forEach var="p" items="${orderItems}" varStatus="status">
+						<option id="item_id" value="${p.item_id}" >${p.item_id}.${p.name}</option>
+					</c:forEach>
 				</select>
 			</div>
 		</div>
@@ -66,8 +66,8 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5" style="margin-top: 20px;">
-				<button type="reset" class="btn btn-sm btn-outline-success">다시 입력</button>
-				<button type="button" class="btn btn-sm btn-outline-success" onclick="fn_reviewRegister();">리뷰 등록</button>
+				<button type="reset" class="btn btn-sm btn-outline-primary">다시 입력</button>
+				<button type="button" class="btn btn-sm btn-outline-primary" onclick="fn_reviewRegister();">리뷰 등록</button>
 			</div>
 		</div>
 	</form>

@@ -38,7 +38,7 @@
         <h1>쿠폰</h1>
         <div>
             <a href="${ctx}/coupon/createForm" class="btn btn-success">create</a>
-            <a href="${ctx}/order/list" class="btn">list</a>
+            <a href="${ctx}/coupon/listAll" class="btn">list</a>
         </div>
     </div>
 </div>

@@ -15,4 +15,8 @@ public class OrderFormDTO {
 
     // 사용하지 않는 변수
     private Long option_id; // 옵션 id
+
+    public int getTotalPrice() {
+        return item_price * count;
+    }
 }

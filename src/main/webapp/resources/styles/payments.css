@@ -119,11 +119,17 @@ select {
     opacity: 0.65;
 }
 
+/* Result */
 .selected-account-box {
+    display: flex;
     background-color: #14A44D;
     color: #FEFEFE;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
+}
+
+.selected-account-box > div:not(:last-child) {
+    margin-right: 20px;
 }
 
 

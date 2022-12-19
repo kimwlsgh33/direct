@@ -61,6 +61,17 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDAO.reviewDelete(review_no);
 	}
 
+	//================================================================================================
+	@Override
+	public List<ReviewDTO> reviewList(Long item_id) throws Exception {
+		return reviewDAO.reviewList(item_id);
+	}
+
+	@Override
+	public int reviewCount(Long item_id) throws Exception {
+		return reviewDAO.reviewCount(item_id);
+	}
+
 	// 리뷰 등록 화면 띄울 때 구매한 상품 정보 가져오기
 //	@Override
 //	public List<OrderDTO> read(Long user_id) throws Exception {

@@ -26,7 +26,7 @@ public class CouponDAO {
 	// 쿠폰 등록
 	public int couponInsert(UserCouponDTO usercouponDTO) throws Exception {
 		System.out.println("couponInsert => " + usercouponDTO);
-		return sqlSession.insert(NAMESPACE + ".insert", usercouponDTO);
+		return sqlSession.insert(NAMESPACE + ".couponInsert", usercouponDTO);
 	}
 	
 	// 쿠폰 리스트
@@ -34,5 +34,29 @@ public class CouponDAO {
 		System.out.println("couponList ");
 		return sqlSession.selectList(NAMESPACE + ".list");
 	}
-	
+
+	//=======================================================
+	// 쿠폰 생성
+	//=======================================================
+
+	public void create(CouponDTO couponDTO) throws Exception {
+		System.out.println("create => " + couponDTO);
+		sqlSession.insert(NAMESPACE + ".create", couponDTO);
+	}
+
+	public List<CouponDTO> listAll() throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".listAll");
+	}
+
+	public CouponDTO read(Long coupon_id) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".read", coupon_id);
+	}
+
+	public void update(CouponDTO couponDTO) throws Exception {
+		sqlSession.update(NAMESPACE + ".update", couponDTO);
+	}
+
+	public void delete(Long coupon_id) throws Exception {
+		sqlSession.delete(NAMESPACE + ".delete", coupon_id);
+	}
 }

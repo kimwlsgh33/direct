@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 
 html, body {
@@ -56,7 +58,153 @@ a {
     text-decoration: none!important;
 }
 
+li {
+    padding: 10px;
+}
 
+li a {
+    color: #ebebeb;
+}
+
+li a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu li a {
+    color: gray;
+}
+
+.dropdown-menu li a:hover {
+    color: black;
+}
+
+#mypage {
+    padding: 30px;
+    color: white;
+}
+
+nav.col-sm-2 {
+    background: #6495ED;
+    padding: 0;
+    flex-direction: row;
+    border-radius: 20px 0px 20px 20px;
+}
+
+.nav h4 {
+    color: white;
+}
+
+#top {
+    padding: 0px;
+    height: 150px;
+}
+
+#c1 {
+    background: #6495ED;
+    color: white;
+    text-align: center;
+    width: 85%; 
+    border-radius: 0px 20px 20px 0px;
+}
+
+.nav-item button {
+    color: gray;
+    width: 200px;
+}
+
+.nav-item button:hover {
+    color: gray;
+}
+
+ul {
+    text-align: center;
+}
+
+/*productSelect*/
+div .col-sm-9 {
+    background: #F0F8FF;
+    height: 300px;
+    margin-left:10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+div .col-sm-7 {
+    border: 1px solid lightgray;
+    width: 70%;
+    height: 220px;
+    margin-left:10px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+div .col-md-3 {
+    height: 100px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+
+div .col-md-6 {
+    border-radius: 10px;
+    margin-left:10px;
+    height: 100px;
+    width: 60%;
+}
+
+i {
+    color: gray;
+}
+
+.col-sm-2 {
+    padding: 20px;
+}
+/*productSelect*/
+
+td a {
+    color: gray;
+    text-decoration: none;
+}
+
+td a:hover {
+    color: black;
+}
+
+#detail {
+    margin-top: 8px;
+}
+
+#bucket {
+    margin-top: 8px;
+}
+
+.commentArea {
+    border-bottom:1px solid darkgray;
+    margin-top: 25px;
+    margin-bottom: 14px;
+}
+
+#review {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#review a {
+    color: #333333;
+    text-decoration: none;
+}
+
+#review a:hover{
+    color: gray;
+    text-decoration: none;
+}
+
+.couponList {
+	margin-top: 50px;
+}
 
 /* Font Definitions */
 @font-face {

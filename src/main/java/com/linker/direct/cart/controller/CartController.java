@@ -84,4 +84,18 @@ public class CartController {
         logger.info("CartController itemCount() 장바구니 든 프로덕트 개수.."+result);
         return result;
     }
+
+    @RequestMapping(value = "/plusCount", method = RequestMethod.POST)
+    public String plusCount(CartDTO cartDTO) throws Exception {
+        logger.info("CartController plusCount() 장바구니 든 프로덕트 개수..");
+        cartService.plusCount(cartDTO);
+        return "redirect:/cart/cartList";
+    }
+
+    @RequestMapping(value = "/minusCount", method = RequestMethod.POST)
+    public String minusCount(CartDTO cartDTO) throws Exception {
+        logger.info("CartController minusCount() 장바구니 든 프로덕트 개수..");
+        cartService.minusCount(cartDTO);
+        return "redirect:/cart/cartList";
+    }
 }

@@ -9,8 +9,8 @@ import java.sql.Timestamp;
 @Getter @Setter
 public class OrderItemVO {
     private Long order_id;
-    private Long item_id;
-    private int count;
-    private int price;
+    private Long item_id; //
+    private int count; //
+    private int price; //
     private Timestamp order_date;
 }

@@ -29,4 +29,5 @@ public class UserVO {
 	private String status;
 	private Role role;	// 권한
 	private Grade grade;	// 유저 등급
+    private String terms_status; // 약관 동의 상태
 }

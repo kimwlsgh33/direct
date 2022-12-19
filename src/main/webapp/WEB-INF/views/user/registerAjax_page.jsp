@@ -19,13 +19,13 @@
 		height: 40px;
 		background: pink;
 	}
-	#reset {
+    #goHome {
 		background: pink;
 	}
 	#submit {
 		background: gray;
 	}
-	.container {
+    .bgi {
 		background-image: url(${ctx}/resources/icons/logo.svg);
 		background-repeat: no-repeat;
 		background-position: top right;
@@ -42,10 +42,15 @@
 		text-align: center;
 		background: gray;
 	}
-	.btn {
-		width: 100px;
-		height: 50px;
-	}
+    .buttons {
+        margin-left: 150px;
+    }
+    .btnn {
+        width: 200px;
+    }
+    .pink {
+        background: pink;
+    }
 
 </style>
 
@@ -61,37 +66,10 @@
 	<font color="gray">e </font>
 	<font color="pink">c </font>
 	<font color="gray">t </font>
-	<font color="pink">. </font>
-	<font color="gray">o </font>
-	<font color="pink">l </font>
-	<font color="gray">d </font>
-</h1><br>
+</h1><br><br><br><br>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mySmallCenterModal">
-  모달테스트
-</button>
-
-<!-- Small Modal at Center -->
-<div class="modal modal-right fade" id="mySmallCenterModal" tabindex="-1" role="dialog" aria-labelledby="mySmallCenterModalLabel">
-  <div class="modal-dialog modal-sm modal-right" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal 제목</h4>
-      </div>
-      <div class="modal-body">
-        Modal 내용
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-	<form class="form-horizontal" method="post" action="${ctx}/member/addMember">
+<div class="container bgi">
+    <form class="form-horizontal" method="post" action="${ctx}/user/addMember">
 		<div class="form-group, col-sm-4">
 			<span class="input-group">
 				<label for="id" class="label">아 이 디</label>
@@ -99,77 +77,94 @@
 				<button class="idCheck btn" type="button" id="idCheck"
 					onClick="fn_idCheck();" value="N">중복확인</button>
 			</span>
-		</div><br>
+        </div><br><br>
 		<div class="form-group col-sm-4">
 			<span class="input-group">
 		    	<label for="id" class="label">비밀번호</label>
 		        <input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" placeholder="Enter PASSWORD"/>
 			</span>
-	    </div><br>
+        </div><br><br>
 	    <div class="form-group col-sm-4">
 	    	<span class="input-group">
 		    	<label for="id" class="label">비밀번호 확인</label>
 		        <input type="password" class="form-control" id="repwd" name="repwd" maxlength="20" placeholder="Enter PASSWORD RE"/>
 	    	</span>
-	    </div><br>
+        </div><br><br>
 	    <div class="form-group col-sm-3">
 	    	<span class="input-group">
 		    	<label for="id" class="label">이  름</label>
 		        <input type="text" class="form-control" id="name" name="name" maxlength="30" placeholder="Enter NAME"/>
 	    	</span>
-	    </div><br>
-        <div class="form-group col-sm-4">
+        </div><br><br>
+        <div class="form-group col-sm-6">
         	<span class="input-group">
         		<label for="id" class="label">이메일</label>
-            	<input type="email" class="form-control" id="email" name="email" maxlength="30" placeholder="Enter Email"/>
+            	<input type="text" class="form-control" id="email1" name="email1" maxlength="30" placeholder="Enter Email"/>
+            	<font class="mt-2">&nbsp;@&nbsp;</font>
+            	<input type="text" class="form-control" id="email2" name="email2" maxlength="30" disabled/>
+            	<select class="select" name="selectEmail" id="selectEmail" >
+            		<option value="이메일선택" selected>이메일 선택</option>
+					<option value="1">직접입력</option>
+					<option value="naver.com">naver.com</option>
+					<option value="hanmail.net">hanmail.net</option>
+					<option value="hotmail.com">hotmail.com</option>
+					<option value="nate.com">nate.com</option>
+					<option value="gmail.com">gmail.com</option>
+				</select>
+				<button type="button" class="emailConform confirm con" onclick="fn_emailConfirm()">인증하기</button>
+        		<input type="hidden" class="form-control" id="email" name="email" maxlength="30" />
         	</span>
-      	</div><br>
+        </div><br>
+        <div class="form-group col-sm-6 shadow">
+            <span class="input-group">
+                <label for="id" class="label con">인증번호</label>
+                <input type="text" class="form-control confirmInput" id="confirm" name="confirm" maxlength="6" placeholder="Enter Certification Number" disabled="disabled" />
+                <button type="button" class="confirmComp confirm con" onclick="fn_confirming()" value="0" disabled="disabled" >인증확인</button>
+            </span>
+            <span id="mailConfirm"></span>
+        </div><br><br>
       	<div class="form-group col-sm-5">
       		<span class="input-group">
 	    		<label for="id" class="label">휴대폰 번호</label>
 	            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" maxlength="11" placeholder="Enter PHONE_NUMBER (without -)"/>
       		</span>
-	    </div><br>
+          </div><br><br>
 	    <div class="form-group col-sm-5">
 	    	<span class="input-group">
 	    		<label for="id" class="label">생년월일</label>
 	            <input type="text" class="form-control" id="birthday" name="birthday" maxlength="8" placeholder="Enter Your BirthDay (ex : 19900101)" />
 	    	</span>
-	    </div><br>
+        </div><br><br>
   		<div class="form-group col-sm-4">
   			<span class="input-group">
 	  			<label for="id" class="label">우편번호</label>
 				<input type="text" 		class="form-control" name="zipcode" id="zipcode" readonly />
 				<input type="button"	class="form-control" onclick="daumZipCode()" value="우편번호검색" />
   			</span>
-		</div><br>
+          </div><br><br>
 		<div class="form-group col-sm-6">
 			<span class="input-group">
 				<label for="id" class="label">주소</label>
 				<input type="text" class="form-control" id="address01" name="address01" />
 			</span>
-		</div><br>
+        </div><br><br>
+        <div>
+            <input type="hidden" name="terms_status" id="terms_status" value="${termsResult}" />
+        </div>
 		<div class="form-group col-sm-6">
 			<span class="input-group">
 				<label for="id" class="label">상세주소</label>
 				<input type="text" class="form-control" id="address02" name="address02" />
 			</span>
-		</div><br>
+        </div><br><br>
 		<img src="${ctx}/resources/icons/logo.svg" width="300" height="240" class="float-end"/>
-      	<div class="form-group">
-      		<div class="btn-group">
-	            <button type="reset"  class="btn" id="reset">입력내용 초기화</button>
-	            <button type="submit" class="btn" id="submit">가입</button>
-      		</div>
+        <div class="form-group buttons">
+              <button type="button" class="btn btnn" id="goHome" onclick="location.href='${ctx}/'">가입 취소</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="submit" class="btn btnn" id="submit">가입</button>
 	    </div>
-      	<!--  <div class="form-group">
-        	<div class="col-sm-offset-2 col-sm-5">
-            <input type="text" class="form-control msg" name="msg" placeholder="Message" id="msg" readonly/>
-        	</div>
-        	<div id="msg2"></div> 
-      	</div> -->
 	</form>
-</div>
+</div><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <jsp:include page="../common/footer.jsp" flush="false" />
 </body>
@@ -233,7 +228,7 @@
 function fn_idCheck() {
 	// alert($("#id").val());
 	$.ajax({
-		url:		"/member/idCheck",
+        url:		"/user/idCheck",
 		type:		"post",
 		dataType:	"json",
 		data:		{"id" : $("#id").val()},
@@ -289,6 +284,11 @@ $(document).ready(function() {
 			$("#pwd").focus();
 			return false;
 		}
+        if($(".confirmComp").val() == 0) {
+            alert("이메일 인증을 진행해 주세요.");
+            $("#email1").focus();
+            return false;
+        }
 	});
 
 	// 아이디 입력란에 글자를 입력하면 실시간으로 사용가능한 아이디 인지 아닌지 검사한다.
@@ -299,7 +299,7 @@ $(document).ready(function() {
 		let inputID = $("#id").val();
 
 		// 입력한 아이디가 서버에 존재하는 지 알아낸다.
-		$.ajax({
+        /* $.ajax({
 			url:		"/member/idCheck",
 			type:		"post",
 			dataType:	"json",
@@ -331,14 +331,98 @@ $(document).ready(function() {
 		});
 		
 		
-	});
-	
+    });*/
+
 });
 </script>
 
-<!-- 비밀번호 확인관련 로직 -->
+<script>
+    $('#selectEmail').change(function(){
+        $("#selectEmail option:selected").each(function () {
 
 
+    if($(this).val()== '1'){ //직접입력일 경우
+        $("#email2").val('');                        //값 초기화
+        $("#email2").attr("disabled",false); //활성화
+    } else if($(this).val() == '이메일선택') {
+        $("#email2").val('');
+        $("#email2").attr("disabled",true);
+    } else { //직접입력이 아닐경우
+        $("#email2").val($(this).text());      //선택값 입력
+        $("#email2").attr("disabled",true); //비활성화
+    }
+    });
+    });
+</script>
+
+<script>
+
+    var code = "";
+
+    function fn_emailConfirm() {
+        $("#email").val($("#email1").val() + "@" + $("#email2").val());
+        alert("인증번호가 전송되었습니다.");
+
+    var confirmInput = $(".confirmInput");	// 입력란
+    var confirmResult = $(".confirmComp");	// 확인버튼
+
+    confirmInput.attr("disabled", false);
+    confirmResult.attr("disabled", false);
+
+    $.ajax({
+
+    url		: "/user/mailCheck",
+    type	: "GET",
+    dataType: 'text',
+    data    : {"email" : $("#email").val()},
+    success	: function(data) {
+
+    console.log("data : " + data);
+
+
+
+    code = data;
+
+    console.log("code : " + code);
+
+    }
+
+    });
+
+    console.log($("#email").val());
+
+
+    }
+
+    function fn_confirming() {
+
+    console.log("온클릭?");
+
+    var inputCode = $(".confirmInput").val();
+    var confirmResult = $(".confirmComp");
+
+
+    if(inputCode == code) {
+
+    confirmResult.attr("value", "1")
+    alert("인증번호가 일치합니다.");
+
+    console.log("확인 : " + confirmResult.val());
+
+    confirmResult.attr("disabled", true);
+    $(".confirmInput").attr("disabled", true);
+
+    } else {
+
+    alert("인증번호가 일치하지 않습니다. \n\n다시 인증해주세요~")
+
+    console.log("확인 : " + confirmResult.val());
+
+    }
+
+    }
+
+</script>
 
 
 

@@ -5,6 +5,7 @@ import com.linker.direct.cart.dto.CartDTO;
 import com.linker.direct.item.service.ItemImgService;
 import com.linker.direct.order.dto.OrderFormDTO;
 import com.linker.direct.user.vo.UserVO;
+import com.linker.direct.item.vo.ItemImgVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ public class CartServiceImpl implements CartService {
 
     private static final Logger logger = LoggerFactory.getLogger(CartServiceImpl.class);
 
-
     @Inject
     private CartDAO cartDAO;
 
@@ -25,9 +25,15 @@ public class CartServiceImpl implements CartService {
     @Inject
     private ItemImgService itemImgService;
 
+    // image 가져오기
     @Override
     public List<CartDTO> CartList(UserVO user) throws Exception {
         List<CartDTO> cartList = cartDAO.CartList(user);
+         logger.info("CartServiceImpl CartList() Data ==> " + cartList);
+        for (CartDTO cart : cartList) {
+            String imgName = itemImgService.readImgFileUrl(cart.getImgName());
+            cart.setImgName(imgName);
+        }
         return cartList;
     }
 
@@ -49,6 +55,16 @@ public class CartServiceImpl implements CartService {
     @Override
     public int itemCount(long user_id) throws Exception {
         return cartDAO.itemCount(user_id);
+    }
+
+    @Override
+    public int plusCount(CartDTO cartDTO) throws Exception {
+        return cartDAO.plusCount(cartDTO);
+    }
+
+    @Override
+    public int minusCount(CartDTO cartDTO) throws Exception {
+        return cartDAO.minusCount(cartDTO);
     }
 
     //================================================================================================

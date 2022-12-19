@@ -155,18 +155,20 @@
 				<input type="text" class="form-control" id="address" name="address" />
 			</span>
 		</div><br>
+        <div>
+            <input type="hidden" name="terms_status" id="terms_status" value="${termsResult}" />
+        </div>
 		<div class="form-group col-sm-8 shadow">
 			<span class="input-group">
 				<label for="id" class="label">상세주소</label>
 				<input type="text" class="form-control" id="address_detail" name="address_detail" />
-				
 			</span>
 		</div><br><hr>
 		<div class="form-group">
       		<div class="btn-group" style="float: right;">
-	            <button type="reset"  class="shadow btnn" id="reset">입력내용 초기화</button>
+      		    <button type="reset" class="shadow btnnn" id="reset">입력내용 초기화</button>
 	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            <button type="submit" class="shadow btnn" id="submit">다음</button>
+                <button type="submit" class="shadow btnnn" id="submit">다음</button>
       		</div>
 	    </div>
       	<!--  <div class="form-group">

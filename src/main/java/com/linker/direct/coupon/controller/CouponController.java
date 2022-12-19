@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -18,6 +19,8 @@ public class CouponController {
 
 	@Inject
 	CouponService couponService;
+
+
 	
 	// 쿠폰등록 할 수 있는 화면으로 가기(UserCouponDTO 정보)
 	@RequestMapping("/coupon")
@@ -29,7 +32,7 @@ public class CouponController {
 		return "/coupon/coupon";
 	}
 	
-	// 쿠폰 등록
+	// 유저 쿠폰 등록
 	@ResponseBody
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public int couponInsert(UserCouponDTO usercouponDTO) throws Exception {
@@ -40,7 +43,7 @@ public class CouponController {
 	// 쿠폰 리스트(쿠폰아이디)
 	@ResponseBody
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public List<CouponDTO> coupontList(Model model) throws Exception {
+	public List<CouponDTO> couponList(Model model) throws Exception {
 		//HttpSession session = request.getSession();
 		//UserVO userVO = (UserVO) session.getAttribute("user");
 		
@@ -53,5 +56,51 @@ public class CouponController {
 		return couponList;
 		
 	}
-	
+
+	@RequestMapping(value="/createForm", method=RequestMethod.GET)
+	public String createForm() throws Exception {
+		return "/coupon/create";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/create", method=RequestMethod.POST)
+	public String create(CouponDTO couponDTO) throws Exception {
+		couponService.create(couponDTO);
+		return "success";
+	}
+
+	@RequestMapping(value="/listAll", method=RequestMethod.GET)
+	public String listAll(Model model) throws Exception {
+		List<CouponDTO> couponList = couponService.listAll();
+
+		if(couponList != null) {
+			model.addAttribute("couponList", couponList);
+			Timestamp now = new Timestamp(System.currentTimeMillis());
+			model.addAttribute("now", now);
+		}
+
+		return "/coupon/list";
+	}
+
+	@RequestMapping(value="/updateForm", method=RequestMethod.GET)
+	public String updateForm(Long coupon_id, Model model) throws Exception {
+		CouponDTO couponDTO = couponService.read(coupon_id);
+		model.addAttribute("couponDTO", couponDTO);
+		return "/coupon/update";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String update(CouponDTO couponDTO) throws Exception {
+		couponService.update(couponDTO);
+		return "success";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(Long coupon_id) throws Exception {
+		couponService.delete(coupon_id);
+		return "success";
+	}
+
 }

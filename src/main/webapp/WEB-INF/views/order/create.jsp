@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.linker.direct.order.dto.OrderFormDTO" %><%--
   Created by IntelliJ IDEA.
   User: gimjinho
   Date: 2022/12/01
@@ -45,7 +47,6 @@
     for(int i = 2; i <= 12; i++) {
         installmentList.add(i + "개월");
     }
-
 %>
 <html>
 <head>
@@ -96,12 +97,21 @@
             background-color: #F0F0F0;
             margin-right: 15px;
         }
+
+        .order-results {
+            display: flex;
+            padding: 20px;
+        }
+
+        .order-results div:not(:last-child) {
+            margin-right: 20px;
+        }
     </style>
     <link href="${ctx}/resources/styles/payments.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
-<form class="w-100 d-flex flex-column align-items-center px-3 pt-5" method="post">
+<div class="w-100 d-flex flex-column align-items-center px-3 pt-5">
     <div name="main_title" class="w-75 d-flex justify-content-between px-3 mb-3">
         <div class="fs-3" style="font-weight:bold;">주문 / 결제</div>
         <div>장바구니 > 주문/결제</div>
@@ -130,7 +140,7 @@
                 </div>
                 <div class="item-info-column">
                     <div>배송비</div>
-                    <div class="item-info-value"><span><i class="fa-solid fa-truck-fast"></i></span>, 4000원</div>
+                    <div class="item-info-value"><span><i class="fa-solid fa-truck-fast"></i></span> 4000원</div>
                 </div>
                 <div class="item-info-column">
                     <div>수량</div>
@@ -138,16 +148,38 @@
                 </div>
                 <div class="item-info-column">
                     <div>할인</div>
-                    <div class="item-info-value">(-) 1000원</div>
+                    <div class="item-info-value">(-) 0원</div>
                 </div>
                 <div class="item-info-column">
                     <div>상품금액(할인포함)</div>
-                    <div class="item-info-value">${item.item_price}, 할인가(볼드)</div>
+                    <div class="item-info-value">
+                            <fmt:formatNumber value="${item.item_price}" type="number" pattern="#,###" />
+                        원</div>
                 </div>
             </div>
         </c:forEach>
     </div>
-
+    <div class="bg-success text-light rounded-pill order-results">
+        <div>총 상품 가격</div>
+        <div>
+            <fmt:formatNumber value="${totalPrice}" />원
+        </div>
+        <div>
+            <i class="fa-solid fa-circle-plus"></i>
+        </div>
+        <div>배송비</div>
+        <div>
+            <fmt:formatNumber value="12000" />원
+        </div>
+        <div>
+            <i class="fa-solid fa-circle-equals"></i>
+        </div>
+        <div>총 결제 금액</div>
+        <div>
+            <fmt:formatNumber value="${totalPrice + 12000}" />원
+        </div>
+        <div></div>
+    </div>
     <div name="shipping_address" class="bg-light w-75 d-flex shadow rounded-2 p-3 mb-4">
         <div class="flex-grow-1">
             <div>
@@ -171,14 +203,14 @@
             </div>
             <hr>
             <div class="d-grid gap-2">
-                <div id="ord_name" class="mb-2 fw-bold">${user.name}</div>
-                <div id="ord_phone" class="mb-2">${user.phone}</div>
+                <div id="ord_receiver" class="mb-2 fw-bold" data-value="${user.name}">${user.name}</div>
+                <div id="ord_phone" class="mb-2" data-value="${user.phone}">${user.phone}</div>
                 <div class="d-flex">
                     <div class="d-flex me-2">
-                        (<div id="ord_zip_code">${user.zip_code}</div>)
+                        (<div id="ord_zip_code" data-value="${user.zip_code}">${user.zip_code}</div>)
                     </div>
-                    <div id="ord_address" class="me-1">${user.address}</div>
-                    <div id="ord_address_detail" class="me-2">${user.address_detail}</div>
+                    <div id="ord_address" class="me-1" data-value="${user.address}">${user.address}</div>
+                    <div id="ord_address_detail" class="me-2" data-value="${user.address_detail}">${user.address_detail}</div>
                     <a class="stretched_link" href="#">정보수정</a>
                 </div>
                 <input id="ord_msg" type="text" class="w-75 form-control mb-2" placeholder="배송메세지를 입력해주세요.">
@@ -336,8 +368,8 @@
             <div>주문 내용을 확인하였으며, 정보 제공 등에 동의 합니다.</div>
         </div>
     </div>
-    <button class="w-75 btn btn-success mt-3 shadow" onclick="location.href = '${ctx}/order/complete'">결제하기</button>
-</form>
+    <button class="w-75 btn btn-success mt-3 shadow" onclick="submit();">결제하기</button>
+</div>
 <jsp:include page="../common/footer.jsp" flush="false"/>
 </body>
 <script>
@@ -394,6 +426,47 @@
         $("#addressListModal").close();
 
     }
+    const submit = () => {
+        const form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '${ctx}/order/create');
+
+        // order 정보
+        const inputNames = ['receiver', 'phone', 'zip_code', 'address', 'address_detail', 'msg'];
+        inputNames.forEach((name) => {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'hidden');
+            input.setAttribute('name', name);
+            input.setAttribute('value', document.querySelector('#ord_'+name).innerHTML );
+            form.appendChild(input);
+        });
+        document.body.appendChild(form);
+
+        // 상품 정보
+        const itemList = ${cartList};
+        const 
+        itemList.forEach((item, idx) => {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'hidden');
+            input.setAttribute('name', 'item_id[' + idx + ']');
+            input.setAttribute('value', item.item_id);
+            form.appendChild(input);
+        });
+        form.submit();
+
+
+        <%--$.ajax({--%>
+        <%--    url: "${ctx}/order/create",--%>
+        <%--    type: "POST",--%>
+        <%--    data: {--%>
+        <%--        receiver: document.querySelector('#ord_receiver').innerHTML,--%>
+        <%--        phone: document.querySelector('#ord_phone').innerHTML,--%>
+        <%--        zip_code: document.querySelector('#ord_zip_code').innerHTML,--%>
+        <%--        address: document.querySelector('#ord_address').innerHTML,--%>
+        <%--        address_detail: document.querySelector('#ord_address_detail').innerHTML,--%>
+        <%--    },--%>
+        <%--})--%>
+    }
 </script>
 <script>
     const naverPayContent = `
@@ -419,7 +492,7 @@
                     <div>kakao<span class="fw-bold">bank</span></div>
                     <div>
                         <div class="text-start text-secondary mb-2">계좌 번호</div>
-                        <div>3333-****-1796</div>
+                        <div id="account-value-1">3333-****-1796</div>
                     </div>
                 </button>
                 <button id="sc-bank" class="card-layout">
@@ -429,7 +502,7 @@
                     </div>
                     <div>
                         <div class="text-start text-light mb-2">계좌 번호</div>
-                        <div>3333-****-1796</div>
+                        <div id="account-value-2">183-**-**3680</div>
                     </div>
                 </button>
                 <button id="add-bank" class="card-layout" onclick="">
@@ -439,7 +512,11 @@
             </button>
             </div>
             <div class="selected-account-box">
-                <div>선택 : 카카오뱅크 3333-****-1796</div>
+                <div>선택 :</div>
+                <div class="d-flex">
+                    <div id="selected-account-meta">카카오뱅크</div>
+                    <div id="selected-account-value">3333-****-1796</div>
+                </div>
             </div>
         </div>
     `;
@@ -471,7 +548,11 @@
                 </button>
             </div>
             <div class="selected-account-box">
-                <div>선택 : 카카오뱅크 3333-****-1796</div>
+                <div>선택 :</div>
+                <div class="d-flex">
+                    <div>Naver Pay</div>
+                    <div>3333-****-1796</div>
+                </div>
             </div>
         </div>
     `;
@@ -591,7 +672,6 @@
                     $('#naverPay').append(naverPayContent);
                     $('#naverPay').find('.naver-pay-contents').css('animation', 'showPaymentContents 0.5s ease-in-out');
                 }
-
                 // pay-contents 클래스를 가진 div중에서, naver-pay-contents 클래스를 가진 div를 제외한 나머지 div를 제거
                 $('.pay-contents').not('.naver-pay-contents').remove();
 
@@ -661,7 +741,6 @@
                 $('.pay-contents').not('.normal-pay-contents').remove();
             }
         });
-
 
         $('#normal-mobile-1').click(function () {
             $('#normalPay').find('.normal-pay-contents').append(normalMobile);

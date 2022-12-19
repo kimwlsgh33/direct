@@ -58,6 +58,22 @@ public class CartDAOImpl implements CartDAO {
         return result;
     }
 
+    @Override
+    public int plusCount(CartDTO cartDTO) throws Exception {
+        logger.info("CartDAOImpl plusCount() 장바구니 든 프로덕트 개수....");
+        int result = sqlSession.update(namespace + ".plusCount", cartDTO);
+        logger.info("CartDAOImpl plusCount() Data ==> " + result);
+        return result;
+    }
+
+    @Override
+    public int minusCount(CartDTO cartDTO) throws Exception {
+        logger.info("CartDAOImpl minusCount() 장바구니 든 프로덕트 개수....");
+        int result = sqlSession.update(namespace + ".minusCount", cartDTO);
+        logger.info("CartDAOImpl minusCount() Data ==> " + result);
+        return result;
+    }
+
 
     //================================================================================================
     // forOrder

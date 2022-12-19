@@ -9,8 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- reset.css -->
-<link href="${ctx}/resources/styles/reset.css" rel="stylesheet">
+<link href="${ctx}/resources/styles/myInfo.css" rel="stylesheet">
 
 
 </head>
@@ -22,7 +21,7 @@
 			<li><h2 id="mypage">My page</h2></li>
 			<li><h4>My 쇼핑</h4></li>
 			<li><a href = "${ctx}/user/myInfo">주문목록/배송조회</a></li>
-			<li><a href="${ctx}/product/productRefund?user_id=${user.user_id}">취소/반품/교환/환불 내역</a></li>
+			<li><a href="${ctx}/order/productRefund?user_id=${user.user_id}">취소/반품/교환/환불 내역</a></li>
 			<li><hr class="dropdown-divider"></li>
 			<li><h4>My 혜택</h4></li>
 			<li><a href="${ctx}/coupon/coupon?user_id=${user.user_id}">할인쿠폰</a></li>

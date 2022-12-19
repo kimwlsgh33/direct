@@ -161,7 +161,7 @@
                 <%--========================================================================================================  --%>
                 <div class="d-flex flex-wrap gap-2">
                     <c:forEach var="itemDTO" items="${searchList}">
-                        <a style="text-decoration: none; color: black" href="#">
+                        <a style="text-decoration: none; color: black" href="${ctx}/item/detail?item_id=${itemDTO.itemVO.item_id}">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
