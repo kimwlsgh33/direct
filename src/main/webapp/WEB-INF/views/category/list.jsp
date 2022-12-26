@@ -26,7 +26,7 @@
             <th scope="col">Color</th>
             <th scope="col" class="d-flex justify-content-between align-items-end">
                 <div>Category Name</div>
-                <a href="${ctx}/store/categoryVO/createForm" class="btn btn-success">Create</a>
+                <a href="${ctx}/category/createForm" class="btn btn-success">Create</a>
             </th>
         </tr>
     </thead>

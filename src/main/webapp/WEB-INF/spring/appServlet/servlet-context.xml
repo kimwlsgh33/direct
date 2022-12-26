@@ -60,21 +60,17 @@
 		</beans:property>
 	</beans:bean>
 
-
 	<!-- 로그인 인터셉터 bean등록 -->
-<!--	<beans:bean id="LoginInterceptor" class="com.linker.direct.common.interceptor.LoginInterceptor" />-->
+	<beans:bean id="LoginInterceptor" class="com.linker.direct.common.interceptor.LoginInterceptor" />
 <!--	<beans:bean id="AdminInterceptor" class="com.linker.direct.common.interceptor.AdminInterceptor" />-->
 
 	<!-- 로그인 인터셉터 매핑 ( 어떤 View에 적용할 지 ) -->
-	<!--
 	<interceptors>
 		<interceptor>
-			<mapping path="/**"/>
-			<mapping path="/categoryVO/create"/>
-			<mapping path="/itemVO/create*"/>
-			<mapping path="/test/**"/>
+			<mapping path="/**/create*"/>
+			<mapping path="/**/update*"/>
+			<mapping path="/user/myInfo"/>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 	</interceptors>
-	-->
 </beans:beans>

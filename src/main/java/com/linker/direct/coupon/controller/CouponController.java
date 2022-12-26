@@ -1,5 +1,6 @@
 package com.linker.direct.coupon.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,4 +59,50 @@ public class CouponController {
 		
 	}
 	
+	@RequestMapping(value="/createForm", method=RequestMethod.GET)
+	public String createForm() throws Exception {
+		return "/coupon/create";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/create", method=RequestMethod.POST)
+	public String create(CouponDTO couponDTO) throws Exception {
+		couponService.create(couponDTO);
+		return "success";
+	}
+
+	@RequestMapping(value="/listAll", method=RequestMethod.GET)
+	public String listAll(Model model) throws Exception {
+		List<CouponDTO> couponList = couponService.listAll();
+
+		if(couponList != null) {
+			model.addAttribute("couponList", couponList);
+			Timestamp now = new Timestamp(System.currentTimeMillis());
+			model.addAttribute("now", now);
+		}
+
+		return "/coupon/list";
+	}
+
+	@RequestMapping(value="/updateForm", method=RequestMethod.GET)
+	public String updateForm(Long coupon_id, Model model) throws Exception {
+		CouponDTO couponDTO = couponService.read(coupon_id);
+		model.addAttribute("couponDTO", couponDTO);
+		return "/coupon/update";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String update(CouponDTO couponDTO) throws Exception {
+		couponService.update(couponDTO);
+		return "success";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(Long coupon_id) throws Exception {
+		couponService.delete(coupon_id);
+		return "success";
+	}	
+
 }

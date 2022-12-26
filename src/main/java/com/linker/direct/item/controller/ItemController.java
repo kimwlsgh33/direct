@@ -7,12 +7,14 @@ import com.linker.direct.item.dto.ItemDTO;
 import com.linker.direct.item.dto.ItemResultDTO;
 import com.linker.direct.item.vo.ItemOptionVO;
 import com.linker.direct.item.vo.ItemVO;
+import com.linker.direct.review.service.ReviewService;
 import com.linker.direct.user.constant.Role;
 import com.linker.direct.user.vo.UserVO;
 import com.linker.direct.category.CategoryVO;
 // dto
 import com.linker.direct.cart.dto.CartDTO;
 import com.linker.direct.item.dto.ItemFormDTO;
+import com.linker.direct.item.dto.ItemRecommDTO;
 // service
 import com.linker.direct.item.service.ItemService;
 import com.linker.direct.category.CategoryService;
@@ -41,6 +43,7 @@ import java.util.List;
 public class ItemController {
     private final ItemService itemService;
     private final CategoryService categoryService;
+    private final ReviewService reviewService;
 
     //==================================================================================================
     // 상품 등록 페이지
@@ -98,14 +101,17 @@ public class ItemController {
         }
 
         String keyword = cri.getKeyword();
-        //log.info("keyword ==> " + keyword);
+        Long category_id = cri.getCategory_id();
         // 키워드 검사
-        if(keyword == "") {
-            mav.setViewName("/item/noSearch");
+        if(category_id != null) {
+        	cri.setCategory_id(category_id);
         }
 
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
+        
+        // 카테고리
+        mav.addObject("categoryList", categoryService.listAll());
 
         // 상품 전체 개수를 구한다.
         pageMaker.setTotalCount(itemService.totalCount(cri));
@@ -113,8 +119,13 @@ public class ItemController {
 
         // cri에 해당하는 게시글을 가져와서 View에게 넘겨준다.
         List<ItemDTO> searchList = itemService.searchListPaging(cri);
+        // 검색 결과 없을 경우
+        if(searchList.size() == 0) {
+            mav.setViewName("/item/noSearch");
+            return mav;
+        }
+        
         mav.addObject("searchList", searchList);
-
         // 페이지 메뉴
         mav.addObject("pageMaker", pageMaker);
 
@@ -139,9 +150,22 @@ public class ItemController {
     //==================================================================================================
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView detail(ItemVO itemVO) throws Exception {
-        ModelAndView mav = new ModelAndView("/item/detail");
+        ModelAndView mav = new ModelAndView("/detail/DetailProduct");
         ItemDTO itemDTO = itemService.read(itemVO);
         mav.addObject("itemDTO", itemDTO);
+        mav.addObject("reviewCount", reviewService.reviewCount(itemVO.getItem_id()));
+        mav.addObject("reviewList", reviewService.reviewList(itemVO.getItem_id()));
         return mav;
     }
+    
+    //==================================================================================================
+    // 상품 추천 목록
+    //==================================================================================================
+    @ResponseBody
+    @RequestMapping(value = "/recommendList", method = RequestMethod.GET)
+    public ResponseEntity<List<ItemRecommDTO>> recommendList() throws Exception {
+        List<ItemRecommDTO> recommendList = itemService.recommendList();
+        return new ResponseEntity<>(recommendList, HttpStatus.OK);
+    }
+    
 }

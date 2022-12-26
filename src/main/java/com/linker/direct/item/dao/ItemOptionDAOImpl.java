@@ -24,8 +24,8 @@ public class ItemOptionDAOImpl implements ItemOptionDAO {
         return sqlSession.selectOne(NAMESPACE + ".read", itemOptionVO);
     }
     
-    @Override
-    public ItemOptionVO readByItem(ItemVO itemVO) throws DataAccessException {
-    	return sqlSession.selectOne(NAMESPACE + ".read", itemVO);
-    }
+//    @Override
+//    public ItemOptionVO readByItem(ItemVO itemVO) throws DataAccessException {
+//    	return sqlSession.selectOne(NAMESPACE + ".read", itemVO);
+//    }
 }

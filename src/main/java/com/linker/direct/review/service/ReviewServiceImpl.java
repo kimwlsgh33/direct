@@ -72,5 +72,16 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ProductDTO> read(Long user_id) throws Exception {
 		return productDAO.read(user_id);
 	}
+	
+	//================================================================================================
+	@Override
+	public List<ReviewDTO> reviewList(Long item_id) throws Exception {
+		return reviewDAO.reviewList(item_id);
+	}
+
+	@Override
+	public int reviewCount(Long item_id) throws Exception {
+		return reviewDAO.reviewCount(item_id);
+	}
 
 }

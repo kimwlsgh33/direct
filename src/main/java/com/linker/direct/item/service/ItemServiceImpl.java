@@ -12,6 +12,7 @@ import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.item.dto.ItemDTO;
 import com.linker.direct.item.dto.ItemFormDTO;
 import com.linker.direct.item.dto.ItemImgSaveDTO;
+import com.linker.direct.item.dto.ItemRecommDTO;
 // dao
 import com.linker.direct.item.dao.ItemDAO;
 // lib
@@ -80,21 +81,21 @@ public class ItemServiceImpl implements ItemService {
         ItemVO resultItem = itemDao.read(itemVO);
 
         // 상품 카테고리 가져옴
-        CategoryVO categoryVO = categoryService.readByItem(resultItem);
+        String categoryName = categoryService.readByItem(resultItem);
 
         // 상품 이미지 가져옴
         List<ItemImgReadDTO> itemImgs = itemImgService.readByItem(resultItem);
         
         // 추가 아이템 옵션 정보 가져옴
-        ItemOptionVO itemOptionVO = itemOptionService.readByItem(resultItem);
+        //ItemOptionVO itemOptionVO = itemOptionService.readByItem(resultItem);
 
         // 상품, 카테고리, 상품 이미지 DTO에 저장
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItemVO(resultItem);
-        itemDTO.setCategoryVO(categoryVO);
+        itemDTO.setCategoryName(categoryName);
         itemDTO.setImgList(itemImgs);
         //추가
-        itemDTO.setItemOptionVO(itemOptionVO);
+        //itemDTO.setItemOptionVO(itemOptionVO);
         return itemDTO;
     }
 
@@ -135,5 +136,26 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<ItemVO> searchListAll(SearchCriteria cri) throws Exception {
         return itemDao.searchListAll(cri);
+    }
+    
+    //==================================================================================================
+    // 추천 상품 목록
+    //==================================================================================================
+    @Override
+    public List<ItemRecommDTO> recommendList() throws Exception {
+        List<ItemRecommDTO> before = itemDao.recommendList();
+
+
+        List<ItemRecommDTO> after = new ArrayList<>();
+        for(ItemRecommDTO itemRecommDTO : before) {
+            // 상품 이미지 가져옴
+            String base64 = itemImgService.readImgFileUrl(itemRecommDTO.getImg_url());
+            // 상품, 상품 이미지 DTO에 저장
+            itemRecommDTO.setImg_url(base64);
+            // 리스트에 추가
+            after.add(itemRecommDTO);
+        }
+
+        return after;
     }
 }

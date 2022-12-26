@@ -11,5 +11,5 @@ public interface ItemImgService {
     void upload(ItemImgSaveDTO itemImgSaveDto) throws Exception;
     List<ItemImgReadDTO> readByItem(ItemVO itemVO) throws Exception;
 
-    String readImgFileUrl(ItemImgVO itemImgVO) throws Exception;
+    String readImgFileUrl(String img_name) throws Exception;
 }

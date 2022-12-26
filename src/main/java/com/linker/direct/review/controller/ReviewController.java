@@ -68,6 +68,19 @@ public class ReviewController {
 				
 		}
 		
+//		// 리뷰 목록
+//		@RequestMapping(value = "/reviewList", method = RequestMethod.GET)
+//		public String reviewList(Model model) throws Exception {
+//
+//			logger.info("ReviewController 리뷰 목록 가져오기......");
+//			List<ReviewDTO> reviewList = reviewService.reviewList();
+//
+//			logger.info("리뷰 목록 => " + reviewList);
+//			model.addAttribute("reviewList", reviewList);
+//
+//			return "/detail/reviewpage";
+//		}
+		
 		// 리뷰 상세 조회
 		@RequestMapping(value = "/reviewDetail", method = RequestMethod.GET)
 		public String reviewDetail(Locale locale, Model model, HttpServletRequest request) throws Exception {

@@ -29,6 +29,9 @@
         align-items: center;
     }
 
+    #myModal {
+        margin-right: 10px;
+    }
     #tooltipText {
         display: none;
         position: absolute;
@@ -41,6 +44,23 @@
         font-size: 0.8em;
         color: gray;
         background: pink;
+    }
+    .navbar-form {
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown-menu li {
+        margin-top:5px;
+    }
+
+    .dropdown-menu li a {
+        padding: 10px;
+        color: gray;
+    }
+
+    .dropdown-menu li a:hover {
+        color: black;
     }
 </style>
 
@@ -67,28 +87,29 @@
         <div class="w-50 ">
             <ul class="nav d-flex align-items-center justify-content-evenly">
                 <li class="nav-item dropdown user">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
                         <i class="fas fa-user-circle" style="color: black" ></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: black">
                         <li><a href="${ctx}/user/signIn">로그인(myeong)</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a href="${ctx}/user/registerAjax_page">회원가입(AJAX))</a></li>
                         <li><a href="${ctx}/user/listMembers">회원목록</a></li>
+                        <li><a href="${ctx}/user/terms_page.do">회원가입</a></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a href="${ctx}/admin">INDEX ADMIN</a></li>
                         <li><a href="${ctx}/user/myInfo">내 정보</a></li>
 
                     </ul>
                 </li>
-                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList(1)">
-                    <form method="get" action="${ctx}/cart/cartList">
-                    <i class="fas fa-shopping-cart" style="color: black" ></i>
-                    </form>
-                </li>
-                <div class="d-flex justify-content-end">
+                <div class="d-flex">
                     <form class="navbar-form" method="post" action="${ctx}/user/login">
                         <c:choose>
                             <c:when test="${isLogOn == true && user != null}">
+                                <li class="nav-item " id="myModal" data-bs-toggle="modal" data-bs-target="#shoppingModal" onclick="fn_cartList()">
+                                    <form method="get" action="${ctx}/cart/cartList">
+                                        <i class="fas fa-shopping-cart" style="color: black" ></i>
+                                    </form>
+                                </li>
                                 <div class="d-flex" >
                                     <p style="color: gray; margin-top: 10px; margin-right: 20px;"><b>${user.id}님 환영합니다.</b></p>
                                     <a href="${ctx}/user/logout" class="btn btn-outline-primary">로그아웃</a>
@@ -137,6 +158,7 @@
         </div>
     </div>
 </div>
+
 <script>
     //tooltip 구현
     $(document).ready(function(){
@@ -156,8 +178,7 @@
 </script>
 <script>
 
-    function fn_cartList(user_id) {
-        // cartController에서 ajax로 cartList를 가져온다.
+    function fn_cartList() {
         $.ajax({
             url: "${ctx}/cart/cartList",
             type: "get",
@@ -169,7 +190,6 @@
                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
-
     }
 
 </script>

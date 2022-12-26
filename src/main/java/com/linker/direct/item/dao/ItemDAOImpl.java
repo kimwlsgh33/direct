@@ -4,7 +4,7 @@ package com.linker.direct.item.dao;
 import com.linker.direct.common.util.SearchCriteria;
 import com.linker.direct.item.vo.ItemVO;
 import com.linker.direct.item.dto.ItemDTO;
-import com.linker.direct.search.dto.itemDTO; // search itemDTO
+import com.linker.direct.item.dto.ItemRecommDTO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.dao.DataAccessException;
@@ -60,5 +60,10 @@ public class ItemDAOImpl implements ItemDAO {
     public List<ItemVO> searchListAll(SearchCriteria cri) throws DataAccessException {
         List<ItemVO> searchListAll = sqlSession.selectList(NAMESPACE + ".searchListAll", cri);
         return searchListAll;
+    }
+    
+    @Override
+    public List<ItemRecommDTO> recommendList() throws DataAccessException {
+        return sqlSession.selectList(NAMESPACE + ".recommendList");
     }
 }

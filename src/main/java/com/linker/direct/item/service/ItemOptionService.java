@@ -8,5 +8,5 @@ public interface ItemOptionService {
 
     ItemOptionVO read(ItemOptionVO itemOptionVO) throws Exception;
     
-    public ItemOptionVO readByItem(ItemVO itemVO) throws Exception;
+    //public ItemOptionVO readByItem(ItemVO itemVO) throws Exception;
 }

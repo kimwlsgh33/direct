@@ -42,10 +42,8 @@ public class UserController {
 
 	// 로그인 화면
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
-	public ModelAndView signIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/user/signIn");
-		return mav;
+	public String signIn() {
+        return "user/signIn";
 	}
 
 	// 로그인 처리
@@ -122,7 +120,8 @@ public class UserController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result", result);
-		mav.setViewName("/user/terms");
+		//mav.setViewName("/user/terms");
+		mav.setViewName("/home");
 		
 		return mav;
 	}
@@ -294,18 +293,39 @@ public class UserController {
 
 		// 가입 진행 후 약관 동의 정보 저장
 		@RequestMapping(value = "/addTerms", method = RequestMethod.POST)
-		public ModelAndView addTerms(TermVO term, RedirectAttributes rAttr, HttpServletRequest request,
-				HttpServletResponse response) throws Exception {
+		public ModelAndView addTerms(UserVO userVO) throws Exception {
 			
-			logger.info("MemberControllerImpl 약관 동의 정보 처리() 시작.....");
-			
-			int result = 0;
-			result = userService.addTerms(term);
-			
-			ModelAndView mav = new ModelAndView();
-			rAttr.addFlashAttribute("result", result);
-			mav.setViewName("/user/signIn");
-			
-			return mav;
+            String termsResult = userVO.getTerms_status();
+            System.out.println("userVO.getTerms_status() ==> " + termsResult);
+            ModelAndView mav = new ModelAndView("/user/registerAjax");
+            mav.addObject("termsResult", termsResult);
+
+            return mav;
 		}
+
+        // 위에거 페이지 버젼 우선 열기
+    	@RequestMapping(value = "/terms_page.do", method = RequestMethod.GET)
+    	public ModelAndView terms_page(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("user/terms_page");
+
+            return mav;
+        }
+
+
+        // 가입 진행 후 약관 동의 정보 저장 (page)
+    	@RequestMapping(value = "addTerms_page.do", method = RequestMethod.POST)
+    	public ModelAndView addTerms_page(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+            String termsResult = userVO.getTerms_status();
+
+            System.out.println("userVO.getTerms_status() ==> " + termsResult);
+
+            ModelAndView mav = new ModelAndView();
+            mav.addObject("termsResult", termsResult);
+            mav.setViewName("/user/registerAjax_page");
+
+            return mav;
+        }
 }

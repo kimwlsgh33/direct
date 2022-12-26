@@ -16,19 +16,43 @@ public class CouponService {
 	@Inject
 	CouponDAO couponDAO;
 	
-	// 쿠폰등록 할 수 있는 화면으로 가기(UserCouponDTO 정보가져오기)
+	// 유저가 쿠폰등록 할 수 있는 화면으로 가기(UserCouponDTO 정보가져오기)
 	public List<UserCouponDTO> userCoupon(Long user_id) throws Exception {
 		return couponDAO.userCoupon(user_id);
 	}
 	
-	// 쿠폰 등록
+	// 유저 쿠폰 등록
 	public int couponInsert(UserCouponDTO usercouponDTO) throws Exception {
 		return couponDAO.couponInsert(usercouponDTO);
 	}
 	
-	// 쿠폰 리스트
+	// 유저 쿠폰 리스트
 	public List<CouponDTO> couponList() throws Exception {
 		return couponDAO.couponList();
+	}
+	
+	//=======================================================
+	// 쿠폰 생성
+	//=======================================================
+
+	public void create(CouponDTO couponDTO) throws Exception {
+		couponDAO.create(couponDTO);
+	}
+
+	public List<CouponDTO> listAll() throws Exception {
+		return couponDAO.listAll();
+	}
+
+	public CouponDTO read(Long coupon_id) throws Exception {
+		return couponDAO.read(coupon_id);
+	}
+
+	public void update(CouponDTO couponDTO) throws Exception {
+		couponDAO.update(couponDTO);
+	}
+
+	public void delete(Long coupon_id) throws Exception {
+		couponDAO.delete(coupon_id);
 	}
 	
 }

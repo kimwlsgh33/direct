@@ -11,6 +11,5 @@ public interface CategoryDAO {
     CategoryVO read(CategoryDTO categoryDto) throws DataAccessException;
     void update(CategoryVO categoryVO) throws DataAccessException;
     void delete(CategoryDTO categoryDto) throws DataAccessException;
-
-    CategoryVO readByItem(ItemVO itemVO) throws DataAccessException;
+    String readByItem(ItemVO itemVO) throws DataAccessException;
 }

@@ -24,5 +24,12 @@ public interface ReviewService {
 	
 	// 리뷰 등록 화면 띄울 때 구매한 상품 정보 가져오기
 	public List<ProductDTO> read(Long user_id) throws Exception;
+	
+	//================================================================================================
+	// 상품 리뷰 가져오기
+	public List<ReviewDTO> reviewList(Long item_id) throws Exception;
+
+	// 상품 리뷰 개수 가져오기
+	public int reviewCount(Long item_id) throws Exception;
 
 }

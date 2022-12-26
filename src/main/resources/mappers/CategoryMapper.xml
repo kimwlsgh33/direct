@@ -33,4 +33,11 @@
     SELECT * FROM category WHERE category_id = #{category_id}
     ]]>
   </select>
+  <select id="readNameByItem" parameterType="com.linker.direct.item.vo.ItemVO" resultType="java.lang.String">
+    <![CDATA[
+        SELECT name FROM category WHERE category_id = #{category_id}
+    ]]>
+  </select>
+
+
 </mapper>

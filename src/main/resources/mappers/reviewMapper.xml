@@ -59,6 +59,24 @@
 		]]>
 	</delete>
 	
+	<!-- 권우형 -->
+	<select id="listByItem" parameterType="java.lang.Long" resultType="com.linker.direct.review.dto.ReviewDTO">
+		<![CDATA[
+		SELECT i.name, i.price, i.created_at, i.updated_at, r.*
+		FROM item i
+		INNER JOIN review r
+		ON i.item_id = r.item_id
+		WHERE i.item_id = #{item_id}
+		]]>
+	</select>
 
+	<!-- 리뷰 갯수 -->
+	<select id="countByItem" resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT count(*)
+		FROM review
+		WHERE item_id = #{item_id}
+		]]>
+	</select>
 
 </mapper>

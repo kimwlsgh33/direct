@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 
 <!-- reset.css -->
-<link href="${ctx}/resources/styles/reset.css" rel="stylesheet">
+<link href="${ctx}/resources/styles/myInfo.css" rel="stylesheet">
 
 
 </head>

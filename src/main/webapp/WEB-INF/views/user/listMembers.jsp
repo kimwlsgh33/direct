@@ -36,9 +36,9 @@ if(session.getAttribute("isLogOn") == null || session.getAttribute("isLogOn").eq
 
 <div class="container">
 	<h1 align="center">회원 전체 목록</h1>
-	<div>
-		<a href="${ctx}/member/logout" class="btn btn-sm btn-outline-success"><span class="glyphicon glyphicon-log-out">로그아웃</span></a>
-		<a class="btn btn-sm btn-outline-success" href="${ctx}/member/loginModalForm">로그인(Modal)</a>
+	<div style="margin-bottom: 20px;">
+		<a href="${ctx}/user/logout" class="btn btn-sm btn-outline-primary"><span class="glyphicon glyphicon-log-out">로그아웃</span></a>
+		<a class="btn btn-sm btn-outline-primary" href="${ctx}/user/signIn">로그인</a>
 	</div>
 	<table class="table table-bordered table-striped table-hover">
 		<tr class="info">

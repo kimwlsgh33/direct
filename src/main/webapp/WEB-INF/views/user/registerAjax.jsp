@@ -75,7 +75,7 @@
 <!-- 메뉴바 -->
 
 <div class="container" id="back0">
-	<form class="form-horizontal" method="post" action="${ctx}/member/addMember">
+	<form class="form-horizontal" method="post" action="${ctx}/user/addMember">
 		<div class="form-group col-sm-6 shadow">
 			<span class="input-group">
 				<label for="id" class="label">아 이 디</label>
@@ -84,13 +84,13 @@
 					onClick="fn_idCheck();" value="N">중복확인</button>
 			</span>
 		</div><br>
-		<div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
 			<span class="input-group">
 		    	<label for="id" class="label">비밀번호</label>
 		        <input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" placeholder="Enter PASSWORD"/>
 			</span>
 	    </div><br>
-	    <div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
 	    	<span class="input-group">
 		    	<label for="id" class="label">비밀번호 확인</label>
 		        <input type="password" class="form-control" id="repwd" name="repwd" maxlength="20" placeholder="Enter PASSWORD RE"/>
@@ -130,19 +130,19 @@
        		<span id="mailConfirm"></span>
        	</div><br>
        			
-      	<div class="form-group col-sm-7 shadow">
+                   <div class="form-group col-sm-8 shadow">
       		<span class="input-group">
 	    		<label for="id" class="label">휴대폰 번호</label>
 	            <input type="text" class="form-control" id="phone" name="phone" maxlength="11" placeholder="Enter PHONE NUMBER (without -)"/>
       		</span>
 	    </div><br>
-	    <div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
 	    	<span class="input-group">
 	    		<label for="id" class="label">생년월일</label>
 	            <input type="text" class="form-control" id="birthday" name="birthday" maxlength="8" placeholder="Enter Your BirthDay (ex : 19900101)" />
 	    	</span>
 	    </div><br>
-  		<div class="form-group col-sm-7 shadow">
+        <div class="form-group col-sm-8 shadow">
   			<span class="input-group">
 	  			<label for="id" class="label">우편번호</label>
 				<input type="text" 		class="form-control" name="zip_code" id="zip_code" readonly />
@@ -155,18 +155,20 @@
 				<input type="text" class="form-control" id="address" name="address" />
 			</span>
 		</div><br>
+        <div>
+            <input type="hidden" name="terms_status" id="terms_status" value="${termsResult}" />
+        </div>
 		<div class="form-group col-sm-8 shadow">
 			<span class="input-group">
 				<label for="id" class="label">상세주소</label>
 				<input type="text" class="form-control" id="address_detail" name="address_detail" />
-				
 			</span>
 		</div><br><hr>
 		<div class="form-group">
       		<div class="btn-group" style="float: right;">
-	            <button type="reset"  class="shadow btnn" id="reset">입력내용 초기화</button>
+      		    <button type="reset" class="shadow btnnn" id="reset">입력내용 초기화</button>
 	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            <button type="submit" class="shadow btnn" id="submit">다음</button>
+                <button type="submit" class="shadow btnnn" id="submit">다음</button>
       		</div>
 	    </div>
       	<!--  <div class="form-group">
@@ -238,7 +240,7 @@
 function fn_idCheck() {
 	// alert($("#id").val());
 	$.ajax({
-		url:		"/member/idCheck",
+        url:		"/user/idCheck",
 		type:		"post",
 		dataType:	"json",
 		data:		{"id" : $("#id").val()},
@@ -303,10 +305,10 @@ $(document).ready(function() {
 			$("#email1").focus();
 			return false;
 		}
-});
+    });
 
 	// 아이디 입력란에 글자를 입력하면 실시간으로 사용가능한 아이디 인지 아닌지 검사한다.
-	$("#id").on("input", function() {
+	/*$("#id").on("input", function() {
 		// alert("글자를 입력하셨습니다. => " + $("#id").val());
 		
 		// 입력된 글자의 값을 변수에 저장한다.
@@ -314,7 +316,7 @@ $(document).ready(function() {
 
 		// 입력한 아이디가 서버에 존재하는 지 알아낸다.
 		$.ajax({
-			url:		"/member/idCheck",
+			url:		"/user/idCheck",
 			type:		"post",
 			dataType:	"json",
 			data:		{"id" : $("#id").val()},
@@ -345,7 +347,7 @@ $(document).ready(function() {
 		});
 		
 		
-	});
+	});*/
 	
 });
 </script>
@@ -368,6 +370,7 @@ $('#selectEmail').change(function(){
 		}
    });
 });
+
 </script>
 
 <!-- 입력받은 이메일 값 합쳐서 저장하고 이메일값으로 인증번호 발송 -->
@@ -377,7 +380,14 @@ var code = "";
 
 function fn_emailConfirm() {
 	$("#email").val($("#email1").val() + "@" + $("#email2").val());
-	alert("인증번호가 전송되었습니다.");
+
+    if($("#email").val() != "") {
+        alert("인증번호가 전송되었습니다.");
+    } else {
+        alert("이메일을 입력해주세요.");
+        return false;
+    }
+
 	
 	var confirmInput = $(".confirmInput");	// 입력란
 	var confirmResult = $(".confirmComp");	// 확인버튼
@@ -387,7 +397,7 @@ function fn_emailConfirm() {
 	
 	$.ajax({
 		
-		url		: "/member/mailCheck",
+		url		: "/user/mailCheck",
 		type	: "GET",
 		dataType: 'text',
 		data    : {"email" : $("#email").val()},

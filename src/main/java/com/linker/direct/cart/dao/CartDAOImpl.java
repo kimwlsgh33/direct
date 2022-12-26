@@ -1,6 +1,9 @@
 package com.linker.direct.cart.dao;
 
 import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.order.dto.OrderFormDTO;
+import com.linker.direct.user.vo.UserVO;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +22,7 @@ public class CartDAOImpl implements CartDAO {
     private static final Logger logger = LoggerFactory.getLogger(CartDAOImpl.class);
 
     @Override
-    public List<CartDTO> CartList() throws Exception {
+    public List<CartDTO> CartList(UserVO userVO) throws Exception {
         logger.info("CartDAOImpl CartList() 장바구니 목록 가져오기.....");
         List<CartDTO> cartList = sqlSession.selectList(namespace + ".cartList");
         logger.info("CartDAOImpl CartList() Data ==> " + cartList);
@@ -57,5 +60,29 @@ public class CartDAOImpl implements CartDAO {
         return result;
     }
 
+    @Override
+    public int plusCount(CartDTO cartDTO) throws Exception {
+        logger.info("CartDAOImpl plusCount() 장바구니 든 프로덕트 개수....");
+        int result = sqlSession.update(namespace + ".plusCount", cartDTO);
+        logger.info("CartDAOImpl plusCount() Data ==> " + result);
+        return result;
+    }
+
+    @Override
+    public int minusCount(CartDTO cartDTO) throws Exception {
+        logger.info("CartDAOImpl minusCount() 장바구니 든 프로덕트 개수....");
+        int result = sqlSession.update(namespace + ".minusCount", cartDTO);
+        logger.info("CartDAOImpl minusCount() Data ==> " + result);
+        return result;
+    }
+
+
+    //================================================================================================
+    // forOrder
+    //================================================================================================
+    public List<OrderFormDTO> forOrder(UserVO userVO) throws Exception {
+        List<OrderFormDTO> cartList = sqlSession.selectList(namespace + ".forOrder", userVO);
+        return cartList;
+    }
 
 }

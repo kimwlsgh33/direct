@@ -22,8 +22,8 @@ public class ItemOptionServiceImpl implements ItemOptionService {
         return itemOptionDAO.read(itemOptionVO);
     }
     
-    @Override
-    public ItemOptionVO readByItem(ItemVO itemVO) throws Exception {
-    	return itemOptionDAO.readByItem(itemVO);
-    }
+//    @Override
+//    public ItemOptionVO readByItem(ItemVO itemVO) throws Exception {
+//    	return itemOptionDAO.readByItem(itemVO);
+//    }
 }

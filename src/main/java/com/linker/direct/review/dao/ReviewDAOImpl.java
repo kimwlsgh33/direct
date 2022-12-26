@@ -4,6 +4,7 @@ import com.linker.direct.review.dto.ReviewDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
@@ -61,7 +62,18 @@ public class ReviewDAOImpl implements ReviewDAO {
 		logger.info("ReviewDAOImpl  리뷰 삭제하기.....");
 		return sqlSession.delete(namespace + ".delete", review_no);
 	}
+// 디테일에서 필요한것
+	@Override
+	public List<ReviewDTO> reviewList(Long item_id) throws DataAccessException {
+		logger.info("ReviewDAOImpl 리뷰 목록 가져오기......");
+		List<ReviewDTO> reviewList = sqlSession.selectList(namespace + ".listByItem", item_id);
+		logger.info("BoardDAOImpl boardList() Data = > " + reviewList);
+		return reviewList;
+	}
 
-	
+	@Override
+	public int reviewCount(Long item_id) throws DataAccessException {
+		return sqlSession.selectOne(namespace + ".countByItem", item_id);
+	}
 
 }

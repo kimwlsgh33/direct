@@ -31,6 +31,7 @@
 
     .flip-card-front, .flip-card-back {
         position: absolute;
+<%--         object-fit: cover; --%>
         width: 100%;
         height: 100%;
         -webkit-backface-visibility: hidden;
@@ -49,7 +50,7 @@
     }
 
     .flip-card-back {
-        background-image: linear-gradient(315deg, #FFFFFF, black);
+        background-image: linear-gradient(315deg, #FFFFFF, #EEEEEE);
         transform: rotateY(180deg);
     }
     .flip-card-back img {
@@ -101,9 +102,12 @@
     <div class="mainContainer flex-wrap" style=""> <!-- 헤더 밑 전체 부분 -->
         <div class="mainContainer_style "> <!-- 전체 부분 포지션 잡기 위한 div  -->
         <%--            <h2 class="blind">검색결과</h2>--%>
+            <jsp:include page="../common/categoryTop.jsp" flush="false"/>
             <div class="d-flex align-items-center"  style="height: 40px"> <!-- "에 대한 검색 결과입니다" 큰 div -->
                 <div class="result_info_text" >
-                    <p id="searchResult"> <em style="color: gray; font-size: 20px;">${keyword}</em> 에 대한 검색 결과입니다. </p>
+                    <c:if test="${keyword} != null">
+                        <p id="searchResult"> <em style="color: gray; font-size: 20px;">${keyword}</em> 에 대한 검색 결과입니다. </p>
+                    </c:if>
                 </div>
             </div>
             <div class="filter_finder"> <!-- 결과 필터 부분 큰 div-->
@@ -136,7 +140,7 @@
                         <a id="lowPrice"  href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=lowPrice&perPageNum=${perPageNum}" role="button" class="col" style="color: black">낮은 가격순</a>
                         <a id="highPrice" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=highPrice&perPageNum=${perPageNum}" role="button" class="col" style="color: black">높은 가격순</a>
                         <a href="#" role="button" class="col" style="color: black">리뷰 높은순</a>
-                        <a id="product_date" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=product_date" role="button" class="col" style="color: black">등록일 순</a>
+                        <a id="product_date" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=product_date" role="button" class="col" style="color: black">등록일 순</a>
                     </div>
 
 <%--                    dropdown으로 버튼 만들기--%>
@@ -145,47 +149,46 @@
                             ${perPageNum}개씩 보기
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=8">8개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=12">12개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=16">16개씩 보기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/search/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=20">20개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=8">8개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=12">12개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=16">16개씩 보기</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=20">20개씩 보기</a></li>
                         </ul>
                     </div>
                 </div>
                 <%--========================================================================================================  --%>
                 <%--===============================================구 매 할 제 품============================================  --%>
                 <%--========================================================================================================  --%>
-                <div>
-                    <a class="d-flex flex-wrap justify-content-evenly" style="text-decoration: none; color: black" href="#">
-                        <c:forEach var="itemDTO" items="${searchList}">
+                <div class="d-flex flex-wrap gap-2">
+                    <c:forEach var="itemDTO" items="${searchList}">
+                        <a style="text-decoration: none; color: black" href="${ctx}/item/detail?item_id=${itemDTO.itemVO.item_id}">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
-                                    <img src="${itemDTO.imgList[0].img_url}" style="width: 200px; height: 200px;" />
-                                    <h3>${itemDTO.itemVO.name}</h3>
-                                    <h1>${itemDTO.itemVO.price}원</h1>
-                                    <p>${itemDTO.itemVO.created_at}</p>
-                                    <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
-                                        <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                         <img src="${itemDTO.imgList[0].img_url}"/>
+                                        <h3>${itemDTO.itemVO.name}</h3>
+                                        <h1>${itemDTO.itemVO.price}원</h1>
+                                        <p>${itemDTO.itemVO.created_at}</p>
+                                        <div class="progress d-flex" style="width: 80%; margin-left: auto; margin-right: auto" >
+                                            <div class="progress-bar progress-bar-striped bg-warning" style="width: 25%;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                     </div>
-                                </div>
                                     <div class="flip-card-back align-items-center" >
-                                        <form>  <!-- 나중에 제품 상세 페이지로 ACTION 주기. -->
-<%--                                            <img src="${itemDTO.imgList[0].img_url}" style="width: 300px; height: 200px;"/>--%>
+                                        <form>
+                                             <img src="${itemDTO.imgList[0].img_url}"/>
                                         </form>
+                                        <button class="btn btn-outline-dark" id="${itemDTO.itemVO.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${itemDTO.itemVO.item_id})" ><i class="fas fa-shopping-cart"></i></button>
                                     </div>
-                                    <button class="btn btn-outline-dark" id="${itemDTO.itemVO.item_id}" style="width:100%; border-radius: 16px; border-width: 1px;" onclick="fn_addCart(${itemDTO.itemVO.item_id})" ><i class="fas fa-shopping-cart"></i></button>
                                 </div>
                             </div>
-                        </div>
-                        </c:forEach>
-                    </a>
+                        </a>
+                    </c:forEach>
                 </div>
             <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <c:if test="${pageMaker.prev}">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
+                                <a class="page-link" href='<c:url value="${contextPath}/item/searchList?keyword=${keyword}&subFilter=${subFilter}&perPageNum=${perPageNum}&page=${pageMaker.startPage-1 }"/>'>이전</a>
                             </li>
                         </c:if>
                         <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">

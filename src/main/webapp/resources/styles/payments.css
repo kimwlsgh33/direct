@@ -1,0 +1,232 @@
+select {
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.payment-select {
+    background-color: #FEFEFE;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #ccc;
+}
+
+.radio-btn-row:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+.radio-btn-box {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Naver Pay */
+.naver-pay-contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+.naver-pay-contents > dl {
+    display: flex;
+}
+
+.naver-pay-contents > dl:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.naver-pay-contents > dl > dt {
+    width: 100px;
+    font-weight: bold;
+}
+
+/* Account */
+.account-pay-contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.card-view {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.card-view > button:not(:last-child) {
+    border: none;
+    margin-right: 50px;
+}
+
+.card-view > button:not(:last-child):hover {
+    opacity: 0.7;
+}
+
+.card-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: 150px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0.7px 0.7px 0.7px rgba(0, 0, 0, 0.02),
+    1.7px 1.8px 1.8px rgba(0, 0, 0, 0.028),
+    3.3px 3.4px 3.4px rgba(0, 0, 0, 0.035),
+    5.8px 6px 6px rgba(0, 0, 0, 0.042),
+    10.9px 11.3px 11.3px rgba(0, 0, 0, 0.05),
+    26px 27px 27px rgba(0, 0, 0, 0.07);
+}
+
+#kakao-bank {
+    background-color: #FEE500;
+}
+#sc-bank {
+    background-color: #0178AE;
+    color: #FEFEFE;
+}
+#add-bank {
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#add-bank:hover {
+    border: 2px dashed #0178AE;
+}
+#add-bank > div:not(:last-child) {
+    margin-bottom: 8px;
+}
+.btn-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #62C93E;
+    color: #FEFEFE;
+    font-size: 20px;
+}
+.btn-add-meta {
+    font-size: 14px;
+    line-height: 20px;
+    opacity: 0.65;
+}
+
+/* Result */
+.selected-account-box {
+    display: flex;
+    background-color: #14A44D;
+    color: #FEFEFE;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.selected-account-box > div:not(:last-child) {
+    margin-right: 20px;
+}
+
+
+/* Card */
+.card-pay-contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+#naver-pay-card {
+
+    background-color: #E7F3E5;
+    border: 1px solid #62C93E;
+}
+#kb-star-check {
+    background-color: #2a9e9e;
+    color: #FEFEFE;
+}
+
+/* Normal */
+.normal-pay-contents {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.normal-select {
+    /*background-color: blue;*/
+    display:flex;
+    margin-bottom: 10px;
+}
+
+.normal-select > div:not(:last-child) {
+    margin-right: 10px;
+}
+
+.normal-credit-select > div, .normal-mobile-select > div, .normal-bank-select > div  {
+    display: flex;
+    align-items: center;
+}
+
+.normal-credit-select > div:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.normal-credit-meta, .normal-bank-meta {
+    width: 70px;
+    font-size: 14px;
+    line-height: 20px;
+    opacity: 0.65;
+}
+
+.normal-mobile-select > div:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.normal-mobile-meta {
+    width: 90px;
+    font-size: 14px;
+    line-height: 20px;
+    opacity: 0.65;
+}
+
+.normal-mobile-value {
+    display: flex;
+    align-items: center;
+}
+
+.normal-mobile-value > input {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.normal-bank-select > div:not(:last-child) {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.normal-bank-input {
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+@keyframes showPaymentContents {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

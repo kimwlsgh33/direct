@@ -10,5 +10,5 @@ public interface ItemOptionDAO {
 
     ItemOptionVO read(ItemOptionVO itemOptionVO) throws DataAccessException;
 
-	ItemOptionVO readByItem(ItemVO itemVO) throws DataAccessException;
+	//ItemOptionVO readByItem(ItemVO itemVO) throws DataAccessException;
 }

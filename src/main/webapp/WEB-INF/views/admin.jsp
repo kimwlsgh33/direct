@@ -34,8 +34,13 @@
             <a href="${ctx}/order/list" class="btn">list</a>
         </div>
     </div>
-    <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">장바구니</div>
-    <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">유저</div>
+    <div class="w-75 d-flex justify-content-between rounded-3 shadow p-3">
+        <h1>쿠폰</h1>
+        <div>
+            <a href="${ctx}/coupon/createForm" class="btn btn-success">create</a>
+            <a href="${ctx}/coupon/listAll" class="btn">list</a>
+        </div>
+    </div>
 </div>
 <jsp:include page="common/footer.jsp" flush="false"/>
 </body>

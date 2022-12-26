@@ -50,5 +50,10 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- 한글 설정 끝 -->
+	
+	<!-- 세션 유효시간 ( 30분 동안 요청 없으면 삭제 ) -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 
 </web-app>

@@ -19,6 +19,9 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 		<style>
+            #out {
+                background: white;
+            }
 			#pink {
 				background: pink;
 			}
@@ -27,9 +30,8 @@
 			.bgi {
 				background-image: url(${ctx}/resources/icons/logo.svg);
 				background-repeat: no-repeat;
-				background-position: top right;
-				background-size: 900px 850px;
-				margin-top: 100px;
+                background-position: top left;
+                background-size: 300px 200px;
 			}
 			.terms_box {
 				background-color: rgba(80, 80, 80, 0.2);
@@ -72,24 +74,9 @@
 		
 	</head>
 	<body>
-	
-	<jsp:include page="../common/header.jsp" flush="false" />
-	
 		<div class="container bgi" id="bg">
-			<form class="form-horizontal" method="post" action="${ctx}/member/addTerms">
+            <form class="form-horizontal" method="post" action="${ctx}/user/addTerms">
 				<input type="hidden" id="user_id" name="user_id" />
-				<div class="form-group">
-					<div align="center">
-						<h1 align="center">
-							<font color="pink">D </font>
-							<font color="gray">i </font>
-							<font color="pink">r </font>
-							<font color="gray">e </font>
-							<font color="pink">c </font>
-							<font color="gray">t </font>
-						</h1>
-					</div>
-				</div><br>
 				<div class="form-group">
 					<div align="center">
 						<h2 align="center">
@@ -103,7 +90,7 @@
 					<ul>
 						<li>
 							<span class="span">Direct 서비스 이용약관  <b>(필수)</b>
-								<font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="serv" value="serv" name="terms" /></font>
+                                <font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox check" id="serv" value="serv" /></font>
 							</span><br><br>
 							<div class="ssbox">
 								<h5 class="sub">
@@ -163,7 +150,7 @@
 						</li>
 						<li>
 							<span class="span">개인 정보 처리 방침  <b>(필수)</b>
-								<font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="priv" value="priv" name="terms"/></font>
+                                <font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox check" id="priv" value="priv" /></font>
 							</span><br><br>
 							<div class="ssbox">
 								<h5 class="sub">
@@ -201,7 +188,7 @@
 						</li>
 						<li>
 							<span class="span">청약 철회 방침 및 사용자 동의 설정  <b>(필수)</b>
-								<font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="withdraw" value="withdraw" name="terms"/></font>
+                                <font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox check" id="withdraw" value="withdraw" /></font>
 							</span><br><br>
 							<div class="ssbox">
 								<h5 class="sub">
@@ -341,7 +328,7 @@
 						</li>
 						<li>
 							<span class="span">광고 및 홍보성 알림 수신 동의  <b>(선택)</b>
-								<font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="commercial" name="terms"/></font>
+                                <font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox check" id="commercial" name="commercial" value="0" /></font>
 							</span><br><br>
 							<div class="ssbox">
 								<h5 class="sub">
@@ -383,7 +370,7 @@
 						</li>
 						<li>
 							<span class="span">야간 ( 23시 ~ 08시 ) 알림 수신동의  <b>(선택)</b>
-								<font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="night" name="terms"/></font>
+                                <font class="font">동의&nbsp;&nbsp;<input type="checkbox" class="checkbox check" id="night" name="night" value="0" /></font>
 							</span><br><br>
 							<div class="ssbox">
 								<h5 class="sub">
@@ -399,9 +386,9 @@
 						</li>
 					</ul>
 					<div align="center">
-						<a class="btn btn-danger btnn" href="${ctx}/member/removeMember?user_id=${member.user_id}">가입 취소</a>
+                        <button type="button" class="btn btnn" id="out">가입 취소</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="submit" class="btn btnn" id="pink" onclick="fn_compuser()">가입 완료</button>
+                        <button type="submit" class="btn btnn" id="pink" disabled="disabled">다음</button>
 					</div>
 				</div>
 			</form>
@@ -412,54 +399,123 @@
 	<jsp:include page="../common/footer.jsp" flush="false" />
 	</body>
 	
-	<script>
-	
-	$(document).ready(function() {
-		$("#selectAll").click(function() {
-			if($("#selectAll").is(":checked")) $("input[name=terms]").prop("checked", true);
-			else $("input[name=terms]").prop("checked", false);
-		});
+    <script>
 
-		$("input[name=terms]").click(function() {
-			var total = $("input[name=terms]").length;
-			var checked = $("input[name=terms]:checked").length;
+    $(document).ready(function() {
+        $("#selectAll").click(function() {
+            if($("#selectAll").is(":checked")) {
+                $(".check").prop("checked", true);
+                $("#pink").attr("disabled",false);
+            } else {
+                $(".check").prop("checked", false);
+                $("#pink").attr("disabled",true);
+            }
+        });
+        $("#pink").click(function(e){
+            e.preventDefault();
+            fn_termInfo();
+        })
 
-			if(total != checked) $("#selectAll").prop("checked", false);
-			else $("#selectAll").prop("checked", true);
-		});
-	});
-	
-	</script>
-	
-	<script>
-	
-	</script>
-	
-	
-	
-	
-	<script>
-	
-	function fn_compuser() {
-		
-		if($("#commercial").is(":checked")) {
-			$("#commercial").val(1);
-			alert($("#commercial").val());
-		} else {
-			$("#commercial").val(0);
-			alert($("#commercial").val());
-		}
-		if($("#night").is(":checked")) {
-			$("#night").val(1);
-			alert($("#night").val());
-		} else { 
-			$("#night").val(0);
-			alert($("#night").val());
-		}
-		
-		
-	}
-	
-	</script>
+    $(".check").change(function() {
+        if($("#serv").is(":checked") && $("#priv").is(":checked") && $("#withdraw").is(":checked")) {
+            $("#pink").attr("disabled",false);
+        } else {
+            $("#pink").attr("disabled",true);
+        }
+    })
+
+    $(".check").click(function(e) {
+
+    var total = $(".check").length;
+    var checked = $(".check:checked").length;
+
+    if(total != checked) {
+        $("#selectAll").prop("checked", false);
+    } else {
+        $("#selectAll").prop("checked", true);
+    }
+
+    if($("#commercial").is(":checked")) {
+        $("#commercial").val(1);
+        console.log($("#commercial").val());
+    } else {
+        $("#commercial").val(0);
+        console.log($("#commercial").val());
+    }
+
+    if($("#night").is(":checked")) {
+        $("#night").val(1);
+        console.log($("#night").val());
+    } else {
+        $("#night").val(0);
+        console.log($("#night").val());
+    }
+
+    });
+
+
+    $("#out").click(function() {
+        location.href = "/test1";
+    });
+
+
+    });
+
+    // 상태값 저장
+    function fn_compTerms() {
+
+    if($("#commercial").is(":checked")) {
+        $("#commercial").val(1);
+        alert($("#commercial").val());
+    } else {
+        $("#commercial").val(0);
+        alert($("#commercial").val());
+    }
+
+    if($("#night").is(":checked")) {
+        $("#night").val(1);
+        alert($("#night").val());
+    } else {
+        $("#night").val(0);
+        alert($("#night").val());
+    }
+
+
+    }
+
+    // 모달창을 불러오면서 약관 동의상태를 넘겨줌
+    function fn_termInfo() {
+        let termsChoose = "";
+
+    if($("#commercial").is(":checked")) {
+        if($("#night").is(":checked")) {
+            termsChoose = 3;
+        } else {
+            termsChoose = 2;
+        }
+    } else {
+        if($("#night").is(":checked")) {
+            termsChoose = 1;
+        } else {
+            termsChoose = 0;
+        }
+    }
+
+    $.ajax({
+        url:"/user/addTerms",
+        type: "post",
+        data: {
+            "terms_status" : termsChoose
+        },
+        success: function(result){
+            $("#registerModal").html(result);
+
+    }, error: function(request, status, error){
+        alert("code:" + request.status+"\n"+"message:" + request.responseText + "\n" + "error:" + error);
+    }
+    })
+    }
+
+</script>
 	
 </html>

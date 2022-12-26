@@ -2,6 +2,10 @@ package com.linker.direct.cart.service;
 
 import com.linker.direct.cart.dao.CartDAO;
 import com.linker.direct.cart.dto.CartDTO;
+import com.linker.direct.item.service.ItemImgService;
+import com.linker.direct.order.dto.OrderFormDTO;
+import com.linker.direct.user.vo.UserVO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,15 +18,22 @@ public class CartServiceImpl implements CartService {
 
     private static final Logger logger = LoggerFactory.getLogger(CartServiceImpl.class);
 
-
     @Inject
     private CartDAO cartDAO;
 
+    // Jinho
+    @Inject
+    private ItemImgService itemImgService;
+
+    // image 가져오기
     @Override
-    public List<CartDTO> CartList() throws Exception {
-        logger.info("CartServiceImpl CartList() 장바구니 목록 보여주기.....");
-        List<CartDTO> cartList = cartDAO.CartList();
-        logger.info("CartServiceImpl CartList() Data ==> " + cartList);
+    public List<CartDTO> CartList(UserVO user) throws Exception {
+        List<CartDTO> cartList = cartDAO.CartList(user);
+         logger.info("CartServiceImpl CartList() Data ==> " + cartList);
+        for (CartDTO cart : cartList) {
+            String imgName = itemImgService.readImgFileUrl(cart.getImgName());
+            cart.setImgName(imgName);
+        }
         return cartList;
     }
 
@@ -48,5 +59,27 @@ public class CartServiceImpl implements CartService {
     public int itemCount(long user_id) throws Exception {
         logger.info("CartServiceImpl cartCount() 장바구니 든 프로덕트 개수....");
         return cartDAO.itemCount(user_id);
+    }
+    
+    @Override
+    public int plusCount(CartDTO cartDTO) throws Exception {
+        return cartDAO.plusCount(cartDTO);
+    }
+
+    @Override
+    public int minusCount(CartDTO cartDTO) throws Exception {
+        return cartDAO.minusCount(cartDTO);
+    }
+    
+    //================================================================================================
+    // forOrder
+    //================================================================================================
+    public List<OrderFormDTO> forOrder(UserVO user) throws Exception {
+        List<OrderFormDTO> cartList = cartDAO.forOrder(user);
+        for(OrderFormDTO orderFormDTO: cartList){
+            String fileUrl = itemImgService.readImgFileUrl(orderFormDTO.getImg_url());
+            orderFormDTO.setImg_url(fileUrl);
+        }
+        return cartList;
     }
 }

@@ -1,0 +1,268 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+html, body {
+    font-family: "MICEGothic", "WatermelonSalad", "NotoSansKR", "Gowun Dodum";
+    font-size: 16px;
+    background-color: white;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    scroll-width: thin;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+li {
+    padding: 10px;
+}
+
+li a {
+    color: #ebebeb;
+}
+
+li a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu li a {
+    color: gray;
+}
+
+.dropdown-menu li a:hover {
+    color: black;
+}
+
+#mypage {
+    padding: 30px;
+    color: white;
+}
+
+nav.col-sm-2 {
+    background: #6495ED;
+    padding: 0;
+    flex-direction: row;
+    border-radius: 20px 0px 20px 20px;
+}
+
+.nav h4 {
+    color: white;
+}
+
+#top {
+    padding: 0px;
+    height: 150px;
+}
+
+#c1 {
+    background: #6495ED;
+    color: white;
+    text-align: center;
+    width: 85%; 
+    border-radius: 0px 20px 20px 0px;
+}
+
+.nav-item button {
+    color: gray;
+    width: 200px;
+}
+
+.nav-item button:hover {
+    color: gray;
+}
+
+ul {
+    text-align: center;
+}
+
+/*productSelect*/
+div .col-sm-9 {
+    background: #F0F8FF;
+    height: 300px;
+    margin-left:10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+div .col-sm-7 {
+    border: 1px solid lightgray;
+    width: 70%;
+    height: 220px;
+    margin-left:10px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+div .col-md-3 {
+    height: 100px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+
+div .col-md-6 {
+    border-radius: 10px;
+    margin-left:10px;
+    height: 100px;
+    width: 60%;
+}
+
+i {
+    color: gray;
+}
+
+.col-sm-2 {
+    padding: 20px;
+}
+/*productSelect*/
+
+td a {
+    color: gray;
+    text-decoration: none;
+}
+
+td a:hover {
+    color: black;
+}
+
+#detail {
+    margin-top: 8px;
+}
+
+#bucket {
+    margin-top: 8px;
+}
+
+.commentArea {
+    border-bottom:1px solid darkgray;
+    margin-top: 25px;
+    margin-bottom: 14px;
+}
+
+#review {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#review a {
+    color: #333333;
+    text-decoration: none;
+}
+
+#review a:hover{
+    color: gray;
+    text-decoration: none;
+}
+
+.couponList {
+	margin-top: 50px;
+}
+
+/* Font Definitions */
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Regular.otf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Bold.otf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Black.otf') format('truetype');
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Light.otf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Medium.otf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../fonts/NotoSansKR-Thin.otf') format('truetype');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Gowun Dodum';
+    src: url('../fonts/GowunDodum-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'WatermelonSalad';
+    src: url('../fonts/WatermelonSalad.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'MICEGothic';
+    src: url('../fonts/MICEGothic.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'MICEGothic';
+    src: url('../fonts/MICEGothic-Bold.ttf') format('truetype');
+    font-weight: bold;
+}

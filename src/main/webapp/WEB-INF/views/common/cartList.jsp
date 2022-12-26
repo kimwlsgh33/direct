@@ -1,115 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
-<html>
-<head><%--
-  Created by IntelliJ IDEA.
-  User: choijaerok
-  Date: 2022/12/04
-  Time: 3:15 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-</head>
-
-<body>
 <div class="h-100" id="convertDiv">
-                        <c:choose>
-                            <c:when test="${empty cartList}">
-                                <div class="h-50 d-flex align-items-center  justify-content-center mb-2" >
-                                    <p style="font-size: large">Add items to get started.</p>
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-primary disabled" type="submit">Complete Purchase</button>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <div class=" d-flex justify-content-between">
-<%--                                    <div id="cart_count">--%>
-<%--&lt;%&ndash;                                        ${item_count}&ndash;%&gt;--%>
-<%--                                    </div>--%>
-                                    <div>
-                                    <button class="btn" style="width: 90px; margin-bottom: 5px;" onclick="deleteAllCart(1)">전체 삭제</button>
-                                    </div>
-                                </div>
-                                     <c:forEach items="${cartList}" var="cart">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <div class="d-flex align-items-center">
-<%--                                            <img src="${cart.product_image}" alt="product" style="width: 50px; height: 50px">--%>
-                                            <p class="ms-2">${cart.product_name}</p>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <p class="me-2">${cart.product_price}</p>
-                                                <a id="${cart.item_id}" onclick="deleteCart(${cart.item_id})">
-                                                    <i class="fas fa-circle-xmark"></i>
-                                                </a>
-                                        </div>
-                                    </div>
-                                     </c:forEach>
-                                <div class= "d-flex justify-content-center">
-                                    <button class="btn btn-primary" type="submit">Complete Purchase</button>
-                                </div>
-                                <div>
-                                </div>
-
-                            </c:otherwise>
-                        </c:choose>
+    <c:choose>
+        <c:when test="${empty cartList}">
+            <div class="h-50 d-flex align-items-center  justify-content-center mb-2" >
+                <p style="font-size: large">Add items to get started.</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary disabled" type="submit">Complete Purchase</button>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class=" d-flex justify-content-between">
+                <div>
+                <button class="btn" style="width: 90px; margin-bottom: 5px;" onclick="deleteAllCart(1)">전체 삭제</button>
+                </div>
+            </div>
+                 <c:forEach items="${cartList}" var="cart">
+                <div class="d-flex justify-content-between mb-2">
+                    <div class="d-flex align-items-center">
+                        <img src="${cart.imgName}" alt="product" style="width: 50px; height: 50px">
+                        <p class="ms-2">${cart.product_name}</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-outline-secondary" data-minus-id="${cart.item_id}" data-function-type="minus">-</button>
+                        <input type="text" class="form-control" style="width: 50px" value="${cart.count}" id="quantity_${cart.item_id}" readonly>
+                        <button class="btn btn-outline-secondary" data-plus-id="${cart.item_id}" data-function-type="plus">+</button>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <p class="me-2" id="1${cart.item_id}" value="${cart.product_price}">${cart.product_price}</p>
+                            <a id="${cart.item_id}" onclick="deleteCart(${cart.item_id})">
+                                <i class="fas fa-circle-xmark"></i>
+                            </a>
+                    </div>
+                </div>
+                 </c:forEach>
+                 <div class="d-flex justify-content-center" id="totalPrice" style="margin-top: 50px; margin-bottom: 50px">
+                     <%-- -------총금액------- --%>
+                 </div>
+            <div class= "d-flex justify-content-center">
+                <button class="btn btn-primary" type="button" onclick="location.href = '${ctx}/order/createForm'">Complete Purchase</button>
+            </div>
+        </c:otherwise>
+    </c:choose>
 </div>
-</body>
+<script src="${ctx}/resources/js/cart.js"></script>
 <script>
-    // deleteCart
-    function deleteCart(item_id) {
-        alert(${user_id})
-        $.ajax({
-            url: "/cart/deleteCart",
-            type: "post",
-            data: {"item_id": item_id},
-            success: function(data){
-                $("#convertDiv").html(data);
-                alert("삭제되었습니다.")
-
-            },error:function(request, status, error){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            }
+    // 이거 최재록 올타임 레전드.
+    //goat
+    $("[data-function-type='plus']").click(function () {
+        let id = $(this).data("plus-id");
+        let quantity = $("#quantity_" + id).val();
+        quantity++;
+        $("#quantity_" + id).val(quantity);
+        let price = $("#1" + id).attr("value");
+        let totalPrice = price * quantity;
+        $("#1" + id).text(totalPrice);
+        let total = 0;
+        $("[id^='1']").each(function () {
+            total += Number($(this).text());
         });
-    }
-    // deleteAll Cart
-    function deleteAllCart(user_id) {
+        $("#totalPrice").text("총 금액 : " + total);
+
         $.ajax({
-            url: "/cart/deleteAllCart",
+            url: "${ctx}/cart/plusCount",
             type: "post",
-            data: {"user_id": user_id},
+            data: {
+                item_id: id,
+                count: quantity,
+            },
             success: function (data) {
-                $("#convertDiv").html(data);
-                alert("장바구니가 전체 삭제되었습니다.")
-
-            },error:function(request, status, error){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                console.log(data);
             }
         });
-    }
+    });
 
-    function order(){
-        const form = document.createElement('form');
-        const input = document.createElement('input');
+    $("[data-function-type='minus']").click(function() {
+        let id = $(this).data("minus-id");
+        let quantity = $("#quantity_" + id).val();
+        if (quantity > 1) {
+            quantity--;
+            $("#quantity_" + id).val(quantity);
+            let price = $("#1" + id).attr("value");
+            let totalPrice = price * quantity;
+            $("#1" + id).text(totalPrice);
+            let total = 0;
+            $("[id^='1']").each(function () {
+                total += Number($(this).text());
+            });
+            $("#totalPrice").text("총 금액 : " + total);
 
-        input.setAttribute('type', 'hidden');
-        input.setAttribute('name', 'cartList');
-
-        input.val(${cartList});
-
-
-        form.action = '${ctx}/order/createForm';
-
-        form.method = 'POST';
-
-        form.submit();
-
-    }
-
+            $.ajax({
+                url: "${ctx}/cart/minusCount",
+                type: "post",
+                data: {
+                    item_id: id,
+                    count: quantity,
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    });
 
 </script>
-
-</html>
