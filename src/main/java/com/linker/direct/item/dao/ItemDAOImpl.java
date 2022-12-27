@@ -62,6 +62,7 @@ public class ItemDAOImpl implements ItemDAO {
         return searchListAll;
     }
     
+    // 추천 상품 리스트
     @Override
     public List<ItemRecommDTO> recommendList() throws DataAccessException {
         return sqlSession.selectList(NAMESPACE + ".recommendList");

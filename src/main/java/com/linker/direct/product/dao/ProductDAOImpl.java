@@ -48,7 +48,7 @@ public class ProductDAOImpl implements ProductDAO {
 		return OrderItemVO;
 	}
 
-	// user_id에 해당하는 상품정보 추출하기
+	// user_id에 해당하는 상품상태 추출하기
 	@Override
 	public List<ProductDTO> readRefund(Long user_id) throws DataAccessException {
 		List<ProductDTO> OrderItemVO = sqlSession.selectList(Namespace + ".readRefund", user_id);

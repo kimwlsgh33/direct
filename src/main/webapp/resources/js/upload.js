@@ -93,7 +93,7 @@ function uploadFiles() {
     cache: false,
     success: function (result) {
       alert("업로드가 완료되었습니다.");
-      location.href = "/item/detail?item_id=1";
+      location.href = "/";
       //location.href = "/item/list";
     },
     error: function (result) {

@@ -179,7 +179,7 @@
 
 			<div class="row d-flex justify-content-between align-items-center" style="margin:10px;">
 				<div class="col-sm-6" style="text-align:left;">총 상품 금액</div>
-				<div class="col-sm-6" style="text-align:right;">총 수량0개 | 0원</div>
+				<div class="col-sm-6" style="text-align:right;">총 수량 ${itemDTO.itemVO.stock}개 | 0원</div>
 			</div>
 
 			<div class="col-lg" style="margin-bottom:3px;">

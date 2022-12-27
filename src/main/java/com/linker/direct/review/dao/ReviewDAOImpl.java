@@ -67,7 +67,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public List<ReviewDTO> reviewList(Long item_id) throws DataAccessException {
 		logger.info("ReviewDAOImpl 리뷰 목록 가져오기......");
 		List<ReviewDTO> reviewList = sqlSession.selectList(namespace + ".listByItem", item_id);
-		logger.info("BoardDAOImpl boardList() Data = > " + reviewList);
+		logger.info("ReviewDAOImpl reviewList() Data = > " + reviewList);
 		return reviewList;
 	}
 
