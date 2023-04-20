@@ -9,12 +9,23 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <html>
 <head>
     <title>Category List</title>
 </head>
 <body>
 <jsp:include page="../common/header.jsp" flush="false"/>
+
+
+<%
+    while(rs.next()){
+%>
+    <h1><%=rs.getString("name")%></h1>
+    <a href='/예약.jsp?열차ID=<%=rs.getInt("id")%>'>예약</a>
+<%
+    }
+%>
 
 <div class="container-fluid">
     <h1>Category List</h1>

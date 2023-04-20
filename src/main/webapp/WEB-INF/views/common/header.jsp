@@ -62,45 +62,35 @@
     .dropdown-menu li a:hover {
         color: black;
     }
+
+    .user {
+
+    }
 </style>
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-white bg-white">
-    <div class="container-fluid d-flex">
-        <div>
-            <a class="navbar-brand" href="${ctx}/"><img src="${ctx}/resources/icons/logo.svg" alt="home" width="30" height="24" class="d-inline-block align-text-top">DIRECT</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="w-50 ">
-            <form id="searchList" method="get"  action="${ctx}/item/searchList">
-                <div class="form-group justify-content-between w-100">
-                    <span id="searchBar" class="input-group w-100 align-items-center">
-                        <input class="form-control" type="text" id="searchKeyword" value="${keyward}"  name="keyword" placeholder="원하시는 상품을 찾아보세요!" style="border-width: thin">
-                        <button id="searchButton" type="submit" class="btn" style="border-width: 0">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </form>
-        </div>
-        <div class="w-50 ">
-            <ul class="nav d-flex align-items-center justify-content-evenly">
-                <li class="nav-item dropdown user">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
-                        <i class="fas fa-user-circle" style="color: black" ></i>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: black">
-                        <li><a href="${ctx}/user/signIn">로그인(myeong)</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a href="${ctx}/user/listMembers">회원목록</a></li>
-                        <li><a href="${ctx}/user/terms_page.do">회원가입</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a href="${ctx}/admin">INDEX ADMIN</a></li>
-                        <li><a href="${ctx}/user/myInfo">내 정보</a></li>
+<nav class="navbar sticky-top navbar-expand-lg navbar-white bg-white d-flex justify-content-between px-2">
+    <div class="d-flex align-items-center" style="margin-right: 50px;">
+        <a class="navbar-brand" href="${ctx}/"><img src="${ctx}/resources/icons/logo.svg" alt="home" width="30" height="24" class="d-inline-block align-text-top">DIRECT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportContent" >
+            <div class="nav-item dropdown me-3">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+                    <i class="fas fa-user-circle" style="color: black" ></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: black">
+                    <li><a href="${ctx}/user/signIn">로그인(myeong)</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a href="${ctx}/user/listMembers">회원목록</a></li>
+                    <li><a href="${ctx}/user/terms_page.do">회원가입</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a href="${ctx}/admin">INDEX ADMIN</a></li>
+                    <li><a href="${ctx}/user/myInfo">내 정보</a></li>
 
-                    </ul>
-                </li>
+                </ul>
+            </div>
+            <ul class="nav d-flex align-items-center justify-content-evenly">
                 <div class="d-flex">
                     <form class="navbar-form" method="post" action="${ctx}/user/login">
                         <c:choose>
@@ -139,11 +129,23 @@
                 </div>
             </ul>
         </div>
-        </div>
+    </div>
+    </div>
+    <div class="w-50">
+        <form id="searchList" method="get"  action="${ctx}/item/searchList">
+            <div class="form-group justify-content-between w-100">
+                <span id="searchBar" class="input-group w-100 align-items-center">
+                    <input class="form-control" type="text" id="searchKeyword" value="${keyward}"  name="keyword" placeholder="원하시는 상품을 찾아보세요!" style="border-width: thin">
+                    <button id="searchButton" type="submit" class="btn" style="border-width: 0">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
 </nav>
 <div class="modal fade" tabindex="-1" id="shoppingModal" data-bs-keyboard="false" aria-labelledby="shoppingModalLabel" aria-hidden="true" >
-    <div class="">
-        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-end " style="margin-right: 50px; margin-top: 50px" >
+        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-start" style="margin-left: 50px; margin-top: 50px" >
             <div class="modal-content "  id="shoppingCart">
                 <div class="modal-header d-flex justify-content-evenly">
                     <h1 class="modal-title fs-5" id="shoppingModalLabel"><b>Your cart</b> <i class="fas fa-circle-info" id="tooltip"></i></h1>
@@ -156,7 +158,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 <script>
